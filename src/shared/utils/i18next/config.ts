@@ -26,10 +26,10 @@ i18next
   .init({
     resources: {
       ar: {
-        Arabic,
+        Store: Arabic,
       },
       en: {
-        English,
+        Store: English,
       },
     },
     supportedLngs: ["en", "ar"],
