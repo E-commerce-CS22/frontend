@@ -1,5 +1,5 @@
 // Primary Colors
-export const darkBlue = "#1B2346";
+export const darkBlue = "#0052CC";
 export const darkGrey = "#5b7798";
 export const lightGrey = "#F2F4F7";
 export const greyVendor = "#607795";
