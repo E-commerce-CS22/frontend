@@ -4,8 +4,7 @@ import { Stack, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 export default function Home() {
-  const { t } = useTranslation();
-  localStorage.setItem("locale-default", "ar");
+  const { t } = useTranslation("Store");
   const onChangeLanguage = (lang: string) => {
     i18n.changeLanguage(lang, () => {
       if (typeof window !== "undefined") {

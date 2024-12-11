@@ -22,6 +22,7 @@ Tasks In Order:
       - PinCode 
       - PasswordChangedSuccessfully
   - chatbot
-  - Logout
+  - Logout (LogoutDialog, ConfirmationDialog)
+  
 
 Questions 

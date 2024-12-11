@@ -3,7 +3,20 @@
 import { useTranslation } from "react-i18next";
 import { ThemeProvider } from "@mui/material/styles";
 import { useEffect, useState } from "react";
+import createCache from "@emotion/cache";
 import { CustomTheme } from "./theme";
+import { CacheProvider, EmotionCache } from "@emotion/react";
+import rtlPlugin from "stylis-plugin-rtl";
+import CssBaseline from "@mui/material/CssBaseline";
+import { prefixer } from "stylis";
+let muiCache: EmotionCache | undefined = undefined;
+
+export const createMuiCache = (isRtl: boolean) =>
+  (muiCache = createCache({
+    key: isRtl ? "mui-rtl" : "mui",
+    prepend: true,
+    stylisPlugins: isRtl ? [prefixer, rtlPlugin] : [],
+  }));
 
 export const AppThemeProvider = ({
   children,
@@ -20,7 +33,6 @@ export const AppThemeProvider = ({
     if (!i18nDefault) {
       i18n.changeLanguage("ar", () => {
         localStorage.setItem("locale-default", "ar");
-        // is in consumer app!!!!
         if (!process.env.NEXT_PUBLIC_UPLOAD_SERVICE_URL) location.reload();
       });
     }
@@ -42,5 +54,10 @@ export const AppThemeProvider = ({
     }
   }, [direction]);
 
-  return <ThemeProvider theme={appTheme}>{children}</ThemeProvider>;
+  return (
+    <CacheProvider value={muiCache ?? createMuiCache(direction === "rtl")}>
+      <CssBaseline />
+      <ThemeProvider theme={appTheme}>{children}</ThemeProvider>;
+    </CacheProvider>
+  );
 };
