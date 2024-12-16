@@ -28,10 +28,7 @@ const Layout: FC<any> = (props) => {
         breadCrumb={breadCrumb}
         isOpen={isOpen}
         onToggle={handleToggleDrawer}
-      >
-        <Box></Box>
-      </AppMenu>
-
+      />
       {isOpen && (
         <Sidebar
           isOpen={isOpen}
