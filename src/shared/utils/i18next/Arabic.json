@@ -3,5 +3,16 @@
   "Change Language": "تغيير اللغة",
   "Create an account": "انشاء حساب",
   "Welcome to": "مرحبا بك في",
-  "Login to your existing account": "الدخول بحسابك  الحالي"
+  "Login to your existing account": "الدخول بحسابك  الحالي",
+  "Username": "الاسم",
+  "Email": "البريد الالكتروني",
+  "Phone Number": "رقم الجوال",
+  "Password": "كلمة المرور",
+  "Confirm Password": "تأكيد كلمة المرور",
+  "Register Now": "انشاء حساب",
+  "Login": "تسجيل الدخول",
+  "Welcome Back": "مرحباً بعودك",
+  "Enter your information": "أدخل بياناتك",
+  "I don't have an account": "أنا لا أملك حساب",
+  "I already have an account": "أنا املك حساب بالفعل"
 }

@@ -39,7 +39,9 @@ const Layout: FC<any> = (props) => {
           onGoToHome={handleGoToHome}
         />
       )}
-      <main id="layout">{children}</main>
+      <main style={{ width: "100%" }} id="layout">
+        {children}
+      </main>
     </Box>
   );
 };
