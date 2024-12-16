@@ -1,39 +1,35 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
+"use client";
 import { useTranslation } from "react-i18next";
-import { i18n } from "@/shared/utils/i18next";
+// import { i18n } from "@/shared/utils/i18next";
 import { Box, Toolbar, useMediaQuery, useTheme } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
-import Badge from "@mui/material/Badge";
-import IconButton from "@mui/material/IconButton";
+// import Badge from "@mui/material/Badge";
+// import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { default as React, FC, Fragment, memo } from "react";
 import { LanguageButton } from "../LanguageButton";
 import { AdminHeaderProps } from "./AdminHeader.types";
-import { leftIcons, rightIcons } from "./routes";
 
-const AdminHeader: FC<AdminHeaderProps & { children: React.ReactNode }> = (
-  props
-) => {
+const AdminHeader: FC<AdminHeaderProps> = (props) => {
   const theme = useTheme();
-  const currentDir = i18n.dir(i18n.language);
+  // const currentDir = i18n.dir(i18n.language);
   const { t } = useTranslation();
 
   const {
     position = "fixed",
-    leftItems = leftIcons,
-    rightItems = rightIcons,
     title,
     // breadCrumb,
-    isOpen,
-    onToggle,
-    children,
+    // isOpen,
+    // onToggle,
+    // children,
     branchName,
   } = props;
 
   const matches = useMediaQuery("(max-width:600px)");
-  const handleToggleDrawer = () => {
-    onToggle && onToggle(!isOpen);
-  };
+  // const handleToggleDrawer = () => {
+  //   onToggle && onToggle(!isOpen);
+  // };
   const handleOpenBranchesDialog = () => {
     // openPharmacyBranch(true);
   };
@@ -47,28 +43,6 @@ const AdminHeader: FC<AdminHeaderProps & { children: React.ReactNode }> = (
           disableGutters={false}
           variant="regular"
         >
-          {!!leftItems?.length &&
-            leftItems?.map((item) => {
-              const { id, icon, onClick: onPressItem } = item || {};
-
-              const handleClick = () => {
-                onPressItem ? onPressItem(id) : handleToggleDrawer();
-              };
-
-              return (
-                <IconButton
-                  key={id}
-                  onClick={handleClick}
-                  edge="start"
-                  sx={{
-                    transform:
-                      currentDir === "rtl" ? "rotate(180deg)" : "rotate(0deg)",
-                  }}
-                >
-                  {icon}
-                </IconButton>
-              );
-            })}
           <Typography
             variant="h6"
             component="div"
@@ -81,9 +55,9 @@ const AdminHeader: FC<AdminHeaderProps & { children: React.ReactNode }> = (
               },
             }}
           >
-            <Typography>{title}</Typography>
+            <Typography variant="h5">{title}</Typography>
           </Typography>
-          {children}
+          {/* {children} */}
           {!matches && branchName && (
             <Box sx={{ marginInline: 2 }} display="flex" alignItems="center">
               <Typography>{t("Your branch is")}: </Typography>
@@ -94,7 +68,7 @@ const AdminHeader: FC<AdminHeaderProps & { children: React.ReactNode }> = (
           )}
           <LanguageButton />
 
-          {!!rightItems?.length &&
+          {/* {!!rightItems?.length &&
             rightItems?.map((item) => {
               const { id, icon, count, onClick: onPressItem } = item || {};
 
@@ -115,7 +89,7 @@ const AdminHeader: FC<AdminHeaderProps & { children: React.ReactNode }> = (
                   )}
                 </Fragment>
               );
-            })}
+            })} */}
         </Toolbar>
       </MuiAppBar>
     </>

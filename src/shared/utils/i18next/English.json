@@ -1,4 +1,18 @@
 {
   "Smart Store": "Smart Store",
-  "Change Language": "Change Language"
+  "Change Language": "Change Language",
+  "Create an account": "Create an account",
+  "Welcome to": "Welcome to",
+  "Login to your existing account": "Login to your existing account",
+  "Username": "Username",
+  "Email": "Email",
+  "Phone Number": "Phone Number",
+  "Password": "Password",
+  "Confirm Password": "Confirm Password",
+  "Register Now": "Register Now",
+  "Login": "Login",
+  "Welcome Back": "Welcome Back",
+  "Enter your information": "Enter your information",
+  "I don't have an account": "I don't have an account",
+  "I already have an account": "I already have an account"
 }

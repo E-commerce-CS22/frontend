@@ -10,7 +10,7 @@ const StyledMenuItem = styled(MenuItem)(() => ({
 }));
 
 export const LanguageButton: FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation("Store");
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
@@ -59,7 +59,7 @@ export const LanguageButton: FC = () => {
           }}
         >
           <Typography fontFamily="CoHeadlineTrial-Light">
-            {t("Change language")}
+            {t("Change Language")}
           </Typography>
         </Box>
         <StyledMenuItem onClick={handleChangeLanguage}>

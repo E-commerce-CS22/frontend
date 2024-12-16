@@ -28,10 +28,7 @@ const Layout: FC<any> = (props) => {
         breadCrumb={breadCrumb}
         isOpen={isOpen}
         onToggle={handleToggleDrawer}
-      >
-        <Box></Box>
-      </AppMenu>
-
+      />
       {isOpen && (
         <Sidebar
           isOpen={isOpen}
@@ -42,7 +39,9 @@ const Layout: FC<any> = (props) => {
           onGoToHome={handleGoToHome}
         />
       )}
-      <main id="layout">{children}</main>
+      <main style={{ width: "100%" }} id="layout">
+        {children}
+      </main>
     </Box>
   );
 };
