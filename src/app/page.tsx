@@ -5,20 +5,21 @@
 // import Layout from "@/shared/components/Layout/Layout";
 
 export default function Home() {
-  // const { t } = useTranslation("Store");
-  // const onChangeLanguage = (lang: string) => {
-  //   i18n.changeLanguage(lang, () => {
-  //     if (typeof window !== "undefined") {
-  //       location.reload();
-  //     }
-  //   });
-  // };
-  // const handleChangeLanguage = (): void => {
-  //   if (i18n.language === "en") {
-  //     onChangeLanguage("ar");
-  //   } else {
-  //     onChangeLanguage("en");
-  //   }
-  // };
-  return <div></div>;
+  const formAction = (formData) => {
+    const newPost = {
+      title: formData.get("title"),
+      body: formData.get("body"),
+    };
+    console.log(newPost);
+  };
+
+  return (
+    <div>
+      <form action={formAction}>
+        <input name="title" type="text" placeholder="title" />
+        <textarea name="body" placeholder="body" />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
 }

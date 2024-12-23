@@ -6,7 +6,7 @@ import { I18nextProvider } from "react-i18next";
 import { i18n } from "@/shared/utils/i18next";
 import { AppThemeProvider } from "@/shared/customization/AppThemeProvider";
 // import { Metadata } from "next";
-import Layout from "@/shared/components/Layout/Layout";
+// import Layout from "@/shared/components/Layout/Layout";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,7 +34,8 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <I18nextProvider i18n={i18n}>
           <AppThemeProvider>
-            <Layout title={"Smart Store"}>{children}</Layout>
+            {children}
+            {/* <Layout title={"Smart Store"}>{children}</Layout> */}
           </AppThemeProvider>
         </I18nextProvider>
       </body>
