@@ -1,8 +1,11 @@
-import { makeStyles } from "tss-react/mui";
+import { makeStyles } from "@mui/styles";
 import { darkGrey, primary, white } from "../../customization";
 import { adminLayoutVariables } from "../../customization/layout";
 
-export const useAdminHeaderStyles = makeStyles<{ isOpen: boolean; drawerWidth: number }>()((theme, { isOpen, drawerWidth }) => ({
+export const useAdminHeaderStyles = makeStyles<{
+  isOpen: boolean;
+  drawerWidth: number;
+}>()((theme, { isOpen, drawerWidth }) => ({
   root: {
     flexGrow: 1,
     backgroundColor: "DFE8F2",

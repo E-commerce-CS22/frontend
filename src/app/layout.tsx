@@ -5,8 +5,9 @@ import "./globals.css";
 import { I18nextProvider } from "react-i18next";
 import { i18n } from "@/shared/utils/i18next";
 import { AppThemeProvider } from "@/shared/customization/AppThemeProvider";
-// import { Metadata } from "next";
 import Layout from "@/shared/components/Layout/Layout";
+// import { Metadata } from "next";
+// import Layout from "@/shared/components/Layout/Layout";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

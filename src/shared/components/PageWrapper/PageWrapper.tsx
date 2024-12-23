@@ -69,6 +69,7 @@ const PageWrapper: FC<PageWrapperProps> = (props) => {
         xs
         sx={{
           padding: "40px",
+          paddingTop: "60px",
           minHeight: 50,
           position: "relative",
           flex: "1 1 auto !important",
