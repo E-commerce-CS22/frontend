@@ -30,7 +30,7 @@ const CustomTableFooter: React.FC<CustomTableFooterProps> = (props) => {
   } = props;
   const { t } = useTranslation();
 
-  const { classes } = useTableFooterStyles();
+  const classes = useTableFooterStyles();
 
   const handleGoToNextPage = () => {
     onGotoPage(pageIndex + 1);

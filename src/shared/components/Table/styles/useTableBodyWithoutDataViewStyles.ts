@@ -1,7 +1,9 @@
-import { makeStyles } from "tss-react/mui";
+import { makeStyles } from "@mui/styles";
 import { bodyBackgroundGrey } from "../../../customization/colors";
 
-export const useTableBodyWithoutDataViewStyles = makeStyles({ name: "ui-table" })(() => ({
+export const useTableBodyWithoutDataViewStyles = makeStyles({
+  name: "ui-table",
+})(() => ({
   message: {
     position: "absolute",
     top: "50%",

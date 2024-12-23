@@ -1,4 +1,4 @@
-import { makeStyles } from "tss-react/mui";
+import { makeStyles } from "@mui/styles";
 import { boxShadow, tableOutlineBorder } from "../../../customization";
 
 export const useCustomTableStyles = makeStyles({ name: "ui-table" })(() => ({

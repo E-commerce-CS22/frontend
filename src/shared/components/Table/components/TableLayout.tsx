@@ -33,7 +33,7 @@ const TableLayout = <RowType extends object>({
   onSortColumn,
   onRowClick: handleRowClick,
 }: TableLayoutProps<RowType>) => {
-  const { classes } = useTableLayoutStyles();
+  const classes = useTableLayoutStyles();
   const columnsToRender = useMemo(
     () => columns?.filter(({ isHidden }) => !isHidden),
     [columns]

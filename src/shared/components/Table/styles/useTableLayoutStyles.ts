@@ -1,7 +1,11 @@
-import { makeStyles } from "tss-react/mui";
-import { primary, tableRowsBorder, tablesRawsGrey } from "../../../customization/colors";
+import { makeStyles } from "@mui/styles";
+import {
+  primary,
+  tableRowsBorder,
+  tablesRawsGrey,
+} from "../../../customization";
 
-export const useTableLayoutStyles = makeStyles({ name: "ui-table-body" })(() => ({
+export const useTableLayoutStyles = makeStyles(() => ({
   tableHead: {
     fontWeight: "bold",
     backgroundColor: tablesRawsGrey,

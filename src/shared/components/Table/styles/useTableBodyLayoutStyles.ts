@@ -1,7 +1,8 @@
-import { makeStyles } from "tss-react/mui";
-import { tableBoxShadow, tableRowsBorder, tablesRawsGrey } from "../.../../../../customization";
+import { makeStyles } from "@mui/styles";
+import { tableRowsBorder, tablesRawsGrey } from "../../../customization";
 
-export const useTableBodyLayoutStyles = makeStyles()(theme => ({
+export const useTableBodyLayoutStyles = makeStyles(() => ({
+  // theme
   tableRow: {
     height: 60,
     position: "relative",
@@ -9,7 +10,7 @@ export const useTableBodyLayoutStyles = makeStyles()(theme => ({
   tableRowHover: {
     backgroundColor: "white",
     "&:hover": {
-      boxShadow: tableBoxShadow,
+      // boxShadow: tableBoxShadow,
       backgroundColor: tablesRawsGrey + " !important",
       zIndex: 1,
     },
@@ -26,7 +27,7 @@ export const useTableBodyLayoutStyles = makeStyles()(theme => ({
   },
   actionsCell: {
     position: "sticky",
-    [theme.direction === "rtl" ? "left" : "right"]: 0,
+    // [theme.direction === "rtl" ? "left" : "right"]: 0,
     whiteSpace: "nowrap",
     backgroundColor: "inherit",
     width: 80,

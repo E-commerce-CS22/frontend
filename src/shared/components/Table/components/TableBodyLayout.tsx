@@ -1,4 +1,8 @@
-import { Create as CreateIcon, DeleteForever as DeleteForeverIcon } from "@mui/icons-material";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  Create as CreateIcon,
+  DeleteForever as DeleteForeverIcon,
+} from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
@@ -24,19 +28,32 @@ export const TableBodyLayout = <RowType extends object>({
   onDeleteRow,
   isDeleteVisible,
 }: TableBodyLayoutProps) => {
-  const { classes } = useTableBodyLayoutStyles();
+  const classes = useTableBodyLayoutStyles();
   const [rowToBeDeleted, setRowToBeDeleted] = useState<null | RowType>(null);
 
-  const renderCell = (row: RowType, column: CustomTableColumnProps<RowType>) => {
+  const renderCell = (
+    row: RowType,
+    column: CustomTableColumnProps<RowType>
+  ) => {
     if (typeof column.accessor === "string") {
       return (
-        <Typography component='span' fontFamily='CoHeadlineTrial-Light' fontSize='14px' width={"max-content"}>
+        <Typography
+          component="span"
+          fontFamily="CoHeadlineTrial-Light"
+          fontSize="14px"
+          width={"max-content"}
+        >
           {row[column.accessor]}
         </Typography>
       );
     }
     return (
-      <Typography component='span' fontFamily='CoHeadlineTrial-Light' fontSize='14px' width={"max-content"}>
+      <Typography
+        component="span"
+        fontFamily="CoHeadlineTrial-Light"
+        fontSize="14px"
+        width={"max-content"}
+      >
         {column.accessor && column.accessor(row)}
       </Typography>
     );
@@ -53,12 +70,16 @@ export const TableBodyLayout = <RowType extends object>({
     onDeleteRow(null, rowToBeDeleted);
     setRowToBeDeleted(null);
   };
-  const handleRowClick = row => {
+  const handleRowClick = (row) => {
     onRowClick(row);
   };
 
-  const getBooleanValueFn = (predicate: boolean | ((row?: unknown) => boolean)) => {
-    return typeof predicate === "function" ? predicate : () => Boolean(predicate);
+  const getBooleanValueFn = (
+    predicate: boolean | ((row?: unknown) => boolean)
+  ) => {
+    return typeof predicate === "function"
+      ? predicate
+      : () => Boolean(predicate);
   };
 
   return (
@@ -85,50 +106,65 @@ export const TableBodyLayout = <RowType extends object>({
                   {renderCell(row, column)}
                 </TableCell>
               ))}
-              {columnsToRender.length !== 0 && (isDeleteVisible || isEditVisible || extraActionsRenderer) && (
-                <TableCell className={`${classes.cell} ${classes.actionsCell}`}>
-                  {isEditVisible && (
-                    <IconButton
-                      // eslint-disable-next-line react/jsx-handler-names
-                      onClick={event => onEditRow(event, row)}
-                      disabled={!_isRowEditable}
-                      sx={{
-                        fontFamily: "CoHeadlineTrial-Regular, Arab Kufi Regular",
-                        fontSize: "18px",
-                        height: 30,
-                        width: 30,
-                      }}
-                    >
-                      <CreateIcon fontSize='inherit' />
-                    </IconButton>
-                  )}
-                  {isDeleteVisible && (
-                    <IconButton
-                      color='error'
-                      onClick={handleOpenDeleteDialog(row)}
-                      disabled={!_isRowDeletable}
-                      sx={{
-                        fontFamily: "CoHeadlineTrial-Regular, Arab Kufi Regular",
-                        fontSize: "18px",
-                        height: 30,
-                        width: 30,
-                      }}
-                    >
-                      <DeleteForeverIcon fontSize='inherit' className={classes.delete} />
-                    </IconButton>
-                  )}
-                  {extraActionsRenderer && extraActionsRenderer(row)}
-                </TableCell>
-              )}
+              {columnsToRender.length !== 0 &&
+                (isDeleteVisible || isEditVisible || extraActionsRenderer) && (
+                  <TableCell
+                    className={`${classes.cell} ${classes.actionsCell}`}
+                  >
+                    {isEditVisible && (
+                      <IconButton
+                        // eslint-disable-next-line react/jsx-handler-names
+                        onClick={(event) => onEditRow(event, row)}
+                        disabled={!_isRowEditable}
+                        sx={{
+                          fontFamily:
+                            "CoHeadlineTrial-Regular, Arab Kufi Regular",
+                          fontSize: "18px",
+                          height: 30,
+                          width: 30,
+                        }}
+                      >
+                        <CreateIcon fontSize="inherit" />
+                      </IconButton>
+                    )}
+                    {isDeleteVisible && (
+                      <IconButton
+                        color="error"
+                        onClick={handleOpenDeleteDialog(row)}
+                        disabled={!_isRowDeletable}
+                        sx={{
+                          fontFamily:
+                            "CoHeadlineTrial-Regular, Arab Kufi Regular",
+                          fontSize: "18px",
+                          height: 30,
+                          width: 30,
+                        }}
+                      >
+                        <DeleteForeverIcon
+                          fontSize="inherit"
+                          className={classes.delete}
+                        />
+                      </IconButton>
+                    )}
+                    {extraActionsRenderer && extraActionsRenderer(row)}
+                  </TableCell>
+                )}
             </TableRow>
           );
         })
       ) : (
-        <TableBodyLoader numberOfColumns={columnsToRender.length} numberOfRows={pageSize} />
+        <TableBodyLoader
+          numberOfColumns={columnsToRender.length}
+          numberOfRows={pageSize}
+        />
       )}
 
       {rowToBeDeleted && (
-        <DeleteConfirmationDialog rowToBeDeleted={rowToBeDeleted} onClose={handleClose} onDeleteRow={handleDeleteConfirmation} />
+        <DeleteConfirmationDialog
+          rowToBeDeleted={rowToBeDeleted}
+          onClose={handleClose}
+          onDeleteRow={handleDeleteConfirmation}
+        />
       )}
     </>
   );

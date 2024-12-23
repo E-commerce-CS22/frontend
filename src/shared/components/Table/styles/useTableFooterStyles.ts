@@ -1,7 +1,12 @@
-import { makeStyles } from "tss-react/mui";
-import { primary, tableRowsBorder, tablesRawsGrey, white } from "../../../customization";
+import { makeStyles } from "@mui/styles";
+import {
+  primary,
+  tableRowsBorder,
+  tablesRawsGrey,
+  white,
+} from "../../../customization";
 
-export const useTableFooterStyles = makeStyles()(() => ({
+export const useTableFooterStyles = makeStyles(() => ({
   root: {
     minHeight: 60,
     height: 60,
