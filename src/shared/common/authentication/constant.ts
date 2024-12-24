@@ -1,4 +1,4 @@
-export const authKey = "health-authentication";
-export const userKey = "health-user";
+export const authKey = "store-authentication";
+export const userKey = "store-user";
 export const branchesKey = "health-branches";
 export const isNotificationActiveKey = "health-is-notification-active";

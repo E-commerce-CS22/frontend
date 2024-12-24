@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-undef */
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import RouteItem from "./routeTypes";
 import { BarChartIcon } from "../icons";

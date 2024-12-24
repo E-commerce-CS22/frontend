@@ -1,89 +1,52 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// import { useReactiveVar } from "@apollo/client";
 "use client";
-import { UserContext } from "@/shared/common/authentication";
-import { useTranslation } from "react-i18next";
-// import { openVar } from "@health/queries";
-import {
-  Box,
-  CardMedia,
-  // CustomerIcon,
-  IconButton,
-  // Layout,
-  // SidebarDataType,
-  // SmallAlert,
-  // ToastProvider,
-  Typography,
-} from "@mui/material";
-import { AccountDropdownMenu } from "../AccountDropdownMenu";
-import { CustomerIcon } from "../icons";
-import Layout from "../Layout/Layout";
-import { SidebarDataType } from "../Sidebar/Sidebar.types";
-import SmallAlert from "../SmallAlert/SmallAlert";
-import { ToastProvider } from "react-toast-notifications";
-import { Notifications } from "@/shared/common/Notifications";
 
+import { useTranslation } from "react-i18next";
 import React, { useContext, useMemo, useState } from "react";
-import { useRouter } from "next/router";
-// import { Notifications } from "shared/components";
-import { useAppRoutes } from "./useAppRoutes";
+import { useRouter, usePathname } from "next/navigation";
+import { Box, CardMedia, IconButton, Typography } from "@mui/material";
+import { UserContext } from "@/shared/common/authentication";
+import { ToastProvider } from "react-toast-notifications";
+import Layout from "../Layout/Layout";
+import SmallAlert from "../SmallAlert/SmallAlert";
+import { AccountDropdownMenu } from "../AccountDropdownMenu";
+import { Notifications } from "@/shared/common/Notifications";
 import { routeWithSelectedItems } from "./utils";
+import { useAppRoutes } from "./useAppRoutes";
 
 export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
 
-  const { t, i18n } = useTranslation();
-  const { isAuthenticated, user, logout } = useContext(UserContext);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const { i18n } = useTranslation("Store");
+  const { isAuthenticated, user, logout } = useContext(UserContext) || {};
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [open, setOpen] = useState(false);
+
   const isOpen = Boolean(anchorEl);
-
   const routes = useAppRoutes();
 
   const breadCrumb = useMemo(() => {
-    const paramsObject: any = router.query;
-    delete paramsObject?.["*"];
-    const paramsArray = Object.values(paramsObject);
-    const pathArray = router.asPath.substring(1).split("/");
-    return pathArray
-      .filter((item) => !paramsArray.includes(item))
-      .map((path, i) => {
-        const indexVal =
-          pathArray?.[i + 1] && paramsArray.includes(pathArray?.[i + 1])
-            ? i + 2
-            : i + 1;
-        return {
-          id: path,
-          name: path, //capitalize(path.split("-")),
-          path: path,
-          fullPath: "/" + pathArray.slice(0, indexVal).join("/"),
-          onClick: (fullPath) => {
-            const i = pathArray.indexOf(path);
-            router.push(fullPath || "/" + pathArray.slice(0, i + 1).join("/"));
-          },
-        };
-      });
-  }, [router.query, router.asPath]);
+    const pathArray = pathname.substring(1).split("/");
 
-  const handleGoToHome = () => {
-    router.push("/");
-  };
-  const handleClickOpen = (event: React.MouseEvent<HTMLElement>) => {
+    return pathArray.map((path, i) => ({
+      id: path,
+      name: path,
+      path,
+      fullPath: "/" + pathArray.slice(0, i + 1).join("/"),
+      onClick: (fullPath: string) => router.push(fullPath),
+    }));
+  }, [pathname]);
+
+  const handleGoToHome = () => router.push("/");
+  const handleClickOpen = (event: React.MouseEvent<HTMLElement>) =>
     setAnchorEl(event.currentTarget);
-  };
   const handleLogout = () => {
     setAnchorEl(null);
-    window.location.href = "/login";
-    window?.["sseControllerRef"]?.abort();
     logout();
+    router.push("/login");
   };
-  const handleClickClose = () => {
-    setAnchorEl(null);
-  };
-  const [open, setOpen] = useState(false);
-
-  const handleToggleDrawer = () => {
-    setOpen((prevState) => !prevState);
-  };
+  const handleClickClose = () => setAnchorEl(null);
+  const handleToggleDrawer = () => setOpen((prevState) => !prevState);
 
   return (
     <ToastProvider
@@ -93,18 +56,13 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
       {routes && (
         <Layout
           isOpen={open}
-          title={t(breadCrumb[0]?.name)}
-          breadCrumb={breadCrumb.slice(1, breadCrumb?.length)}
-          drawerItems={routeWithSelectedItems(
-            routes as unknown as SidebarDataType[]
-          )}
+          title={"Smart Store"} //{t(breadCrumb[0]?.name || "")}
+          breadCrumb={breadCrumb.slice(1)}
+          drawerItems={routeWithSelectedItems(routes)}
           onGoToHome={handleGoToHome}
           onToggleDrawer={handleToggleDrawer}
           rightItems={[
-            {
-              id: "notifications",
-              icon: <Notifications />,
-            },
+            { id: "notifications", icon: <Notifications /> },
             {
               id: "admin",
               icon: isAuthenticated && (
@@ -112,7 +70,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
                   onClick={handleClickOpen}
                   color={isOpen ? "info" : "primary"}
                 >
-                  <CustomerIcon />
+                  {/* Replace with valid icon */}
                 </IconButton>
               ),
             },
