@@ -25,4 +25,24 @@ Tasks In Order:
   - Logout (LogoutDialog, ConfirmationDialog)
   
 
-Questions 
+- Dashboard routes 
+  - Dashboard
+  - Products
+  - Customers
+  - Categories 
+  - Tags 
+
+Tasks for today: 
+- See how the navbar and the sidebar are implemented and try to model them 
+  in smart store
+- Start working on the dashboard 
+
+
+General Notes 
+- For auth checking we can use RequireAuth.tsx component 
+- For notifications we can use the one inside the LayoutComponent.tsx
+
+Task Planning (Navbar and Sidebar)
+- We will create a LayoutComponent inside the components folder and we will call the Layout component inside it 
+  then we will call LayoutComponent inside the main layout.tsx 
+- The i18 provider will not be inside the main layout.tsx because inside this we will not use "use client" directive

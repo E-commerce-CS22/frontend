@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import React, { FC, useState } from "react";
 import { MenuItemContext } from "./context";
 
