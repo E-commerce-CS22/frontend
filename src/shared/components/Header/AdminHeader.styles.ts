@@ -1,9 +1,9 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "tss-react/mui";
 import { darkGrey, primary, white } from "../../customization";
 import { adminLayoutVariables } from "../../customization/layout";
 
 export const useAdminHeaderStyles = makeStyles<{
-  isOpen: boolean;
+  isOpen: boolean | undefined;
   drawerWidth: number;
 }>()((theme, { isOpen, drawerWidth }) => ({
   root: {
@@ -38,7 +38,7 @@ export const useAdminHeaderStyles = makeStyles<{
     "&:hover": { color: isOpen ? primary : darkGrey },
   },
   title: {
-    color: "#1B2346",
+    color: "#1C2346",
     fontSize: 16,
     lineHeight: 1,
   },

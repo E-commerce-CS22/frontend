@@ -43,7 +43,7 @@ const TableLayout = <RowType extends object>({
       return (
         <Typography
           component="span"
-          fontFamily="CoHeadlineTrial-Regular, Arab Kufi Bold"
+          // fontFamily="CoHeadlineTrial-Regular, Arab Kufi Bold"
           fontSize="14px"
           className={classes.tableHeaderCell}
         >

@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import ListItem from "@mui/material/ListItem";
@@ -7,8 +6,9 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import React, { FC, Fragment, useContext } from "react";
 import { MenuItemContext } from "./context";
-import { SidebarList } from "./SidebarList.component";
+import { useSidebarStyles } from "./Sidebar.styles";
 import { SidebarItemProps } from "./Sidebar.types";
+import { SidebarList } from "./SidebarList.component";
 
 export const SidebarItem: FC<SidebarItemProps> = (props) => {
   const {
@@ -25,6 +25,7 @@ export const SidebarItem: FC<SidebarItemProps> = (props) => {
   } = props;
   const subItemsFiltered =
     subItems?.filter((item) => item?.hidden !== true) || [];
+  const { classes } = useSidebarStyles({ selected });
   const { id: selectedId, setId } = useContext(MenuItemContext);
 
   const handleItemPressed = () => {
@@ -33,33 +34,37 @@ export const SidebarItem: FC<SidebarItemProps> = (props) => {
     }
     if (!subItemsFiltered?.length) {
       if (onNavigate) {
-        // onNavigate(fullPath);
+        onNavigate(fullPath ? fullPath : "/");
       } else {
-        // onItemClick && onItemClick(fullPath);
+        onItemClick && onItemClick(fullPath ? fullPath : "/");
       }
     }
   };
 
   return (
-    <Fragment>
+    <>
       <ListItem
-      // component="li"
-      // selected={Boolean(
-      //   id == selectedId ||
-      //     selected ||
-      //     subItems?.some((item) => item?.selected)
-      // )}
-      // button
-      // onClick={handleItemPressed}
+        component={"li"}
+        // selected={Boolean(
+        //   id === selectedId ||
+        //     selected ||
+        //     subItems?.some((item) => item?.selected)
+        // )}
+        className={classes.listItem}
+        onClick={handleItemPressed}
+        sx={{ cursor: "pointer" }}
       >
-        {icon && <ListItemIcon>{icon}</ListItemIcon>}
-        <ListItemText>{text}</ListItemText>
+        {icon && (
+          <ListItemIcon className={classes.listItemIcon}>{icon}</ListItemIcon>
+        )}
+        <ListItemText className={classes.listItemText}>{text}</ListItemText>
         {!!subItemsFiltered?.length && <ExpandMore fontSize="small" />}
       </ListItem>
       {subItems && (
         <Collapse
           timeout="auto"
           unmountOnExit
+          classes={{ root: classes.root }}
           in={
             id == selectedId ||
             selected ||
@@ -69,6 +74,6 @@ export const SidebarItem: FC<SidebarItemProps> = (props) => {
           <SidebarList data={subItems} disablePadding />
         </Collapse>
       )}
-    </Fragment>
+    </>
   );
 };

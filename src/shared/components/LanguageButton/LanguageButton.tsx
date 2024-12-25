@@ -58,7 +58,9 @@ export const LanguageButton: FC = () => {
             padding: "8px 16px",
           }}
         >
-          <Typography fontFamily="CoHeadlineTrial-Light">
+          <Typography
+          // fontFamily="CoHeadlineTrial-Light"
+          >
             {t("Change Language")}
           </Typography>
         </Box>
@@ -74,7 +76,7 @@ export const LanguageButton: FC = () => {
         </StyledMenuItem>
       </Menu>
       <IconButton color="primary" onClick={handleOpen}>
-        <LanguageGlobeIcon />
+        <LanguageGlobeIcon fill={"primary"} />
       </IconButton>
     </>
   );

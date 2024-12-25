@@ -89,7 +89,7 @@ export const WarningConfirmationDialog: FC<WarningConfirmationDialogProps> = ({
         <Typography
           color={textColor}
           fontSize={16}
-          fontFamily="CoHeadlineTrial-Light,Arab Kufi Regular"
+          // fontFamily="CoHeadlineTrial-Light,Arab Kufi Regular"
         >
           {titleText || t("Confirmation Required")}
         </Typography>

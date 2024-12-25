@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Theme } from "@mui/material";
 import { BreadcrumbsItemType } from "../Breadcrumb";
 
@@ -10,6 +11,7 @@ export interface AdminHeaderProps {
   leftItems?: AdminHeaderItemProps[];
   rightItems?: AdminHeaderItemProps[];
   onToggle?: (state: boolean) => void;
+  children?: React.ReactNode;
 }
 
 export type AdminHeaderItemProps = {

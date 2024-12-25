@@ -63,7 +63,7 @@ export const useNotificationsHooks = () => {
     //   });
     // }
   };
-  const loading = true;
+  const loading = false;
   const pageInfo = { hasNextPage: false };
   const totalCount = 5;
   const notifications = [
@@ -74,7 +74,7 @@ export const useNotificationsHooks = () => {
       type: "something",
     },
   ];
-  const unReadNotificationsCount = 3;
+  const unReadNotificationsCount = 0;
   return {
     open,
     loading,

@@ -39,7 +39,7 @@ export const TableBodyWithoutDataView: FC<{
         <Typography
           fontSize="20px"
           color="#5B7798"
-          fontFamily="CoHeadlineTrial-Regular"
+          // fontFamily="CoHeadlineTrial-Regular"
         >
           {withoutDataMessage}
         </Typography>
