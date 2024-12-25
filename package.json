@@ -25,7 +25,8 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-toast-notifications": "^2.5.1",
     "stylis": "^4.3.4",
-    "stylis-plugin-rtl": "^2.1.1"
+    "stylis-plugin-rtl": "^2.1.1",
+    "tss-react": "^4.9.14"
   },
   "devDependencies": {
     "@types/node": "^20",

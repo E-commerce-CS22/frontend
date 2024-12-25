@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useTranslation } from "react-i18next";
 import React, { useContext, useMemo, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import { Box, CardMedia, IconButton, Typography } from "@mui/material";
+import { useRouter, usePathname, useParams } from "next/navigation";
+import { Box, IconButton, Typography } from "@mui/material";
 import { UserContext } from "@/shared/common/authentication";
 import { ToastProvider } from "react-toast-notifications";
 import Layout from "../Layout/Layout";
@@ -12,30 +14,49 @@ import { AccountDropdownMenu } from "../AccountDropdownMenu";
 import { Notifications } from "@/shared/common/Notifications";
 import { routeWithSelectedItems } from "./utils";
 import { useAppRoutes } from "./useAppRoutes";
+import { CustomerIcon } from "../icons";
+import { capitalize } from "@/shared/utils";
 
 export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
+  const params = useParams();
 
   const { i18n } = useTranslation("Store");
-  const { isAuthenticated, user, logout } = useContext(UserContext) || {};
+  const { user, logout } = useContext(UserContext) || {}; // isAuthenticated
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
+  const authenticated = true;
 
   const isOpen = Boolean(anchorEl);
   const routes = useAppRoutes();
 
   const breadCrumb = useMemo(() => {
-    const pathArray = pathname.substring(1).split("/");
-
-    return pathArray.map((path, i) => ({
-      id: path,
-      name: path,
-      path,
-      fullPath: "/" + pathArray.slice(0, i + 1).join("/"),
-      onClick: (fullPath: string) => router.push(fullPath),
-    }));
-  }, [pathname]);
+    const paramsObject: any = params;
+    delete paramsObject?.["*"];
+    const paramsArray = Object.values(paramsObject);
+    const splittedPath = location.pathname.substring(1).split("/");
+    return splittedPath
+      .filter((item) => !paramsArray.includes(item))
+      .map((path, i) => {
+        const indexVal =
+          splittedPath?.[i + 1] && paramsArray.includes(splittedPath?.[i + 1])
+            ? i + 2
+            : i + 1;
+        return {
+          id: path,
+          name: capitalize(path.split("-")),
+          path: path,
+          fullPath: "/" + splittedPath.slice(0, indexVal).join("/"),
+          onClick: (fullPath) => {
+            const i = splittedPath.indexOf(path);
+            router.push(
+              fullPath || "/" + splittedPath.slice(0, i + 1).join("/")
+            );
+          },
+        };
+      });
+  }, [params, pathname]);
 
   const handleGoToHome = () => router.push("/");
   const handleClickOpen = (event: React.MouseEvent<HTMLElement>) =>
@@ -65,12 +86,12 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
             { id: "notifications", icon: <Notifications /> },
             {
               id: "admin",
-              icon: isAuthenticated && (
+              icon: authenticated && (
                 <IconButton
                   onClick={handleClickOpen}
                   color={isOpen ? "info" : "primary"}
                 >
-                  {/* Replace with valid icon */}
+                  <CustomerIcon />
                 </IconButton>
               ),
             },
@@ -82,12 +103,14 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
               alignItems="center"
               m="10px 0"
             >
-              <CardMedia
-                image="/assets/images/NUPCO.png"
-                title="NUPCO"
+              {/* <CardMedia
+                image="/assets/images/smart store.png"
+                title="SMART"
                 sx={{ width: "60px", height: "46px" }}
-              />
-              <Typography fontSize="14px">Copyright © 2022 NUPCO</Typography>
+              /> */}
+              <Typography fontSize="14px">
+                Copyright © 2025 SMART STORE
+              </Typography>
             </Box>
           }
         >

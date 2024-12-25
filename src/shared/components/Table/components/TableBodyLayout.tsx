@@ -39,7 +39,7 @@ export const TableBodyLayout = <RowType extends object>({
       return (
         <Typography
           component="span"
-          fontFamily="CoHeadlineTrial-Light"
+          // fontFamily="CoHeadlineTrial-Light"
           fontSize="14px"
           width={"max-content"}
         >
@@ -50,7 +50,7 @@ export const TableBodyLayout = <RowType extends object>({
     return (
       <Typography
         component="span"
-        fontFamily="CoHeadlineTrial-Light"
+        // fontFamily="CoHeadlineTrial-Light"
         fontSize="14px"
         width={"max-content"}
       >
@@ -117,8 +117,8 @@ export const TableBodyLayout = <RowType extends object>({
                         onClick={(event) => onEditRow(event, row)}
                         disabled={!_isRowEditable}
                         sx={{
-                          fontFamily:
-                            "CoHeadlineTrial-Regular, Arab Kufi Regular",
+                          // fontFamily:
+                          //   "CoHeadlineTrial-Regular, Arab Kufi Regular",
                           fontSize: "18px",
                           height: 30,
                           width: 30,
@@ -133,8 +133,8 @@ export const TableBodyLayout = <RowType extends object>({
                         onClick={handleOpenDeleteDialog(row)}
                         disabled={!_isRowDeletable}
                         sx={{
-                          fontFamily:
-                            "CoHeadlineTrial-Regular, Arab Kufi Regular",
+                          // fontFamily:
+                          // "CoHeadlineTrial-Regular, Arab Kufi Regular",
                           fontSize: "18px",
                           height: 30,
                           width: 30,

@@ -3,10 +3,17 @@ import Box from "@mui/material/Box";
 import { default as React, FC } from "react";
 import AppMenu from "../Header/AdminHeader.component";
 import Sidebar from "../Sidebar/Sidebar";
+import { leftIcons, rightIcons } from "./routes";
+import { LayoutProps } from "./Layout.types";
+import { adminLayoutVariables } from "@/shared/customization/layout";
+import { useLayoutStyles } from "./Layout.styles";
 
-const Layout: FC<any> = (props) => {
+const Layout: FC<LayoutProps> = (props) => {
+  const { drawerWidth } = adminLayoutVariables;
   const {
     position = "fixed",
+    leftItems = leftIcons,
+    rightItems = rightIcons,
     branchName,
     title,
     breadCrumb,
@@ -19,27 +26,32 @@ const Layout: FC<any> = (props) => {
     onToggleDrawer: handleToggleDrawer,
   } = props;
 
+  const { classes } = useLayoutStyles({ drawerWidth, isOpen });
+
   return (
     <Box sx={{ display: "flex" }}>
       <AppMenu
         branchName={branchName}
         position={position}
+        leftItems={leftItems}
+        rightItems={rightItems}
         title={title}
         breadCrumb={breadCrumb}
         isOpen={isOpen}
         onToggle={handleToggleDrawer}
       />
+
       {isOpen && (
         <Sidebar
           isOpen={isOpen}
-          data={drawerItems}
+          data={drawerItems ? drawerItems : []}
           footer={footer}
           onNavigate={handleNavigate}
           onToggleDrawer={handleToggleDrawer}
           onGoToHome={handleGoToHome}
         />
       )}
-      <main style={{ width: "100%" }} id="layout">
+      <main className={classes.mainContainer} id="layout">
         {children}
       </main>
     </Box>

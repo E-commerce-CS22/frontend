@@ -41,14 +41,14 @@ export const useSmallAlertStyle = makeStyles<{ direction: string }>(() => ({
     boxOrient: "vertical",
     lineClamp: 2,
     fontSize: 14,
-    fontFamily: "CoHeadlineTrial-Regular, Arab Kufi Regular",
+    // fontFamily: "CoHeadlineTrial-Regular, Arab Kufi Regular",
   },
   titleTextBox: {
     width: 230,
   },
   titleText: {
     fontSize: 14,
-    fontFamily: "CoHeadlineTrial-Light, Arab Kufi Medium",
+    // fontFamily: "CoHeadlineTrial-Light, Arab Kufi Medium",
   },
   xIcon: {
     height: 28,

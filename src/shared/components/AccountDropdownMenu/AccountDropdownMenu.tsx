@@ -74,14 +74,17 @@ export const AccountDropdownMenu: FC<AccountDropdownMenuProps> = ({
           {imgSrc ? (
             <Image src={imgSrc} alt="user-profile-img" />
           ) : (
-            <Typography fontSize="30px" fontFamily="CoHeadlineTrial-Bold">
+            <Typography
+              fontSize="30px"
+              // fontFamily="CoHeadlineTrial-Bold"
+            >
               {username.charAt(0)}
             </Typography>
           )}
         </Box>
         <Tooltip title={username} placement="top">
           <Typography
-            fontFamily="CoHeadlineTrial-Light"
+            // fontFamily="CoHeadlineTrial-Light"
             align="center"
             fontSize="16px"
             sx={{
