@@ -6,6 +6,8 @@ First, run the development server:
 git clone https://github.com/E-commerce-CS22/frontend.git
 
 npm install
+# For now if npm install doesn't work use
+npm install --force
 
 npm run dev
 
