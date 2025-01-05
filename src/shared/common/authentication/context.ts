@@ -4,7 +4,6 @@ import { UserContextType } from "./types";
 
 export const UserContext = createContext<UserContextType>({
   user: undefined,
-  branches: undefined,
   login: () => {
     console.info("LOGIN CLICKED");
   },

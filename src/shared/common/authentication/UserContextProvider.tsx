@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useEffect, useState } from "react";
@@ -5,33 +6,27 @@ import { UserContext } from "./context";
 import { IUserContextProvider, UserContextType } from "./types";
 import {
   checkIsTokenSaved,
-  getBranches,
   getToken,
   getUser,
-  removeBranches,
   removeToken,
   removeUser,
-  setBranches,
   setToken,
   setUser,
 } from "./utils";
 
 export const UserContextProvider = (props: IUserContextProvider) => {
-  const handleLogin = (token: string, user: any, branches: any) => {
+  const handleLogin = (token: string, user: any) => {
     setToken(token);
     setUser(user);
-    setBranches(branches);
-    setState({ ...state, user, branches, isAuthenticated: true });
+    setState({ ...state, user, isAuthenticated: true });
   };
   const handleLogout = () => {
     removeToken();
     removeUser();
-    removeBranches();
     // backend logout logic
     setState({
       ...state,
       user: undefined,
-      branches: undefined,
       isAuthenticated: false,
     });
     setTimeout(() => {
@@ -50,7 +45,6 @@ export const UserContextProvider = (props: IUserContextProvider) => {
 
   const initState: UserContextType = {
     user: getUser(),
-    branches: getBranches(),
     login: handleLogin,
     logout: handleLogout,
     isAuthenticated: checkIsTokenSaved(),

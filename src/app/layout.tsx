@@ -6,6 +6,7 @@ import { I18nextProvider } from "react-i18next";
 import { i18n } from "@/shared/utils/i18next";
 import { AppThemeProvider } from "@/shared/customization/AppThemeProvider";
 import { LayoutComponent } from "@/shared/components/LayoutComponent/LayoutComponent";
+import { UserContextProvider } from "@/shared/common/authentication";
 // import { Metadata } from "next";
 // import Layout from "@/shared/components/Layout/Layout";
 
@@ -35,7 +36,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <I18nextProvider i18n={i18n}>
           <AppThemeProvider>
-            <LayoutComponent>{children}</LayoutComponent>
+            <UserContextProvider>
+              <LayoutComponent>{children}</LayoutComponent>
+            </UserContextProvider>
           </AppThemeProvider>
         </I18nextProvider>
       </body>
