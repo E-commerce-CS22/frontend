@@ -3,8 +3,7 @@ import React from "react";
 
 export interface UserContextType {
   user: any | null | undefined;
-  branches: any | null | undefined;
-  login: (token: string, user: any, branches: any) => void;
+  login: (token: string, user: any) => void;
   logout: () => void;
   isAuthenticated: boolean;
   token: string | undefined;
@@ -13,5 +12,4 @@ export interface UserContextType {
 
 export interface IUserContextProvider {
   children: React.ReactNode;
-  apolloClient; // ApolloClient
 }

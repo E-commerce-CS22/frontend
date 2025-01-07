@@ -16,10 +16,11 @@ import { useAccountLoginHook } from "@/shared/hooks/AccountLoginHook";
 import Show from "@/shared/components/Show";
 import EyeOffIcon from "@/shared/components/EyeOffIcon";
 import Link from "next/link";
+import { useLogin } from "./Login.hook";
 
 const Login = () => {
   const { t } = useTranslation("Store");
-
+  const { handleLogin } = useLogin();
   const {
     handleSubmit,
     formState: { errors: formErrorsData },
@@ -28,7 +29,7 @@ const Login = () => {
     mode: "all",
   });
 
-  const { errors, showPassword, onSubmit, handleClickShowPassword } =
+  const { errors, showPassword, handleClickShowPassword } =
     useAccountLoginHook();
   const formErrors = combineErrors(formErrorsData, errors);
   const patternPassword = {
@@ -85,7 +86,7 @@ const Login = () => {
             <Typography>{t("Enter your information")}</Typography>
           </Box>
           <Box m={4}>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(handleLogin)}>
               <Box m={"1rem 0"}>
                 <TextField
                   fullWidth
