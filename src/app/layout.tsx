@@ -4,7 +4,8 @@ import "./globals.css";
 import { AppThemeProvider } from "@/shared/customization/AppThemeProvider";
 import { LayoutComponent } from "@/shared/components/LayoutComponent/LayoutComponent";
 import { UserContextProvider } from "@/shared/common/authentication";
-import { TranslationsProvider } from "@/shared/common/Translations/TranslationsProvider.component";
+import { TranslationsProvider } from "@/shared/common/providers/TranslationsProvider.component";
+import { ReactQueryProvider } from "@/shared/common/providers/ReactQueryProvider.component";
 // import { Metadata } from "next";
 // import Layout from "@/shared/components/Layout/Layout";
 
@@ -34,9 +35,11 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <TranslationsProvider>
           <AppThemeProvider>
-            <UserContextProvider>
-              <LayoutComponent>{children}</LayoutComponent>
-            </UserContextProvider>
+            <ReactQueryProvider>
+              <UserContextProvider>
+                <LayoutComponent>{children}</LayoutComponent>
+              </UserContextProvider>
+            </ReactQueryProvider>
           </AppThemeProvider>
         </TranslationsProvider>
       </body>
