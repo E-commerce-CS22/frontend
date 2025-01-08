@@ -5,7 +5,7 @@ import RouteItem from "./routeTypes";
 import { BarChartIcon, ShopIcon } from "../icons";
 import { useMemo } from "react";
 
-export const useAppRoutes = (): RouteItem[] => {
+export const useAdminRoutes = (): RouteItem[] => {
   const { t } = useTranslation("Store");
   const router = useRouter();
   return useMemo(

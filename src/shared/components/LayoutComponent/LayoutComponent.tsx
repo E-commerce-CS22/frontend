@@ -13,7 +13,8 @@ import SmallAlert from "../SmallAlert/SmallAlert";
 import { AccountDropdownMenu } from "../AccountDropdownMenu";
 import { Notifications } from "@/shared/common/Notifications";
 import { routeWithSelectedItems } from "./utils";
-import { useAppRoutes } from "./useAppRoutes";
+import { useAdminRoutes } from "./useAdminRoutes";
+// import { useCustomerRoutes } from "./useCustomerRoutes";
 import { CustomerIcon } from "../icons";
 import { capitalize } from "@/shared/utils";
 
@@ -29,7 +30,8 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const authenticated = true;
 
   const isOpen = Boolean(anchorEl);
-  const routes = useAppRoutes();
+  const AdminRoutes = useAdminRoutes();
+  // const customerRoutes = useCustomerRoutes();
 
   const breadCrumb = useMemo(() => {
     const paramsObject: any = params;
@@ -74,12 +76,12 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
       components={{ Toast: SmallAlert }}
       placement={i18n.dir(i18n.language) === "rtl" ? "top-left" : "top-right"}
     >
-      {routes && (
+      {AdminRoutes && (
         <Layout
           isOpen={open}
           title={"Smart Store"} //{t(breadCrumb[0]?.name || "")}
           breadCrumb={breadCrumb.slice(1)}
-          drawerItems={routeWithSelectedItems(routes)}
+          drawerItems={routeWithSelectedItems(AdminRoutes)}
           onGoToHome={handleGoToHome}
           onToggleDrawer={handleToggleDrawer}
           rightItems={[
