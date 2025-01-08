@@ -32,12 +32,12 @@ const Login = () => {
   const { errors, showPassword, handleClickShowPassword } =
     useAccountLoginHook();
   const formErrors = combineErrors(formErrorsData, errors);
-  const patternPassword = {
-    value: /^(?=.*?[A-Z])(?=.*?[^\w\s]).{8,}$/,
-    message: t(
-      "Password Must Contain: Minimum of 8 characters, At least one uppercase letter, At least one special character (I.e !@#$%&)"
-    ),
-  };
+  // const patternPassword = {
+  //   value: /^(?=.*?[A-Z])(?=.*?[^\w\s]).{8,}$/,
+  //   message: t(
+  //     "Password Must Contain: Minimum of 8 characters, At least one uppercase letter, At least one special character (I.e !@#$%&)"
+  //   ),
+  // };
   // const handleVerify = () => {
   //   if (!isMobileNumberUsed) {
   //     setError("username", {
@@ -113,7 +113,7 @@ const Login = () => {
                   helperText={t(formErrors.password?.message)}
                   {...register("password", {
                     required: true,
-                    pattern: patternPassword,
+                    // pattern: patternPassword,
                   })}
                   InputProps={{
                     endAdornment: (
