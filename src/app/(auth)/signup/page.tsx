@@ -16,9 +16,12 @@ import { useAccountRegisterHook } from "@/shared/hooks/AccountRegisterHook";
 import Show from "@/shared/components/Show";
 import EyeOffIcon from "@/shared/components/EyeOffIcon";
 import Link from "next/link";
+import { useSignUpHook } from "./useSignUp.hook";
 
 const SignUp = () => {
   const { t } = useTranslation("Store");
+
+  const { handleSignUp } = useSignUpHook();
 
   const {
     handleSubmit,
@@ -186,7 +189,12 @@ const SignUp = () => {
                   }}
                 />
               </Box>
-              <Button fullWidth variant="contained" type="submit">
+              <Button
+                onClick={handleSignUp}
+                fullWidth
+                variant="contained"
+                type="submit"
+              >
                 {t("Register Now")}
               </Button>
               <Typography>

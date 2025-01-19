@@ -11,19 +11,6 @@ export const useAccountRegisterHook = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // const [signUp] = useSignupMutation({
-  //   onCompleted: (data) => {
-  //     const errors = data?.accountRegister?.accountErrors;
-
-  //     if (errors?.length === 0) {
-  //       // some code here
-  //       onChangeStep(dialogStep.verify);
-  //     } else {
-  //       setErrors(errors);
-  //     }
-  //   },
-  // });
-
   const onSubmit = (data) => {
     // if (data?.confirmPassword !== data?.password) {
     //   setErrors([
