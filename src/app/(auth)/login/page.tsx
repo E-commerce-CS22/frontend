@@ -15,20 +15,19 @@ import Show from "@/shared/components/Show";
 import EyeOffIcon from "@/shared/components/EyeOffIcon";
 import Link from "next/link";
 import { useLogin } from "./useLogin.hook";
-import { useState } from "react";
 
 const Login = () => {
   const { t } = useTranslation("Store");
-  const { handleLogin } = useLogin();
+  const { showPassword, handleLogin, handleClickShowPassword } = useLogin();
   const {
     handleSubmit,
-    formState: { errors: formErrorsData },
+    // formState: { errors: formErrorsData },
     register,
   } = useForm({
     mode: "all",
   });
 
-  const formErrors = formErrorsData;
+  // const formErrors = formErrorsData;
   // const patternPassword = {
   //   value: /^(?=.*?[A-Z])(?=.*?[^\w\s]).{8,}$/,
   //   message: t(
@@ -44,11 +43,6 @@ const Login = () => {
   //   }
   //   handleResendCode();
   // };
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
   return (
     <PageWrapper>
       <Box
@@ -93,8 +87,8 @@ const Login = () => {
                   fullWidth
                   label={t("Email")}
                   placeholder={t("Email")}
-                  error={Boolean(formErrors?.email?.message)}
-                  helperText={t(formErrors?.email?.message) || ""}
+                  // error={Boolean(formErrors?.email?.message)}
+                  // helperText={t(formErrors?.email?.message)}
                   {...register("email", {
                     required: true,
                     pattern: {

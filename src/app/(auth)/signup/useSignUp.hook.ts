@@ -1,6 +1,9 @@
 import { useSignUp } from "@/shared/api/auth";
+import { useState } from "react";
 export const useSignUpHook = () => {
   const { mutate: signUp, isError, error } = useSignUp();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setshowConfirmPassword] = useState(false);
 
   const handleSignUp = async () => {
     const userData = {
@@ -25,7 +28,21 @@ export const useSignUpHook = () => {
     }
   };
 
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleClickShowConfirmPassword = () => {
+    setshowConfirmPassword(!showConfirmPassword);
+  };
+
+  const onSubmit = () => {};
   return {
+    showPassword,
+    showConfirmPassword,
+    onSubmit,
+    handleClickShowConfirmPassword,
+    handleClickShowPassword,
     handleSignUp,
     isError,
     error,

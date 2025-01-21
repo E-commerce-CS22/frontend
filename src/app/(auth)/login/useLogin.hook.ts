@@ -4,6 +4,8 @@ import { UserContext } from "@/shared/common/authentication";
 
 export const useLogin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   const { login } = useContext(UserContext);
   useEffect(() => {
     // Check if user is logged in
@@ -46,5 +48,9 @@ export const useLogin = () => {
       console.error("Login failed:", error);
     }
   };
-  return { isLoggedIn, handleLogin };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+  return { isLoggedIn, showPassword, handleLogin, handleClickShowPassword };
 };
