@@ -18,7 +18,7 @@ export const useSignUpHook = () => {
     };
 
     try {
-      const result = await signUp(userData); // Call mutate with user data
+      const result = await signUp(userData);
       console.log("Sign-up successful:", result);
     } catch (err) {
       console.error("Error during sign-up:", err);
