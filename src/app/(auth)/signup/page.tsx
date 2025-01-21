@@ -11,31 +11,41 @@ import { useTranslation } from "react-i18next";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { primary } from "@/shared/customization/theme/colors";
 import { useForm } from "react-hook-form";
-import { combineErrors } from "@/shared/utils/combineErrors";
-import { useAccountRegisterHook } from "@/shared/hooks/AccountRegisterHook";
+// import { combineErrors } from "@/shared/utils/combineErrors";
+// import { useAccountRegisterHook } from "@/shared/hooks/AccountRegisterHook";
 import Show from "@/shared/components/Show";
 import EyeOffIcon from "@/shared/components/EyeOffIcon";
 import Link from "next/link";
+import { useSignUpHook } from "./useSignUp.hook";
 
 const SignUp = () => {
   const { t } = useTranslation("Store");
 
   const {
+    showPassword,
+    showConfirmPassword,
+    onSubmit,
+    handleSignUp,
+    handleClickShowPassword,
+    handleClickShowConfirmPassword,
+  } = useSignUpHook();
+
+  const {
     handleSubmit,
-    formState: { errors: formErrorsData },
+    // formState: { errors: formErrorsData },
     register,
   } = useForm({
     mode: "all",
   });
-  const {
-    errors,
-    showPassword,
-    showConfirmPassword,
-    onSubmit,
-    handleClickShowPassword,
-    handleClickShowConfirmPassword,
-  } = useAccountRegisterHook();
-  const formErrors = combineErrors(formErrorsData, errors);
+  // const {
+  //   errors,
+  //   showPassword,
+  //   showConfirmPassword,
+  //   onSubmit,
+  //   handleClickShowPassword,
+  //   handleClickShowConfirmPassword,
+  // } = useAccountRegisterHook();
+  // const formErrors = formErrorsData;
   const patternPassword = {
     value: /^(?=.*?[A-Z])(?=.*?[^\w\s]).{8,}$/,
     message: t(
@@ -86,8 +96,8 @@ const SignUp = () => {
                   fullWidth
                   label={t("Username")}
                   placeholder={t("Username")}
-                  error={Boolean(formErrors?.username?.message)}
-                  helperText={t(formErrors?.username?.message)}
+                  // error={Boolean(formErrors?.username?.message)}
+                  // helperText={t(formErrors?.username?.message) || ""}
                   inputProps={{
                     maxLength: 10,
                   }}
@@ -101,8 +111,8 @@ const SignUp = () => {
                   fullWidth
                   label={t("Email")}
                   placeholder={t("Email")}
-                  error={Boolean(formErrors?.email?.message)}
-                  helperText={t(formErrors?.email?.message)}
+                  // error={Boolean(formErrors?.email?.message)}
+                  // helperText={t(formErrors?.email?.message) || ""}
                   {...register("email", {
                     required: true,
                     pattern: {
@@ -117,8 +127,8 @@ const SignUp = () => {
                   fullWidth
                   label={t("Phone Number")}
                   placeholder={t("Phone Number")}
-                  error={Boolean(formErrors?.phoneNumber?.message)}
-                  helperText={t(formErrors?.phoneNumber?.message)}
+                  // error={Boolean(formErrors?.phoneNumber?.message)}
+                  // helperText={t(formErrors?.phoneNumber?.message) || ""}
                   inputProps={{
                     maxLength: 10,
                   }}
@@ -137,8 +147,8 @@ const SignUp = () => {
                   label={t("Password")}
                   type={showPassword ? "text" : "password"}
                   placeholder={t("Password")}
-                  error={Boolean(formErrors?.password?.message)}
-                  helperText={t(formErrors.password?.message)}
+                  // error={Boolean(formErrors?.password?.message)}
+                  // helperText={t(formErrors.password?.message)}
                   {...register("password", {
                     required: true,
                     pattern: patternPassword,
@@ -163,8 +173,8 @@ const SignUp = () => {
                   label={t("Confirm Password")}
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder={t("Confirm Password")}
-                  error={Boolean(formErrors?.confirmPassword?.message)}
-                  helperText={t(formErrors.confirmPassword?.message)}
+                  // error={Boolean(formErrors?.confirmPassword?.message)}
+                  // helperText={t(formErrors.confirmPassword?.message)}
                   {...register("confirmPassword", {
                     required: true,
                     pattern: {
@@ -186,7 +196,12 @@ const SignUp = () => {
                   }}
                 />
               </Box>
-              <Button fullWidth variant="contained" type="submit">
+              <Button
+                onClick={handleSignUp}
+                fullWidth
+                variant="contained"
+                type="submit"
+              >
                 {t("Register Now")}
               </Button>
               <Typography>

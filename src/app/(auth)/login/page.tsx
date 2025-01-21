@@ -11,27 +11,23 @@ import { useTranslation } from "react-i18next";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { primary } from "@/shared/customization/theme/colors";
 import { useForm } from "react-hook-form";
-import { combineErrors } from "@/shared/utils/combineErrors";
-import { useAccountLoginHook } from "@/shared/hooks/AccountLoginHook";
 import Show from "@/shared/components/Show";
 import EyeOffIcon from "@/shared/components/EyeOffIcon";
 import Link from "next/link";
-import { useLogin } from "./Login.hook";
+import { useLogin } from "./useLogin.hook";
 
 const Login = () => {
   const { t } = useTranslation("Store");
-  const { handleLogin } = useLogin();
+  const { showPassword, handleLogin, handleClickShowPassword } = useLogin();
   const {
     handleSubmit,
-    formState: { errors: formErrorsData },
+    // formState: { errors: formErrorsData },
     register,
   } = useForm({
     mode: "all",
   });
 
-  const { errors, showPassword, handleClickShowPassword } =
-    useAccountLoginHook();
-  const formErrors = combineErrors(formErrorsData, errors);
+  // const formErrors = formErrorsData;
   // const patternPassword = {
   //   value: /^(?=.*?[A-Z])(?=.*?[^\w\s]).{8,}$/,
   //   message: t(
@@ -47,7 +43,6 @@ const Login = () => {
   //   }
   //   handleResendCode();
   // };
-
   return (
     <PageWrapper>
       <Box
@@ -92,8 +87,8 @@ const Login = () => {
                   fullWidth
                   label={t("Email")}
                   placeholder={t("Email")}
-                  error={Boolean(formErrors?.email?.message)}
-                  helperText={t(formErrors?.email?.message)}
+                  // error={Boolean(formErrors?.email?.message)}
+                  // helperText={t(formErrors?.email?.message)}
                   {...register("email", {
                     required: true,
                     pattern: {
@@ -109,8 +104,8 @@ const Login = () => {
                   label={t("Password")}
                   type={showPassword ? "text" : "password"}
                   placeholder={t("Password")}
-                  error={Boolean(formErrors?.password?.message)}
-                  helperText={t(formErrors.password?.message)}
+                  // error={Boolean(formErrors?.password?.message)}
+                  // helperText={t(formErrors.password?.message)}
                   {...register("password", {
                     required: true,
                     // pattern: patternPassword,
