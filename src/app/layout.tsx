@@ -1,6 +1,5 @@
 "use client";
 // import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { I18nextProvider } from "react-i18next";
 import { i18n } from "@/shared/utils/i18next";
@@ -8,17 +7,6 @@ import { AppThemeProvider } from "@/shared/customization/AppThemeProvider";
 import { LayoutComponent } from "@/shared/components/LayoutComponent/LayoutComponent";
 // import { Metadata } from "next";
 // import Layout from "@/shared/components/Layout/Layout";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 // export const metadata: Metadata = {
 //   title: "Smart Store",
@@ -32,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
+        {" "}
+        {/*  className={`${geistSans.variable} ${geistMono.variable}`}*/}
         <I18nextProvider i18n={i18n}>
           <AppThemeProvider>
             <LayoutComponent>{children}</LayoutComponent>

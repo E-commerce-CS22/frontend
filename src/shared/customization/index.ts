@@ -17,3 +17,4 @@ export {
   ThemeTransitions,
   ThemeZIndex,
 };
+export * from "./fonts";

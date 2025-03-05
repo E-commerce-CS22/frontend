@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import RouteItem from "./routeTypes";
-import { BarChartIcon, ShopIcon } from "../icons";
+import { BarChartIcon, ProductIcon } from "../icons";
 import { useMemo } from "react";
 
 export const useAppRoutes = (): RouteItem[] => {
@@ -23,9 +23,9 @@ export const useAppRoutes = (): RouteItem[] => {
       {
         id: "products",
         route: "products",
-        fullPath: "/products",
+        fullPath: "dashboard/products",
         text: t("Products"),
-        icon: <ShopIcon />,
+        icon: <ProductIcon />,
         element: <div>Coming Soon</div>,
         onClick: (route) => router.push(route),
       },

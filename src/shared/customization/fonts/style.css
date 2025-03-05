@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "Arab Kufi Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Arab Kufi Regular"),
+    url("./ArbFontsArabicKufiRegular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Arab Kufi Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Arab Kufi Medium"),
+    url("./ArbFontsArabicKufiMedium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Arab Kufi Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Arab Kufi Bold"),
+    url("./ArbFontsArabicKufiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "CoHeadlineTrial-Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("CoHeadlineTrial-Bold"),
+    url("./CoHeadlineTrial-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CoHeadlineTrial-Light";
+  font-style: normal;
+  font-weight: normal;
+  src: local("CoHeadlineTrial-Light"),
+    url("./CoHeadlineTrial-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "CoHeadlineTrial-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("CoHeadlineTrial-Regular"),
+    url("./CoHeadlineTrial-Regular.ttf") format("truetype");
+}

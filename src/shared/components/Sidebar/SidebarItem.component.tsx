@@ -52,7 +52,7 @@ export const SidebarItem: FC<SidebarItemProps> = (props) => {
         // )}
         className={classes.listItem}
         onClick={handleItemPressed}
-        sx={{ cursor: "pointer" }}
+        sx={{ cursor: "pointer", fontFamily: "CoHeadlineTrial-Regular" }}
       >
         {icon && (
           <ListItemIcon className={classes.listItemIcon}>{icon}</ListItemIcon>
