@@ -21,5 +21,14 @@
   "Tags": "Tags",
   "Categories": "Categories",
   "Customers": "Customers",
-  "Create product": "Create product"
+  "Create product": "Create product",
+  "Product Name": "Product Name",
+  "Description": "Description",
+  "Price": "Price",
+  "Discount Type": "Discount Type",
+  "Discount Value": "Discount Value",
+  "Status": "Status",
+  "Discount Start Date": "Discount Start Date",
+  "Discount End Date": "Discount End Date",
+  "Variants": "Variants"
 }

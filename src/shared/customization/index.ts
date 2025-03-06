@@ -9,6 +9,7 @@ const ThemeZIndex = CustomTheme.zIndex;
 
 export { AppThemeProvider, createMuiCache } from "./AppThemeProvider";
 export * from "./theme/colors";
+export * from "./shadows";
 export {
   ThemePalette,
   ThemeShadows,

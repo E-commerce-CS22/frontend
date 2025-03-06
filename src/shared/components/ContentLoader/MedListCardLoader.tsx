@@ -4,7 +4,7 @@ import ContentLoader from "react-content-loader";
 import { makeStyles } from "@mui/styles";
 import { ISimpleLoader } from "./types";
 
-const useSimpleCardLoaderStyles = makeStyles()({
+const useStyles = makeStyles({
   card: {
     padding: 10,
     height: 250,
@@ -13,7 +13,7 @@ const useSimpleCardLoaderStyles = makeStyles()({
 });
 
 const MedListCardLoader: FC<ISimpleLoader> = (props) => {
-  const { classes } = useSimpleCardLoaderStyles();
+  const classes = useStyles();
   return (
     <Card elevation={1} className={classes.card}>
       <ContentLoader width={334} viewBox="0 0 350 160" {...props}>

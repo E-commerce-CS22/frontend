@@ -5,7 +5,7 @@ import ContentLoader from "react-content-loader";
 import { makeStyles } from "@mui/styles";
 import { ISimpleLoader } from "./types";
 
-const useProductLoaderCardStyles = makeStyles()({
+const useStyles = makeStyles({
   root: {
     margin: 10,
   },
@@ -16,7 +16,7 @@ const useProductLoaderCardStyles = makeStyles()({
 });
 
 const ProductLoaderCard: FC<ISimpleLoader> = ({ rows = 3, ...props }) => {
-  const { classes } = useProductLoaderCardStyles();
+  const classes = useStyles();
   return (
     <Grid container spacing={3} className={classes.root}>
       {new Array(rows).fill(0).map((_, index) => (

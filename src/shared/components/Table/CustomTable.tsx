@@ -4,8 +4,8 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { TableBodyWithoutDataView } from "./components/TableBodyWithoutDataView";
 import CustomTableFooter from "./components/TableFooter";
 import TableLayout from "./components/TableLayout";
-import { useCustomTableStyles } from "./styles/useCustomTableStyles";
 import { CustomTableProps } from "./types";
+import { boxShadow, tableOutlineBorder } from "@/shared/customization";
 const noop = () => undefined;
 
 const CustomTable = <RowType extends object>({
@@ -38,26 +38,41 @@ const CustomTable = <RowType extends object>({
   tableContainerSx,
   showRecordsNumberForm,
 }: CustomTableProps<RowType>): ReactElement => {
-  const { classes } = useCustomTableStyles();
-  const [dataStatus, setDataStatus] = useState<"loading" | "loaded" | "updated">("loading");
+  const [dataStatus, setDataStatus] = useState<
+    "loading" | "loaded" | "updated"
+  >("loading");
   useEffect(() => {
     if (isLoading) return;
     if (data.length) {
-      setDataStatus(status => (status === "loading" ? "loaded" : "updated"));
+      setDataStatus((status) => (status === "loading" ? "loaded" : "updated"));
     }
   }, [data, isLoading]);
   return (
     <Card
       sx={{
-        overflow: "hidden",
         position: "relative",
+        boxShadow: boxShadow,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderStyle: "solid",
+        borderColor: tableOutlineBorder,
+        overflow: "auto",
       }}
-      className={classes.root}
       elevation={0}
-      id='ui-table'
+      id="ui-table"
     >
       <>
-        <TableContainer className={classes.tableContainer} sx={tableContainerSx}>
+        <TableContainer
+          sx={
+            tableContainerSx && {
+              minHeight: "500px",
+              scrollbarWidth: "none",
+              maxHeight: "calc(100vh - 222px)",
+              overflowX: "auto",
+              position: "relative",
+            }
+          }
+        >
           <TableLayout
             title={title}
             data={data}
@@ -77,7 +92,10 @@ const CustomTable = <RowType extends object>({
         </TableContainer>
       </>
       {data?.length === 0 && !isLoading && (
-        <TableBodyWithoutDataView withoutDataMessage={withoutDataMessage} isFilterApplied={dataStatus === "updated"} />
+        <TableBodyWithoutDataView
+          withoutDataMessage={withoutDataMessage}
+          isFilterApplied={dataStatus === "updated"}
+        />
       )}
       {hasFooter && (
         <CustomTableFooter

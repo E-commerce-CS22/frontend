@@ -21,5 +21,14 @@
   "Tags": "العلامات",
   "Categories": "الفئات",
   "Customers": "الشعارات",
-  "Create product": "إنشاء منتج"
+  "Create product": "انشاء منتج",
+  "Product Name": "اسم المنتج",
+  "Description": "الوصف",
+  "Price": "السعر",
+  "Discount Type": "نوع الخصم",
+  "Discount Value": "قيمة الخصم",
+  "Status": "الحالة",
+  "Discount Start Date": "تاريخ بداية الخصم",
+  "Discount End Date": "تاريخ نهاية الخصم",
+  "Variants": "المرتجعات"
 }

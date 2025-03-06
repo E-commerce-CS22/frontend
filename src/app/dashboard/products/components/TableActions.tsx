@@ -6,6 +6,7 @@ type TableActionsProps = {
   buttons?: {
     icon?: ReactNode;
     title: string;
+    buttonHandler: () => void;
   }[];
 };
 
@@ -19,6 +20,7 @@ export const TableActions = (props: TableActionsProps) => {
             variant="contained"
             key={item.title}
             sx={{ fontFamily: "inherit" }}
+            onClick={item.buttonHandler}
           >
             {item.icon && item.icon}
             {item.title}
