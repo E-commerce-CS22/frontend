@@ -1,6 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // "use client";
+import { CustomDatePicker } from "@/shared/components/Form";
+import { primary } from "@/shared/customization";
 import { getRequiredValidation } from "@/shared/utils";
-import { Grid2, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  Grid2,
+  styled,
+  TextareaAutosize,
+  TextField,
+} from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -12,35 +21,45 @@ export const ProductInformationForm = () => {
     // control,
     formState: { errors },
   } = useFormContext();
+
+  // these things should come from the backend
+  const discountTypes = ["Percentage", "Fixed"];
+  const statuses = ["Active", "Inactive"];
+  const categories = [
+    "Electronics",
+    "Smartphones",
+    "Computers and Accessories",
+    "Home Appliances",
+    "Men's Clothing",
+    "Women's Clothing",
+    "Shoes and Bags",
+    "Beauty and Skin Care Products",
+    "Perfumes",
+    "Watches and Accessories",
+    "Baby Supplies",
+    "Toys and Gifts",
+    "Health Care Products",
+    "Sports Supplies",
+    "Cars and Accessories",
+    "Home Improvement Tools",
+    "Tools and Equipment",
+    "Books and Magazines",
+    "Food and Beverages",
+    "Office and School Supplies",
+    "Digital Products and Subscriptions",
+    "Pets and Supplies",
+  ];
+  const tags = ["Apple", "Samsung", "Nike", "Adidas"];
+  const handleDiscountTypesChange = () => {};
+  const handleStatusChange = () => {};
+  const handleCategoriesChange = () => {};
+  const handleTagsChange = () => {};
+
+  const StyledTextarea = styled(TextareaAutosize)(({}) => ({}));
+
   return (
-    <Grid2 p={0}>
-      <Grid2 p={0}>
-        <TextField
-          label={t("Product name")}
-          placeholder={t("Product name")}
-          fullWidth
-          error={Boolean(errors?.productName?.message)}
-          helperText={
-            errors?.productName?.message
-              ? t(`${errors.productName.message}`)
-              : ""
-          }
-          {...register(`productName`, {
-            required: getRequiredValidation(t, true),
-          })}
-        />
-        <TextField
-          label={t("Price")}
-          placeholder={t("Price")}
-          fullWidth
-          error={Boolean(errors?.price?.message)}
-          helperText={
-            errors?.price?.message ? t(`${errors.price.message}`) : ""
-          }
-          {...register(`price`, {
-            required: getRequiredValidation(t, true),
-          })}
-        />
+    <Grid2 p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Product name")}
           placeholder={t("Product name")}
@@ -56,6 +75,151 @@ export const ProductInformationForm = () => {
           })}
         />
       </Grid2>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+        <TextField
+          label={t("Price")}
+          placeholder={t("Price")}
+          fullWidth
+          error={Boolean(errors?.price?.message)}
+          helperText={
+            errors?.price?.message ? t(`${errors.price.message}`) : ""
+          }
+          {...register(`price`, {
+            required: getRequiredValidation(t, true),
+          })}
+        />
+      </Grid2>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+        <TextField
+          label={t("Discount Value")}
+          placeholder={t("Discount Value")}
+          fullWidth
+          error={Boolean(errors?.discountValue?.message)}
+          helperText={
+            errors?.discountValue?.message
+              ? t(`${errors.discountValue.message}`)
+              : ""
+          }
+          {...register(`discountValue`, {
+            required: getRequiredValidation(t, false),
+          })}
+        />
+      </Grid2>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+        <Autocomplete
+          options={discountTypes}
+          multiple={true}
+          onChange={handleDiscountTypesChange as any}
+          // defaultValue={discountTypes}
+          id="discountType"
+          filterSelectedOptions
+          getOptionLabel={(option: any) => {
+            return t(option);
+          }}
+          renderInput={(params) => (
+            <TextField {...params} label={t("Discount Type")} />
+          )}
+        />
+      </Grid2>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+        <CustomDatePicker
+          label={t("Discount start date")}
+          name="discountStartDateS"
+          placeholder={t("Pick a date")}
+          register={register}
+          required
+          controllerProps={{
+            rules: { required: t("This field is required") },
+          }}
+        />
+      </Grid2>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+        <CustomDatePicker
+          label={t("Discount end date")}
+          name="discountEndDateS"
+          placeholder={t("Pick a date")}
+          register={register}
+          required={true}
+          controllerProps={{
+            rules: { required: t("This field is required") },
+          }}
+        />
+      </Grid2>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+        <Autocomplete
+          options={statuses}
+          multiple={true}
+          onChange={handleStatusChange as any}
+          // defaultValue={statuses}
+          id="status"
+          filterSelectedOptions
+          getOptionLabel={(option: any) => {
+            return t(option);
+          }}
+          renderInput={(params) => (
+            <TextField {...params} label={t("Status")} />
+          )}
+        />
+      </Grid2>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+        <Autocomplete
+          options={categories}
+          multiple={true}
+          onChange={handleCategoriesChange as any}
+          // defaultValue={statuses}
+          id="categories"
+          filterSelectedOptions
+          getOptionLabel={(option: any) => {
+            return t(option);
+          }}
+          renderInput={(params) => (
+            <TextField {...params} label={t("Categories")} />
+          )}
+        />
+      </Grid2>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+        <Autocomplete
+          options={tags}
+          multiple={true}
+          onChange={handleTagsChange as any}
+          // defaultValue={statuses}
+          id="tags"
+          filterSelectedOptions
+          getOptionLabel={(option: any) => {
+            return t(option);
+          }}
+          renderInput={(params) => <TextField {...params} label={t("Tags")} />}
+        />
+      </Grid2>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+        <StyledTextarea
+          id="description"
+          aria-label="Description"
+          minRows={3}
+          placeholder={t("Description")}
+          {...register("description", {
+            required: getRequiredValidation(t, true),
+          })}
+          sx={{
+            width: "100%",
+            padding: "10px",
+            border: `1px solid ${primary}`,
+            borderRadius: "5px",
+            fontFamily: "CoHeadlineTrial-Light",
+            outline: "none",
+            "&:focus": {
+              border: `2px solid ${primary}`,
+            },
+          }}
+        />
+        {errors?.description?.message && (
+          <div style={{ color: "red" }}>
+            {t(`${errors.description.message}`)}
+          </div>
+        )}
+      </Grid2>
     </Grid2>
   );
 };
+
+// dates Discount start time, and discount end time

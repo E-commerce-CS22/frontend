@@ -33,7 +33,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 export const ShowButton: FC<ButtonProps> = (props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("Store");
   return (
     <StyledButton startIcon={<Show fill="inherit" />} size="medium" {...props}>
       {t("Show")}
