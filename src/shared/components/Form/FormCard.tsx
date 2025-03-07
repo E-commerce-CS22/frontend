@@ -42,6 +42,7 @@ export const FormCard: FC<IFormCardProps> = ({
         <Grid item xs={12} className={classes.header}>
           <Typography
             fontSize={16}
+            fontWeight={"bold"}
             fontFamily={"CoHeadlineTrial-Light, Arab Kufi Medium"}
           >
             {title}

@@ -6,7 +6,7 @@ import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { FormActions } from "@/shared/components/FormActions";
 import { Grid2 } from "@mui/material";
 import { FormCard } from "@/shared/components/Form";
-import { ProductInformationForm } from "./components/productInformationForm";
+import { ProductInformationForm } from "./components/ProductInformationForm";
 
 export default function CreateNewProductPage() {
   const { t } = useTranslation("Store");
