@@ -39,5 +39,15 @@
   "Update": "تحديث",
   "Save": "حفظ",
   "Saving...": "جاري الحفظ...",
-  "Delete": "حذف"
+  "Delete": "حذف",
+  "Optional": "اختياري",
+  "required": "مطلوب",
+  "The size of uploaded image is small, please try to upload another image": "حجم الصورة المرفوعة صغير، من فضلك حاول تحميل صورة أخرى",
+  "Unsupported file type": "نوع الملف غير مدعوم",
+  "your Thumbnails": "مصغراتك",
+  "browse": "تصفح",
+  "Drag and Drop , or": "اسحب وافسخ، أو",
+  "Expected Image Size 150x210 ": "حجم الصورة المتوقع 150x210 ",
+  "Product name": "اسم المنتج",
+  "Product Information": "معلومات المنتج"
 }

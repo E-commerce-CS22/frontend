@@ -39,5 +39,15 @@
   "Update": "Update",
   "Save": "Save",
   "Saving...": "Saving...",
-  "Delete": "Delete"
+  "Delete": "Delete",
+  "Optional": "Optional",
+  "required": "required",
+  "The size of uploaded image is small, please try to upload another image": "The size of uploaded image is small, please try to upload another image",
+  "Unsupported file type": "Unsupported file type",
+  "your Thumbnails": "your Thumbnails",
+  "browse": "browse",
+  "Drag and Drop , or": "Drag and Drop , or",
+  "Expected Image Size 150x210 ": "Expected Image Size 150x210 ",
+  "Product name": "Product name",
+  "Product Information": "Product Information"
 }
