@@ -99,6 +99,7 @@ export const TableBodyLayout = <RowType extends object>({
               className={classes.tableRow}
               sx={{
                 position: "relative",
+                fontFamily: "CoHeadlineTrial-Light",
               }}
             >
               {columnsToRender?.map((column, index) => (

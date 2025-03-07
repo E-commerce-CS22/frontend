@@ -4,6 +4,8 @@ import { TFunction } from "i18next";
 import { DescriptionModel } from "./DescriptionModel";
 import { ReactNode } from "react";
 import { TableCellProps } from "@mui/material";
+import { TagsModel } from "./TagsModel";
+import { VariantsModel } from "./VariantModel";
 
 export interface CustomTableColumnProps<RowType = {}> {
   key: string;
@@ -64,19 +66,19 @@ export const getProductsColumns = (
     header: t("Discount End Date"),
     accessor: "discount_end_date",
   },
-  // {
-  //   key: "variants",
-  //   header: t("Variants"),
-  //   accessor: "variants", // this should an icon to show the dialog
-  // },
+  {
+    key: "variants",
+    header: t("Variants"),
+    accessor: ({ variants }) => <VariantsModel variants={variants} />,
+  },
   {
     key: "categories",
     header: t("Categories"),
-    accessor: "categories.name",
+    accessor: ({ categories }) => categories?.name,
   },
-  // {
-  //   key: "tags",
-  //   header: t("Tags"),
-  //   accessor: "tags", // this should be an icon to show dialog
-  // },
+  {
+    key: "tags",
+    header: t("Tags"),
+    accessor: ({ tags }) => <TagsModel tags={tags} />,
+  },
 ];

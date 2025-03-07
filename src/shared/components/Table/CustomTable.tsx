@@ -52,7 +52,7 @@ const CustomTable = <RowType extends object>({
       sx={{
         position: "relative",
         boxShadow: boxShadow,
-        borderRadius: 10,
+        borderRadius: 4,
         borderWidth: 1,
         borderStyle: "solid",
         borderColor: tableOutlineBorder,
