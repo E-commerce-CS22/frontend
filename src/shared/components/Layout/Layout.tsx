@@ -29,7 +29,7 @@ const Layout: FC<LayoutProps> = (props) => {
   const { classes } = useLayoutStyles({ drawerWidth, isOpen });
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", fontFamily: "CoHeadlineTrial-Regular" }}>
       <AppMenu
         branchName={branchName}
         position={position}

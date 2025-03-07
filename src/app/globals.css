@@ -55,3 +55,5 @@ html[dir="rtl"] .mobile-phone-rtl-fix {
 .pac-container {
   z-index: 100000 !important;
 }
+
+@import url("../shared/customization/fonts/style.css");
