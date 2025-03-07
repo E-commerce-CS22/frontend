@@ -30,5 +30,8 @@
   "Status": "Status",
   "Discount Start Date": "Discount Start Date",
   "Discount End Date": "Discount End Date",
-  "Variants": "Variants"
+  "Variants": "Variants",
+  "Color": "Color",
+  "Raw": "Raw",
+  "Memory": "Memory"
 }

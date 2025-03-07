@@ -30,5 +30,8 @@
   "Status": "الحالة",
   "Discount Start Date": "تاريخ بداية الخصم",
   "Discount End Date": "تاريخ نهاية الخصم",
-  "Variants": "المرتجعات"
+  "Variants": "المرتجعات",
+  "Color": "اللون",
+  "Raw": "الخام",
+  "Memory": "الذاكرة"
 }
