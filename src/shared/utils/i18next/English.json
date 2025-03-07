@@ -33,5 +33,11 @@
   "Variants": "Variants",
   "Color": "Color",
   "Raw": "Raw",
-  "Memory": "Memory"
+  "Memory": "Memory",
+  "Create": "Create",
+  "Cancel": "Cancel",
+  "Update": "Update",
+  "Save": "Save",
+  "Saving...": "Saving...",
+  "Delete": "Delete"
 }
