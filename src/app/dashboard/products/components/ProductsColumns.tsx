@@ -7,7 +7,7 @@ import { TableCellProps } from "@mui/material";
 import { TagsModel } from "./TagsModel";
 import { VariantsModel } from "./VariantModel";
 import { DeleteModel } from "./DeleteModel";
-import { UpdateModel } from "./UpdateDialog";
+import { UpdateModel } from "./UpdateModel";
 
 export interface CustomTableColumnProps<RowType = {}> {
   key: string;
