@@ -79,5 +79,11 @@
   "Digital Products and Subscriptions": "Digital Products and Subscriptions",
   "Are you sure you want to delete the product!": "Are you sure you want to delete the product!",
   "Pets and Supplies": "Pets and Supplies",
-  "Modify": "Modify"
+  "Modify": "Modify",
+  "Create Category": "Create Category",
+  "Category Name": "Category Name",
+  "Created At": "Created At",
+  "Updated At": "Updated At",
+  "Are you sure you want to delete the category!": "Are you sure you want to delete the category!",
+  "Category Information": "Category Information"
 }
