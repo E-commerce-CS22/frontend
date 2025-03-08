@@ -6,6 +6,8 @@ import { ReactNode } from "react";
 import { TableCellProps } from "@mui/material";
 import { TagsModel } from "./TagsModel";
 import { VariantsModel } from "./VariantModel";
+import { DeleteModel } from "./DeleteModel";
+import { UpdateModel } from "./UpdateDialog";
 
 export interface CustomTableColumnProps<RowType = {}> {
   key: string;
@@ -80,5 +82,15 @@ export const getProductsColumns = (
     key: "tags",
     header: t("Tags"),
     accessor: ({ tags }) => <TagsModel tags={tags} />,
+  },
+  {
+    key: "delete",
+    header: t("Delete"),
+    accessor: ({ id }) => <DeleteModel id={id} />,
+  },
+  {
+    key: "Modify",
+    header: t("Modify"),
+    accessor: ({ id }) => <UpdateModel id={id} />,
   },
 ];
