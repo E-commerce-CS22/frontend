@@ -9,7 +9,7 @@ export const UpdateModel = (props) => {
   const router = useRouter();
 
   const handleUpdate = () => {
-    router.push("products/new");
+    router.push("categories/new");
     console.log(id ? id : "");
   };
   return (

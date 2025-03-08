@@ -34,7 +34,7 @@ export const DeleteModel = (props) => {
       >
         <Box>
           <Typography color="warning" fontWeight={"bold"}>
-            {t("Are you sure you want to delete the product!")}
+            {t("Are you sure you want to delete the category!")}
           </Typography>
           <DialogActions>
             <Button color="error" variant="contained" onClick={handleDelete}>
