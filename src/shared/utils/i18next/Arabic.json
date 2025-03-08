@@ -86,5 +86,10 @@
   "Updated At": "تم تحديثه في",
   "Are you sure you want to delete the category!": "هل أنت متأكد من أنك تريد حذف الفئة!",
   "Category Information": "معلومات الفئة",
-  "Category name": "اسم الفئة"
+  "Category name": "اسم الفئة",
+  "Create Tag": "انشاء تاج",
+  "Tag Name": "اسم التاج",
+  "Slug": "الاسم-النصي",
+  "Are you sure you want to delete the tag!": "هل أنت متأكد من أنك تريد حذف التاج!",
+  "Tag name": "اسم التاج"
 }

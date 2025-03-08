@@ -29,7 +29,7 @@ export const useAdminRoutes = (): RouteItem[] => {
       {
         id: "products",
         route: "products",
-        fullPath: "dashboard/products",
+        fullPath: "/dashboard/products",
         text: t("Products"),
         icon: <ShoppingCart color="primary" />,
         element: <div>Coming Soon</div>,
@@ -38,7 +38,7 @@ export const useAdminRoutes = (): RouteItem[] => {
       {
         id: "customers",
         route: "customers",
-        fullPath: "dashboard/customers",
+        fullPath: "/dashboard/customers",
         text: t("Customers"),
         icon: <PeopleAlt color="primary" />,
         element: <div>Coming Soon</div>,
@@ -47,7 +47,7 @@ export const useAdminRoutes = (): RouteItem[] => {
       {
         id: "categories",
         route: "categories",
-        fullPath: "dashboard/categories",
+        fullPath: "/dashboard/categories",
         text: t("Categories"),
         icon: <Category color="primary" />,
         element: <div>Coming Soon</div>,
@@ -56,7 +56,7 @@ export const useAdminRoutes = (): RouteItem[] => {
       {
         id: "tags",
         route: "tags",
-        fullPath: "dashboard/tags",
+        fullPath: "/dashboard/tags",
         text: t("Tags"),
         icon: <Style color="primary" />,
         element: <div>Coming Soon</div>,
