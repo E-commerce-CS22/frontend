@@ -86,5 +86,9 @@
   "Updated At": "Updated At",
   "Are you sure you want to delete the category!": "Are you sure you want to delete the category!",
   "Category Information": "Category Information",
-  "Category name": "Category name"
+  "Category name": "Category name",
+  "Create Tag": "Create Tag",
+  "Tag Name": "Tag Name",
+  "Slug": "Slug",
+  "Are you sure you want to delete the tag!": "Are you sure you want to delete the tag!"
 }
