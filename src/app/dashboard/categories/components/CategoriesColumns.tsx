@@ -5,7 +5,7 @@ import { DescriptionModel } from "./DescriptionModel";
 import { ReactNode } from "react";
 import { TableCellProps } from "@mui/material";
 import { DeleteModel } from "./DeleteModel";
-import { UpdateModel } from "./UpdateDialog";
+import { UpdateModel } from "./UpdateModel";
 
 export interface CustomTableColumnProps<RowType = {}> {
   key: string;
