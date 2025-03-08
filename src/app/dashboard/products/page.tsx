@@ -17,6 +17,9 @@ export default function DashboardProducts() {
         data={productData}
         pageIndex={1}
         pageSize={100}
+        hasNextPage={false}
+        hasPreviousPage={false}
+        hasFooter={false}
       />
     </PageWrapper>
   );
