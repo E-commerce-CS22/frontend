@@ -4,7 +4,7 @@
   "Create an account": "انشاء حساب",
   "Welcome to": "مرحبا بك في",
   "Login to your existing account": "الدخول بحسابك  الحالي",
-  "Username": "الاسم",
+  "Username": "اسم المستخدم",
   "Email": "البريد الالكتروني",
   "Phone Number": "رقم الجوال",
   "Password": "كلمة المرور",
@@ -91,5 +91,12 @@
   "Tag Name": "اسم التاج",
   "Slug": "الاسم-النصي",
   "Are you sure you want to delete the tag!": "هل أنت متأكد من أنك تريد حذف التاج!",
-  "Tag name": "اسم التاج"
+  "Tag name": "اسم التاج",
+  "Create Customer": "إنشاء عميل",
+  "Are you sure you want to delete the customer!": "هل أنت متأكد من أنك تريد حذف العميل!",
+  "First Name": "الاسم الأول",
+  "Last Name": "الاسم الأخير",
+  "Address": "العنوان",
+  "City": "المدينة",
+  "Postal Code": "الرمز البريدي"
 }
