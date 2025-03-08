@@ -98,5 +98,11 @@
   "Last Name": "الاسم الأخير",
   "Address": "العنوان",
   "City": "المدينة",
-  "Postal Code": "الرمز البريدي"
+  "Postal Code": "الرمز البريدي",
+  "Customer Information": "معلومات العميل",
+  "First name": "الاسم الأول",
+  "Last name": "الاسم الأخير",
+  "Postal code": "الرمز البريدي",
+  "Phone number": "رقم الهاتف",
+  "Phone must be like : {{ phone }}": "يجب أن يكون الهاتف مثل : {{ phone }}"
 }

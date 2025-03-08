@@ -98,5 +98,11 @@
   "Last Name": "Last Name",
   "Address": "Address",
   "City": "City",
-  "Postal Code": "Postal Code"
+  "Postal Code": "Postal Code",
+  "Customer Information": "Customer Information",
+  "First name": "First name",
+  "Last name": "Last name",
+  "Postal code": "Postal code",
+  "Phone number": "Phone number",
+  "Phone must be like : {{ phone }}": "Phone must be like : {{ phone }}"
 }
