@@ -5,6 +5,7 @@ import { LayoutComponent } from "@/shared/components/LayoutComponent/LayoutCompo
 import { UserContextProvider } from "@/shared/common/authentication";
 import { TranslationsProvider } from "@/shared/common/providers/TranslationsProvider.component";
 import { ReactQueryProvider } from "@/shared/common/providers/ReactQueryProvider.component";
+
 // import { Metadata } from "next";
 // import Layout from "@/shared/components/Layout/Layout";
 
@@ -23,7 +24,7 @@ export default function RootLayout({
       <body>
         {" "}
         {/*  className={`${geistSans.variable} ${geistMono.variable}`}*/}
-        <I18nextProvider i18n={i18n}>
+        <TranslationsProvider>
           <AppThemeProvider>
             <ReactQueryProvider>
               <UserContextProvider>
