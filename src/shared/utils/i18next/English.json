@@ -91,5 +91,18 @@
   "Tag Name": "Tag Name",
   "Slug": "Slug",
   "Are you sure you want to delete the tag!": "Are you sure you want to delete the tag!",
-  "Tag name": "Tag name"
+  "Tag name": "Tag name",
+  "Create Customer": "Create Customer",
+  "Are you sure you want to delete the customer!": "Are you sure you want to delete the customer!",
+  "First Name": "First Name",
+  "Last Name": "Last Name",
+  "Address": "Address",
+  "City": "City",
+  "Postal Code": "Postal Code",
+  "Customer Information": "Customer Information",
+  "First name": "First name",
+  "Last name": "Last name",
+  "Postal code": "Postal code",
+  "Phone number": "Phone number",
+  "Phone must be like : {{ phone }}": "Phone must be like : {{ phone }}"
 }
