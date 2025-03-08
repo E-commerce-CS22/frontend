@@ -2,8 +2,14 @@
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import RouteItem from "./routeTypes";
-import { BarChartIcon, ProductIcon } from "../icons";
 import { useMemo } from "react";
+import {
+  Category,
+  Dashboard,
+  PeopleAlt,
+  ShoppingCart,
+  Style,
+} from "@mui/icons-material";
 
 export const useAdminRoutes = (): RouteItem[] => {
   const { t } = useTranslation("Store");
@@ -15,7 +21,7 @@ export const useAdminRoutes = (): RouteItem[] => {
         route: "dashboard",
         fullPath: "/dashboard",
         text: t("Dashboard"),
-        icon: <BarChartIcon />,
+        icon: <Dashboard color="primary" />,
         element: <div>Coming Soon</div>,
         onClick: (route) => router.push(route),
       },
@@ -25,7 +31,7 @@ export const useAdminRoutes = (): RouteItem[] => {
         route: "products",
         fullPath: "dashboard/products",
         text: t("Products"),
-        icon: <ProductIcon />,
+        icon: <ShoppingCart color="primary" />,
         element: <div>Coming Soon</div>,
         onClick: (route) => router.push(route),
       },
@@ -34,7 +40,7 @@ export const useAdminRoutes = (): RouteItem[] => {
         route: "customers",
         fullPath: "/customers",
         text: t("Customers"),
-        icon: <BarChartIcon />,
+        icon: <PeopleAlt color="primary" />,
         element: <div>Coming Soon</div>,
         onClick: (route) => router.push(route),
       },
@@ -43,7 +49,7 @@ export const useAdminRoutes = (): RouteItem[] => {
         route: "categories",
         fullPath: "/categories",
         text: t("Categories"),
-        icon: <BarChartIcon />,
+        icon: <Category color="primary" />,
         element: <div>Coming Soon</div>,
         onClick: (route) => router.push(route),
       },
@@ -52,7 +58,7 @@ export const useAdminRoutes = (): RouteItem[] => {
         route: "tags",
         fullPath: "/tags",
         text: t("Tags"),
-        icon: <BarChartIcon />,
+        icon: <Style color="primary" />,
         element: <div>Coming Soon</div>,
         onClick: (route) => router.push(route),
       },

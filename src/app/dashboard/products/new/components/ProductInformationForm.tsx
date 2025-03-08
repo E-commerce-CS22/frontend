@@ -203,7 +203,6 @@ export const ProductInformationForm = () => {
           sx={{
             width: "100%",
             padding: "10px",
-            border: `1px solid ${primary}`,
             borderRadius: "5px",
             fontFamily: "CoHeadlineTrial-Light",
             outline: "none",

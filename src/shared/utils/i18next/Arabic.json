@@ -20,7 +20,7 @@
   "Products": "المنتجات",
   "Tags": "العلامات",
   "Categories": "الفئات",
-  "Customers": "الشعارات",
+  "Customers": "الزبائن",
   "Home": "الصفحة الرئسية",
   "Create product": "انشاء منتج",
   "Product Name": "اسم المنتج",
@@ -77,5 +77,7 @@
   "Food and Beverages": "الطعام والمشروبات",
   "Office and School Supplies": "مستلزمات المكتب والمدارس",
   "Digital Products and Subscriptions": "المنتجات الرقمية والاشتراكات",
-  "Pets and Supplies": "الحيوانات الأليفة والمستلزمات"
+  "Pets and Supplies": "الحيوانات الأليفة والمستلزمات",
+  "Are you sure you want to delete the product!": "هل أنت متأكد من أنك تريد حذف المنتج!",
+  "Modify": "تعديل"
 }
