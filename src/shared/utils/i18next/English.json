@@ -104,5 +104,6 @@
   "Last name": "Last name",
   "Postal code": "Postal code",
   "Phone number": "Phone number",
-  "Phone must be like : {{ phone }}": "Phone must be like : {{ phone }}"
+  "Phone must be like : {{ phone }}": "Phone must be like : {{ phone }}",
+  "Copyright © 2025 SMART STORE": "Copyright © 2025 SMART STORE"
 }

@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { primary } from "@/shared/customization/theme/colors";
 import { useForm } from "react-hook-form";
 import Show from "@/shared/components/Show";
@@ -44,11 +43,10 @@ const Login = () => {
   //   handleResendCode();
   // };
   return (
-    <PageWrapper>
+    <Box>
       <Box
         sx={{
           width: "100%",
-          marginTop: "1rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -63,7 +61,7 @@ const Login = () => {
           <Box
             sx={{
               background: primary,
-              marginTop: "2rem",
+              marginTop: "1rem",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -74,7 +72,7 @@ const Login = () => {
           >
             <Typography color="white">{t("Create an account")}</Typography>
           </Box>
-          <Box mt={6} sx={{ textAlign: "center" }}>
+          <Box mt={4} sx={{ textAlign: "center" }}>
             <Typography mb={1} color="primary" variant="h4">
               {t("Welcome Back")} ...
             </Typography>
@@ -127,7 +125,7 @@ const Login = () => {
               <Button fullWidth variant="contained" type="submit">
                 {t("Login")}
               </Button>
-              <Typography>
+              <Typography mt={"0.5rem"}>
                 {t("I don't have an account")}
                 <Link style={{ color: primary }} href={"/signup"}>
                   {" "}
@@ -138,7 +136,7 @@ const Login = () => {
           </Box>
         </Box>
       </Box>
-    </PageWrapper>
+    </Box>
   );
 };
 export default Login;

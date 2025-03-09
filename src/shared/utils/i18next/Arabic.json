@@ -104,5 +104,6 @@
   "Last name": "الاسم الأخير",
   "Postal code": "الرمز البريدي",
   "Phone number": "رقم الهاتف",
-  "Phone must be like : {{ phone }}": "يجب أن يكون الهاتف مثل : {{ phone }}"
+  "Phone must be like : {{ phone }}": "يجب أن يكون الهاتف مثل : {{ phone }}",
+  "Copyright © 2025 SMART STORE": "حقوق النشر © 2025 SMART STORE"
 }

@@ -19,6 +19,7 @@ import { CustomerIcon } from "../icons";
 import { capitalize } from "@/shared/utils";
 
 export function LayoutComponent({ children }: { children: React.ReactNode }) {
+  const { t } = useTranslation("Store");
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
@@ -111,7 +112,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
                 sx={{ width: "60px", height: "46px" }}
               /> */}
               <Typography fontSize="14px">
-                Copyright © 2025 SMART STORE
+                {t("Copyright © 2025 SMART STORE")}
               </Typography>
             </Box>
           }
