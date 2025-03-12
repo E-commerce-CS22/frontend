@@ -13,12 +13,15 @@ import SmallAlert from "../SmallAlert/SmallAlert";
 import { AccountDropdownMenu } from "../AccountDropdownMenu";
 import { Notifications } from "@/shared/common/Notifications";
 import { routeWithSelectedItems } from "./utils";
-import { useAdminRoutes } from "./useAdminRoutes";
+// import { useAdminRoutes } from "./useAdminRoutes";
 // import { useCustomerRoutes } from "./useCustomerRoutes";
 import { CustomerIcon } from "../icons";
 import { capitalize } from "@/shared/utils";
+// import { useCustomerRoutes } from "./useCustomerRoutes";
+import { usePublicRoutes } from "./usePublicRoutes";
 
 export function LayoutComponent({ children }: { children: React.ReactNode }) {
+  const { t } = useTranslation("Store");
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
@@ -30,8 +33,9 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const authenticated = true;
 
   const isOpen = Boolean(anchorEl);
-  const AdminRoutes = useAdminRoutes();
+  // const AdminRoutes = useAdminRoutes();
   // const customerRoutes = useCustomerRoutes();
+  const AdminRoutes = usePublicRoutes();
 
   const breadCrumb = useMemo(() => {
     const paramsObject: any = params;
@@ -111,7 +115,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
                 sx={{ width: "60px", height: "46px" }}
               /> */}
               <Typography fontSize="14px">
-                Copyright © 2025 SMART STORE
+                {t("Copyright © 2025 SMART STORE")}
               </Typography>
             </Box>
           }

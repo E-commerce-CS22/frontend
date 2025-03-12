@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { primary } from "@/shared/customization/theme/colors";
 import { useForm } from "react-hook-form";
 // import { combineErrors } from "@/shared/utils/combineErrors";
@@ -53,11 +52,10 @@ const SignUp = () => {
     ),
   };
   return (
-    <PageWrapper>
+    <Box>
       <Box
         sx={{
           width: "100%",
-          marginTop: "1rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -72,7 +70,7 @@ const SignUp = () => {
           <Box
             sx={{
               background: primary,
-              marginTop: "2rem",
+              marginTop: "1rem",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -83,7 +81,7 @@ const SignUp = () => {
           >
             <Typography color="white">{t("Create an account")}</Typography>
           </Box>
-          <Box mt={6} sx={{ textAlign: "center" }}>
+          <Box mt={4} sx={{ textAlign: "center" }}>
             <Typography mb={1} color="primary" variant="h4">
               {t("Welcome to")} Smart Store
             </Typography>
@@ -204,7 +202,7 @@ const SignUp = () => {
               >
                 {t("Register Now")}
               </Button>
-              <Typography>
+              <Typography mt={"0.5rem"}>
                 {t("I already have an account")}
                 <Link style={{ color: primary }} href={"/login"}>
                   {" "}
@@ -215,7 +213,7 @@ const SignUp = () => {
           </Box>
         </Box>
       </Box>
-    </PageWrapper>
+    </Box>
   );
 };
 export default SignUp;

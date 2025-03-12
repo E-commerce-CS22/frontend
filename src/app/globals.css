@@ -56,6 +56,6 @@ html[dir="rtl"] .mobile-phone-rtl-fix {
   z-index: 100000 !important;
 }
 button {
-  font-family: "inherit";
+  font-family: inherit;
 }
 @import url("../shared/customization/fonts/style.css");
