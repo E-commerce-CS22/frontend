@@ -13,10 +13,12 @@ import SmallAlert from "../SmallAlert/SmallAlert";
 import { AccountDropdownMenu } from "../AccountDropdownMenu";
 import { Notifications } from "@/shared/common/Notifications";
 import { routeWithSelectedItems } from "./utils";
-import { useAdminRoutes } from "./useAdminRoutes";
+// import { useAdminRoutes } from "./useAdminRoutes";
 // import { useCustomerRoutes } from "./useCustomerRoutes";
 import { CustomerIcon } from "../icons";
 import { capitalize } from "@/shared/utils";
+// import { useCustomerRoutes } from "./useCustomerRoutes";
+import { usePublicRoutes } from "./usePublicRoutes";
 
 export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const { t } = useTranslation("Store");
@@ -31,8 +33,9 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const authenticated = true;
 
   const isOpen = Boolean(anchorEl);
-  const AdminRoutes = useAdminRoutes();
+  // const AdminRoutes = useAdminRoutes();
   // const customerRoutes = useCustomerRoutes();
+  const AdminRoutes = usePublicRoutes();
 
   const breadCrumb = useMemo(() => {
     const paramsObject: any = params;

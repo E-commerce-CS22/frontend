@@ -4,16 +4,16 @@ import { useTranslation } from "react-i18next";
 import RouteItem from "./routeTypes";
 import { useMemo } from "react";
 import {
-  AccountCircle,
   Call,
   ChatBubble,
   Home,
   LiveHelp,
+  Login,
+  PersonAdd,
   Shop,
-  ShoppingCart,
 } from "@mui/icons-material";
 
-export const useCustomerRoutes = (): RouteItem[] => {
+export const usePublicRoutes = (): RouteItem[] => {
   const { t } = useTranslation("Store");
   const router = useRouter();
   return useMemo(
@@ -35,24 +35,6 @@ export const useCustomerRoutes = (): RouteItem[] => {
         text: t("Products"),
         icon: <Shop color="primary" />,
         element: <div>Coming Soon</div>,
-        onClick: (route) => router.push(route),
-      },
-      {
-        id: "profile",
-        route: "profile",
-        fullPath: "/profile",
-        text: t("Profile"),
-        icon: <AccountCircle color="primary" />,
-        element: <div>Profile page</div>,
-        onClick: (route) => router.push(route),
-      },
-      {
-        id: "cart",
-        route: "cart",
-        fullPath: "/myCart",
-        text: t("My Cart"),
-        icon: <ShoppingCart color="primary" />,
-        element: <div>Profile page</div>,
         onClick: (route) => router.push(route),
       },
       {
@@ -80,6 +62,24 @@ export const useCustomerRoutes = (): RouteItem[] => {
         text: t("Contact Us"),
         icon: <Call color="primary" />,
         element: <div>Profile page</div>,
+        onClick: (route) => router.push(route),
+      },
+      {
+        id: "login",
+        route: "login",
+        fullPath: "/login",
+        text: t("Login"),
+        icon: <Login color="primary" />,
+        element: <div>Login page</div>,
+        onClick: (route) => router.push(route),
+      },
+      {
+        id: "signUp",
+        route: "signUp",
+        fullPath: "/signUp",
+        text: t("Sign Up"),
+        icon: <PersonAdd color="primary" />,
+        element: <div>Sign Up page</div>,
         onClick: (route) => router.push(route),
       },
     ],

@@ -105,5 +105,11 @@
   "Postal code": "الرمز البريدي",
   "Phone number": "رقم الهاتف",
   "Phone must be like : {{ phone }}": "يجب أن يكون الهاتف مثل : {{ phone }}",
-  "Copyright © 2025 SMART STORE": "حقوق النشر © 2025 SMART STORE"
+  "Copyright © 2025 SMART STORE": "حقوق النشر © 2025 SMART STORE",
+  "About Us": "عنّا",
+  "Contact Us": "اتصل بنا",
+  "Chatbot": "شات بوت",
+  "My Cart": "سلتي",
+  "Profile": "الملف الشخصي",
+  "Sign Up": "عمل حساب"
 }
