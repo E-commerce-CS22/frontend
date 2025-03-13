@@ -75,8 +75,8 @@ export const usePublicRoutes = (): RouteItem[] => {
       },
       {
         id: "signUp",
-        route: "signUp",
-        fullPath: "/signUp",
+        route: "signup",
+        fullPath: "/signup",
         text: t("Sign Up"),
         icon: <PersonAdd color="primary" />,
         element: <div>Sign Up page</div>,
