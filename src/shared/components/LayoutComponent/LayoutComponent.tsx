@@ -83,7 +83,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
       {AdminRoutes && (
         <Layout
           isOpen={open}
-          title={"Smart Store"} //{t(breadCrumb[0]?.name || "")}
+          title={""} //{t(breadCrumb[0]?.name || "")}
           breadCrumb={breadCrumb.slice(1)}
           drawerItems={routeWithSelectedItems(AdminRoutes)}
           onGoToHome={handleGoToHome}
