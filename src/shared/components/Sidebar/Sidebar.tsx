@@ -9,6 +9,7 @@ import { useSidebarStyles } from "./Sidebar.styles";
 import { SidebarProps } from "./Sidebar.types";
 import { SidebarList } from "./SidebarList.component";
 import { Typography } from "@mui/material";
+import Image from "next/image";
 
 const Sidebar: FC<SidebarProps> = (props) => {
   const {
@@ -44,13 +45,23 @@ const Sidebar: FC<SidebarProps> = (props) => {
     >
       <div className={classes.drawerHeader}>
         <Box
-          margin="auto"
           sx={{
             cursor: "pointer",
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            width: "100%",
+            margin: "0 1rem",
           }}
           onClick={handleGoToHome}
         >
-          <Typography>Smart Store</Typography>
+          <Image
+            alt="smartStore"
+            src={"/smartStore1.png"}
+            width={30}
+            height={30}
+          />
+          <Typography m={"0 8px"}>Smart Store</Typography>
         </Box>
       </div>
       <Box

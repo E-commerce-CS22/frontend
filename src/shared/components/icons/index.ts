@@ -122,3 +122,4 @@ export { Versions as VersionsIcon } from "./Versions";
 export { VisaCardIcon } from "./VisaCardIcon";
 export { Vision as VisionIcon } from "./Vision";
 export { WhatsappIcon } from "./Whatsapp";
+export * from "./smartStore";
