@@ -12,7 +12,7 @@ export const useCustomersHook = () => {
   const router = useRouter();
   const { token } = useContext(UserContext);
 
-  const fetchTags = async () => {
+  const fetchCustomers = async () => {
     const response = await axios.get(`${SERVER_URI}/api/admin/users`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -28,7 +28,7 @@ export const useCustomersHook = () => {
     data: customersData,
   } = useQuery({
     queryKey: ["adminUsers"],
-    queryFn: fetchTags,
+    queryFn: fetchCustomers,
     enabled: !!token,
   });
 
