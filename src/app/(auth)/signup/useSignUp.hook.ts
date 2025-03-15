@@ -1,13 +1,15 @@
+import { UserContext } from "@/shared/common/authentication";
 import { CustomerRegisterData } from "@/shared/types";
 import { SERVER_URI } from "@/shared/utils";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 export const useSignUpHook = () => {
+  const { login } = useContext(UserContext);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setshowConfirmPassword] = useState(false);
 
-  const { mutate, isError, isPending, isSuccess, error } = useMutation({
+  const { mutate, isError, isPending, isSuccess, error, data } = useMutation({
     mutationFn: (userData: CustomerRegisterData) => {
       return axios.post(`${SERVER_URI}/api/customer/register`, userData);
     },
@@ -34,6 +36,12 @@ export const useSignUpHook = () => {
       city: data?.city,
     });
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      login(data?.data?.token, data?.data.user);
+    }
+  }, [isSuccess]);
 
   return {
     showPassword,
