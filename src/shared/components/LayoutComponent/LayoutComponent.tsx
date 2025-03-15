@@ -7,9 +7,8 @@ import React, { useContext, useMemo, useState } from "react";
 import { useRouter, usePathname, useParams } from "next/navigation";
 import { Box, IconButton, Typography } from "@mui/material";
 import { UserContext } from "@/shared/common/authentication";
-import { ToastProvider } from "react-toast-notifications";
+import { ToastContainer } from "react-toastify";
 import Layout from "../Layout/Layout";
-import SmallAlert from "../SmallAlert/SmallAlert";
 import { AccountDropdownMenu } from "../AccountDropdownMenu";
 import { Notifications } from "@/shared/common/Notifications";
 import { routeWithSelectedItems } from "./utils";
@@ -27,7 +26,6 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const params = useParams();
 
-  const { i18n } = useTranslation("Store");
   const { user, logout } = useContext(UserContext) || {}; // isAuthenticated
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(true);
@@ -77,10 +75,8 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const handleToggleDrawer = () => setOpen((prevState) => !prevState);
 
   return (
-    <ToastProvider
-      components={{ Toast: SmallAlert }}
-      placement={i18n.dir(i18n.language) === "rtl" ? "top-left" : "top-right"}
-    >
+    <>
+      <ToastContainer position="top-right" autoClose={3000} />
       {AdminRoutes && (
         <Layout
           isOpen={open}
@@ -138,6 +134,6 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
           onClose={handleClickClose}
         />
       )}
-    </ToastProvider>
+    </>
   );
 }
