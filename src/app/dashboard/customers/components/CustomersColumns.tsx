@@ -4,7 +4,8 @@ import { TFunction } from "i18next";
 import { ReactNode } from "react";
 import { TableCellProps } from "@mui/material";
 import { DeleteModel } from "./DeleteModel";
-import { UpdateModel } from "./UpdateModel";
+// import { UpdateModel } from "./UpdateModel";
+import { EditStatusModel } from "./EditStatusModel";
 
 export interface CustomTableColumnProps<RowType = {}> {
   key: string;
@@ -68,9 +69,16 @@ export const getCustomersColumns = (
     header: t("Delete"),
     accessor: ({ id }) => <DeleteModel id={id} />,
   },
+  // {
+  //   key: "Modify",
+  //   header: t("Modify"),
+  //   accessor: ({ id }) => <UpdateModel id={id} />,
+  // },
   {
-    key: "Modify",
-    header: t("Modify"),
-    accessor: ({ id }) => <UpdateModel id={id} />,
+    key: "editStatus",
+    header: t("Edit Status"),
+    accessor: (data) => {
+      return <EditStatusModel id={data.id} refetch={"testing"} />;
+    },
   },
 ];
