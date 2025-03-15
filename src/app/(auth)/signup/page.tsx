@@ -2,6 +2,7 @@
 import {
   Box,
   Button,
+  CircularProgress,
   IconButton,
   InputAdornment,
   TextField,
@@ -15,11 +16,16 @@ import EyeOffIcon from "@/shared/components/EyeOffIcon";
 import Link from "next/link";
 import { patternPassword, patternEmail, patternMobile } from "@/shared/utils";
 import { useSignUpHook } from "./useSignUp.hook";
+import { useEffect, useRef } from "react";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const { t } = useTranslation("Store");
 
   const {
+    isLoading,
+    isError,
+    isSuccess,
     showPassword,
     showConfirmPassword,
     onSubmit,
@@ -34,6 +40,25 @@ const SignUp = () => {
   } = useForm({
     mode: "all",
   });
+
+  const toastId = useRef<string | number | null>(null);
+  useEffect(() => {
+    if (isLoading) {
+      toastId.current = toast.info(
+        <Box display="flex" alignItems="center">
+          <CircularProgress size={24} sx={{ marginRight: "8px" }} />
+          <Typography>Loading, please wait...</Typography>
+        </Box>,
+        { autoClose: false, closeOnClick: false, closeButton: false }
+      );
+    } else if (isError) {
+      toast.dismiss(toastId.current!);
+      toast.error("Error submitting the data");
+    } else if (isSuccess) {
+      toast.dismiss(toastId.current!);
+      toast.success("Successfully submitted the data");
+    }
+  }, [isLoading, isError, isSuccess]);
 
   return (
     <Box>
