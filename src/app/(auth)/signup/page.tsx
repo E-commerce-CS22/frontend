@@ -47,7 +47,7 @@ const SignUp = () => {
       toastId.current = toast.info(
         <Box display="flex" alignItems="center">
           <CircularProgress size={24} sx={{ marginRight: "8px" }} />
-          <Typography>Loading, please wait...</Typography>
+          <Typography>{t("Submitting, please wait...")}</Typography>
         </Box>,
         { autoClose: false, closeOnClick: false, closeButton: false }
       );

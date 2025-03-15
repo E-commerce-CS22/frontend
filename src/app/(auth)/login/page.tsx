@@ -14,34 +14,19 @@ import Show from "@/shared/components/Show";
 import EyeOffIcon from "@/shared/components/EyeOffIcon";
 import Link from "next/link";
 import { useLogin } from "./useLogin.hook";
+import { patternEmail, patternPassword } from "@/shared/utils";
 
 const Login = () => {
   const { t } = useTranslation("Store");
-  const { showPassword, handleLogin, handleClickShowPassword } = useLogin();
+  const { showPassword, handleClickShowPassword, onSubmit } = useLogin();
   const {
     handleSubmit,
-    // formState: { errors: formErrorsData },
+    formState: { errors: formErrors },
     register,
   } = useForm({
     mode: "all",
   });
 
-  // const formErrors = formErrorsData;
-  // const patternPassword = {
-  //   value: /^(?=.*?[A-Z])(?=.*?[^\w\s]).{8,}$/,
-  //   message: t(
-  //     "Password Must Contain: Minimum of 8 characters, At least one uppercase letter, At least one special character (I.e !@#$%&)"
-  //   ),
-  // };
-  // const handleVerify = () => {
-  //   if (!isMobileNumberUsed) {
-  //     setError("username", {
-  //       message: t("You must use your mobile number to verify your account"),
-  //     });
-  //     return;
-  //   }
-  //   handleResendCode();
-  // };
   return (
     <Box>
       <Box
@@ -79,20 +64,21 @@ const Login = () => {
             <Typography>{t("Enter your information")}</Typography>
           </Box>
           <Box m={4}>
-            <form onSubmit={handleSubmit(handleLogin)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <Box m={"1rem 0"}>
                 <TextField
                   fullWidth
                   label={t("Email")}
                   placeholder={t("Email")}
-                  // error={Boolean(formErrors?.email?.message)}
-                  // helperText={t(formErrors?.email?.message)}
+                  error={Boolean(formErrors?.email)}
+                  helperText={
+                    formErrors?.email?.message
+                      ? t(String(formErrors.email.message))
+                      : ""
+                  }
                   {...register("email", {
-                    required: true,
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: t("Invalid email format"),
-                    },
+                    required: t("Email is required"),
+                    pattern: patternEmail,
                   })}
                 />
               </Box>
@@ -102,11 +88,15 @@ const Login = () => {
                   label={t("Password")}
                   type={showPassword ? "text" : "password"}
                   placeholder={t("Password")}
-                  // error={Boolean(formErrors?.password?.message)}
-                  // helperText={t(formErrors.password?.message)}
+                  error={Boolean(formErrors?.password)}
+                  helperText={
+                    formErrors?.password?.message
+                      ? t(String(formErrors.password.message))
+                      : ""
+                  }
                   {...register("password", {
-                    required: true,
-                    // pattern: patternPassword,
+                    required: t("Password is required"),
+                    pattern: patternPassword,
                   })}
                   InputProps={{
                     endAdornment: (
@@ -122,7 +112,12 @@ const Login = () => {
                   }}
                 />
               </Box>
-              <Button fullWidth variant="contained" type="submit">
+              <Button
+                onClick={handleSubmit(onSubmit)}
+                fullWidth
+                variant="contained"
+                type="submit"
+              >
                 {t("Login")}
               </Button>
               <Typography mt={"0.5rem"}>

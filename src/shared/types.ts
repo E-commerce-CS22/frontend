@@ -21,3 +21,8 @@ export type CustomerRegisterData = {
   postal_code?: string;
   profile?: string;
 };
+
+export type LoginInputData = {
+  email: string;
+  password: string;
+};
