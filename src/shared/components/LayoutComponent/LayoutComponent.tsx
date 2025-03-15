@@ -18,7 +18,8 @@ import { routeWithSelectedItems } from "./utils";
 import { CustomerIcon } from "../icons";
 import { capitalize } from "@/shared/utils";
 // import { useCustomerRoutes } from "./useCustomerRoutes";
-import { usePublicRoutes } from "./usePublicRoutes";
+// import { usePublicRoutes } from "./usePublicRoutes";
+import { useCustomerRoutes } from "./useCustomerRoutes";
 
 export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const { t } = useTranslation("Store");
@@ -34,8 +35,8 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
 
   const isOpen = Boolean(anchorEl);
   // const AdminRoutes = useAdminRoutes();
-  // const customerRoutes = useCustomerRoutes();
-  const AdminRoutes = usePublicRoutes();
+  const AdminRoutes = useCustomerRoutes();
+  // const AdminRoutes = usePublicRoutes();
 
   const breadCrumb = useMemo(() => {
     const paramsObject: any = params;

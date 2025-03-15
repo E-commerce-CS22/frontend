@@ -10,11 +10,10 @@ import {
 import { useTranslation } from "react-i18next";
 import { primary } from "@/shared/customization/theme/colors";
 import { useForm } from "react-hook-form";
-// import { combineErrors } from "@/shared/utils/combineErrors";
-// import { useAccountRegisterHook } from "@/shared/hooks/AccountRegisterHook";
 import Show from "@/shared/components/Show";
 import EyeOffIcon from "@/shared/components/EyeOffIcon";
 import Link from "next/link";
+import { patternPassword, patternEmail, patternMobile } from "@/shared/utils";
 import { useSignUpHook } from "./useSignUp.hook";
 
 const SignUp = () => {
@@ -24,33 +23,18 @@ const SignUp = () => {
     showPassword,
     showConfirmPassword,
     onSubmit,
-    handleSignUp,
     handleClickShowPassword,
     handleClickShowConfirmPassword,
   } = useSignUpHook();
 
   const {
     handleSubmit,
-    // formState: { errors: formErrorsData },
+    formState: { errors: formErrors },
     register,
   } = useForm({
     mode: "all",
   });
-  // const {
-  //   errors,
-  //   showPassword,
-  //   showConfirmPassword,
-  //   onSubmit,
-  //   handleClickShowPassword,
-  //   handleClickShowConfirmPassword,
-  // } = useAccountRegisterHook();
-  // const formErrors = formErrorsData;
-  const patternPassword = {
-    value: /^(?=.*?[A-Z])(?=.*?[^\w\s]).{8,}$/,
-    message: t(
-      "Password Must Contain: Minimum of 8 characters, At least one uppercase letter, At least one special character (I.e !@#$%&)"
-    ),
-  };
+
   return (
     <Box>
       <Box
@@ -94,13 +78,49 @@ const SignUp = () => {
                   fullWidth
                   label={t("Username")}
                   placeholder={t("Username")}
-                  // error={Boolean(formErrors?.username?.message)}
-                  // helperText={t(formErrors?.username?.message) || ""}
-                  inputProps={{
-                    maxLength: 10,
-                  }}
+                  error={Boolean(formErrors?.username)}
+                  helperText={
+                    formErrors?.username?.message
+                      ? t(String(formErrors.username.message))
+                      : ""
+                  }
+                  inputProps={{ maxLength: 10 }}
                   {...register("username", {
-                    required: true,
+                    required: t("Username is required"),
+                  })}
+                />
+              </Box>
+              <Box m={"1rem 0"}>
+                <TextField
+                  fullWidth
+                  label={t("First name")}
+                  placeholder={t("firstName")}
+                  error={Boolean(formErrors?.firstName)}
+                  helperText={
+                    formErrors?.firstName?.message
+                      ? t(String(formErrors.firstName.message))
+                      : ""
+                  }
+                  inputProps={{ maxLength: 10 }}
+                  {...register("firstName", {
+                    required: t("First name is required"),
+                  })}
+                />
+              </Box>
+              <Box m={"1rem 0"}>
+                <TextField
+                  fullWidth
+                  label={t("Last name")}
+                  placeholder={t("lastName")}
+                  error={Boolean(formErrors?.lastName)}
+                  helperText={
+                    formErrors?.lastName?.message
+                      ? t(String(formErrors.lastName.message))
+                      : ""
+                  }
+                  inputProps={{ maxLength: 10 }}
+                  {...register("lastName", {
+                    required: t("Last name is required"),
                   })}
                 />
               </Box>
@@ -109,14 +129,15 @@ const SignUp = () => {
                   fullWidth
                   label={t("Email")}
                   placeholder={t("Email")}
-                  // error={Boolean(formErrors?.email?.message)}
-                  // helperText={t(formErrors?.email?.message) || ""}
+                  error={Boolean(formErrors?.email)}
+                  helperText={
+                    formErrors?.email?.message
+                      ? t(String(formErrors.email.message))
+                      : ""
+                  }
                   {...register("email", {
-                    required: true,
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: t("Invalid email format"),
-                    },
+                    required: t("Email is required"),
+                    pattern: patternEmail,
                   })}
                 />
               </Box>
@@ -125,17 +146,16 @@ const SignUp = () => {
                   fullWidth
                   label={t("Phone Number")}
                   placeholder={t("Phone Number")}
-                  // error={Boolean(formErrors?.phoneNumber?.message)}
-                  // helperText={t(formErrors?.phoneNumber?.message) || ""}
-                  inputProps={{
-                    maxLength: 10,
-                  }}
+                  error={Boolean(formErrors?.phoneNumber)}
+                  helperText={
+                    formErrors?.phoneNumber?.message
+                      ? t(String(formErrors.phoneNumber.message))
+                      : ""
+                  }
+                  inputProps={{ maxLength: 13, dir: "ltr" }}
                   {...register("phoneNumber", {
-                    required: true,
-                    pattern: {
-                      value: /^\d+$/,
-                      message: t("Invalid phone number"),
-                    },
+                    required: t("Phone number is required"),
+                    pattern: patternMobile,
                   })}
                 />
               </Box>
@@ -145,10 +165,14 @@ const SignUp = () => {
                   label={t("Password")}
                   type={showPassword ? "text" : "password"}
                   placeholder={t("Password")}
-                  // error={Boolean(formErrors?.password?.message)}
-                  // helperText={t(formErrors.password?.message)}
+                  error={Boolean(formErrors?.password)}
+                  helperText={
+                    formErrors?.password?.message
+                      ? t(String(formErrors.password.message))
+                      : ""
+                  }
                   {...register("password", {
-                    required: true,
+                    required: t("Password is required"),
                     pattern: patternPassword,
                   })}
                   InputProps={{
@@ -171,13 +195,17 @@ const SignUp = () => {
                   label={t("Confirm Password")}
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder={t("Confirm Password")}
-                  // error={Boolean(formErrors?.confirmPassword?.message)}
-                  // helperText={t(formErrors.confirmPassword?.message)}
+                  error={Boolean(formErrors?.confirmPassword)}
+                  helperText={
+                    formErrors?.confirmPassword?.message
+                      ? t(String(formErrors.confirmPassword.message))
+                      : ""
+                  }
                   {...register("confirmPassword", {
-                    required: true,
+                    required: t("Confirm Password is required"),
                     pattern: {
                       value: /(.{8})/,
-                      message: t("password must be at least 8 letters length"),
+                      message: t("Password must be at least 8 characters"),
                     },
                   })}
                   InputProps={{
@@ -194,8 +222,42 @@ const SignUp = () => {
                   }}
                 />
               </Box>
+              <Box m={"1rem 0"}>
+                <TextField
+                  fullWidth
+                  label={t("City")}
+                  placeholder={t("city")}
+                  error={Boolean(formErrors?.city)}
+                  helperText={
+                    formErrors?.city?.message
+                      ? t(String(formErrors.city.message))
+                      : ""
+                  }
+                  inputProps={{ maxLength: 10 }}
+                  {...register("city", {
+                    required: t("City is required"),
+                  })}
+                />
+              </Box>
+              <Box m={"1rem 0"}>
+                <TextField
+                  fullWidth
+                  label={t("Address")}
+                  placeholder={t("Address")}
+                  error={Boolean(formErrors?.address)}
+                  helperText={
+                    formErrors?.address?.message
+                      ? t(String(formErrors.address.message))
+                      : ""
+                  }
+                  inputProps={{ maxLength: 10 }}
+                  {...register("address", {
+                    required: t("Address is required"),
+                  })}
+                />
+              </Box>
               <Button
-                onClick={handleSignUp}
+                onClick={handleSubmit(onSubmit)}
                 fullWidth
                 variant="contained"
                 type="submit"
@@ -216,4 +278,5 @@ const SignUp = () => {
     </Box>
   );
 };
+
 export default SignUp;

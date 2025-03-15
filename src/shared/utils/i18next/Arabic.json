@@ -111,5 +111,10 @@
   "Chatbot": "شات بوت",
   "My Cart": "سلتي",
   "Profile": "الملف الشخصي",
-  "Sign Up": "عمل حساب"
+  "Sign Up": "عمل حساب",
+  "Password Must Contain: Minimum of 8 characters, At least one uppercase letter, At least one special character (I.e !@#$%&)": "يجب أن تحتوي كلمة المرور على: الحد الأدنى لعدد الأحرف 8، على الأقل حرف كبير، على الأقل حرف خاص (مثل !@#$%&)",
+  "First name is required": "الاسم الأول مطلوب",
+  "Last name is required": "الاسم الأخير مطلوب",
+  "Address is required": "Address is required",
+  "City is required": "City is required"
 }

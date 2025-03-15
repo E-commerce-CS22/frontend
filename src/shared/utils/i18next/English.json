@@ -111,5 +111,8 @@
   "Chatbot": "Chatbot",
   "My Cart": "My Cart",
   "Profile": "Profile",
-  "Sign Up": "Sign Up"
+  "Sign Up": "Sign Up",
+  "Password Must Contain: Minimum of 8 characters, At least one uppercase letter, At least one special character (I.e !@#$%&)": "Password Must Contain: Minimum of 8 characters, At least one uppercase letter, At least one special character (I.e !@#$%&)",
+  "First name is required": "First name is required",
+  "Last name is required": "Last name is required"
 }
