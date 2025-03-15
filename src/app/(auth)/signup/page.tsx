@@ -53,10 +53,10 @@ const SignUp = () => {
       );
     } else if (isError) {
       toast.dismiss(toastId.current!);
-      toast.error("Error submitting the data");
+      toast.error(t("Error submitting the data"));
     } else if (isSuccess) {
       toast.dismiss(toastId.current!);
-      toast.success("Successfully submitted the data");
+      toast.success(t("Successfully submitted the data"));
     }
   }, [isLoading, isError, isSuccess]);
 

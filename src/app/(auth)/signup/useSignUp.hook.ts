@@ -3,15 +3,17 @@ import { CustomerRegisterData } from "@/shared/types";
 import { SERVER_URI } from "@/shared/utils";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 export const useSignUpHook = () => {
   const { login } = useContext(UserContext);
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setshowConfirmPassword] = useState(false);
 
   const { mutate, isError, isPending, isSuccess, error, data } = useMutation({
     mutationFn: (userData: CustomerRegisterData) => {
-      return axios.post(`${SERVER_URI}/api/customer/register`, userData);
+      return axios.post(`${SERVER_URI}/api/login`, userData);
     },
   });
 
@@ -40,8 +42,9 @@ export const useSignUpHook = () => {
   useEffect(() => {
     if (isSuccess) {
       login(data?.data?.token, data?.data.user);
+      router.push("/");
     }
-  }, [isSuccess]);
+  }, [isSuccess, data, login]);
 
   return {
     showPassword,

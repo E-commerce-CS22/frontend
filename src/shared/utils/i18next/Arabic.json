@@ -116,5 +116,8 @@
   "First name is required": "الاسم الأول مطلوب",
   "Last name is required": "الاسم الأخير مطلوب",
   "Address is required": "Address is required",
-  "City is required": "City is required"
+  "City is required": "City is required",
+  "Error submitting the data": "خطأ في تقديم البيانات",
+  "Successfully submitted the data": "تم تقديم البيانات بنجاح",
+  "Submitting, please wait...": "جارٍ التقديم، يرجى الانتظار..."
 }
