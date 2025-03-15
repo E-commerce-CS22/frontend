@@ -119,5 +119,7 @@
   "City is required": "City is required",
   "Error submitting the data": "خطأ في تقديم البيانات",
   "Successfully submitted the data": "تم تقديم البيانات بنجاح",
-  "Submitting, please wait...": "جارٍ التقديم، يرجى الانتظار..."
+  "Submitting, please wait...": "جارٍ التقديم، يرجى الانتظار...",
+  "Edit Status": "تعديل الحالة",
+  "Change": "تعديل"
 }
