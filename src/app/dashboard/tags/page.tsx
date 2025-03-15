@@ -9,6 +9,7 @@ export default function DashboardCategories() {
     tableActionButtons: actionButtons,
     tagsData,
     columns,
+    isLoading,
   } = useTagsHook();
   return (
     <PageWrapper actions={<TableActions buttons={actionButtons} />}>
@@ -17,6 +18,7 @@ export default function DashboardCategories() {
         data={tagsData}
         pageIndex={1}
         pageSize={100}
+        isLoading={isLoading}
         hasNextPage={false}
         hasPreviousPage={false}
         hasFooter={false}
