@@ -23,7 +23,7 @@ export const UserContextProvider = (props: IUserContextProvider) => {
   const handleLogout = () => {
     removeToken();
     removeUser();
-    // backend logout logic
+
     setState({
       ...state,
       user: undefined,

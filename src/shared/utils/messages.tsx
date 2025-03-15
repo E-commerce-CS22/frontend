@@ -37,8 +37,8 @@ export const getNumericValidation =
   getValuedValidationFactory(NUMERIC_PATTERN_MSG);
 
 export const patternMobile = {
-  message: "Phone must be like : {{ phone }}",
-  value: /^(\+|(00))\d{12}$/,
+  message: "Phone must be like : {{ +9677XXXXXXXX }}",
+  value: /^(\+|(00))9677\d{8}$/,
 };
 
 export const patternEmail = {
@@ -47,16 +47,22 @@ export const patternEmail = {
 };
 
 export const getPatternMobileErrorMessage = (t, errorMessage) => {
-  if (errorMessage === "Phone must be like : {{ phone }}") {
+  if (errorMessage === "Phone must be like : {{ +967788777333 }}") {
     return (
       <div
         dangerouslySetInnerHTML={{
-          __html: t("Phone must be like : {{ phone }}", {
-            phone: "<span class='mobile-phone-rtl-fix'>+966599999999</span>",
+          __html: t("Phone must be like : {{ +967788777333 }}", {
+            phone: "<span class='mobile-phone-rtl-fix'>+967788777333</span>",
             interpolation: { escapeValue: false },
           }),
         }}
       />
     );
   } else return t(errorMessage);
+};
+
+export const patternPassword = {
+  value: /^(?=.*?[A-Z])(?=.*?[^\w\s]).{8,}$/,
+  message:
+    "Password must contain: Minimum of 8 characters, at least one uppercase letter, and one special character (e.g., !@#$%&)",
 };

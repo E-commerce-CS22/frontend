@@ -1,15 +1,15 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useTranslation } from "react-i18next";
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useRouter, usePathname, useParams } from "next/navigation";
 import { Box, IconButton, Typography } from "@mui/material";
 import { UserContext } from "@/shared/common/authentication";
-import { ToastProvider } from "react-toast-notifications";
+import { ToastContainer } from "react-toastify";
 import Layout from "../Layout/Layout";
-import SmallAlert from "../SmallAlert/SmallAlert";
 import { AccountDropdownMenu } from "../AccountDropdownMenu";
 import { Notifications } from "@/shared/common/Notifications";
 import { routeWithSelectedItems } from "./utils";
@@ -18,6 +18,9 @@ import { routeWithSelectedItems } from "./utils";
 import { CustomerIcon } from "../icons";
 import { capitalize } from "@/shared/utils";
 // import { useCustomerRoutes } from "./useCustomerRoutes";
+// import { usePublicRoutes } from "./usePublicRoutes";
+import { useCustomerRoutes } from "./useCustomerRoutes";
+import { useAdminRoutes } from "./useAdminRoutes";
 import { usePublicRoutes } from "./usePublicRoutes";
 
 export function LayoutComponent({ children }: { children: React.ReactNode }) {
@@ -26,16 +29,32 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const params = useParams();
 
-  const { i18n } = useTranslation("Store");
-  const { user, logout } = useContext(UserContext) || {}; // isAuthenticated
+  const { user, logout } = useContext(UserContext) || {};
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(true);
-  const authenticated = true;
+
+  const [authenticated, setAuthenticated] = useState(false);
+  const adminUser: boolean = user?.admin;
+  const customerUser: boolean = user.customer;
+
+  const publicRoutes = usePublicRoutes();
+  const adminRoutes = useAdminRoutes();
+  const customerRoutes = useCustomerRoutes();
+  const [appRoutes, setAppRoutes] = useState(publicRoutes);
+
+  useEffect(() => {
+    if (user) {
+      setAuthenticated(true);
+    }
+    if (adminUser) {
+      setAppRoutes(adminRoutes);
+    }
+    if (customerUser) {
+      setAppRoutes(customerRoutes);
+    }
+  }, [user]);
 
   const isOpen = Boolean(anchorEl);
-  // const AdminRoutes = useAdminRoutes();
-  // const customerRoutes = useCustomerRoutes();
-  const AdminRoutes = usePublicRoutes();
 
   const breadCrumb = useMemo(() => {
     const paramsObject: any = params;
@@ -76,16 +95,14 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const handleToggleDrawer = () => setOpen((prevState) => !prevState);
 
   return (
-    <ToastProvider
-      components={{ Toast: SmallAlert }}
-      placement={i18n.dir(i18n.language) === "rtl" ? "top-left" : "top-right"}
-    >
-      {AdminRoutes && (
+    <>
+      <ToastContainer position="top-right" autoClose={3000} />
+      {appRoutes && (
         <Layout
           isOpen={open}
           title={""} //{t(breadCrumb[0]?.name || "")}
           breadCrumb={breadCrumb.slice(1)}
-          drawerItems={routeWithSelectedItems(AdminRoutes)}
+          drawerItems={routeWithSelectedItems(appRoutes)}
           onGoToHome={handleGoToHome}
           onToggleDrawer={handleToggleDrawer}
           rightItems={[
@@ -137,6 +154,6 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
           onClose={handleClickClose}
         />
       )}
-    </ToastProvider>
+    </>
   );
 }
