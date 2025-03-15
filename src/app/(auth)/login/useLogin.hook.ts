@@ -1,56 +1,47 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "@/shared/common/authentication";
+import { SERVER_URI } from "@/shared/utils";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { LoginInputData } from "@/shared/types";
+import { useRouter } from "next/navigation";
 
 export const useLogin = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
+  const { mutate, isError, isPending, isSuccess, error, data } = useMutation({
+    mutationFn: (userData: LoginInputData) => {
+      return axios.post(`${SERVER_URI}/api/login`, userData);
+    },
+  });
+
   const { login } = useContext(UserContext);
-  useEffect(() => {
-    // Check if user is logged in
-    const user = localStorage.getItem("user");
-    if (user) {
-      setIsLoggedIn(true);
-    }
-  }, []);
-
-  const getUserData = async (url: string, userCredentials: any) => {
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userCredentials),
-      });
-      console.log(response);
-      if (!response.ok) {
-        throw new Error("Failed to register user");
-      }
-      const userData = await response.json();
-      return userData;
-    } catch (error: any) {
-      return error.message;
-    }
-  };
-
-  const handleLogin = async (userCredentials: any) => {
-    console.log("User Credentials: ", userCredentials);
-    try {
-      const userData = await getUserData(
-        process.env.NEXT_PUBLIC_CUSTOMER_LOGIN_URI || "",
-        userCredentials
-      );
-      const { token, user } = userData;
-      login(token, user);
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
-  };
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-  return { isLoggedIn, showPassword, handleLogin, handleClickShowPassword };
+  const onSubmit = (data) => {
+    mutate({
+      email: data?.email,
+      password: data?.password,
+    });
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      login(data?.data?.token, data?.data.user);
+      router.push("/");
+    }
+  }, [isSuccess, data, login]);
+  return {
+    isError,
+    isSuccess,
+    isLoading: isPending,
+    error,
+    onSubmit,
+    showPassword,
+    handleClickShowPassword,
+  };
 };

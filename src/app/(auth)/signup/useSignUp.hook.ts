@@ -13,7 +13,7 @@ export const useSignUpHook = () => {
 
   const { mutate, isError, isPending, isSuccess, error, data } = useMutation({
     mutationFn: (userData: CustomerRegisterData) => {
-      return axios.post(`${SERVER_URI}/api/login`, userData);
+      return axios.post(`${SERVER_URI}/api/customer/register`, userData);
     },
   });
 
