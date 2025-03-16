@@ -13,9 +13,11 @@ import {
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-export const ProductInformationForm = () => {
+export const ProductInformationForm = (props) => {
   const { t } = useTranslation("Store");
 
+  const { defaultValues } = props;
+  console.log(defaultValues);
   const {
     register,
     control,
@@ -73,6 +75,7 @@ export const ProductInformationForm = () => {
           {...register("productName", {
             required: getRequiredValidation(t, true),
           })}
+          defaultValue={defaultValues?.name}
         />
       </Grid2>
 
@@ -88,6 +91,7 @@ export const ProductInformationForm = () => {
           {...register("price", {
             required: getRequiredValidation(t, true),
           })}
+          defaultValue={defaultValues?.price}
         />
       </Grid2>
 
@@ -103,6 +107,7 @@ export const ProductInformationForm = () => {
               : ""
           }
           {...register("discountValue")}
+          defaultValue={defaultValues?.discount_value}
         />
       </Grid2>
 
@@ -113,7 +118,7 @@ export const ProductInformationForm = () => {
           render={({ field }) => (
             <Autocomplete
               options={discountTypes}
-              multiple
+              defaultValue={defaultValues?.discount_type}
               {...field}
               onChange={(_, newValue) => field.onChange(newValue)}
               renderInput={(params) => (
@@ -131,6 +136,7 @@ export const ProductInformationForm = () => {
           placeholder={t("Pick a date")}
           register={register}
           required={false}
+          defaultValue={defaultValues?.discount_start_date}
         />
       </Grid2>
 
@@ -141,6 +147,7 @@ export const ProductInformationForm = () => {
           placeholder={t("Pick a date")}
           register={register}
           required={false}
+          defaultValue={defaultValues?.discount_end_date}
         />
       </Grid2>
 
@@ -151,7 +158,7 @@ export const ProductInformationForm = () => {
           render={({ field }) => (
             <Autocomplete
               options={statuses}
-              multiple
+              defaultValue={defaultValues?.status}
               {...field}
               onChange={(_, newValue) => field.onChange(newValue)}
               renderInput={(params) => (
@@ -207,6 +214,7 @@ export const ProductInformationForm = () => {
           {...register("description", {
             required: getRequiredValidation(t, true),
           })}
+          defaultValue={defaultValues?.description}
           sx={{
             width: "100%",
             padding: "10px",
