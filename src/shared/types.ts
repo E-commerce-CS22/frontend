@@ -27,6 +27,23 @@ export type LoginInputData = {
   password: string;
 };
 
+export type ProductData = {
+  name: string;
+  description: string;
+  price: number;
+  discount_type?: string;
+  discount_value?: number;
+  status?: string;
+  discount_start_date?: string;
+  discount_end_date?: string;
+  variants?: {
+    color?: string;
+    memory?: string;
+    ram?: string;
+    image?: string;
+  }[];
+};
+
 export type CategoryData = {
   name: string;
   slug: string;

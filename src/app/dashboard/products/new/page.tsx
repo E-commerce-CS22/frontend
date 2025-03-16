@@ -11,8 +11,16 @@ import { ProductInformationForm } from "./components/ProductInformationForm";
 export default function CreateNewProductPage() {
   const { t } = useTranslation("Store");
 
-  const { methods, handleSubmit, handleClick, handleCancel } =
-    useAddNewProductHook();
+  const {
+    isLoading,
+    // isSuccess,
+    // isError,
+    // error,
+    methods,
+    handleSubmit,
+    handleClick,
+    handleCancel,
+  } = useAddNewProductHook();
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>
@@ -20,11 +28,12 @@ export default function CreateNewProductPage() {
           actions={
             <FormActions
               hasCancel
-              // newButtonDisabled={isLoading}
+              newButtonDisabled={isLoading}
               hasFormButton
-              // isLoading={isLoading}
+              isLoading={isLoading}
               formButtonTitle={t("Create")}
               onNavigation={handleCancel}
+              onSave={handleClick}
             />
           }
         >

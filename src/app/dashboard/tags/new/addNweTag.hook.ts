@@ -47,7 +47,7 @@ export const useAddNewTagHook = () => {
   const handleCancel = () => router.back();
 
   const handleClick = (data) => {
-    const result = data; // we may restructure the data here
+    const result = data;
     onDone(result);
   };
 
