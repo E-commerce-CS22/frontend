@@ -2,12 +2,28 @@ import { CustomDialog } from "@/shared/components/CustomDialog";
 import { Box, Button, DialogActions, Typography } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { darkGrey } from "@/shared/customization";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { UserContext } from "@/shared/common/authentication";
+import { SERVER_URI } from "@/shared/utils";
 
 export const DeleteModel = (props) => {
   const { t } = useTranslation("Store");
   const [open, setOpen] = useState(false);
+
+  const { token } = useContext(UserContext);
+
+  const { mutate, isSuccess } = useMutation({
+    mutationFn: (id: string) => {
+      return axios.delete(`${SERVER_URI}/api/admin/products/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    },
+  });
 
   const { id } = props;
 
@@ -16,8 +32,14 @@ export const DeleteModel = (props) => {
   };
 
   const handleDelete = () => {
-    console.log(id ? id : "");
+    mutate(id);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setOpen(false);
+    }
+  }, [isSuccess]);
   return (
     <Box>
       <CustomDialog
