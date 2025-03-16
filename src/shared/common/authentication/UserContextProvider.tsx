@@ -13,8 +13,10 @@ import {
   setToken,
   setUser,
 } from "./utils";
+import { useRouter } from "next/navigation";
 
 export const UserContextProvider = (props: IUserContextProvider) => {
+  const router = useRouter();
   const handleLogin = (token: string, user: any) => {
     setToken(token);
     setUser(user);
@@ -32,6 +34,7 @@ export const UserContextProvider = (props: IUserContextProvider) => {
     setTimeout(() => {
       window?.["sseControllerRef"]?.abort();
     }, 250);
+    router.push("/");
   };
 
   const updateUser = (newUser) => {
