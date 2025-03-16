@@ -78,7 +78,7 @@ export const getCustomersColumns = (
     key: "editStatus",
     header: t("Edit Status"),
     accessor: (data) => {
-      return <EditStatusModel id={data.id} refetch={"testing"} />;
+      return <EditStatusModel id={data.id} />;
     },
   },
 ];
