@@ -50,7 +50,7 @@ export const useCategoriesHook = () => {
     isError,
     tableActionButtons,
     columns: getCategoriesColumns(t),
-    categoriesData: categoriesData.data,
+    categoriesData: categoriesData?.data,
   };
 };
 

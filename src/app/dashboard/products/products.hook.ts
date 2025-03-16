@@ -50,7 +50,7 @@ export const useProductsHook = () => {
     isError,
     tableActionButtons,
     columns: getProductsColumns(t),
-    productData: productData.products,
+    productData: productData,
   };
 };
 

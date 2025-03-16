@@ -14,7 +14,7 @@ import Show from "@/shared/components/Show";
 import EyeOffIcon from "@/shared/components/EyeOffIcon";
 import Link from "next/link";
 import { useLogin } from "./useLogin.hook";
-import { patternEmail, patternPassword } from "@/shared/utils";
+import { patternEmail } from "@/shared/utils";
 
 const Login = () => {
   const { t } = useTranslation("Store");
@@ -96,7 +96,7 @@ const Login = () => {
                   }
                   {...register("password", {
                     required: t("Password is required"),
-                    pattern: patternPassword,
+                    // pattern: patternPassword,
                   })}
                   InputProps={{
                     endAdornment: (

@@ -29,13 +29,12 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const params = useParams();
 
-  const { user, logout } = useContext(UserContext) || {};
+  const { user, logout, isAuthenticated } = useContext(UserContext) || {};
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(true);
 
-  const [authenticated, setAuthenticated] = useState(false);
   const adminUser: boolean = user?.admin;
-  const customerUser: boolean = user.customer;
+  const customerUser: boolean = user?.customer;
 
   const publicRoutes = usePublicRoutes();
   const adminRoutes = useAdminRoutes();
@@ -43,9 +42,6 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const [appRoutes, setAppRoutes] = useState(publicRoutes);
 
   useEffect(() => {
-    if (user) {
-      setAuthenticated(true);
-    }
     if (adminUser) {
       setAppRoutes(adminRoutes);
     }
@@ -90,6 +86,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
     setAnchorEl(null);
     logout();
     router.push("/login");
+    setAppRoutes(publicRoutes);
   };
   const handleClickClose = () => setAnchorEl(null);
   const handleToggleDrawer = () => setOpen((prevState) => !prevState);
@@ -109,7 +106,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
             { id: "notifications", icon: <Notifications /> },
             {
               id: "admin",
-              icon: authenticated && (
+              icon: isAuthenticated && (
                 <IconButton
                   onClick={handleClickOpen}
                   color={isOpen ? "info" : "primary"}
