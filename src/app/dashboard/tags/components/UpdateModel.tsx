@@ -9,8 +9,7 @@ export const UpdateModel = (props) => {
   const router = useRouter();
 
   const handleUpdate = () => {
-    router.push("tags/new");
-    console.log(id ? id : "");
+    router.push(`tags/edit?id=${id}`);
   };
   return (
     <Box>
