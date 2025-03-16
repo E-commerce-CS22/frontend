@@ -1,16 +1,42 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { UserContext } from "@/shared/common/authentication";
+import { CategoryData } from "@/shared/types";
+import { SERVER_URI } from "@/shared/utils";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-// type useAddNewCategoryHookProps = {};
-
 export const useAddNewCategoryHook = () => {
-  const onDone = (data) => {
-    // here we will send the data to the server
-    // this function accepts the data as props
-  };
+  const { token } = useContext(UserContext);
   const router = useRouter();
+
+  const { mutate, isError, isPending, isSuccess, error, data } = useMutation({
+    mutationFn: (categoryData: CategoryData) => {
+      return axios.post(`${SERVER_URI}/api/admin/categories`, categoryData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    },
+  });
+
+  const onDone = (data) => {
+    const category = {
+      name: data?.categoryName,
+      color: data?.color,
+      description: data?.description,
+      slug: "testing slug",
+    };
+    mutate(category);
+  };
+
+  useEffect(() => {
+    if (isSuccess) router.back();
+  }, [isSuccess, router]);
+
   const methods = useForm<any>({
     mode: "all",
     criteriaMode: "all",
@@ -23,9 +49,20 @@ export const useAddNewCategoryHook = () => {
   const handleCancel = () => router.back();
 
   const handleClick = (data) => {
-    const result = data; // we may restructure the data here
+    const result = data;
     onDone(result);
   };
 
-  return { methods, handleSubmit, isDirty, handleClick, handleCancel };
+  return {
+    isLoading: isPending,
+    isError,
+    isSuccess,
+    error,
+    data,
+    methods,
+    handleSubmit,
+    isDirty,
+    handleClick,
+    handleCancel,
+  };
 };

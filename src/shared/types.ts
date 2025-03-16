@@ -26,3 +26,10 @@ export type LoginInputData = {
   email: string;
   password: string;
 };
+
+export type CategoryData = {
+  name: string;
+  slug: string;
+  description: string;
+  color: string;
+};
