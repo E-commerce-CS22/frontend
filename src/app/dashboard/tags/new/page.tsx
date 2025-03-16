@@ -11,8 +11,15 @@ import { TagInformationForm } from "./components/TagInformationForm";
 export default function CreateNewProductPage() {
   const { t } = useTranslation("Store");
 
-  const { methods, handleSubmit, handleClick, handleCancel } =
-    useAddNewTagHook();
+  const {
+    isLoading,
+    // isSuccess,
+    // isError,
+    methods,
+    handleSubmit,
+    handleClick,
+    handleCancel,
+  } = useAddNewTagHook();
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>
@@ -20,11 +27,12 @@ export default function CreateNewProductPage() {
           actions={
             <FormActions
               hasCancel
-              // newButtonDisabled={isLoading}
+              newButtonDisabled={isLoading}
               hasFormButton
-              // isLoading={isLoading}
+              isLoading={isLoading}
               formButtonTitle={t("Create")}
               onNavigation={handleCancel}
+              onSave={handleClick}
             />
           }
         >

@@ -10,7 +10,7 @@ import {
   TextareaAutosize,
   TextField,
 } from "@mui/material";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 export const ProductInformationForm = () => {
@@ -18,7 +18,7 @@ export const ProductInformationForm = () => {
 
   const {
     register,
-    // control,
+    control,
     formState: { errors },
   } = useFormContext();
 
@@ -50,10 +50,10 @@ export const ProductInformationForm = () => {
     "Pets and Supplies",
   ];
   const tags = ["Apple", "Samsung", "Nike", "Adidas"];
-  const handleDiscountTypesChange = () => {};
-  const handleStatusChange = () => {};
-  const handleCategoriesChange = () => {};
-  const handleTagsChange = () => {};
+  // const handleDiscountTypesChange = () => {};
+  // const handleStatusChange = () => {};
+  // const handleCategoriesChange = () => {};
+  // const handleTagsChange = () => {};
 
   const StyledTextarea = styled(TextareaAutosize)(({}) => ({}));
 
@@ -70,11 +70,12 @@ export const ProductInformationForm = () => {
               ? t(`${errors.productName.message}`)
               : ""
           }
-          {...register(`productName`, {
+          {...register("productName", {
             required: getRequiredValidation(t, true),
           })}
         />
       </Grid2>
+
       <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Price")}
@@ -84,11 +85,12 @@ export const ProductInformationForm = () => {
           helperText={
             errors?.price?.message ? t(`${errors.price.message}`) : ""
           }
-          {...register(`price`, {
+          {...register("price", {
             required: getRequiredValidation(t, true),
           })}
         />
       </Grid2>
+
       <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Discount Value")}
@@ -100,97 +102,102 @@ export const ProductInformationForm = () => {
               ? t(`${errors.discountValue.message}`)
               : ""
           }
-          {...register(`discountValue`, {
-            required: getRequiredValidation(t, false),
-          })}
+          {...register("discountValue")}
         />
       </Grid2>
+
       <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
-        <Autocomplete
-          options={discountTypes}
-          multiple={true}
-          onChange={handleDiscountTypesChange as any}
-          // defaultValue={discountTypes}
-          id="discountType"
-          filterSelectedOptions
-          getOptionLabel={(option: any) => {
-            return t(option);
-          }}
-          renderInput={(params) => (
-            <TextField {...params} label={t("Discount Type")} />
+        <Controller
+          name="discountType"
+          control={control}
+          render={({ field }) => (
+            <Autocomplete
+              options={discountTypes}
+              multiple
+              {...field}
+              onChange={(_, newValue) => field.onChange(newValue)}
+              renderInput={(params) => (
+                <TextField {...params} label={t("Discount Type")} />
+              )}
+            />
           )}
         />
       </Grid2>
+
       <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <CustomDatePicker
           label={t("Discount start date")}
           name="discountStartDateS"
           placeholder={t("Pick a date")}
           register={register}
-          required
-          controllerProps={{
-            rules: { required: t("This field is required") },
-          }}
+          required={false}
         />
       </Grid2>
+
       <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <CustomDatePicker
           label={t("Discount end date")}
           name="discountEndDateS"
           placeholder={t("Pick a date")}
           register={register}
-          required={true}
-          controllerProps={{
-            rules: { required: t("This field is required") },
-          }}
+          required={false}
         />
       </Grid2>
+
       <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
-        <Autocomplete
-          options={statuses}
-          multiple={true}
-          onChange={handleStatusChange as any}
-          // defaultValue={statuses}
-          id="status"
-          filterSelectedOptions
-          getOptionLabel={(option: any) => {
-            return t(option);
-          }}
-          renderInput={(params) => (
-            <TextField {...params} label={t("Status")} />
+        <Controller
+          name="status"
+          control={control}
+          render={({ field }) => (
+            <Autocomplete
+              options={statuses}
+              multiple
+              {...field}
+              onChange={(_, newValue) => field.onChange(newValue)}
+              renderInput={(params) => (
+                <TextField {...params} label={t("Status")} />
+              )}
+            />
           )}
         />
       </Grid2>
+
       <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
-        <Autocomplete
-          options={categories}
-          multiple={true}
-          onChange={handleCategoriesChange as any}
-          // defaultValue={statuses}
-          id="categories"
-          filterSelectedOptions
-          getOptionLabel={(option: any) => {
-            return t(option);
-          }}
-          renderInput={(params) => (
-            <TextField {...params} label={t("Categories")} />
+        <Controller
+          name="categories"
+          control={control}
+          render={({ field }) => (
+            <Autocomplete
+              options={categories}
+              multiple
+              {...field}
+              onChange={(_, newValue) => field.onChange(newValue)}
+              renderInput={(params) => (
+                <TextField {...params} label={t("Categories")} />
+              )}
+            />
           )}
         />
       </Grid2>
+
       <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
-        <Autocomplete
-          options={tags}
-          multiple={true}
-          onChange={handleTagsChange as any}
-          // defaultValue={statuses}
-          id="tags"
-          filterSelectedOptions
-          getOptionLabel={(option: any) => {
-            return t(option);
-          }}
-          renderInput={(params) => <TextField {...params} label={t("Tags")} />}
+        <Controller
+          name="tags"
+          control={control}
+          render={({ field }) => (
+            <Autocomplete
+              options={tags}
+              multiple
+              {...field}
+              onChange={(_, newValue) => field.onChange(newValue)}
+              renderInput={(params) => (
+                <TextField {...params} label={t("Tags")} />
+              )}
+            />
+          )}
         />
       </Grid2>
+
       <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <StyledTextarea
           id="description"

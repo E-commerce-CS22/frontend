@@ -11,8 +11,36 @@ import { CategoryInformationForm } from "./components/CategoryInformationForm";
 export default function CreateNewProductPage() {
   const { t } = useTranslation("Store");
 
-  const { methods, handleSubmit, handleClick, handleCancel } =
-    useAddNewCategoryHook();
+  const {
+    isLoading,
+    // isError,
+    // isSuccess,
+    methods,
+    handleSubmit,
+    handleClick,
+    handleCancel,
+  } = useAddNewCategoryHook();
+
+  // const toastId = useRef<string | number | null>(null);
+
+  // useEffect(() => {
+  //   if (isLoading) {
+  //     toastId.current = toast.info(
+  //       <Box display="flex" alignItems="center">
+  //         <CircularProgress size={24} sx={{ marginRight: "8px" }} />
+  //         <Typography>{t("Submitting, please wait...")}</Typography>
+  //       </Box>,
+  //       { autoClose: false, closeOnClick: false, closeButton: false }
+  //     );
+  //   } else if (isError) {
+  //     toast.dismiss(toastId.current!);
+  //     toast.error(t("Error submitting the data"));
+  //   } else if (isSuccess) {
+  //     toast.dismiss(toastId.current!);
+  //     toast.success(t("Successfully submitted the data"));
+  //   }
+  // }, [isLoading, isError, isSuccess]);
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>
@@ -20,10 +48,11 @@ export default function CreateNewProductPage() {
           actions={
             <FormActions
               hasCancel
-              // newButtonDisabled={isLoading}
+              newButtonDisabled={isLoading}
               hasFormButton
-              // isLoading={isLoading}
+              isLoading={isLoading}
               formButtonTitle={t("Create")}
+              onSave={handleClick}
               onNavigation={handleCancel}
             />
           }

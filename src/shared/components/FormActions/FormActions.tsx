@@ -75,6 +75,7 @@ export const FormActions: FC<FormActionsProps> = (props) => {
             type="submit"
             disabled={newButtonDisabled}
             variant="contained"
+            onClick={handleSave}
           >
             {formButtonTitle}
           </StyledButton>

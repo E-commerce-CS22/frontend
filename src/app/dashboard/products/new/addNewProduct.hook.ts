@@ -1,20 +1,52 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { UserContext } from "@/shared/common/authentication";
+import { ProductData } from "@/shared/types";
+import { SERVER_URI } from "@/shared/utils";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-// type useAddNewProductHookProps = {};
-
 export const useAddNewProductHook = () => {
-  const onDone = (data) => {
-    // here we will send the data to the server
-    // this function accepts the data as props
-  };
+  const { token } = useContext(UserContext);
   const router = useRouter();
+
+  const { mutate, isError, isPending, isSuccess, error } = useMutation({
+    mutationFn: (productData: ProductData) => {
+      return axios.post(`${SERVER_URI}/api/admin/products`, productData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    },
+  });
+
+  const onDone = (data) => {
+    const product = {
+      name: data?.productName,
+      description: data?.description,
+      price: parseFloat(data?.price),
+      // discount_type: "",
+      // discount_value: 0,
+      // status: "",
+      // discount_start_date: "",
+      // discount_end_date: "",
+      // variants: [],
+    };
+    mutate(product);
+  };
+
+  useEffect(() => {
+    if (isSuccess) router.back();
+  }, [isSuccess, router]);
+
   const methods = useForm<any>({
     mode: "all",
     criteriaMode: "all",
   });
+
   const {
     handleSubmit,
     formState: { isDirty },
@@ -23,9 +55,19 @@ export const useAddNewProductHook = () => {
   const handleCancel = () => router.back();
 
   const handleClick = (data) => {
-    const result = data; // we may restructure the data here
+    const result = data;
     onDone(result);
   };
 
-  return { methods, handleSubmit, isDirty, handleClick, handleCancel };
+  return {
+    isLoading: isPending,
+    isError,
+    isSuccess,
+    error,
+    methods,
+    handleSubmit,
+    isDirty,
+    handleClick,
+    handleCancel,
+  };
 };
