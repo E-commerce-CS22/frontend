@@ -33,3 +33,8 @@ export type CategoryData = {
   description: string;
   color: string;
 };
+
+export type TagData = {
+  name: string;
+  slug: string;
+};
