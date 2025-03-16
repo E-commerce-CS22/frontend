@@ -17,7 +17,6 @@ export const ProductInformationForm = (props) => {
   const { t } = useTranslation("Store");
 
   const { defaultValues } = props;
-  console.log(defaultValues);
   const {
     register,
     control,
