@@ -3,11 +3,12 @@ import React from "react";
 import { useWishlistHook } from "./wishlist.hook";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { Box } from "@mui/material";
+import { TableActions } from "./components/TableActions";
 
 const Wishlist = () => {
-  const { wishlistData } = useWishlistHook();
+  const { wishlistData, tableActionButtons: actionButtons } = useWishlistHook();
   return (
-    <PageWrapper>
+    <PageWrapper actions={<TableActions buttons={actionButtons} />}>
       {wishlistData ? (
         wishlistData?.map((item) => (
           <Box key={item.id}>
