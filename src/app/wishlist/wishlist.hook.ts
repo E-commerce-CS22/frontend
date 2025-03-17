@@ -12,7 +12,7 @@ export const useWishlistHook = () => {
 
   const { token, user } = useContext(UserContext);
   const { id } = user;
-  const fetchCategories = async () => {
+  const fetchWishlist = async () => {
     const response = await axios.get(
       `${SERVER_URI}/api/wishlists/${id}/products`,
       {
@@ -30,8 +30,8 @@ export const useWishlistHook = () => {
     isSuccess,
     data: wishlistData,
   } = useQuery({
-    queryKey: ["adminCategories"],
-    queryFn: fetchCategories,
+    queryKey: ["customerWishlist"],
+    queryFn: fetchWishlist,
     enabled: !!token,
   });
 
