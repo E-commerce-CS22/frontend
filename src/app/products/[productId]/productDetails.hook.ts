@@ -1,11 +1,14 @@
 import { UserContext } from "@/shared/common/authentication";
 import { SERVER_URI } from "@/shared/utils";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext } from "react";
 
 export const useProductDetailsHook = ({ productId }) => {
-  const { token } = useContext(UserContext);
+  const { token, user } = useContext(UserContext);
+  const {
+    customer: { wishlist_id: wishlistId },
+  } = user;
 
   const fetchProduct = async () => {
     const response = await axios.get(
@@ -31,11 +34,32 @@ export const useProductDetailsHook = ({ productId }) => {
     enabled: !!token,
   });
 
+  const { mutate } = useMutation({
+    mutationFn: () => {
+      return axios.post(
+        `${SERVER_URI}/api/wishlists/${wishlistId}/products/${productId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    },
+  });
+
+  const handleAddToWishlist = () => {
+    mutate();
+  };
+  const handleAddToCart = () => {};
+
   return {
     isLoading,
     isSuccess,
     isError,
     error,
     productData: productData?.data,
+    handleAddToCart,
+    handleAddToWishlist,
   };
 };
