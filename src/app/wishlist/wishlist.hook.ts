@@ -11,10 +11,12 @@ export const useWishlistHook = () => {
   const router = useRouter();
 
   const { token, user } = useContext(UserContext);
-  const { id } = user;
+  const {
+    customer: { wishlist_id: wishlistId },
+  } = user;
   const fetchWishlist = async () => {
     const response = await axios.get(
-      `${SERVER_URI}/api/wishlists/${id}/products`,
+      `${SERVER_URI}/api/wishlists/${wishlistId}/products`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

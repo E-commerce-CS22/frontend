@@ -1,13 +1,41 @@
+import { UserContext } from "@/shared/common/authentication";
 import { primary } from "@/shared/customization";
 import { ProductData } from "@/shared/types";
+import { SERVER_URI } from "@/shared/utils";
 import { Box, Button, Typography } from "@mui/material";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 
 export const ProductCard = ({ product }: { product: ProductData }) => {
   const router = useRouter();
 
+  const { token, user } = useContext(UserContext);
+  const {
+    customer: { wishlist_id: wishlistId },
+  } = user;
+
   const handleProductDetails = () => {
     router.push(`products/${product?.id}`);
+  };
+
+  const { mutate } = useMutation({
+    mutationFn: (productId: string) => {
+      return axios.post(
+        `${SERVER_URI}/api/wishlists/${wishlistId}/products/${productId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    },
+  });
+
+  const handleAddToWishlist = (productId) => {
+    mutate(productId);
   };
 
   return (
@@ -39,8 +67,13 @@ export const ProductCard = ({ product }: { product: ProductData }) => {
           margin: "1rem 0",
         }}
       >
-        <Button variant="contained">Buy product</Button>
-        <Button variant="contained">Add to Wishlist</Button>
+        <Button variant="contained">Add to Cart</Button>
+        <Button
+          variant="contained"
+          onClick={() => handleAddToWishlist(product?.id)}
+        >
+          Add to Wishlist
+        </Button>
         <Button variant="contained" onClick={handleProductDetails}>
           Product details
         </Button>
