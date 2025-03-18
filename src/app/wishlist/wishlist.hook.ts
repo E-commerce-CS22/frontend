@@ -1,6 +1,6 @@
 import { UserContext } from "@/shared/common/authentication";
 import { SERVER_URI } from "@/shared/utils";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
@@ -37,6 +37,25 @@ export const useWishlistHook = () => {
     enabled: !!token,
   });
 
+  const { mutate } = useMutation({
+    mutationFn: ({
+      wishlistId,
+      productId,
+    }: {
+      wishlistId: string;
+      productId: string;
+    }) => {
+      return axios.delete(
+        `${SERVER_URI}/api/wishlists/${wishlistId}/products/${productId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    },
+  });
+
   const handleNavigateToNewPage = () => {
     router.push("wishlist/new");
   };
@@ -48,11 +67,16 @@ export const useWishlistHook = () => {
     },
   ];
 
+  const handleDeleteWishlist = (wishlistId, productId) => {
+    mutate({ wishlistId, productId });
+  };
+
   return {
     isLoading,
     isError,
     isSuccess,
     wishlistData,
     tableActionButtons,
+    handleDeleteWishlist,
   };
 };
