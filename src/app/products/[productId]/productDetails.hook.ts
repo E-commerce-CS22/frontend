@@ -37,7 +37,7 @@ export const useProductDetailsHook = ({ productId }) => {
   const { mutate } = useMutation({
     mutationFn: () => {
       return axios.post(
-        `${SERVER_URI}/api/wishlists/${wishlistId}/products/${productId}`,
+        `${SERVER_URI}/api/wishlists/${wishlistId || 0}/products/${productId}`,
         {},
         {
           headers: {

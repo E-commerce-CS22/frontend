@@ -46,7 +46,7 @@ export const useWishlistHook = () => {
       productId: string;
     }) => {
       return axios.delete(
-        `${SERVER_URI}/api/wishlists/${wishlistId}/products/${productId}`,
+        `${SERVER_URI}/api/wishlists/${wishlistId || 0}/products/${productId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
