@@ -5,9 +5,9 @@ import { Grid2, styled, TextareaAutosize, TextField } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-export const CategoryInformationForm = () => {
+export const CategoryInformationForm = (props) => {
   const { t } = useTranslation("Store");
-
+  const { defaultValues } = props;
   const {
     register,
     // control,
@@ -32,6 +32,7 @@ export const CategoryInformationForm = () => {
           {...register(`categoryName`, {
             required: getRequiredValidation(t, true),
           })}
+          defaultValue={defaultValues?.name}
         />
       </Grid2>
       <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
@@ -46,6 +47,7 @@ export const CategoryInformationForm = () => {
           {...register(`color`, {
             required: getRequiredValidation(t, false),
           })}
+          defaultValue={defaultValues?.color}
         />
       </Grid2>
       <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
@@ -67,6 +69,7 @@ export const CategoryInformationForm = () => {
               border: `2px solid ${primary}`,
             },
           }}
+          defaultValue={defaultValues?.description}
         />
         {errors?.description?.message && (
           <div style={{ color: "red" }}>

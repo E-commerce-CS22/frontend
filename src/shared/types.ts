@@ -47,7 +47,7 @@ export type ProductData = {
 
 export type CategoryData = {
   name: string;
-  slug: string;
+  slug?: string;
   description: string;
   color: string;
 };

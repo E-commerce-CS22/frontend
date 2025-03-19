@@ -55,7 +55,7 @@ const Login = () => {
               borderBottomRightRadius: "1rem",
             }}
           >
-            <Typography color="white">{t("Create an account")}</Typography>
+            <Typography color="white">{t("Login")}</Typography>
           </Box>
           <Box mt={4} sx={{ textAlign: "center" }}>
             <Typography mb={1} color="primary" variant="h4">

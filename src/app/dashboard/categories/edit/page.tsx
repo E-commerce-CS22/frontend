@@ -5,8 +5,8 @@ import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { FormActions } from "@/shared/components/FormActions";
 import { Grid2 } from "@mui/material";
 import { FormCard } from "@/shared/components/Form";
-import { TagInformationForm } from "../new/components/TagInformationForm";
-import { useEditNewTagHook } from "./editTag.hook";
+import { CategoryInformationForm } from "../new/components/CategoryInformationForm";
+import { useEditCategoryHook } from "./editCategory.hook";
 import { useSearchParams } from "next/navigation";
 
 export default function EditTagPage() {
@@ -19,13 +19,13 @@ export default function EditTagPage() {
     isLoading,
     // isSuccess,
     // isError,
-    isLoadingFetchingTag,
+    isLoadingFetchingCategory,
     defaultValues,
     methods,
     handleSubmit,
     handleClick,
     handleCancel,
-  } = useEditNewTagHook({ id });
+  } = useEditCategoryHook({ id });
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>
@@ -45,12 +45,12 @@ export default function EditTagPage() {
           <Grid2 container spacing={2}>
             <Grid2>
               <FormCard
-                title={t("Tag Information")}
+                title={t("Category Information")}
                 loading={false}
                 doYouHaveData={true}
               >
-                {!isLoadingFetchingTag && (
-                  <TagInformationForm defaultValues={defaultValues} />
+                {!isLoadingFetchingCategory && (
+                  <CategoryInformationForm defaultValues={defaultValues} />
                 )}
               </FormCard>
             </Grid2>
