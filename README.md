@@ -13,11 +13,9 @@ npm run dev
 
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 # dev env variables
 
-## create .env.local file and inside it paste the following
+## create .env.local file in the main directory (beside the README.md file) and inside it paste the following
 
 ```bash
 
@@ -25,3 +23,5 @@ SERVER_URI=http://127.0.0.1:8000
 NEXT_PUBLIC_URI=${SERVER_URI}
 
 ```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to open the project.
