@@ -41,7 +41,7 @@ export const useCustomerRoutes = (): RouteItem[] => {
       {
         id: "cart",
         route: "cart",
-        fullPath: "/myCart",
+        fullPath: "/cart",
         text: t("My Cart"),
         icon: <ShoppingCart color="primary" />,
         element: <div>Profile page</div>,
