@@ -80,6 +80,7 @@ const Login = () => {
                     required: t("Email is required"),
                     pattern: patternEmail,
                   })}
+                  defaultValue={"ziad.bahri@example.com"}
                 />
               </Box>
               <Box m="1rem 0">
@@ -98,6 +99,7 @@ const Login = () => {
                     required: t("Password is required"),
                     // pattern: patternPassword,
                   })}
+                  defaultValue={"password123"}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
