@@ -56,3 +56,15 @@ export type TagData = {
   name: string;
   slug: string;
 };
+
+export type ProfileData = {
+  username?: string;
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  phone?: string;
+  city?: string;
+  country?: string;
+  address?: string;
+  postal_code?: string;
+};
