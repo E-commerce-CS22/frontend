@@ -5,6 +5,7 @@ import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import Image from "next/image";
 import { darkGrey, primary } from "@/shared/customization";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/navigation";
 
 export default function Profile() {
   const {
@@ -14,7 +15,10 @@ export default function Profile() {
     profileData,
   } = useProfileHook();
   const { t } = useTranslation("Store");
-  console.log(profileData);
+  const router = useRouter();
+  const handleUpdateProfile = () => {
+    router.push("profile/edit");
+  };
   return (
     <PageWrapper>
       <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
@@ -78,7 +82,9 @@ export default function Profile() {
           <Typography py={"0.8rem"}>
             {t("Address")}: {profileData?.address}
           </Typography>
-          <Button variant="contained">{t("Modify")}</Button>
+          <Button onClick={handleUpdateProfile} variant="contained">
+            {t("Modify")}
+          </Button>
         </Box>
       </Box>
     </PageWrapper>

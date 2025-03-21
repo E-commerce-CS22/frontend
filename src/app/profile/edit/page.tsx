@@ -5,27 +5,23 @@ import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { FormActions } from "@/shared/components/FormActions";
 import { Grid2 } from "@mui/material";
 import { FormCard } from "@/shared/components/Form";
-import { CategoryInformationForm } from "../new/components/CategoryInformationForm";
-import { useEditCategoryHook } from "./editCategory.hook";
-import { useSearchParams } from "next/navigation";
+import { ProfileInformationForm } from "./components/ProfileInformationForm";
+import { useEditProfileHook } from "./EditProfile.hook";
 
 export default function EditTagPage() {
   const { t } = useTranslation("Store");
-
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
 
   const {
     isLoading,
     // isSuccess,
     // isError,
-    isLoadingFetchingCategory,
+    isLoadingFetchingProfileData,
     defaultValues,
     methods,
     handleSubmit,
     handleClick,
     handleCancel,
-  } = useEditCategoryHook({ id });
+  } = useEditProfileHook();
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>
@@ -45,12 +41,12 @@ export default function EditTagPage() {
           <Grid2 container spacing={2}>
             <Grid2>
               <FormCard
-                title={t("Category Information")}
+                title={t("My profile data")}
                 loading={false}
                 doYouHaveData={true}
               >
-                {!isLoadingFetchingCategory && (
-                  <CategoryInformationForm defaultValues={defaultValues} />
+                {!isLoadingFetchingProfileData && (
+                  <ProfileInformationForm defaultValues={defaultValues} />
                 )}
               </FormCard>
             </Grid2>
