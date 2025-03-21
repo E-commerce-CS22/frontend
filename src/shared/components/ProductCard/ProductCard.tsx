@@ -12,9 +12,7 @@ export const ProductCard = ({ product }: { product: ProductData }) => {
   const router = useRouter();
 
   const { token, user } = useContext(UserContext);
-  const {
-    customer: { wishlist_id: wishlistId },
-  } = user;
+  const wishlistId = user?.wishlist_id;
 
   const handleProductDetails = () => {
     router.push(`products/${product?.id}`);
