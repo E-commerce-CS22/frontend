@@ -102,19 +102,7 @@ const AdminHeader: FC<AdminHeaderProps> = (props) => {
             <Breadcrumbs data={breadCrumb as BreadcrumbsItemType[]} />
           </Typography>
           {children}
-          {/* {!matches && branchName && (
-            <Box sx={{ marginInline: 2 }} display="flex" alignItems="center">
-              <Typography className={classes.title}>
-                {t("Your branch is")}:{" "}
-              </Typography>
-              <Typography
-                className={`${classes.title} ${classes.branchName}`}
-                onClick={handleOpenBranchesDialog}
-              >
-                {branchName}
-              </Typography>
-            </Box>
-          )} */}
+
           <LanguageButton />
 
           {!!rightItems?.length &&

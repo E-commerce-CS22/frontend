@@ -1,14 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
+import React, { FC, useContext } from "react";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
-import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import React, { FC, Fragment, useContext } from "react";
 import { MenuItemContext } from "./context";
-import { useSidebarStyles } from "./Sidebar.styles";
 import { SidebarItemProps } from "./Sidebar.types";
 import { SidebarList } from "./SidebarList.component";
+import ListItemButton from "@mui/material/ListItemButton";
 
 export const SidebarItem: FC<SidebarItemProps> = (props) => {
   const {
@@ -16,59 +14,81 @@ export const SidebarItem: FC<SidebarItemProps> = (props) => {
     data: {
       icon,
       text,
-      onClick: onItemClick = undefined,
+      onClick: onItemClick,
       subItems,
       selected,
       fullPath,
       id,
     },
   } = props;
-  const subItemsFiltered =
-    subItems?.filter((item) => item?.hidden !== true) || [];
-  const { classes } = useSidebarStyles({ selected });
+
+  const subItemsFiltered = subItems?.filter((item) => !item.hidden) || [];
   const { id: selectedId, setId } = useContext(MenuItemContext);
 
   const handleItemPressed = () => {
     if (setId) {
-      setId(id == selectedId ? undefined : id);
+      setId(id === selectedId ? undefined : id);
     }
-    if (!subItemsFiltered?.length) {
+    if (!subItemsFiltered.length) {
       if (onNavigate) {
-        onNavigate(fullPath ? fullPath : "/");
-      } else {
-        onItemClick && onItemClick(fullPath ? fullPath : "/");
+        onNavigate(fullPath || "/");
+      } else if (onItemClick) {
+        onItemClick(fullPath || "/");
       }
     }
   };
 
   return (
     <>
-      <ListItem
-        component={"li"}
-        // selected={Boolean(
-        //   id === selectedId ||
-        //     selected ||
-        //     subItems?.some((item) => item?.selected)
-        // )}
-        className={classes.listItem}
+      <ListItemButton
         onClick={handleItemPressed}
-        sx={{ cursor: "pointer", fontFamily: "CoHeadlineTrial-Regular" }}
+        sx={{
+          height: 50,
+          backgroundColor: id === selectedId ? "#f0f0ff" : "transparent",
+          borderRadius: 0,
+          paddingInline: "8px",
+          cursor: "pointer",
+          fontFamily: "CoHeadlineTrial-Regular",
+          "&:hover": {
+            backgroundColor: "#E0E0E0",
+          },
+        }}
       >
         {icon && (
-          <ListItemIcon className={classes.listItemIcon}>{icon}</ListItemIcon>
+          <ListItemIcon
+            sx={{
+              minWidth: "fit-content",
+              width: 20,
+              height: 20,
+              marginInline: 1,
+              color: selected ? "#FFF" : "#000",
+            }}
+          >
+            {icon}
+          </ListItemIcon>
         )}
-        <ListItemText className={classes.listItemText}>{text}</ListItemText>
-        {!!subItemsFiltered?.length && <ExpandMore fontSize="small" />}
-      </ListItem>
+        <ListItemText
+          primary={text}
+          sx={{
+            fontSize: 14,
+            "& > span": {
+              fontSize: 14,
+            },
+          }}
+        />
+        {!!subItemsFiltered.length && <ExpandMore fontSize="small" />}
+      </ListItemButton>
       {subItems && (
         <Collapse
           timeout="auto"
           unmountOnExit
-          classes={{ root: classes.root }}
+          sx={{
+            backgroundColor: "#F0F2F5",
+          }}
           in={
-            id == selectedId ||
+            id === selectedId ||
             selected ||
-            subItems?.some((item) => item?.selected)
+            subItems.some((item) => item.selected)
           }
         >
           <SidebarList data={subItems} disablePadding />
