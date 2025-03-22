@@ -25,7 +25,7 @@ export const ImageModel = (props: ImageModelProps) => {
       title={t("Category Image")}
       open={open}
       onCloseModal={handleClickOpen}
-      maxWidth="sm"
+      maxWidth="md"
       button={<ShowButton onClick={handleClickOpen} />}
     >
       <Box
@@ -33,12 +33,15 @@ export const ImageModel = (props: ImageModelProps) => {
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
+        sx={{
+          height: "600px",
+        }}
       >
         <Image
           alt={name}
           src={image || "/smartStore1.png"}
-          width={200}
-          height={200}
+          width={600}
+          height={600}
         />
       </Box>
     </CustomDialog>

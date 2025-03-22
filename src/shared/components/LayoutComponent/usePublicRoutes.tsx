@@ -41,7 +41,7 @@ export const usePublicRoutes = (): RouteItem[] => {
         id: "chatbot",
         route: "chatbot",
         fullPath: "/chatbot",
-        text: t("Chatbot"),
+        text: t("Ask AI"),
         icon: <ChatBubble color="primary" />,
         element: <div>Profile page</div>,
         onClick: (route) => router.push(route),

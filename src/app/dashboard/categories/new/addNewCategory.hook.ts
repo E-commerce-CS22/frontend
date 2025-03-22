@@ -14,7 +14,7 @@ export const useAddNewCategoryHook = () => {
   const router = useRouter();
 
   const { mutate, isError, isPending, isSuccess, error, data } = useMutation({
-    mutationFn: (categoryData: CategoryData) => {
+    mutationFn: (categoryData: any) => {
       return axios.post(`${SERVER_URI}/api/admin/categories`, categoryData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -23,28 +23,45 @@ export const useAddNewCategoryHook = () => {
     },
   });
 
+  const methods = useForm<any>({
+    mode: "all",
+    criteriaMode: "all",
+  });
+
+  const {
+    handleSubmit,
+    formState: { isDirty },
+    watch,
+  } = methods;
+
+  const uploadedImage = watch("image");
+
   const onDone = (data) => {
-    const category = {
-      name: data?.categoryName,
-      color: data?.color,
-      description: data?.description,
-      slug: "testing slug",
-    };
-    mutate(category);
+    // Create a FormData object
+    const formData = new FormData();
+
+    // Append the fields to the FormData object
+    formData.append("name", data?.categoryName || "something");
+    formData.append("description", data?.description || "something");
+    formData.append("slug", data?.slug || "something");
+
+    // Append the image file if it exists
+    if (uploadedImage) {
+      formData.append("image", uploadedImage);
+    }
+
+    // Log the FormData for debugging
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
+    // Send the FormData to the server
+    mutate(formData);
   };
 
   useEffect(() => {
     if (isSuccess) router.back();
   }, [isSuccess, router]);
-
-  const methods = useForm<any>({
-    mode: "all",
-    criteriaMode: "all",
-  });
-  const {
-    handleSubmit,
-    formState: { isDirty },
-  } = methods;
 
   const handleCancel = () => router.back();
 

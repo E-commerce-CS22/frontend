@@ -38,6 +38,11 @@ export const getCategoriesColumns = (
     ),
   },
   {
+    key: "slug",
+    header: t("Slug"),
+    accessor: "slug",
+  },
+  {
     key: "image",
     header: t("Category Image"),
     accessor: ({ image, name }) => <ImageModel image={image} name={name} />,
