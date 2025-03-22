@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { UserContext } from "@/shared/common/authentication";
-import { CategoryData } from "@/shared/types";
 import { SERVER_URI } from "@/shared/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -39,13 +38,7 @@ export const useEditCategoryHook = (props) => {
   });
 
   const { mutate, isError, isPending, isSuccess, error } = useMutation({
-    mutationFn: ({
-      id,
-      categoryData,
-    }: {
-      id: string;
-      categoryData: CategoryData;
-    }) => {
+    mutationFn: ({ id, categoryData }: { id: string; categoryData: any }) => {
       return axios.put(
         `${SERVER_URI}/api/admin/categories/${id}`,
         categoryData,
@@ -58,19 +51,6 @@ export const useEditCategoryHook = (props) => {
     },
   });
 
-  const onDone = (data) => {
-    const category = {
-      name: data?.tagName,
-      description: data?.description,
-      color: data?.color,
-    };
-    mutate({ id, categoryData: category });
-  };
-
-  useEffect(() => {
-    if (isSuccess) router.back();
-  }, [isSuccess, router]);
-
   const methods = useForm<any>({
     mode: "all",
     criteriaMode: "all",
@@ -78,7 +58,32 @@ export const useEditCategoryHook = (props) => {
   const {
     handleSubmit,
     formState: { isDirty },
+    watch,
   } = methods;
+
+  const uploadedImage = watch("image");
+
+  const onDone = (data) => {
+    const formData = new FormData();
+
+    formData.append("name", data?.categoryName || "");
+    formData.append("description", data?.description || "");
+    formData.append("slug", data?.slug || "");
+
+    if (uploadedImage) {
+      formData.append("image", uploadedImage);
+    }
+
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
+    mutate({ id, categoryData: formData });
+  };
+
+  useEffect(() => {
+    if (isSuccess) router.back();
+  }, [isSuccess, router]);
 
   const handleCancel = () => router.back();
 
