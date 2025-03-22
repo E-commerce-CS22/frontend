@@ -25,7 +25,7 @@ export const useProductsHook = () => {
     isSuccess,
     data: productsData,
   } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["customerProducts"],
     queryFn: fetchProducts,
     enabled: !!token,
   });

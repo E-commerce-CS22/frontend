@@ -21,12 +21,7 @@ const Wishlist = () => {
             <div>Price: {item?.price}</div>
             <Button
               variant="outlined"
-              onClick={() =>
-                handleDeleteWishlist(
-                  item?.pivot?.wishlist_id,
-                  item?.pivot?.product_id
-                )
-              }
+              onClick={() => handleDeleteWishlist(item?.pivot?.product_id)}
             >
               Delete wishlist
             </Button>
