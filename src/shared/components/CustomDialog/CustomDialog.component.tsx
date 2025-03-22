@@ -100,7 +100,7 @@ const CustomDialog: FC<CustomDialogProps> = (props) => {
           {...DialogContentProps}
           sx={{
             minHeight: "20vh",
-            maxHeight: "40vh",
+            maxHeight: "70vh",
             ...(DialogContentProps?.sx || {}),
           }}
         >

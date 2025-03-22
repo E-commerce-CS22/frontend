@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 import { TableCellProps } from "@mui/material";
 import { DeleteModel } from "./DeleteModel";
 import { UpdateModel } from "./UpdateModel";
+import { ImageModel } from "./ImageModel";
 
 export interface CustomTableColumnProps<RowType = {}> {
   key: string;
@@ -37,9 +38,14 @@ export const getCategoriesColumns = (
     ),
   },
   {
-    key: "color",
-    header: t("Color"),
-    accessor: "color",
+    key: "slug",
+    header: t("Slug"),
+    accessor: "slug",
+  },
+  {
+    key: "image",
+    header: t("Category Image"),
+    accessor: ({ image, name }) => <ImageModel image={image} name={name} />,
   },
   {
     key: "createdAt",

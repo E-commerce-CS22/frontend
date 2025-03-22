@@ -3,7 +3,7 @@
 import { TFunction } from "i18next";
 import { ReactNode } from "react";
 import { TableCellProps } from "@mui/material";
-import { DeleteModel } from "./DeleteModel";
+// import { DeleteModel } from "./DeleteModel";
 // import { UpdateModel } from "./UpdateModel";
 import { EditStatusModel } from "./EditStatusModel";
 
@@ -64,11 +64,11 @@ export const getCustomersColumns = (
     header: t("Postal Code"),
     accessor: ({ customer }) => customer?.postal_code,
   },
-  {
-    key: "delete",
-    header: t("Delete"),
-    accessor: ({ id }) => <DeleteModel id={id} />,
-  },
+  // {
+  //   key: "delete",
+  //   header: t("Delete"),
+  //   accessor: ({ id }) => <DeleteModel id={id} />,
+  // },
   // {
   //   key: "Modify",
   //   header: t("Modify"),

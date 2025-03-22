@@ -49,7 +49,9 @@ export type CategoryData = {
   name: string;
   slug?: string;
   description: string;
-  color: string;
+  color?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  image?: any;
 };
 
 export type TagData = {
