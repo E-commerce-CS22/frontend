@@ -37,25 +37,20 @@ export const useAddNewCategoryHook = () => {
   const uploadedImage = watch("image");
 
   const onDone = (data) => {
-    // Create a FormData object
     const formData = new FormData();
 
-    // Append the fields to the FormData object
-    formData.append("name", data?.categoryName || "something");
-    formData.append("description", data?.description || "something");
-    formData.append("slug", data?.slug || "something");
+    formData.append("name", data?.categoryName || "");
+    formData.append("description", data?.description || "");
+    formData.append("slug", data?.slug || "");
 
-    // Append the image file if it exists
     if (uploadedImage) {
       formData.append("image", uploadedImage);
     }
 
-    // Log the FormData for debugging
     for (const [key, value] of formData.entries()) {
       console.log(key, value);
     }
 
-    // Send the FormData to the server
     mutate(formData);
   };
 
