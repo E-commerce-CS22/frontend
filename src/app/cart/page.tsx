@@ -25,7 +25,7 @@ export default function MyCart() {
       <Typography>{t("My Cart")}</Typography>
       <Box>
         {cartData?.map((item, index) => (
-          <ProductCard key={index} product={item} />
+          <ProductCard key={index} product={item} hasDeleteFromCart />
         ))}
       </Box>
     </PageWrapper>
