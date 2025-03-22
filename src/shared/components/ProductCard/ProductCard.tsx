@@ -8,10 +8,17 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 
-export const ProductCard = ({ product }: { product: ProductData }) => {
+type ProductCardProps = {
+  product: ProductData;
+  hasDeleteFromCart?: boolean;
+};
+
+export const ProductCard = (props: ProductCardProps) => {
   const router = useRouter();
 
   const { token } = useContext(UserContext);
+
+  const { product, hasDeleteFromCart } = props;
 
   const handleProductDetails = () => {
     router.push(`products/${product?.id}`);
@@ -31,8 +38,49 @@ export const ProductCard = ({ product }: { product: ProductData }) => {
     },
   });
 
+  const { mutate: deleteFromCart } = useMutation({
+    mutationFn: ({ productId }: { productId: string }) => {
+      return axios.delete(`${SERVER_URI}/api/carts/products/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    },
+  });
+
+  const { mutate: addToCart } = useMutation({
+    mutationFn: ({
+      productId,
+      quantity,
+    }: {
+      productId: string;
+      quantity: number;
+    }) => {
+      return axios.post(
+        `${SERVER_URI}/api/carts/products`,
+        {
+          product_id: productId,
+          quantity: quantity,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    },
+  });
+
   const handleAddToWishlist = (productId) => {
     mutate(productId);
+  };
+
+  const handleAddToCart = (productId) => {
+    addToCart({ productId, quantity: 1 });
+  };
+
+  const handleDeleteFromCart = (productId) => {
+    deleteFromCart({ productId });
   };
 
   return (
@@ -64,7 +112,12 @@ export const ProductCard = ({ product }: { product: ProductData }) => {
           margin: "1rem 0",
         }}
       >
-        <Button variant="contained">Add to Cart</Button>
+        <Button
+          variant="contained"
+          onClick={() => handleAddToCart(product?.id)}
+        >
+          Add to Cart
+        </Button>
         <Button
           variant="contained"
           onClick={() => handleAddToWishlist(product?.id)}
@@ -74,6 +127,15 @@ export const ProductCard = ({ product }: { product: ProductData }) => {
         <Button variant="contained" onClick={handleProductDetails}>
           Product details
         </Button>
+        {hasDeleteFromCart && (
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => handleDeleteFromCart(product.id)}
+          >
+            Delete From Cart
+          </Button>
+        )}
       </Box>
     </Box>
   );
