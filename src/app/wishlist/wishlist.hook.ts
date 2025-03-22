@@ -13,7 +13,7 @@ export const useWishlistHook = () => {
   const { token } = useContext(UserContext);
 
   const fetchWishlist = async () => {
-    const response = await axios.get(`${SERVER_URI}/wishlists/products`, {
+    const response = await axios.get(`${SERVER_URI}/api/wishlists/products`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

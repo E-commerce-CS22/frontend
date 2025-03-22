@@ -47,10 +47,6 @@ export const useAddNewCategoryHook = () => {
       formData.append("image", uploadedImage);
     }
 
-    for (const [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-
     mutate(formData);
   };
 
