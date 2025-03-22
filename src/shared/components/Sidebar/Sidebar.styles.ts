@@ -34,14 +34,8 @@ export const useSidebarStyles = makeStyles<{ selected?: boolean }>()(
     },
     listItemText: {
       fontSize: 14,
-      // fontFamily: selected
-      //   ? "CoHeadlineTrial-Light, Arab Kufi Medium"
-      //   : "CoHeadlineTrial-Regular, Arab Kufi Regular",
       "& > span": {
         fontSize: 14,
-        // fontFamily: selected
-        //   ? "CoHeadlineTrial-Light, Arab Kufi Medium"
-        //   : "CoHeadlineTrial-Regular, Arab Kufi Regular",
       },
     },
     root: {

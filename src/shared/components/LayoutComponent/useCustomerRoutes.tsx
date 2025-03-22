@@ -66,7 +66,7 @@ export const useCustomerRoutes = (): RouteItem[] => {
         onClick: (route) => router.push(route),
       },
       {
-        id: "About us",
+        id: "AboutUs",
         route: "About us",
         fullPath: "/aboutUs",
         text: t("About Us"),
@@ -75,7 +75,7 @@ export const useCustomerRoutes = (): RouteItem[] => {
         onClick: (route) => router.push(route),
       },
       {
-        id: "Contact us",
+        id: "ContactUs",
         route: "Contact us",
         fullPath: "/contactUs",
         text: t("Contact Us"),

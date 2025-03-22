@@ -12,13 +12,8 @@ import { ToastContainer } from "react-toastify";
 import Layout from "../Layout/Layout";
 import { AccountDropdownMenu } from "../AccountDropdownMenu";
 import { Notifications } from "@/shared/common/Notifications";
-import { routeWithSelectedItems } from "./utils";
-// import { useAdminRoutes } from "./useAdminRoutes";
-// import { useCustomerRoutes } from "./useCustomerRoutes";
 import { CustomerIcon } from "../icons";
 import { capitalize } from "@/shared/utils";
-// import { useCustomerRoutes } from "./useCustomerRoutes";
-// import { usePublicRoutes } from "./usePublicRoutes";
 import { useCustomerRoutes } from "./useCustomerRoutes";
 import { useAdminRoutes } from "./useAdminRoutes";
 import { usePublicRoutes } from "./usePublicRoutes";
@@ -80,14 +75,17 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   }, [params, pathname]);
 
   const handleGoToHome = () => router.push("/");
+
   const handleClickOpen = (event: React.MouseEvent<HTMLElement>) =>
     setAnchorEl(event.currentTarget);
+
   const handleLogout = () => {
     setAnchorEl(null);
     logout();
     router.push("/login");
     setAppRoutes(publicRoutes);
   };
+
   const handleClickClose = () => setAnchorEl(null);
   const handleToggleDrawer = () => setOpen((prevState) => !prevState);
 
@@ -97,9 +95,9 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
       {appRoutes && (
         <Layout
           isOpen={open}
-          title={""} //{t(breadCrumb[0]?.name || "")}
+          title={""}
           breadCrumb={breadCrumb.slice(1)}
-          drawerItems={routeWithSelectedItems(appRoutes)}
+          drawerItems={appRoutes}
           onGoToHome={handleGoToHome}
           onToggleDrawer={handleToggleDrawer}
           rightItems={[
@@ -123,11 +121,6 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
               alignItems="center"
               m="10px 0"
             >
-              {/* <CardMedia
-                image="/assets/images/smart store.png"
-                title="SMART"
-                sx={{ width: "60px", height: "46px" }}
-              /> */}
               <Typography fontSize="14px">
                 {t("Copyright © 2025 SMART STORE")}
               </Typography>
