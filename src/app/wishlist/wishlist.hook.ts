@@ -10,19 +10,14 @@ export const useWishlistHook = () => {
   const { t } = useTranslation("Store");
   const router = useRouter();
 
-  const { token, user } = useContext(UserContext);
-  const {
-    customer: { wishlist_id: wishlistId },
-  } = user;
+  const { token } = useContext(UserContext);
+
   const fetchWishlist = async () => {
-    const response = await axios.get(
-      `${SERVER_URI}/api/wishlists/${wishlistId}/products`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.get(`${SERVER_URI}/wishlists/products`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   };
 
@@ -38,21 +33,12 @@ export const useWishlistHook = () => {
   });
 
   const { mutate } = useMutation({
-    mutationFn: ({
-      wishlistId,
-      productId,
-    }: {
-      wishlistId: string;
-      productId: string;
-    }) => {
-      return axios.delete(
-        `${SERVER_URI}/api/wishlists/${wishlistId || 0}/products/${productId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    mutationFn: ({ productId }: { productId: string }) => {
+      return axios.delete(`${SERVER_URI}/api/wishlists/products/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     },
   });
 
@@ -67,8 +53,8 @@ export const useWishlistHook = () => {
     },
   ];
 
-  const handleDeleteWishlist = (wishlistId, productId) => {
-    mutate({ wishlistId, productId });
+  const handleDeleteWishlist = (productId) => {
+    mutate({ productId });
   };
 
   return {

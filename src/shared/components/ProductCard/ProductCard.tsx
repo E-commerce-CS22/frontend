@@ -11,8 +11,7 @@ import { useContext } from "react";
 export const ProductCard = ({ product }: { product: ProductData }) => {
   const router = useRouter();
 
-  const { token, user } = useContext(UserContext);
-  const wishlistId = user?.wishlist_id;
+  const { token } = useContext(UserContext);
 
   const handleProductDetails = () => {
     router.push(`products/${product?.id}`);
@@ -21,7 +20,7 @@ export const ProductCard = ({ product }: { product: ProductData }) => {
   const { mutate } = useMutation({
     mutationFn: (productId: string) => {
       return axios.post(
-        `${SERVER_URI}/api/wishlists/${wishlistId || 0}/products/${productId}`,
+        `${SERVER_URI}/api/wishlists/products/${productId}`,
         {},
         {
           headers: {
