@@ -133,7 +133,7 @@ export const CategoryInformationForm = (props) => {
             />
           </div>
         )}
-        {defaultValues.image && !imagePreview && (
+        {defaultValues?.image && !imagePreview && (
           <div style={{ marginTop: "1rem" }}>
             <Image
               src={defaultValues?.image}

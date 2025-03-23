@@ -1,10 +1,7 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useTranslation } from "react-i18next";
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { useRouter, usePathname, useParams } from "next/navigation";
 import { Box, IconButton, Typography } from "@mui/material";
 import { UserContext } from "@/shared/common/authentication";
@@ -28,30 +25,30 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(true);
 
-  const adminUser: boolean = user?.admin;
-  const customerUser: boolean = user?.customer;
+  const adminUser = user?.admin;
+  const customerUser = user?.customer;
 
   const publicRoutes = usePublicRoutes();
   const adminRoutes = useAdminRoutes();
   const customerRoutes = useCustomerRoutes();
-  const [appRoutes, setAppRoutes] = useState(publicRoutes);
 
-  useEffect(() => {
-    if (adminUser) {
-      setAppRoutes(adminRoutes);
-    }
-    if (customerUser) {
-      setAppRoutes(customerRoutes);
-    }
-  }, [user]);
+  // Memoize the appRoutes to avoid unnecessary recalculations
+  const appRoutes = useMemo(() => {
+    if (adminUser) return adminRoutes;
+    if (customerUser) return customerRoutes;
+    return publicRoutes;
+  }, [adminUser, customerUser, adminRoutes, customerRoutes, publicRoutes]);
 
   const isOpen = Boolean(anchorEl);
 
+  // Memoize the breadCrumb calculation
   const breadCrumb = useMemo(() => {
-    const paramsObject: any = params;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const paramsObject: any = { ...params };
     delete paramsObject?.["*"];
     const paramsArray = Object.values(paramsObject);
-    const splittedPath = location.pathname.substring(1).split("/");
+    const splittedPath = pathname.substring(1).split("/");
+
     return splittedPath
       .filter((item) => !paramsArray.includes(item))
       .map((path, i) => {
@@ -64,7 +61,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
           name: capitalize(path.split("-")),
           path: path,
           fullPath: "/" + splittedPath.slice(0, indexVal).join("/"),
-          onClick: (fullPath) => {
+          onClick: (fullPath: string) => {
             const i = splittedPath.indexOf(path);
             router.push(
               fullPath || "/" + splittedPath.slice(0, i + 1).join("/")
@@ -72,7 +69,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
           },
         };
       });
-  }, [params, pathname]);
+  }, [params, pathname, router]);
 
   const handleGoToHome = () => router.push("/");
 
@@ -81,9 +78,8 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
 
   const handleLogout = () => {
     setAnchorEl(null);
-    logout();
+    logout?.();
     router.push("/login");
-    setAppRoutes(publicRoutes);
   };
 
   const handleClickClose = () => setAnchorEl(null);
@@ -92,44 +88,42 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   return (
     <>
       <ToastContainer position="top-right" autoClose={3000} />
-      {appRoutes && (
-        <Layout
-          isOpen={open}
-          title={""}
-          breadCrumb={breadCrumb.slice(1)}
-          drawerItems={appRoutes}
-          onGoToHome={handleGoToHome}
-          onToggleDrawer={handleToggleDrawer}
-          rightItems={[
-            { id: "notifications", icon: <Notifications /> },
-            {
-              id: "admin",
-              icon: isAuthenticated && (
-                <IconButton
-                  onClick={handleClickOpen}
-                  color={isOpen ? "info" : "primary"}
-                >
-                  <CustomerIcon />
-                </IconButton>
-              ),
-            },
-          ]}
-          footer={
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              m="10px 0"
-            >
-              <Typography fontSize="14px">
-                {t("Copyright © 2025 SMART STORE")}
-              </Typography>
-            </Box>
-          }
-        >
-          {children}
-        </Layout>
-      )}
+      <Layout
+        isOpen={open}
+        title={""}
+        breadCrumb={breadCrumb.slice(1)}
+        drawerItems={appRoutes}
+        onGoToHome={handleGoToHome}
+        onToggleDrawer={handleToggleDrawer}
+        rightItems={[
+          { id: "notifications", icon: <Notifications /> },
+          {
+            id: "admin",
+            icon: isAuthenticated && (
+              <IconButton
+                onClick={handleClickOpen}
+                color={isOpen ? "info" : "primary"}
+              >
+                <CustomerIcon />
+              </IconButton>
+            ),
+          },
+        ]}
+        footer={
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            m="10px 0"
+          >
+            <Typography fontSize="14px">
+              {t("Copyright © 2025 SMART STORE")}
+            </Typography>
+          </Box>
+        }
+      >
+        {children}
+      </Layout>
 
       {isOpen && (
         <AccountDropdownMenu
