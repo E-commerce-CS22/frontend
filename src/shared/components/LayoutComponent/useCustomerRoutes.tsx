@@ -35,7 +35,7 @@ export const useCustomerRoutes = (): RouteItem[] => {
         fullPath: "/products",
         text: t("Products"),
         icon: <Shop color="primary" />,
-        element: <div>Coming Soon</div>,
+        element: <div>Products</div>,
         onClick: (route) => router.push(route),
       },
       {
@@ -44,7 +44,7 @@ export const useCustomerRoutes = (): RouteItem[] => {
         fullPath: "/cart",
         text: t("My Cart"),
         icon: <ShoppingCart color="primary" />,
-        element: <div>Profile page</div>,
+        element: <div>Cart</div>,
         onClick: (route) => router.push(route),
       },
       {
@@ -62,7 +62,7 @@ export const useCustomerRoutes = (): RouteItem[] => {
         fullPath: "/chatbot",
         text: t("Chatbot"),
         icon: <ChatBubble color="primary" />,
-        element: <div>Profile page</div>,
+        element: <div>Chatbot</div>,
         onClick: (route) => router.push(route),
       },
       {
@@ -71,7 +71,7 @@ export const useCustomerRoutes = (): RouteItem[] => {
         fullPath: "/aboutUs",
         text: t("About Us"),
         icon: <LiveHelp color="primary" />,
-        element: <div>Profile page</div>,
+        element: <div>About us page</div>,
         onClick: (route) => router.push(route),
       },
       {
@@ -80,7 +80,7 @@ export const useCustomerRoutes = (): RouteItem[] => {
         fullPath: "/contactUs",
         text: t("Contact Us"),
         icon: <Call color="primary" />,
-        element: <div>Profile page</div>,
+        element: <div>Contact us page</div>,
         onClick: (route) => router.push(route),
       },
       {

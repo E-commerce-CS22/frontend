@@ -34,7 +34,7 @@ export const usePublicRoutes = (): RouteItem[] => {
         fullPath: "/products",
         text: t("Products"),
         icon: <Shop color="primary" />,
-        element: <div>Coming Soon</div>,
+        element: <div>Products</div>,
         onClick: (route) => router.push(route),
       },
       {
@@ -43,7 +43,7 @@ export const usePublicRoutes = (): RouteItem[] => {
         fullPath: "/chatbot",
         text: t("Ask AI"),
         icon: <ChatBubble color="primary" />,
-        element: <div>Profile page</div>,
+        element: <div>Chatbot</div>,
         onClick: (route) => router.push(route),
       },
       {
@@ -52,7 +52,7 @@ export const usePublicRoutes = (): RouteItem[] => {
         fullPath: "/aboutUs",
         text: t("About Us"),
         icon: <LiveHelp color="primary" />,
-        element: <div>Profile page</div>,
+        element: <div>About us page</div>,
         onClick: (route) => router.push(route),
       },
       {
@@ -61,7 +61,7 @@ export const usePublicRoutes = (): RouteItem[] => {
         fullPath: "/contactUs",
         text: t("Contact Us"),
         icon: <Call color="primary" />,
-        element: <div>Profile page</div>,
+        element: <div>Contact us page</div>,
         onClick: (route) => router.push(route),
       },
       {
