@@ -32,7 +32,7 @@ export const useAdminRoutes = (): RouteItem[] => {
         fullPath: "/dashboard/products",
         text: t("Products"),
         icon: <ShoppingCart color="primary" />,
-        element: <div>Coming Soon</div>,
+        element: <div>Products</div>,
         onClick: (route) => router.push(route),
       },
       {
@@ -41,7 +41,7 @@ export const useAdminRoutes = (): RouteItem[] => {
         fullPath: "/dashboard/customers",
         text: t("Customers"),
         icon: <PeopleAlt color="primary" />,
-        element: <div>Coming Soon</div>,
+        element: <div>Customers</div>,
         onClick: (route) => router.push(route),
       },
       {
@@ -50,7 +50,7 @@ export const useAdminRoutes = (): RouteItem[] => {
         fullPath: "/dashboard/categories",
         text: t("Categories"),
         icon: <Category color="primary" />,
-        element: <div>Coming Soon</div>,
+        element: <div>Categories</div>,
         onClick: (route) => router.push(route),
       },
       {
@@ -59,7 +59,7 @@ export const useAdminRoutes = (): RouteItem[] => {
         fullPath: "/dashboard/tags",
         text: t("Tags"),
         icon: <Style color="primary" />,
-        element: <div>Coming Soon</div>,
+        element: <div>Tags</div>,
         onClick: (route) => router.push(route),
       },
     ],
