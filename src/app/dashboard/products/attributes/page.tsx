@@ -2,11 +2,13 @@
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { CustomTable } from "@/shared/components/Table";
 import { useProductAttributesHook } from "./attributes.hook";
+import { TableActions } from "../components/TableActions";
 
 export default function ProductAttributes() {
-  const { productData, columns } = useProductAttributesHook();
+  const { productData, columns, tableActionButtons } =
+    useProductAttributesHook();
   return (
-    <PageWrapper>
+    <PageWrapper actions={<TableActions buttons={tableActionButtons} />}>
       <CustomTable
         columns={columns}
         data={productData}
