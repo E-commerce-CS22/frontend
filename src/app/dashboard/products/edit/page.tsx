@@ -36,7 +36,7 @@ export default function EditProductPage() {
               newButtonDisabled={isLoading}
               hasFormButton
               isLoading={isLoading}
-              formButtonTitle={t("Create")}
+              formButtonTitle={t("Update")}
               onNavigation={handleCancel}
               onSave={handleClick}
             />
