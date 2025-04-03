@@ -17,7 +17,7 @@ export const DeleteModel = (props) => {
 
   const { mutate, isSuccess } = useMutation({
     mutationFn: (id: string) => {
-      return axios.delete(`${SERVER_URI}/api/admin/products/${id}`, {
+      return axios.delete(`${SERVER_URI}/api/admin/attributes/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -56,7 +56,7 @@ export const DeleteModel = (props) => {
       >
         <Box>
           <Typography color="warning" fontWeight={"bold"}>
-            {t("Are you sure you want to delete the product!")}
+            {t("Are you sure you want to delete the attribute!")}
           </Typography>
           <DialogActions>
             <Button color="error" variant="contained" onClick={handleDelete}>

@@ -133,5 +133,10 @@
   "Product Variants": "Product Variants",
   "Product Attributes": "Product Attributes",
   "Create attribute": "Create attribute",
-  "Value name": "Value name"
+  "Value name": "Value name",
+  "New": "New",
+  "Attribute Information": "Attribute Information",
+  "Attribute name": "Attribute name",
+  "Edit": "Edit",
+  "Are you sure you want to delete the attribute!": "Are you sure you want to delete the attribute!"
 }

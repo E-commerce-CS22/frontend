@@ -70,3 +70,7 @@ export type ProfileData = {
   address?: string;
   postal_code?: string;
 };
+
+export type AttributeData = {
+  name?: string;
+};
