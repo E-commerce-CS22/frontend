@@ -1,16 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // "use client";
-import { CustomDatePicker } from "@/shared/components/Form";
 import { primary } from "@/shared/customization";
 import { getRequiredValidation } from "@/shared/utils";
-import {
-  Autocomplete,
-  Grid2,
-  styled,
-  TextareaAutosize,
-  TextField,
-} from "@mui/material";
-import { Controller, useFormContext } from "react-hook-form";
+import { Grid2, styled, TextareaAutosize, TextField } from "@mui/material";
+import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 export const ProductInformationForm = (props) => {
@@ -19,38 +12,9 @@ export const ProductInformationForm = (props) => {
   const { defaultValues } = props;
   const {
     register,
-    control,
     formState: { errors },
   } = useFormContext();
 
-  // these things should come from the backend
-  const discountTypes = ["Percentage", "Fixed"];
-  const statuses = ["Active", "Inactive"];
-  const categories = [
-    "Electronics",
-    "Smartphones",
-    "Computers and Accessories",
-    "Home Appliances",
-    "Men's Clothing",
-    "Women's Clothing",
-    "Shoes and Bags",
-    "Beauty and Skin Care Products",
-    "Perfumes",
-    "Watches and Accessories",
-    "Baby Supplies",
-    "Toys and Gifts",
-    "Health Care Products",
-    "Sports Supplies",
-    "Cars and Accessories",
-    "Home Improvement Tools",
-    "Tools and Equipment",
-    "Books and Magazines",
-    "Food and Beverages",
-    "Office and School Supplies",
-    "Digital Products and Subscriptions",
-    "Pets and Supplies",
-  ];
-  const tags = ["Apple", "Samsung", "Nike", "Adidas"];
   // const handleDiscountTypesChange = () => {};
   // const handleStatusChange = () => {};
   // const handleCategoriesChange = () => {};
@@ -65,13 +29,9 @@ export const ProductInformationForm = (props) => {
           label={t("Product name")}
           placeholder={t("Product name")}
           fullWidth
-          error={Boolean(errors?.productName?.message)}
-          helperText={
-            errors?.productName?.message
-              ? t(`${errors.productName.message}`)
-              : ""
-          }
-          {...register("productName", {
+          error={Boolean(errors?.name?.message)}
+          helperText={errors?.name?.message ? t(`${errors.name.message}`) : ""}
+          {...register("name", {
             required: getRequiredValidation(t, true),
           })}
           defaultValue={defaultValues?.name}
@@ -94,7 +54,7 @@ export const ProductInformationForm = (props) => {
         />
       </Grid2>
 
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      {/* <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Discount Value")}
           placeholder={t("Discount Value")}
@@ -202,7 +162,7 @@ export const ProductInformationForm = (props) => {
             />
           )}
         />
-      </Grid2>
+      </Grid2> */}
 
       <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <StyledTextarea

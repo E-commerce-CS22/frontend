@@ -25,15 +25,9 @@ export const useAddNewProductHook = () => {
 
   const onDone = (data) => {
     const product = {
-      name: data?.productName,
+      name: data?.name,
       description: data?.description,
       price: parseFloat(data?.price),
-      // discount_type: "",
-      // discount_value: 0,
-      // status: "",
-      // discount_start_date: "",
-      // discount_end_date: "",
-      // variants: [],
     };
     mutate(product);
   };
