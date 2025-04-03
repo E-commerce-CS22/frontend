@@ -34,7 +34,9 @@ export const getProductAttributesColumns = (
   {
     key: "values",
     header: t("Values"),
-    accessor: ({ values }) => <ValuesModel values={values || "-"} />,
+    accessor: ({ id, values }) => (
+      <ValuesModel id={id} values={values || "-"} />
+    ),
   },
   {
     key: "Modify",
