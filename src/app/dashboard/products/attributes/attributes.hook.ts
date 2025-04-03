@@ -5,16 +5,16 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { getProductsColumns } from "../components/ProductsColumns";
+import { getProductAttributesColumns } from "./components/productAttributesColumns";
 
-export const useProductVariantsHook = () => {
+export const useProductAttributesHook = () => {
   const { t } = useTranslation("Store");
   const router = useRouter();
 
   const { token } = useContext(UserContext);
 
-  const fetchProductVariants = async () => {
-    const response = await axios.get(`${SERVER_URI}/api/admin/products`, {
+  const fetchProductAttributes = async () => {
+    const response = await axios.get(`${SERVER_URI}/api/admin/attributes`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -26,20 +26,20 @@ export const useProductVariantsHook = () => {
     isPending: isLoading,
     isError,
     isSuccess,
-    data: productData,
+    data: productAttributesData,
   } = useQuery({
-    queryKey: ["adminProducts"],
-    queryFn: fetchProductVariants,
+    queryKey: ["adminProductsAttributes"],
+    queryFn: fetchProductAttributes,
     enabled: !!token,
   });
 
   const handleNavigateToNewPage = () => {
-    router.push("products/new");
+    router.push("attributes/new");
   };
 
   const tableActionButtons = [
     {
-      title: t("Create product"),
+      title: t("Create attribute"),
       buttonHandler: handleNavigateToNewPage,
     },
   ];
@@ -49,7 +49,7 @@ export const useProductVariantsHook = () => {
     isSuccess,
     isError,
     tableActionButtons,
-    columns: getProductsColumns(t),
-    productData: productData,
+    columns: getProductAttributesColumns(t),
+    productData: productAttributesData?.data,
   };
 };
