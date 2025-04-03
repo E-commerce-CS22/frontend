@@ -57,6 +57,7 @@ const CustomTable = <RowType extends object>({
         borderStyle: "solid",
         borderColor: tableOutlineBorder,
         overflow: "auto",
+        height: "100%",
       }}
       elevation={0}
       id="ui-table"

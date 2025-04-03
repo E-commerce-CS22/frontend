@@ -7,6 +7,7 @@ import { TableCellProps } from "@mui/material";
 import { DeleteModel } from "./DeleteModel";
 import { UpdateModel } from "./UpdateModel";
 import { ValuesModel } from "./ValuesModel";
+import { AddValueModel } from "./AddValueModel";
 
 export interface CustomTableColumnProps<RowType = {}> {
   key: string;
@@ -36,13 +37,18 @@ export const getProductAttributesColumns = (
     accessor: ({ values }) => <ValuesModel values={values || "-"} />,
   },
   {
+    key: "Modify",
+    header: t("Modify name"),
+    accessor: ({ id }) => <UpdateModel id={id} />,
+  },
+  {
+    key: "addValues",
+    header: t("Add value"),
+    accessor: ({ id }) => <AddValueModel id={id} />,
+  },
+  {
     key: "delete",
     header: t("Delete"),
     accessor: ({ id }) => <DeleteModel id={id} />,
-  },
-  {
-    key: "Modify",
-    header: t("Modify"),
-    accessor: ({ id }) => <UpdateModel id={id} />,
   },
 ];

@@ -138,5 +138,9 @@
   "Attribute Information": "Attribute Information",
   "Attribute name": "Attribute name",
   "Edit": "Edit",
-  "Are you sure you want to delete the attribute!": "Are you sure you want to delete the attribute!"
+  "Are you sure you want to delete the attribute!": "Are you sure you want to delete the attribute!",
+  "Values": "Values",
+  "Modify name": "Modify name",
+  "Add value": "Add value",
+  "Value Information": "Value Information"
 }

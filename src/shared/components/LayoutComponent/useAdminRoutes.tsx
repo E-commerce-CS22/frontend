@@ -49,14 +49,14 @@ export const useAdminRoutes = (): RouteItem[] => {
             element: <div>Product Attributes</div>,
             onClick: (route) => router.push(route),
           },
-          {
-            id: "productVariants",
-            route: "products/variants",
-            fullPath: "/dashboard/products/variants",
-            text: t("Product Variants"),
-            element: <div>Product Variants</div>,
-            onClick: (route) => router.push(route),
-          },
+          // {
+          //   id: "productVariants",
+          //   route: "products/variants",
+          //   fullPath: "/dashboard/products/variants",
+          //   text: t("Product Variants"),
+          //   element: <div>Product Variants</div>,
+          //   onClick: (route) => router.push(route),
+          // },
         ],
       },
       {

@@ -37,19 +37,21 @@ export const ValuesModel = (props: ValuesModelProps) => {
       maxWidth="sm"
       button={<ShowButton onClick={handleClickOpen} />}
     >
-      {values && (
-        <Box>
-          <CustomTable
-            columns={getValuesColumns()}
-            data={values}
-            pageIndex={1}
-            pageSize={100}
-            hasNextPage={false}
-            hasPreviousPage={false}
-            hasFooter={false}
-          />
-        </Box>
-      )}
+      <Box height={"300px"}>
+        {values && (
+          <Box height={"inherit"}>
+            <CustomTable
+              columns={getValuesColumns()}
+              data={values}
+              pageIndex={1}
+              pageSize={100}
+              hasNextPage={false}
+              hasPreviousPage={false}
+              hasFooter={false}
+            />
+          </Box>
+        )}
+      </Box>
     </CustomDialog>
   );
 };
