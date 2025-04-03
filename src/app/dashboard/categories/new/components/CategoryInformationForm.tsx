@@ -4,7 +4,7 @@ import { primary } from "@/shared/customization";
 import { getRequiredValidation } from "@/shared/utils";
 import { AddPhotoAlternate } from "@mui/icons-material";
 import {
-  Grid2,
+  Grid,
   IconButton,
   styled,
   TextareaAutosize,
@@ -38,8 +38,8 @@ export const CategoryInformationForm = (props) => {
   };
 
   return (
-    <Grid2 p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+    <Grid p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Category name")}
           placeholder={t("Category name")}
@@ -55,8 +55,8 @@ export const CategoryInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.name}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Slug")}
           placeholder={t("Slug")}
@@ -68,8 +68,8 @@ export const CategoryInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.slug}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <StyledTextarea
           id="description"
           aria-label="Description"
@@ -95,8 +95,8 @@ export const CategoryInformationForm = (props) => {
             {t(`${errors.description.message}`)}
           </div>
         )}
-      </Grid2>
-      <Grid2
+      </Grid>
+      <Grid
         p={"1rem"}
         sx={{
           margin: "0 1rem",
@@ -144,7 +144,7 @@ export const CategoryInformationForm = (props) => {
             />
           </div>
         )}
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
 };

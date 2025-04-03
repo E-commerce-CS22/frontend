@@ -5,7 +5,7 @@ import {
   Box,
   Button,
   DialogActions,
-  Grid2,
+  Grid,
   TextField,
 } from "@mui/material";
 import { Edit } from "@mui/icons-material";
@@ -72,7 +72,7 @@ export const EditStatusModel = (props) => {
         }
         sx={{ fontFamily: "CoHeadlineTrail-Bold" }}
       >
-        <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+        <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
           <Controller
             name="status"
             control={control}
@@ -87,7 +87,7 @@ export const EditStatusModel = (props) => {
               />
             )}
           />
-        </Grid2>
+        </Grid>
         <DialogActions sx={{ fontFamily: "inherit" }}>
           <Button
             variant="contained"

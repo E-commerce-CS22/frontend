@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // "use client";
 import { getRequiredValidation } from "@/shared/utils";
-import { Grid2, TextField } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -15,8 +15,8 @@ export const AttributeInformationForm = (props) => {
   } = useFormContext();
 
   return (
-    <Grid2 p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+    <Grid p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Attribute name")}
           placeholder={t("Attribute name")}
@@ -28,8 +28,8 @@ export const AttributeInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.name}
         />
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
 };
 

@@ -4,7 +4,7 @@ import {
   patternEmail,
   patternMobile,
 } from "@/shared/utils";
-import { Grid2, TextField } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -18,8 +18,8 @@ export const ProfileInformationForm = (props) => {
   } = useFormContext();
 
   return (
-    <Grid2 p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+    <Grid p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Username")}
           placeholder={t("Username")}
@@ -33,8 +33,8 @@ export const ProfileInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.username}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("First name")}
           placeholder={t("First name")}
@@ -48,8 +48,8 @@ export const ProfileInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.first_name}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Last name")}
           placeholder={t("Last name")}
@@ -63,8 +63,8 @@ export const ProfileInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.last_name}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           fullWidth
           label={t("Email")}
@@ -79,8 +79,8 @@ export const ProfileInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.email}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Phone Number")}
           placeholder={t("Phone Number")}
@@ -98,8 +98,8 @@ export const ProfileInformationForm = (props) => {
             inputProps: { dir: "ltr" },
           }}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Postal Code")}
           placeholder={t("Postal Code")}
@@ -115,8 +115,8 @@ export const ProfileInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.postal_code}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("City")}
           placeholder={t("City")}
@@ -128,8 +128,8 @@ export const ProfileInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.city}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Country")}
           placeholder={t("Country")}
@@ -143,8 +143,8 @@ export const ProfileInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.country}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Address")}
           placeholder={t("Address")}
@@ -158,7 +158,7 @@ export const ProfileInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.address}
         />
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
 };
