@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useRouter, usePathname, useParams } from "next/navigation";
 import { Box, IconButton, Typography } from "@mui/material";
 import { UserContext } from "@/shared/common/authentication";
@@ -25,23 +25,22 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(true);
 
-  const adminUser = user?.admin;
-  const customerUser = user?.customer;
-
+  const userRole = user?.role;
   const publicRoutes = usePublicRoutes();
   const adminRoutes = useAdminRoutes();
   const customerRoutes = useCustomerRoutes();
 
-  // Memoize the appRoutes to avoid unnecessary recalculations
-  const appRoutes = useMemo(() => {
-    if (adminUser) return adminRoutes;
-    if (customerUser) return customerRoutes;
-    return publicRoutes;
-  }, [adminUser, customerUser, adminRoutes, customerRoutes, publicRoutes]);
+  const [appRoutes, setAppRoutes] = useState(publicRoutes);
+  useEffect(() => {
+    if (userRole == "admin") setAppRoutes(adminRoutes);
+    else if (userRole == "customer") setAppRoutes(customerRoutes);
+    else {
+      setAppRoutes(publicRoutes);
+    }
+  }, [userRole]);
 
   const isOpen = Boolean(anchorEl);
 
-  // Memoize the breadCrumb calculation
   const breadCrumb = useMemo(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const paramsObject: any = { ...params };
