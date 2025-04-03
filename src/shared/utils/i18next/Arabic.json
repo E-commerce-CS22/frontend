@@ -139,5 +139,10 @@
   "Attribute Information": "معلومات السمة",
   "Attribute name": "اسم السمة",
   "Edit": "تعديل",
-  "Are you sure you want to delete the attribute!": "هل أنت متأكد من أنك تريد حذف السمة!"
+  "Are you sure you want to delete the attribute!": "هل أنت متأكد من أنك تريد حذف السمة!",
+  "Values": "القيم",
+  "Modify name": "تعديل الاسم",
+  "Add value": "إضافة قيمة",
+  "Value Information": "معلومات القيمة",
+  "Are you sure you want to delete the value!": "هل أنت متأكد من أنك تريد حذف القيمة!"
 }

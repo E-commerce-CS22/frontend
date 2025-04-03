@@ -1,13 +1,13 @@
 "use client";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
-import { useProductVariantsHook } from "./variants.hook";
-import { CustomTable } from "@/shared/components/Table";
+// import { useProductVariantsHook } from "./variants.hook";
+// import { CustomTable } from "@/shared/components/Table";
 
 export default function ProductVariants() {
-  const { productData, columns } = useProductVariantsHook();
+  // const { productData, columns } = useProductVariantsHook();
   return (
     <PageWrapper>
-      <CustomTable
+      {/* <CustomTable
         columns={columns}
         data={productData}
         pageIndex={1}
@@ -15,7 +15,8 @@ export default function ProductVariants() {
         hasNextPage={false}
         hasPreviousPage={false}
         hasFooter={false}
-      />
+      /> */}
+      <div>Variants</div>
     </PageWrapper>
   );
 }
