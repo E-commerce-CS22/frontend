@@ -31,7 +31,7 @@
   "Status": "الحالة",
   "Discount Start Date": "تاريخ بداية الخصم",
   "Discount End Date": "تاريخ نهاية الخصم",
-  "Variants": "المرتجعات",
+  "Variants": "المتغيرات",
   "Color": "اللون",
   "Raw": "الخام",
   "Memory": "الذاكرة",
@@ -129,5 +129,8 @@
   "Country": "الدولة",
   "Payment": "الدفع",
   "Category Image": "صورة الفئة",
-  "Ask AI": "اسأل الذكاء الاصطناعي"
+  "Ask AI": "اسأل الذكاء الاصطناعي",
+  "Product Variants": "متغيرات المنتج",
+  "Attributes": "السمات",
+  "Product Attributes": "سمات المنتج"
 }

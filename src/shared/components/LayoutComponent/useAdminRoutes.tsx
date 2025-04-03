@@ -29,11 +29,35 @@ export const useAdminRoutes = (): RouteItem[] => {
       {
         id: "products",
         route: "products",
-        fullPath: "/dashboard/products",
         text: t("Products"),
         icon: <ShoppingCart color="primary" />,
         element: <div>Products</div>,
-        onClick: (route) => router.push(route),
+        subItems: [
+          {
+            id: "products",
+            route: "products",
+            fullPath: "/dashboard/products",
+            text: t("Products"),
+            element: <div>Products</div>,
+            onClick: (route) => router.push(route),
+          },
+          {
+            id: "productAttributes",
+            route: "products/attributes",
+            fullPath: "/dashboard/products/attributes",
+            text: t("Product Attributes"),
+            element: <div>Product Attributes</div>,
+            onClick: (route) => router.push(route),
+          },
+          {
+            id: "productVariants",
+            route: "products/variants",
+            fullPath: "/dashboard/products/variants",
+            text: t("Product Variants"),
+            element: <div>Product Variants</div>,
+            onClick: (route) => router.push(route),
+          },
+        ],
       },
       {
         id: "customers",

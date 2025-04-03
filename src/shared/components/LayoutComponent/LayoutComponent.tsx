@@ -14,6 +14,7 @@ import { capitalize } from "@/shared/utils";
 import { useCustomerRoutes } from "./useCustomerRoutes";
 import { useAdminRoutes } from "./useAdminRoutes";
 import { usePublicRoutes } from "./usePublicRoutes";
+import { routeWithSelectedItems } from "./utils";
 
 export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const { t } = useTranslation("Store");
@@ -91,7 +92,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
         isOpen={open}
         title={""}
         breadCrumb={breadCrumb.slice(1)}
-        drawerItems={appRoutes}
+        drawerItems={routeWithSelectedItems(appRoutes)}
         onGoToHome={handleGoToHome}
         onToggleDrawer={handleToggleDrawer}
         rightItems={[
