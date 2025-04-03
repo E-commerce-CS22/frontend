@@ -5,7 +5,7 @@ import { AttributeData, ProductData } from "@/shared/types";
 import { SERVER_URI } from "@/shared/utils";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
@@ -13,13 +13,20 @@ export const useAddNewAttributeVariantValueHook = () => {
   const { token } = useContext(UserContext);
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+
   const { mutate, isError, isPending, isSuccess, error } = useMutation({
     mutationFn: (attributeData: AttributeData) => {
-      return axios.post(`${SERVER_URI}/api/admin/attributes`, attributeData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      return axios.post(
+        `${SERVER_URI}/api/admin/attributes/${id}/values`,
+        attributeData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
     },
   });
 
