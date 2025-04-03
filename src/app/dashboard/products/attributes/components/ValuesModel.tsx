@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { ShowButton } from "@/shared/components/ShowButton";
 import { CustomTable } from "@/shared/components/Table";
-import { UpdateModel } from "./UpdateModel";
 import { DeleteValueModel } from "./DeleteValueModel";
+import { UpdateValueModel } from "./UpdateValueModel";
 
 type ValuesModelProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -30,7 +30,9 @@ export const ValuesModel = (props: ValuesModelProps) => {
     {
       key: "Modify",
       header: t("Modify name"),
-      accessor: ({ id }) => <UpdateModel id={id} />,
+      accessor: ({ id }) => (
+        <UpdateValueModel id={id} attributeId={attributeId} />
+      ),
     },
     {
       key: "delete",
