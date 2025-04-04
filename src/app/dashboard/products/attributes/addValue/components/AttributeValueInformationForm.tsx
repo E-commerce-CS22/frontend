@@ -32,5 +32,3 @@ export const AttributeVariantValueInformationForm = (props) => {
     </Grid2>
   );
 };
-
-// dates Discount start time, and discount end time

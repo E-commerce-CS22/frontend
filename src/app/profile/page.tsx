@@ -59,28 +59,30 @@ export default function Profile() {
             {t("Username")}: {profileData?.username}
           </Typography>
           <Typography py={"0.8rem"}>
-            {t("First name")}: {profileData?.first_name}
+            {t("First name")}: {profileData?.customer_data?.first_name}
           </Typography>
           <Typography py={"0.8rem"}>
-            {t("Last name")}: {profileData?.last_name}
+            {t("Last name")}: {profileData?.customer_data?.last_name}
           </Typography>
           <Typography py={"0.8rem"}>
             {t("Email")}: {profileData?.email}
           </Typography>
           <Typography py={"0.8rem"}>
-            {t("Phone number")}: {profileData?.phone}
+            {t("Phone number")}: {profileData?.customer_data?.phone}
+          </Typography>
+          {profileData?.customer_data?.postal_code && (
+            <Typography py={"0.8rem"}>
+              {t("Postal Code")}: {profileData?.customer_data?.postal_code}
+            </Typography>
+          )}
+          <Typography py={"0.8rem"}>
+            {t("City")}: {profileData?.customer_data?.city}
           </Typography>
           <Typography py={"0.8rem"}>
-            {t("Postal Code")}: {profileData?.postal_code}
+            {t("Country")}: {profileData?.customer_data?.country}
           </Typography>
           <Typography py={"0.8rem"}>
-            {t("City")}: {profileData?.city}
-          </Typography>
-          <Typography py={"0.8rem"}>
-            {t("Country")}: {profileData?.country}
-          </Typography>
-          <Typography py={"0.8rem"}>
-            {t("Address")}: {profileData?.address}
+            {t("Address")}: {profileData?.customer_data?.address}
           </Typography>
           <Button onClick={handleUpdateProfile} variant="contained">
             {t("Modify")}
