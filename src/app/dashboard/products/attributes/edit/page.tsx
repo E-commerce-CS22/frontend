@@ -3,7 +3,7 @@ import { FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { FormActions } from "@/shared/components/FormActions";
-import { Grid } from "@mui/material";
+import { Grid2 } from "@mui/material";
 import { FormCard } from "@/shared/components/Form";
 import { AttributeInformationForm } from "../new/components/AttributeInformationForm";
 import { useEditAttributeHook } from "./editAttribute.hook";
@@ -42,8 +42,8 @@ export default function EditAttributePage() {
             />
           }
         >
-          <Grid container spacing={2}>
-            <Grid>
+          <Grid2 container spacing={2}>
+            <Grid2>
               <FormCard
                 title={t("Attribute Information")}
                 loading={false}
@@ -53,8 +53,8 @@ export default function EditAttributePage() {
                   <AttributeInformationForm defaultValues={defaultValues} />
                 )}
               </FormCard>
-            </Grid>
-          </Grid>
+            </Grid2>
+          </Grid2>
         </PageWrapper>
       </form>
     </FormProvider>

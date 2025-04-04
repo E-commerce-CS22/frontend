@@ -2,7 +2,7 @@
 // "use client";
 import { primary } from "@/shared/customization";
 import { getRequiredValidation } from "@/shared/utils";
-import { Grid, styled, TextareaAutosize, TextField } from "@mui/material";
+import { Grid2, styled, TextareaAutosize, TextField } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -23,8 +23,8 @@ export const ProductInformationForm = (props) => {
   const StyledTextarea = styled(TextareaAutosize)(({}) => ({}));
 
   return (
-    <Grid p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
-      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
+    <Grid2 p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Product name")}
           placeholder={t("Product name")}
@@ -36,9 +36,9 @@ export const ProductInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.name}
         />
-      </Grid>
+      </Grid2>
 
-      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Price")}
           placeholder={t("Price")}
@@ -52,9 +52,9 @@ export const ProductInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.price}
         />
-      </Grid>
+      </Grid2>
 
-      {/* <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
+      {/* <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Discount Value")}
           placeholder={t("Discount Value")}
@@ -68,9 +68,9 @@ export const ProductInformationForm = (props) => {
           {...register("discountValue")}
           defaultValue={defaultValues?.discount_value}
         />
-      </Grid>
+      </Grid2>
 
-      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <Controller
           name="discountType"
           control={control}
@@ -86,9 +86,9 @@ export const ProductInformationForm = (props) => {
             />
           )}
         />
-      </Grid>
+      </Grid2>
 
-      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <CustomDatePicker
           label={t("Discount start date")}
           name="discountStartDateS"
@@ -97,9 +97,9 @@ export const ProductInformationForm = (props) => {
           required={false}
           defaultValue={defaultValues?.discount_start_date}
         />
-      </Grid>
+      </Grid2>
 
-      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <CustomDatePicker
           label={t("Discount end date")}
           name="discountEndDateS"
@@ -108,9 +108,9 @@ export const ProductInformationForm = (props) => {
           required={false}
           defaultValue={defaultValues?.discount_end_date}
         />
-      </Grid>
+      </Grid2>
 
-      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <Controller
           name="status"
           control={control}
@@ -126,9 +126,9 @@ export const ProductInformationForm = (props) => {
             />
           )}
         />
-      </Grid>
+      </Grid2>
 
-      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <Controller
           name="categories"
           control={control}
@@ -144,9 +144,9 @@ export const ProductInformationForm = (props) => {
             />
           )}
         />
-      </Grid>
+      </Grid2>
 
-      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <Controller
           name="tags"
           control={control}
@@ -162,9 +162,9 @@ export const ProductInformationForm = (props) => {
             />
           )}
         />
-      </Grid> */}
+      </Grid2> */}
 
-      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
+      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
         <StyledTextarea
           id="description"
           aria-label="Description"
@@ -190,8 +190,8 @@ export const ProductInformationForm = (props) => {
             {t(`${errors.description.message}`)}
           </div>
         )}
-      </Grid>
-    </Grid>
+      </Grid2>
+    </Grid2>
   );
 };
 

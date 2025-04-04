@@ -1,5 +1,5 @@
 import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
+import Grid2 from "@mui/material/Grid2";
 import React, { FC } from "react";
 import ContentLoader from "react-content-loader";
 import { makeStyles } from "@mui/styles";
@@ -18,8 +18,8 @@ const useCardLoaderStyles = makeStyles({
 const CardLoader: FC<ISimpleLoader> = (props) => {
   const classes = useCardLoaderStyles();
   return (
-    <Grid container spacing={1} className={classes.root}>
-      <Grid item xs={10} sm={12} md={4} lg={3}>
+    <Grid2 container spacing={1} className={classes.root}>
+      <Grid2 item xs={10} sm={12} md={4} lg={3}>
         <Card elevation={1} className={classes.card}>
           <ContentLoader viewBox="0 0 476 124" {...props}>
             <rect x="88" y="8" rx="3" ry="3" width="88" height="6" />
@@ -31,8 +31,8 @@ const CardLoader: FC<ISimpleLoader> = (props) => {
             <circle cx="40" cy="40" r="40" />
           </ContentLoader>
         </Card>
-      </Grid>
-      <Grid item xs={10} sm={12} md={4} lg={3}>
+      </Grid2>
+      <Grid2 item xs={10} sm={12} md={4} lg={3}>
         <Card elevation={1} className={classes.card}>
           <ContentLoader viewBox="0 0 476 124" {...props}>
             <rect x="88" y="8" rx="3" ry="3" width="88" height="6" />
@@ -43,8 +43,8 @@ const CardLoader: FC<ISimpleLoader> = (props) => {
             <circle cx="40" cy="40" r="40" />
           </ContentLoader>
         </Card>
-      </Grid>
-      <Grid item xs={10} sm={12} md={4} lg={3}>
+      </Grid2>
+      <Grid2 item xs={10} sm={12} md={4} lg={3}>
         <Card elevation={1} className={classes.card}>
           <ContentLoader viewBox="0 0 476 124" {...props}>
             <rect x="88" y="8" rx="3" ry="3" width="88" height="6" />
@@ -55,8 +55,8 @@ const CardLoader: FC<ISimpleLoader> = (props) => {
             <circle cx="40" cy="40" r="40" />
           </ContentLoader>
         </Card>
-      </Grid>
-    </Grid>
+      </Grid2>
+    </Grid2>
   );
 };
 

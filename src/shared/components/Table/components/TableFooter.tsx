@@ -3,7 +3,7 @@ import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
+import Grid2 from "@mui/material/Grid2";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
@@ -54,19 +54,19 @@ const CustomTableFooter: React.FC<CustomTableFooterProps> = (props) => {
       <PrevButton color="inherit" className={classes.buttonIcons} />
     );
   return (
-    <Grid
+    <Grid2
       container
       direction="row"
       justifyContent="center"
       alignItems="center"
       className={classes.root}
     >
-      {/* <Grid item>
+      {/* <Grid2 item>
         <Typography fontFamily='Airbnb Cereal App' fontSize='14px' className={classes.result}>
           {t("We found {{totalCount}} results", { totalCount: totalCount || 0 })}
         </Typography>
-      </Grid> */}
-      <Grid item>
+      </Grid2> */}
+      <Grid2 item>
         <Button
           variant={"outlined"}
           disabled={!hasPreviousPage}
@@ -81,8 +81,8 @@ const CustomTableFooter: React.FC<CustomTableFooterProps> = (props) => {
         >
           {t("Previous")}
         </Button>
-      </Grid>
-      <Grid item>
+      </Grid2>
+      <Grid2 item>
         <Button
           variant={"contained"}
           color="primary"
@@ -98,10 +98,10 @@ const CustomTableFooter: React.FC<CustomTableFooterProps> = (props) => {
         >
           {t("Next")}
         </Button>
-      </Grid>
+      </Grid2>
 
       {showRecordsNumberForm && (
-        <Grid item className={classes.pageSizeContainer}>
+        <Grid2 item className={classes.pageSizeContainer}>
           <Typography className={classes.columns}>
             {t("Records", "Records")}
           </Typography>
@@ -122,9 +122,9 @@ const CustomTableFooter: React.FC<CustomTableFooterProps> = (props) => {
             <MenuItem value={25}>25</MenuItem>
             <MenuItem value={50}>50</MenuItem>
           </Select>
-        </Grid>
+        </Grid2>
       )}
-    </Grid>
+    </Grid2>
   );
 };
 

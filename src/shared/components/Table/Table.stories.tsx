@@ -4,7 +4,7 @@ import { columns, getData, MyData } from "./fixtures";
 
 const data = getData(10);
 
-const CustomDataGrid = () => {
+const CustomDataGrid2 = () => {
   return (
     <CustomTable<MyData>
       data={data}
@@ -34,8 +34,8 @@ const CustomDataGrid = () => {
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: "Data Grid",
-  component: CustomDataGrid,
+  title: "Data Grid2",
+  component: CustomDataGrid2,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   // argTypes: {
   //   variant: { control: "variant" },
@@ -43,6 +43,6 @@ export default {
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = args => <CustomDataGrid {...args} />;
+const Template = (args) => <CustomDataGrid2 {...args} />;
 
-export const DataGrid = Template.bind({});
+export const DataGrid2 = Template.bind({});

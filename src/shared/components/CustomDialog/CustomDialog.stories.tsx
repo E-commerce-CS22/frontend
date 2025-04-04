@@ -13,19 +13,19 @@ export default {
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = args => {
+const Template = (args) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleModalToggle = () => {
     setIsOpen(!isOpen);
   };
-  const handleSubmitFilters = data => {
+  const handleSubmitFilters = (data) => {
     console.log(data);
     // setIsOpen(!isOpen);
   };
   const filterFields = [
     {
       id: "first",
-      grid: 12,
+      Grid2: 12,
       type: FieldsTypes.input,
       fieldProps: {
         placeholder: "Admin:defaultLabel",

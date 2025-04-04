@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useAddNewCategoryHook } from "./addNewCategory.hook";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { FormActions } from "@/shared/components/FormActions";
-import { Grid } from "@mui/material";
+import { Grid2 } from "@mui/material";
 import { FormCard } from "@/shared/components/Form";
 import { CategoryInformationForm } from "./components/CategoryInformationForm";
 
@@ -57,8 +57,8 @@ export default function CreateNewProductPage() {
             />
           }
         >
-          <Grid container spacing={2}>
-            <Grid>
+          <Grid2 container spacing={2}>
+            <Grid2>
               <FormCard
                 title={t("Category Information")}
                 loading={false}
@@ -66,8 +66,8 @@ export default function CreateNewProductPage() {
               >
                 <CategoryInformationForm />
               </FormCard>
-            </Grid>
-          </Grid>
+            </Grid2>
+          </Grid2>
         </PageWrapper>
       </form>
     </FormProvider>
