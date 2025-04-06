@@ -34,6 +34,6 @@ export const useProductsHook = () => {
     isLoading,
     isError,
     isSuccess,
-    productsData: productsData?.data,
+    productsData: productsData,
   };
 };
