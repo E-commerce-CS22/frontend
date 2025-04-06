@@ -1,4 +1,4 @@
-import Grid2 from "@mui/material/Grid2";
+import { Grid } from "@mui/material";
 import React, { FC, ReactNode } from "react";
 
 type PageWrapperProps = {
@@ -20,7 +20,7 @@ const PageWrapper: FC<PageWrapperProps> = (props) => {
     padding,
   } = props;
   const toolBar = (
-    <Grid2
+    <Grid
       container
       alignItems="center"
       sx={{
@@ -33,17 +33,10 @@ const PageWrapper: FC<PageWrapperProps> = (props) => {
         px: 2,
       }}
     >
-      <Grid2
-        item
-        lg={4}
-        md={6}
-        sm={12}
-        paddingTop={"5px"}
-        paddingBottom={"5px"}
-      >
+      <Grid item lg={4} md={6} sm={12} paddingTop={"5px"} paddingBottom={"5px"}>
         {start}
-      </Grid2>
-      <Grid2
+      </Grid>
+      <Grid
         item
         lg={8}
         md={6}
@@ -53,13 +46,12 @@ const PageWrapper: FC<PageWrapperProps> = (props) => {
         paddingBottom={"5px"}
       >
         {actions}
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
   return (
-    <Grid2
+    <Grid
       container
-      item
       sx={{
         position: "relative",
         justifyContent: "space-evenly",
@@ -73,9 +65,7 @@ const PageWrapper: FC<PageWrapperProps> = (props) => {
       {toolBar}
       {header}
 
-      <Grid2
-        item
-        xs
+      <Grid
         sx={{
           padding: padding ? padding : "40px",
           minHeight: 50,
@@ -85,8 +75,8 @@ const PageWrapper: FC<PageWrapperProps> = (props) => {
         }}
       >
         {children}
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
 };
 

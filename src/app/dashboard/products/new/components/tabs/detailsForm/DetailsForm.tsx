@@ -1,6 +1,6 @@
 import { FormActions } from "@/shared/components/FormActions";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
-import { Grid2, styled, TextareaAutosize, TextField } from "@mui/material";
+import { Grid, styled, TextareaAutosize, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useDetailsForm } from "./useDetailsForm.hook";
 import { FormCard } from "@/shared/components/Form";
@@ -41,9 +41,9 @@ export const DetailsForm = (props) => {
           }
           padding={"0px"}
         >
-          <Grid2 padding={"0px"}>
+          <Grid padding={"0px"}>
             <FormCard title={""} loading={false} doYouHaveData={true}>
-              <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+              <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
                 <TextField
                   label={t("Product name")}
                   placeholder={t("Product name")}
@@ -57,9 +57,9 @@ export const DetailsForm = (props) => {
                   })}
                   defaultValue={defaultValues?.name}
                 />
-              </Grid2>
+              </Grid>
 
-              <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+              <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
                 <TextField
                   label={t("Price")}
                   placeholder={t("Price")}
@@ -73,8 +73,8 @@ export const DetailsForm = (props) => {
                   })}
                   defaultValue={defaultValues?.price}
                 />
-              </Grid2>
-              <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+              </Grid>
+              <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
                 <StyledTextarea
                   id="description"
                   aria-label="Description"
@@ -100,9 +100,9 @@ export const DetailsForm = (props) => {
                     {t(`${errors.description.message}`)}
                   </div>
                 )}
-              </Grid2>
+              </Grid>
             </FormCard>
-          </Grid2>
+          </Grid>
         </PageWrapper>
       </form>
     </FormProvider>

@@ -1,6 +1,6 @@
 import { FormActions } from "@/shared/components/FormActions";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
-import { Autocomplete, Grid2, TextField } from "@mui/material";
+import { Autocomplete, Grid, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { FormCard } from "@/shared/components/Form";
 import { Controller, FormProvider } from "react-hook-form";
@@ -37,9 +37,9 @@ export const CategoriesForm = () => {
           }
           padding={"0px"}
         >
-          <Grid2 padding={"0px"}>
+          <Grid padding={"0px"}>
             <FormCard title={""} loading={false} doYouHaveData={true}>
-              <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+              <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
                 <Controller
                   name="categories"
                   control={control}
@@ -55,9 +55,9 @@ export const CategoriesForm = () => {
                     />
                   )}
                 />
-              </Grid2>
+              </Grid>
             </FormCard>
-          </Grid2>
+          </Grid>
         </PageWrapper>
       </form>
     </FormProvider>

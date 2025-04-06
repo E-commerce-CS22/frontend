@@ -3,7 +3,7 @@ import { FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { FormActions } from "@/shared/components/FormActions";
-import { Grid2 } from "@mui/material";
+import { Grid } from "@mui/material";
 import { FormCard } from "@/shared/components/Form";
 import { AttributeVariantValueInformationForm } from "./components/AttributeValueInformationForm";
 import { useAddNewAttributeVariantValueHook } from "./AddNewAttributeVariantValue.hook";
@@ -37,8 +37,8 @@ export default function CreateNewProductAttributeVariantValuePage() {
             />
           }
         >
-          <Grid2 container spacing={2}>
-            <Grid2>
+          <Grid container spacing={2}>
+            <Grid>
               <FormCard
                 title={t("Value Information")}
                 loading={false}
@@ -46,8 +46,8 @@ export default function CreateNewProductAttributeVariantValuePage() {
               >
                 <AttributeVariantValueInformationForm />
               </FormCard>
-            </Grid2>
-          </Grid2>
+            </Grid>
+          </Grid>
         </PageWrapper>
       </form>
     </FormProvider>

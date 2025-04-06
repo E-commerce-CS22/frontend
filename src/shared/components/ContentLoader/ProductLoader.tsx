@@ -1,5 +1,5 @@
 import Card from "@mui/material/Card";
-import Grid2 from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid";
 import React, { FC } from "react";
 import ContentLoader from "react-content-loader";
 import { makeStyles } from "@mui/styles";
@@ -18,9 +18,9 @@ const useStyles = makeStyles({
 const ProductLoaderCard: FC<ISimpleLoader> = ({ rows = 3, ...props }) => {
   const classes = useStyles();
   return (
-    <Grid2 container spacing={3} className={classes.root}>
+    <Grid container spacing={3} className={classes.root}>
       {new Array(rows).fill(0).map((_, index) => (
-        <Grid2 key={index} item xs={12} sm={6} md={3}>
+        <Grid key={index} item xs={12} sm={6} md={3}>
           <Card>
             <ContentLoader speed={2} {...props}>
               <rect x="120" y="15" rx="5" ry="5" width="300" height="15" />
@@ -30,9 +30,9 @@ const ProductLoaderCard: FC<ISimpleLoader> = ({ rows = 3, ...props }) => {
               <rect x="0" y="0" rx="0" ry="0" width="100" height="300" />
             </ContentLoader>
           </Card>
-        </Grid2>
+        </Grid>
       ))}
-    </Grid2>
+    </Grid>
   );
 };
 
