@@ -1,9 +1,65 @@
+import { FormActions } from "@/shared/components/FormActions";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
+import { Autocomplete, Grid2, TextField } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { FormCard } from "@/shared/components/Form";
+import { Controller, FormProvider } from "react-hook-form";
+import { useCategoriesForm } from "./useCategoryForm";
 
-export const CategoryForm = () => {
+export const CategoriesForm = () => {
+  const { t } = useTranslation("Store");
+  const {
+    isLoading = false,
+    handleCancel,
+    handleClick,
+    handleSubmit,
+    methods,
+    control,
+    categories: data,
+  } = useCategoriesForm();
+
+  const categories = data?.map((item) => item?.name);
+
   return (
-    <PageWrapper>
-      <div>CategoryForm</div>
-    </PageWrapper>
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(handleClick)}>
+        <PageWrapper
+          actions={
+            <FormActions
+              hasCancel
+              newButtonDisabled={isLoading}
+              hasFormButton
+              isLoading={isLoading}
+              formButtonTitle={t("Save")}
+              onNavigation={handleCancel}
+              onSave={handleClick}
+            />
+          }
+          padding={"0px"}
+        >
+          <Grid2 padding={"0px"}>
+            <FormCard title={""} loading={false} doYouHaveData={true}>
+              <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+                <Controller
+                  name="categories"
+                  control={control}
+                  render={({ field }) => (
+                    <Autocomplete
+                      options={categories}
+                      multiple
+                      {...field}
+                      onChange={(_, newValue) => field.onChange(newValue)}
+                      renderInput={(params) => (
+                        <TextField {...params} label={t("Categories")} />
+                      )}
+                    />
+                  )}
+                />
+              </Grid2>
+            </FormCard>
+          </Grid2>
+        </PageWrapper>
+      </form>
+    </FormProvider>
   );
 };

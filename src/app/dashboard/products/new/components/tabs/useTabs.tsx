@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
-import { CategoryForm } from "./CategoryForm";
-import { TagsForm } from "./TagsForm";
-import { VariantForm } from "./VariantForm";
-import { DiscountForm } from "./DiscountForm";
+import { CategoriesForm } from "./categoryForm/CategoryForm";
+import { TagsForm } from "./tabsForm/TagsForm";
+import { VariantForm } from "./variantForm/VariantForm";
+import { DiscountForm } from "./discountForm/DiscountForm";
 import { DetailsForm } from "./detailsForm/DetailsForm";
 
 export const useTabs = () => {
@@ -16,7 +16,7 @@ export const useTabs = () => {
     {
       name: t("Categories"),
       value: "2",
-      content: <CategoryForm />,
+      content: <CategoriesForm />,
     },
     {
       name: t("Tags"),
