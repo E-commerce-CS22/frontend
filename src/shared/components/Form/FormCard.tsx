@@ -1,9 +1,9 @@
 import Card, { CardProps } from "@mui/material/Card";
-import Grid2 from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
 import React, { FC } from "react";
 import { makeStyles } from "tss-react/mui";
 import { Loader } from "../ContentLoader";
+import { Grid } from "@mui/material";
 
 const useFormCardStyles = makeStyles()({
   card: {
@@ -38,8 +38,8 @@ export const FormCard: FC<IFormCardProps> = ({
 
   return (
     <Card className={classes.card} {...props}>
-      <Grid2 container spacing={1}>
-        <Grid2 item xs={12} className={classes.header}>
+      <Grid container spacing={1}>
+        <Grid item xs={12} className={classes.header}>
           <Typography
             fontSize={16}
             fontWeight={"bold"}
@@ -48,8 +48,8 @@ export const FormCard: FC<IFormCardProps> = ({
             {title}
           </Typography>
           {action}
-        </Grid2>
-        <Grid2 item xs={12}>
+        </Grid>
+        <Grid item xs={12}>
           <div>
             {loading ? (
               <Loader />
@@ -57,8 +57,8 @@ export const FormCard: FC<IFormCardProps> = ({
               doYouHaveData && <React.Fragment>{children}</React.Fragment>
             )}
           </div>
-        </Grid2>
-      </Grid2>
+        </Grid>
+      </Grid>
     </Card>
   );
 };

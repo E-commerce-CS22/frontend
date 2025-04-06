@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getRequiredValidation } from "@/shared/utils";
-import { Grid2, TextField } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -15,8 +15,8 @@ export const WishlistInformationForm = (props) => {
   } = useFormContext();
 
   return (
-    <Grid2 p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+    <Grid p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Product name")}
           placeholder={t("Product name")}
@@ -32,9 +32,9 @@ export const WishlistInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.name}
         />
-      </Grid2>
+      </Grid>
 
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Price")}
           placeholder={t("Price")}
@@ -48,8 +48,8 @@ export const WishlistInformationForm = (props) => {
           })}
           defaultValue={defaultValues?.price}
         />
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
 };
 

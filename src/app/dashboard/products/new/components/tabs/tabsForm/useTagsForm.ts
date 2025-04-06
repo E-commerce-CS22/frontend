@@ -5,11 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-export const useCategoriesForm = () => {
+export const useTagsForm = () => {
   const { token } = useContext(UserContext);
 
-  const fetchCategories = async () => {
-    const response = await axios.get(`${SERVER_URI}/api/admin/categories`, {
+  const fetchTags = async () => {
+    const response = await axios.get(`${SERVER_URI}/api/admin/tags`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -21,10 +21,10 @@ export const useCategoriesForm = () => {
     isPending: isLoading,
     isError,
     isSuccess,
-    data: categoriesData,
+    data: tagsData,
   } = useQuery({
-    queryKey: ["adminCategories"],
-    queryFn: fetchCategories,
+    queryKey: ["adminTags"],
+    queryFn: fetchTags,
     enabled: !!token,
   });
   const methods = useForm<any>({
@@ -43,7 +43,7 @@ export const useCategoriesForm = () => {
   const handleClick = () => {};
   return {
     isLoading,
-    categories: categoriesData?.data,
+    tags: tagsData?.data,
     methods,
     register,
     errors,

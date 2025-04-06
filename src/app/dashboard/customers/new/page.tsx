@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useAddNewCustomerHook } from "./addNewCustomer.hook";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { FormActions } from "@/shared/components/FormActions";
-import { Grid2 } from "@mui/material";
+import { Grid } from "@mui/material";
 import { FormCard } from "@/shared/components/Form";
 import { CustomerInformationForm } from "./components/CustomerInformationForm";
 
@@ -28,8 +28,8 @@ export default function CreateNewProductPage() {
             />
           }
         >
-          <Grid2 container spacing={2}>
-            <Grid2>
+          <Grid container spacing={2}>
+            <Grid>
               <FormCard
                 title={t("Customer Information")}
                 loading={false}
@@ -37,8 +37,8 @@ export default function CreateNewProductPage() {
               >
                 <CustomerInformationForm />
               </FormCard>
-            </Grid2>
-          </Grid2>
+            </Grid>
+          </Grid>
         </PageWrapper>
       </form>
     </FormProvider>

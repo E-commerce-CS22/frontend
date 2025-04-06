@@ -6,7 +6,7 @@ import {
   patternEmail,
   patternMobile,
 } from "@/shared/utils";
-import { Autocomplete, Grid2, TextField } from "@mui/material";
+import { Autocomplete, Grid, TextField } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -23,8 +23,8 @@ export const CustomerInformationForm = () => {
   const handleStatusChange = () => {};
 
   return (
-    <Grid2 p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+    <Grid p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("First name")}
           placeholder={t("First name")}
@@ -37,8 +37,8 @@ export const CustomerInformationForm = () => {
             required: getRequiredValidation(t, true),
           })}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Last name")}
           placeholder={t("Last name")}
@@ -51,8 +51,8 @@ export const CustomerInformationForm = () => {
             required: getRequiredValidation(t, true),
           })}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           fullWidth
           label={t("Email")}
@@ -67,8 +67,8 @@ export const CustomerInformationForm = () => {
           // defaultValue={defaultValues?.email}
           // disabled={Boolean(defaultValues?.email)}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Username")}
           placeholder={t("Username")}
@@ -81,8 +81,8 @@ export const CustomerInformationForm = () => {
             required: getRequiredValidation(t, true),
           })}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Phone number")}
           placeholder={t("Phone number")}
@@ -97,8 +97,8 @@ export const CustomerInformationForm = () => {
             pattern: patternMobile,
           })}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("City")}
           placeholder={t("City")}
@@ -109,8 +109,8 @@ export const CustomerInformationForm = () => {
             required: getRequiredValidation(t, true),
           })}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Address")}
           placeholder={t("Address")}
@@ -123,8 +123,8 @@ export const CustomerInformationForm = () => {
             required: getRequiredValidation(t, true),
           })}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Postal code")}
           placeholder={t("Postal code")}
@@ -137,8 +137,8 @@ export const CustomerInformationForm = () => {
             required: getRequiredValidation(t, true),
           })}
         />
-      </Grid2>
-      <Grid2 p={"1rem"} sx={{ minWidth: "400px" }}>
+      </Grid>
+      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <Autocomplete
           options={statuses}
           multiple={true}
@@ -153,7 +153,7 @@ export const CustomerInformationForm = () => {
             <TextField {...params} label={t("Status")} />
           )}
         />
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
 };

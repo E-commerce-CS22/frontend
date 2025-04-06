@@ -25,7 +25,7 @@ const Template = (args) => {
   const filterFields = [
     {
       id: "first",
-      Grid2: 12,
+      Grid: 12,
       type: FieldsTypes.input,
       fieldProps: {
         placeholder: "Admin:defaultLabel",
