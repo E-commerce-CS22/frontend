@@ -12,54 +12,33 @@ import { useTabs } from "./components/tabs/useTabs";
 // import { FormActions } from "@/shared/components/FormActions";
 // import { useTranslation } from "react-i18next";
 import { Box } from "@mui/material";
+import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
+import { FormActions } from "@/shared/components/FormActions";
+import { useTranslation } from "react-i18next";
 
 export default function CreateNewProductPage() {
-  // const { t } = useTranslation("Store");
+  const { t } = useTranslation("Store");
   const tabs = useTabs();
 
-  const {
-    // isLoading,
-    // // isSuccess,
-    // // isError,
-    // // error,
-    // methods,
-    // handleSubmit,
-    // handleClick,
-    // handleCancel,
-  } = useAddNewProductHook();
+  const { isLoading, handleClick, handleCancel } = useAddNewProductHook();
   return (
     <Box sx={{ margin: "2rem", backgroundColor: "#fff" }}>
-      <CustomTabs items={tabs} />
+      <PageWrapper
+        padding={"10px"}
+        actions={
+          <FormActions
+            hasCancel
+            newButtonDisabled={isLoading}
+            hasFormButton
+            isLoading={isLoading}
+            formButtonTitle={t("Save")}
+            onNavigation={handleCancel}
+            onSave={handleClick}
+          />
+        }
+      >
+        <CustomTabs items={tabs} />
+      </PageWrapper>
     </Box>
-
-    // <FormProvider {...methods}>
-    //   <form onSubmit={handleSubmit(handleClick)}>
-    //     <PageWrapper
-    //       actions={
-    //         <FormActions
-    //           hasCancel
-    //           newButtonDisabled={isLoading}
-    //           hasFormButton
-    //           isLoading={isLoading}
-    //           formButtonTitle={t("Create")}
-    //           onNavigation={handleCancel}
-    //           onSave={handleClick}
-    //         />
-    //       }
-    //     >
-    //       <Grid container spacing={2}>
-    //         <Grid>
-    //           <FormCard
-    //             title={t("Product Information")}
-    //             loading={false}
-    //             doYouHaveData={true}
-    //           >
-    //             <ProductInformationForm />
-    //           </FormCard>
-    //         </Grid>
-    //       </Grid>
-    //     </PageWrapper>
-    //   </form>
-    // </FormProvider>
   );
 }

@@ -1,4 +1,3 @@
-import { FormActions } from "@/shared/components/FormActions";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { Grid, styled, TextareaAutosize, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
@@ -10,15 +9,8 @@ import { primary } from "@/shared/customization";
 
 export const DetailsForm = (props) => {
   const { t } = useTranslation("Store");
-  const {
-    isLoading = false,
-    handleCancel,
-    handleClick,
-    handleSubmit,
-    methods,
-    errors,
-    register,
-  } = useDetailsForm();
+  const { handleClick, handleSubmit, methods, errors, register } =
+    useDetailsForm();
 
   const { defaultValues } = props;
 
@@ -27,20 +19,7 @@ export const DetailsForm = (props) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>
-        <PageWrapper
-          actions={
-            <FormActions
-              hasCancel
-              newButtonDisabled={isLoading}
-              hasFormButton
-              isLoading={isLoading}
-              formButtonTitle={t("Save")}
-              onNavigation={handleCancel}
-              onSave={handleClick}
-            />
-          }
-          padding={"0px"}
-        >
+        <PageWrapper padding="0">
           <Grid padding={"0px"}>
             <FormCard title={""} loading={false} doYouHaveData={true}>
               <Grid p={"1rem"} sx={{ minWidth: "400px" }}>

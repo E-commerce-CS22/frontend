@@ -1,5 +1,4 @@
 import { FormCard } from "@/shared/components/Form";
-import { FormActions } from "@/shared/components/FormActions";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { Grid, Autocomplete, TextField } from "@mui/material";
 import { FormProvider, Controller } from "react-hook-form";
@@ -9,8 +8,6 @@ import { useTranslation } from "react-i18next";
 export const TagsForm = () => {
   const { t } = useTranslation("Store");
   const {
-    isLoading = false,
-    handleCancel,
     handleClick,
     handleSubmit,
     methods,
@@ -23,20 +20,7 @@ export const TagsForm = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>
-        <PageWrapper
-          actions={
-            <FormActions
-              hasCancel
-              newButtonDisabled={isLoading}
-              hasFormButton
-              isLoading={isLoading}
-              formButtonTitle={t("Save")}
-              onNavigation={handleCancel}
-              onSave={handleClick}
-            />
-          }
-          padding={"0px"}
-        >
+        <PageWrapper padding="0">
           <Grid padding={"0px"}>
             <FormCard title={""} loading={false} doYouHaveData={true}>
               <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
