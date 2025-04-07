@@ -1,4 +1,3 @@
-import { FormActions } from "@/shared/components/FormActions";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { Autocomplete, Grid, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
@@ -9,8 +8,6 @@ import { useCategoriesForm } from "./useCategoryForm";
 export const CategoriesForm = () => {
   const { t } = useTranslation("Store");
   const {
-    isLoading = false,
-    handleCancel,
     handleClick,
     handleSubmit,
     methods,
@@ -23,20 +20,7 @@ export const CategoriesForm = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>
-        <PageWrapper
-          actions={
-            <FormActions
-              hasCancel
-              newButtonDisabled={isLoading}
-              hasFormButton
-              isLoading={isLoading}
-              formButtonTitle={t("Save")}
-              onNavigation={handleCancel}
-              onSave={handleClick}
-            />
-          }
-          padding={"0px"}
-        >
+        <PageWrapper padding="0">
           <Grid padding={"0px"}>
             <FormCard title={""} loading={false} doYouHaveData={true}>
               <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
