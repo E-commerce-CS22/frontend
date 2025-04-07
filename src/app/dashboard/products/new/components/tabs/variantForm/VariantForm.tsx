@@ -1,11 +1,19 @@
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
-import { Autocomplete, Grid, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  Button,
+  Grid,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { FormCard } from "@/shared/components/Form";
 import { Controller, FormProvider } from "react-hook-form";
 import { useVariantsForm } from "./useVariantForm";
 import { useContext } from "react";
 import { ProductContext } from "../../ProductContext";
+import { primary } from "@/shared/customization";
 
 export const VariantsForm = () => {
   const { t } = useTranslation("Store");
@@ -73,6 +81,13 @@ export const VariantsForm = () => {
                   />
                 </Grid>
               )}
+              <Typography mt={"0.5rem"}>
+                {t("Create new attribute")}
+                <Link style={{ color: primary }} href={"attributes/new"}>
+                  {" "}
+                  <Button variant="contained"> {t("Create Now")}</Button>
+                </Link>
+              </Typography>
             </FormCard>
           </Grid>
         </PageWrapper>
