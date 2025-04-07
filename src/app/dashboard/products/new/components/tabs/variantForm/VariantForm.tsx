@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { FormCard } from "@/shared/components/Form";
 import { Controller, FormProvider } from "react-hook-form";
 import { useVariantsForm } from "./useVariantForm";
+import { useContext } from "react";
+import { ProductContext } from "../../ProductContext";
 
 export const VariantsForm = () => {
   const { t } = useTranslation("Store");
@@ -17,7 +19,10 @@ export const VariantsForm = () => {
     handleClick,
     handleSubmit,
     handleChangeAttribute,
+    handleChangeVariantValue,
   } = useVariantsForm();
+
+  const { attribute, variantValue } = useContext(ProductContext);
 
   return (
     <FormProvider {...methods}>
@@ -33,6 +38,7 @@ export const VariantsForm = () => {
                     <Autocomplete
                       options={attributes}
                       {...field}
+                      defaultValue={attribute || null}
                       onChange={(_, newValue) =>
                         handleChangeAttribute(newValue, field)
                       }
@@ -44,7 +50,7 @@ export const VariantsForm = () => {
                   )}
                 />
               </Grid>
-              {!isLoading && selectedAttribute && (
+              {!isLoading && (selectedAttribute || attribute) && (
                 <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
                   <Controller
                     name="values"
@@ -54,8 +60,9 @@ export const VariantsForm = () => {
                         options={attributeValues}
                         {...field}
                         // multiple
+                        defaultValue={variantValue}
                         onChange={(_, newValue) =>
-                          handleChangeAttribute(newValue, field)
+                          handleChangeVariantValue(newValue, field)
                         }
                         renderInput={(params) => (
                           <TextField {...params} label={t("Values")} />

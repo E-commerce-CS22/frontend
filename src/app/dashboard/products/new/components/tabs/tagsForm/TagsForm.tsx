@@ -4,6 +4,8 @@ import { Grid, Autocomplete, TextField } from "@mui/material";
 import { FormProvider, Controller } from "react-hook-form";
 import { useTagsForm } from "./useTagsForm";
 import { useTranslation } from "react-i18next";
+import { useContext } from "react";
+import { ProductContext } from "../../ProductContext";
 
 export const TagsForm = () => {
   const { t } = useTranslation("Store");
@@ -13,9 +15,12 @@ export const TagsForm = () => {
     methods,
     control,
     tags: data,
+    handleChangeTags,
   } = useTagsForm();
 
   const tags = data?.map((item) => item?.name);
+
+  const { tags: contextTags } = useContext(ProductContext);
 
   return (
     <FormProvider {...methods}>
@@ -32,7 +37,10 @@ export const TagsForm = () => {
                       options={tags}
                       multiple
                       {...field}
-                      onChange={(_, newValue) => field.onChange(newValue)}
+                      defaultValue={contextTags}
+                      onChange={(_, newValues) =>
+                        handleChangeTags(newValues, field)
+                      }
                       renderInput={(params) => (
                         <TextField {...params} label={t("Tags")} />
                       )}

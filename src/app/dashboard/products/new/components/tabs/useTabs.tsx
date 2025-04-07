@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { CategoriesForm } from "./categoryForm/CategoryForm";
-import { TagsForm } from "./tabsForm/TagsForm";
+import { TagsForm } from "./tagsForm/TagsForm";
 import { VariantsForm } from "./variantForm/VariantForm";
 import { DiscountForm } from "./discountForm/DiscountForm";
 import { DetailsForm } from "./detailsForm/DetailsForm";

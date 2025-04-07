@@ -5,9 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { ProductContext } from "../../ProductContext";
 export const useVariantsForm = () => {
   const { token } = useContext(UserContext);
   const [selectedAttribute, setSelectedAttribute] = useState<any>(null);
+  const { setAttribute, setVariantValue } = useContext(ProductContext);
 
   const fetchProductAttributes = async () => {
     const response = await axios.get(`${SERVER_URI}/api/admin/attributes`, {
@@ -69,6 +71,12 @@ export const useVariantsForm = () => {
   const handleChangeAttribute = (newValue, field) => {
     field.onChange(newValue);
     setSelectedAttribute(newValue);
+    if (setAttribute) setAttribute(newValue);
+  };
+
+  const handleChangeVariantValue = (newValue, field) => {
+    field.onChange(newValue);
+    if (setVariantValue) setVariantValue(newValue);
   };
   return {
     isLoading,
@@ -88,5 +96,6 @@ export const useVariantsForm = () => {
     handleClick,
     handleSubmit,
     handleChangeAttribute,
+    handleChangeVariantValue,
   };
 };

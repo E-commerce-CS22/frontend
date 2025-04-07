@@ -5,8 +5,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { ProductContext } from "../../ProductContext";
 export const useTagsForm = () => {
   const { token } = useContext(UserContext);
+  const { setTags } = useContext(ProductContext);
 
   const fetchTags = async () => {
     const response = await axios.get(`${SERVER_URI}/api/admin/tags`, {
@@ -41,6 +43,11 @@ export const useTagsForm = () => {
 
   const handleCancel = () => {};
   const handleClick = () => {};
+
+  const handleChangeTags = (newValue, field) => {
+    field.onChange(newValue);
+    if (setTags) setTags(newValue);
+  };
   return {
     isLoading,
     tags: tagsData?.data,
@@ -53,5 +60,6 @@ export const useTagsForm = () => {
     handleCancel,
     handleClick,
     handleSubmit,
+    handleChangeTags,
   };
 };

@@ -5,8 +5,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { ProductContext } from "../../ProductContext";
 export const useCategoriesForm = () => {
   const { token } = useContext(UserContext);
+  const { setCategories } = useContext(ProductContext);
 
   const fetchCategories = async () => {
     const response = await axios.get(`${SERVER_URI}/api/admin/categories`, {
@@ -41,6 +43,11 @@ export const useCategoriesForm = () => {
 
   const handleCancel = () => {};
   const handleClick = () => {};
+
+  const handleChangeCategories = (newValue, field) => {
+    field.onChange(newValue);
+    if (setCategories) setCategories(newValue);
+  };
   return {
     isLoading,
     categories: categoriesData?.data,
@@ -53,5 +60,6 @@ export const useCategoriesForm = () => {
     handleCancel,
     handleClick,
     handleSubmit,
+    handleChangeCategories,
   };
 };

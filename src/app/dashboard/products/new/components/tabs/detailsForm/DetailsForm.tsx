@@ -5,7 +5,6 @@ import { useDetailsForm } from "./useDetailsForm.hook";
 import { FormCard } from "@/shared/components/Form";
 import { Controller, FormProvider } from "react-hook-form";
 import { getRequiredValidation } from "@/shared/utils";
-// import { primary } from "@/shared/customization";
 import { useContext } from "react";
 import { ProductContext } from "../../ProductContext";
 
@@ -22,8 +21,6 @@ export const DetailsForm = () => {
     setPrice,
     setDescription,
   } = useContext(ProductContext);
-
-  // const StyledTextarea = styled(TextareaAutosize)(({}) => ({}));
 
   return (
     <FormProvider {...methods}>
