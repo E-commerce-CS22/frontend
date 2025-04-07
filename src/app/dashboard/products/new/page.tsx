@@ -9,8 +9,7 @@ import { useAddNewProductHook } from "./addNewProduct.hook";
 // import { ProductInformationForm } from "./components/ProductInformationForm";
 import { CustomTabs } from "@/shared/components/Tabs";
 import { useTabs } from "./components/tabs/useTabs";
-// import { FormActions } from "@/shared/components/FormActions";
-// import { useTranslation } from "react-i18next";
+import { ProductContextProvider } from "./components/ProductContext";
 import { Box } from "@mui/material";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { FormActions } from "@/shared/components/FormActions";
@@ -22,23 +21,25 @@ export default function CreateNewProductPage() {
 
   const { isLoading, handleClick, handleCancel } = useAddNewProductHook();
   return (
-    <Box sx={{ margin: "2rem", backgroundColor: "#fff" }}>
-      <PageWrapper
-        padding={"10px"}
-        actions={
-          <FormActions
-            hasCancel
-            newButtonDisabled={isLoading}
-            hasFormButton
-            isLoading={isLoading}
-            formButtonTitle={t("Save")}
-            onNavigation={handleCancel}
-            onSave={handleClick}
-          />
-        }
-      >
-        <CustomTabs items={tabs} />
-      </PageWrapper>
-    </Box>
+    <ProductContextProvider>
+      <Box sx={{ margin: "2rem", backgroundColor: "#fff" }}>
+        <PageWrapper
+          padding={"10px"}
+          actions={
+            <FormActions
+              hasCancel
+              newButtonDisabled={isLoading}
+              hasFormButton
+              isLoading={isLoading}
+              formButtonTitle={t("Save")}
+              onNavigation={handleCancel}
+              onSave={handleClick}
+            />
+          }
+        >
+          <CustomTabs items={tabs} />
+        </PageWrapper>
+      </Box>
+    </ProductContextProvider>
   );
 }

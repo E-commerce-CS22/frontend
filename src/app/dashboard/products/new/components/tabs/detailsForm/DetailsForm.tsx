@@ -1,20 +1,29 @@
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
-import { Grid, styled, TextareaAutosize, TextField } from "@mui/material";
+import { Grid, TextareaAutosize, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useDetailsForm } from "./useDetailsForm.hook";
 import { FormCard } from "@/shared/components/Form";
-import { FormProvider } from "react-hook-form";
+import { Controller, FormProvider } from "react-hook-form";
 import { getRequiredValidation } from "@/shared/utils";
-import { primary } from "@/shared/customization";
+// import { primary } from "@/shared/customization";
+import { useContext } from "react";
+import { ProductContext } from "../../ProductContext";
 
-export const DetailsForm = (props) => {
+export const DetailsForm = () => {
   const { t } = useTranslation("Store");
   const { handleClick, handleSubmit, methods, errors, register } =
     useDetailsForm();
 
-  const { defaultValues } = props;
+  const {
+    name: productName,
+    description,
+    price,
+    setName,
+    setPrice,
+    setDescription,
+  } = useContext(ProductContext);
 
-  const StyledTextarea = styled(TextareaAutosize)(({}) => ({}));
+  // const StyledTextarea = styled(TextareaAutosize)(({}) => ({}));
 
   return (
     <FormProvider {...methods}>
@@ -34,7 +43,10 @@ export const DetailsForm = (props) => {
                   {...register("name", {
                     required: getRequiredValidation(t, true),
                   })}
-                  defaultValue={defaultValues?.name}
+                  defaultValue={productName}
+                  onChange={(e) => {
+                    if (setName) setName(e.target.value);
+                  }}
                 />
               </Grid>
 
@@ -50,35 +62,47 @@ export const DetailsForm = (props) => {
                   {...register("price", {
                     required: getRequiredValidation(t, true),
                   })}
-                  defaultValue={defaultValues?.price}
+                  defaultValue={price}
+                  onChange={(e) => {
+                    if (setPrice) setPrice(e.target.value);
+                  }}
                 />
               </Grid>
               <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
-                <StyledTextarea
-                  id="description"
-                  aria-label="Description"
-                  minRows={3}
-                  placeholder={t("Description")}
-                  {...register("description", {
-                    required: getRequiredValidation(t, true),
-                  })}
-                  defaultValue={defaultValues?.description}
-                  sx={{
-                    width: "100%",
-                    padding: "10px",
-                    borderRadius: "5px",
-                    fontFamily: "CoHeadlineTrial-Light",
-                    outline: "none",
-                    "&:focus": {
-                      border: `2px solid ${primary}`,
-                    },
-                  }}
+                <Controller
+                  name="description"
+                  control={methods.control}
+                  rules={{ required: getRequiredValidation(t, true) }}
+                  render={({ field, fieldState }) => (
+                    <>
+                      <TextareaAutosize
+                        minRows={3}
+                        aria-label="description"
+                        placeholder={t("Description")}
+                        onChange={(e) => {
+                          field.onChange(e);
+                          setDescription?.(e.target.value);
+                        }}
+                        defaultValue={description}
+                        style={{
+                          width: "100%",
+                          padding: "10px",
+                          borderRadius: "5px",
+                          fontFamily: "CoHeadlineTrial-Light",
+                          outline: "none",
+                          border: fieldState.invalid
+                            ? "1px solid red"
+                            : "1px solid #ccc",
+                        }}
+                      />
+                      {fieldState.error && (
+                        <div style={{ color: "red" }}>
+                          {t(fieldState.error.message ?? "")}
+                        </div>
+                      )}
+                    </>
+                  )}
                 />
-                {errors?.description?.message && (
-                  <div style={{ color: "red" }}>
-                    {t(`${errors.description.message}`)}
-                  </div>
-                )}
               </Grid>
             </FormCard>
           </Grid>
