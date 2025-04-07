@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { FormCard } from "@/shared/components/Form";
 import { Controller, FormProvider } from "react-hook-form";
 import { useCategoriesForm } from "./useCategoryForm";
+import { useContext } from "react";
+import { ProductContext } from "../../ProductContext";
 
 export const CategoriesForm = () => {
   const { t } = useTranslation("Store");
@@ -13,9 +15,11 @@ export const CategoriesForm = () => {
     methods,
     control,
     categories: data,
+    handleChangeCategories,
   } = useCategoriesForm();
 
   const categories = data?.map((item) => item?.name);
+  const { categories: contextCategories } = useContext(ProductContext);
 
   return (
     <FormProvider {...methods}>
@@ -32,7 +36,10 @@ export const CategoriesForm = () => {
                       options={categories}
                       multiple
                       {...field}
-                      onChange={(_, newValue) => field.onChange(newValue)}
+                      defaultValue={contextCategories}
+                      onChange={(_, newValues) =>
+                        handleChangeCategories(newValues, field)
+                      }
                       renderInput={(params) => (
                         <TextField {...params} label={t("Categories")} />
                       )}

@@ -5,9 +5,11 @@ interface ProductContextValue {
   name?: any;
   description?: any;
   price?: any;
+  categories?: any;
   setName?: React.Dispatch<React.SetStateAction<any>>;
   setDescription?: React.Dispatch<React.SetStateAction<any>>;
   setPrice?: React.Dispatch<React.SetStateAction<any>>;
+  setCategories?: React.Dispatch<React.SetStateAction<any>>;
 }
 export const ProductContext = React.createContext<ProductContextValue>(
   {} as ProductContextValue
@@ -26,6 +28,7 @@ export const ProductContextProvider: FC<ProductContextValueProps> = ({
   const [name, setName] = useState<any>("");
   const [description, setDescription] = useState<any>("");
   const [price, setPrice] = useState<any>("");
+  const [categories, setCategories] = useState([]);
 
   return (
     <ProductContext.Provider
@@ -33,9 +36,11 @@ export const ProductContextProvider: FC<ProductContextValueProps> = ({
         name,
         description,
         price,
+        categories,
         setDescription,
         setPrice,
         setName,
+        setCategories,
       }}
     >
       {children}
