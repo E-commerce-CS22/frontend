@@ -31,6 +31,7 @@ const PageWrapper: FC<PageWrapperProps> = (props) => {
         margin: 0,
         top: 0,
         px: 2,
+        width: "initial",
       }}
     >
       <Grid item lg={4} md={6} sm={12} paddingTop={"5px"} paddingBottom={"5px"}>
@@ -60,6 +61,7 @@ const PageWrapper: FC<PageWrapperProps> = (props) => {
         flexDirection: "column",
         display: "flex",
         flex: "1 1 auto",
+        overflowX: "auto",
       }}
     >
       {toolBar}

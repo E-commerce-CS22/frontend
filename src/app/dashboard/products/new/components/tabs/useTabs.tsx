@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { CategoriesForm } from "./categoryForm/CategoryForm";
 import { TagsForm } from "./tagsForm/TagsForm";
 import { VariantsForm } from "./variantForm/VariantForm";
-import { DiscountForm } from "./discountForm/DiscountForm";
+// import { DiscountForm } from "./discountForm/DiscountForm";
 import { DetailsForm } from "./detailsForm/DetailsForm";
 
 export const useTabs = () => {
@@ -28,10 +28,10 @@ export const useTabs = () => {
       value: "4",
       content: <VariantsForm />,
     },
-    {
-      name: t("Discount"),
-      value: "5",
-      content: <DiscountForm />,
-    },
+    // {
+    //   name: t("Discount"),
+    //   value: "5",
+    //   content: <DiscountForm />,
+    // },
   ];
 };

@@ -1,3 +1,4 @@
+"use client";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import {
   Autocomplete,
@@ -75,7 +76,9 @@ export const VariantsForm = () => {
                         renderInput={(params) => (
                           <TextField {...params} label={t("Values")} />
                         )}
-                        getOptionLabel={(option) => option?.name}
+                        getOptionLabel={(option) =>
+                          option?.name ? option?.name : ""
+                        }
                       />
                     )}
                   />
