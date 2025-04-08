@@ -153,5 +153,7 @@
   "Next": "التالي",
   "Create new attribute": "إنشاء سمة جديدة",
   "Create Now": "إنشاء الآن",
-  "Add Discount": "إضافة خصم"
+  "Add Discount": "إضافة خصم",
+  "Discount end date": "تاريخ نهاية الخصم",
+  "Discount start date": "تاريخ بداية الخصم"
 }
