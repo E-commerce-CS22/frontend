@@ -14,11 +14,10 @@ export const CategoriesForm = () => {
     handleSubmit,
     methods,
     control,
-    categories: data,
+    categories,
     handleChangeCategories,
   } = useCategoriesForm();
 
-  const categories = data?.map((item) => item?.name);
   const { categories: contextCategories } = useContext(ProductContext);
 
   return (
@@ -37,6 +36,9 @@ export const CategoriesForm = () => {
                       multiple
                       {...field}
                       defaultValue={contextCategories}
+                      getOptionLabel={(option) =>
+                        option?.name ? option?.name : ""
+                      }
                       onChange={(_, newValues) =>
                         handleChangeCategories(newValues, field)
                       }

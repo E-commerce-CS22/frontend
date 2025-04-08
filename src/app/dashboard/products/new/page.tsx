@@ -1,5 +1,5 @@
 "use client";
-import { useAddNewProductHook } from "./addNewProduct.hook";
+// import { useAddNewProductHook } from "./addNewProduct.hook";
 import { useTabs } from "./components/tabs/useTabs";
 import { ProductContextProvider } from "./components/ProductContext";
 
@@ -7,14 +7,20 @@ import { ProductContextProvider } from "./components/ProductContext";
 
 import dynamic from "next/dynamic";
 
-const ProductTabs = dynamic(() => import("./components/tabs/ProductTabs/ProductTabs"), {
-  loading: () => <div>Loading tabs...</div>
-});
+const ProductTabs = dynamic(
+  () => import("./components/tabs/ProductTabs/ProductTabs"),
+  {
+    loading: () => <div>Loading tabs...</div>,
+  }
+);
 
 export default function CreateNewProductPage() {
   const tabs = useTabs();
 
-  const { isLoading, handleClick, handleCancel } = useAddNewProductHook();
+  // const { isLoading, handleClick, handleCancel } = useAddNewProductHook();
+  const isLoading = false;
+  const handleClick = () => {};
+  const handleCancel = () => {};
   return (
     <ProductContextProvider>
       <ProductTabs

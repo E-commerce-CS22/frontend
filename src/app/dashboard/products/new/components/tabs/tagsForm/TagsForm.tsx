@@ -14,11 +14,9 @@ export const TagsForm = () => {
     handleSubmit,
     methods,
     control,
-    tags: data,
+    tags,
     handleChangeTags,
   } = useTagsForm();
-
-  const tags = data?.map((item) => item?.name);
 
   const { tags: contextTags } = useContext(ProductContext);
 
@@ -40,6 +38,9 @@ export const TagsForm = () => {
                       defaultValue={contextTags}
                       onChange={(_, newValues) =>
                         handleChangeTags(newValues, field)
+                      }
+                      getOptionLabel={(option) =>
+                        option?.name ? option?.name : ""
                       }
                       renderInput={(params) => (
                         <TextField {...params} label={t("Tags")} />
