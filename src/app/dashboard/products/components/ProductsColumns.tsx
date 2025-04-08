@@ -8,6 +8,7 @@ import { TagsModel } from "./TagsModel";
 import { VariantsModel } from "./VariantModel";
 import { DeleteModel } from "./DeleteModel";
 import { UpdateModel } from "./UpdateModel";
+import { DiscountModel } from "./DiscountModel";
 
 export interface CustomTableColumnProps<RowType = {}> {
   key: string;
@@ -82,6 +83,11 @@ export const getProductsColumns = (
     key: "tags",
     header: t("Tags"),
     accessor: ({ tags }) => <TagsModel tags={tags} />,
+  },
+  {
+    key: "addDiscount",
+    header: t("Add Discount"),
+    accessor: ({ id }) => <DiscountModel id={id} />,
   },
   {
     key: "delete",
