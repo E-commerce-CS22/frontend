@@ -4,7 +4,7 @@ import { TableActions } from "./components/TableActions";
 import { useTagsHook } from "./tags.hook";
 import { CustomTable } from "@/shared/components/Table";
 
-export default function DashboardCategories() {
+export default function DashboardTags() {
   const {
     tableActionButtons: actionButtons,
     tagsData,

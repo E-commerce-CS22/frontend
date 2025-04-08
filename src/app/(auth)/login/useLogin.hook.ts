@@ -34,6 +34,7 @@ export const useLogin = () => {
       login(data?.data?.token, data?.data.user);
       router.push("/");
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, data, login]);
   return {
     isError,

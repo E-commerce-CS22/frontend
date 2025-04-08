@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Close } from "@mui/icons-material";
 import { Dialog, DialogContent, IconButton } from "@mui/material";
 import React, { FC } from "react";

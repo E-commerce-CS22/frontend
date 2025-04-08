@@ -1,15 +1,18 @@
 import { SidebarDataType } from "../Sidebar/Sidebar.types";
 import RouteItem, { ParentRoute, RouteWithElement } from "./routeTypes";
 
-export function routeWithSelectedItems(routes: RouteItem[]): SidebarDataType[] {
+export function routeWithSelectedItems(
+  routes: RouteItem[],
+  pathname: string
+): SidebarDataType[] {
   return routes
     .map((route: RouteItem) => ({
       ...route,
-      selected: location.pathname
+      selected: pathname
         .split("/")
         .some((el) => el === (route as RouteWithElement)?.route),
       subItems: (route as ParentRoute).subItems
-        ? routeWithSelectedItems((route as ParentRoute).subItems!)
+        ? routeWithSelectedItems((route as ParentRoute).subItems!, pathname)
         : undefined,
     }))
     .filter(Boolean);
