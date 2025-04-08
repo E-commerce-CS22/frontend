@@ -30,7 +30,7 @@ export const useTabs = () => {
       content: <VariantsForm />,
     },
     {
-      name: t("Image"),
+      name: t("Product Image"),
       value: "5",
       content: <ImageForm />,
     },

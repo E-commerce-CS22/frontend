@@ -29,6 +29,7 @@ export const useProductsTabs = () => {
     tags,
     // attribute,
     // variantValue,
+    image: productImage,
   } = useContext(ProductContext);
 
   const { token } = useContext(UserContext);
@@ -72,6 +73,31 @@ export const useProductsTabs = () => {
     },
   });
 
+  const { mutate: mutateImage, isPending: isLoadingSendingImage } = useMutation(
+    {
+      mutationFn: ({
+        id,
+        image,
+      }: {
+        id: string;
+        image: File | undefined | null;
+      }) => {
+        const formData = new FormData();
+        if (image) formData.append("images", image);
+
+        return axios.post(
+          `${SERVER_URI}/api/admin/products/${id}/images`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      },
+    }
+  );
+
   const productResponseStatus = productData?.status;
   const productId = productData?.data?.product?.id;
 
@@ -83,8 +109,6 @@ export const useProductsTabs = () => {
     };
     mutate(product);
   };
-
-  console.log(productData);
 
   useEffect(() => {
     if (productId && productResponseStatus === 201) {
@@ -99,6 +123,16 @@ export const useProductsTabs = () => {
         id: productId,
         tags: { tag_ids: tagsIds },
       });
+
+      const formData = new FormData();
+
+      if (productImage) {
+        formData.append("images", productImage);
+      }
+      mutateImage({
+        id: productId,
+        image: productImage,
+      });
     }
   }, [productId, productResponseStatus]);
 
@@ -106,6 +140,7 @@ export const useProductsTabs = () => {
     isLoadingSendingDetails,
     isLoadingSendingCategories,
     isLoadingSendingTags,
+    isLoadingSendingImage,
     sendProductData,
   };
 };
