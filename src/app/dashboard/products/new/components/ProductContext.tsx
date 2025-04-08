@@ -9,6 +9,7 @@ interface ProductContextValue {
   tags?: any;
   attribute?: any;
   variantValue?: any;
+  image?: File | null | undefined;
   setName?: React.Dispatch<React.SetStateAction<any>>;
   setDescription?: React.Dispatch<React.SetStateAction<any>>;
   setPrice?: React.Dispatch<React.SetStateAction<any>>;
@@ -16,6 +17,7 @@ interface ProductContextValue {
   setTags?: React.Dispatch<React.SetStateAction<any>>;
   setAttribute?: React.Dispatch<React.SetStateAction<any>>;
   setVariantValue?: React.Dispatch<React.SetStateAction<any>>;
+  setImage?: React.Dispatch<React.SetStateAction<File | null | undefined>>;
 }
 export const ProductContext = React.createContext<ProductContextValue>(
   {} as ProductContextValue
@@ -38,6 +40,7 @@ export const ProductContextProvider: FC<ProductContextValueProps> = ({
   const [tags, setTags] = useState([]);
   const [attribute, setAttribute] = useState("");
   const [variantValue, setVariantValue] = useState("");
+  const [image, setImage] = useState<File | null | undefined>(null);
 
   return (
     <ProductContext.Provider
@@ -49,6 +52,7 @@ export const ProductContextProvider: FC<ProductContextValueProps> = ({
         tags,
         attribute,
         variantValue,
+        image,
         setDescription,
         setPrice,
         setName,
@@ -56,6 +60,7 @@ export const ProductContextProvider: FC<ProductContextValueProps> = ({
         setTags,
         setAttribute,
         setVariantValue,
+        setImage,
       }}
     >
       {children}

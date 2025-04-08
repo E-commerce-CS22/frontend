@@ -20,14 +20,7 @@ export const ImageForm = () => {
     handleImageUpload,
   } = useImageForm();
 
-  const {
-    // name: productName,
-    // description,
-    // price,
-    // setName,
-    // setPrice,
-    // setDescription,
-  } = useContext(ProductContext);
+  const { image } = useContext(ProductContext);
 
   return (
     <FormProvider {...methods}>
@@ -72,17 +65,17 @@ export const ImageForm = () => {
                     />
                   </div>
                 )}
-                {/* {defaultValues?.image && !imagePreview && (
+                {image && !imagePreview && (
                   <div style={{ marginTop: "1rem" }}>
                     <Image
-                      src={defaultValues?.image}
+                      src={typeof image === "string" ? image : ""}
                       alt="Selected"
                       width={400}
                       height={400}
                       style={{ maxWidth: "100%", height: "auto" }}
                     />
                   </div>
-                )} */}
+                )}
               </Grid>
             </FormCard>
           </Grid>
