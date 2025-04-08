@@ -8,9 +8,12 @@ git clone https://github.com/E-commerce-CS22/frontend.git
 npm install
 # For now if npm install doesn't work use
 npm install --force
-
+# to run the dev version
 npm run dev
-
+# to build the app
+npm run build
+# to run the prd (build) version
+npm start
 ```
 
 # dev env variables
