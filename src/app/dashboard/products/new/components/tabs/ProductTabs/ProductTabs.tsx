@@ -17,7 +17,7 @@ type ProductTapsProps = {
   }[];
 };
 
-export const ProductTabs = (props: ProductTapsProps) => {
+const ProductTabs = (props: ProductTapsProps) => {
   const { t } = useTranslation("Store");
   const { isLoading, tabs } = props;
 
@@ -41,3 +41,5 @@ export const ProductTabs = (props: ProductTapsProps) => {
     </Box>
   );
 };
+
+export default ProductTabs;

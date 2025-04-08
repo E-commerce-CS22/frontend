@@ -1,62 +1,10 @@
-"use client";
-import { FormProvider } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
-import { FormActions } from "@/shared/components/FormActions";
-import { Grid } from "@mui/material";
-import { FormCard } from "@/shared/components/Form";
-import { TagInformationForm } from "../new/components/TagInformationForm";
-import { useEditNewTagHook } from "./editTag.hook";
-import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import EditTagPage from "../components/fullPage/EditTagsPage";
 
-export default function EditTagPage() {
-  const { t } = useTranslation("Store");
-
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
-
-  const {
-    isLoading,
-    // isSuccess,
-    // isError,
-    isLoadingFetchingTag,
-    defaultValues,
-    methods,
-    handleSubmit,
-    handleClick,
-    handleCancel,
-  } = useEditNewTagHook({ id });
+export default function EditCategoriesPage() {
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(handleClick)}>
-        <PageWrapper
-          actions={
-            <FormActions
-              hasCancel
-              newButtonDisabled={isLoading}
-              hasFormButton
-              isLoading={isLoading}
-              formButtonTitle={t("Create")}
-              onNavigation={handleCancel}
-              onSave={handleClick}
-            />
-          }
-        >
-          <Grid container spacing={2}>
-            <Grid>
-              <FormCard
-                title={t("Tag Information")}
-                loading={false}
-                doYouHaveData={true}
-              >
-                {!isLoadingFetchingTag && (
-                  <TagInformationForm defaultValues={defaultValues} />
-                )}
-              </FormCard>
-            </Grid>
-          </Grid>
-        </PageWrapper>
-      </form>
-    </FormProvider>
+    <Suspense fallback={<div>Loading...</div>}>
+      <EditTagPage />
+    </Suspense>
   );
 }

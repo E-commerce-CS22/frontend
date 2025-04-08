@@ -8,7 +8,7 @@ interface ChatLoaderInterface extends IContentLoaderProps {
 }
 const ChatLoader: FC<ChatLoaderInterface> = ({ width, height, rows, ...props }) => {
   const rowHeight = "20";
-  const rectWidth = (width / 2) | 0;
+  const rectWidth = width ? (width / 2) | 0 : 0;
   const circleRad = "25";
 
   return (
@@ -17,10 +17,10 @@ const ChatLoader: FC<ChatLoaderInterface> = ({ width, height, rows, ...props }) 
         const dir = index % 3 == 0;
         return (
           <React.Fragment key={index}>
-            <circle cx={dir ? `${width - 30 * 2}` : "30"} cy={`${30 + index * 30 * 2}`} r={circleRad} />
-            <rect x={dir ? `${width - rectWidth - 90}` : "65"} y={5 + index * 30 * 2} rx='5' ry='10' width={rectWidth} height={rowHeight} />
+            <circle cx={dir ? `${width ? width - 30 * 2 : 0}` : "initial"} cy={`${30 + index * 30 * 2}`} r={circleRad} />
+            <rect x={dir ? `${width ? width - rectWidth - 90 : "initial"}` : "65"} y={5 + index * 30 * 2} rx='5' ry='10' width={rectWidth} height={rowHeight} />
             <rect
-              x={dir ? `${width - rectWidth - 90}` : "65"}
+              x={dir ? `${width? width - rectWidth - 90 : "initial"}` : "65"}
               y={30 + index * 30 * 2}
               rx='5'
               ry='10'
@@ -35,9 +35,3 @@ const ChatLoader: FC<ChatLoaderInterface> = ({ width, height, rows, ...props }) 
 };
 
 export default ChatLoader;
-
-ChatLoader.defaultProps = {
-  width: 400,
-  height: 300,
-  rows: 4,
-};

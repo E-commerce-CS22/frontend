@@ -1,8 +1,8 @@
+import { bodyBackgroundGrey } from "@/shared/customization";
 import { makeStyles } from "@mui/styles";
-import { bodyBackgroundGrey } from "../../../customization/colors";
 
 export const useTableBodyWithoutDataViewStyles = makeStyles({
-  name: "ui-table",
+  // name: "ui-table",
 })(() => ({
   message: {
     position: "absolute",

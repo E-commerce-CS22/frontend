@@ -58,6 +58,7 @@ const SignUp = () => {
       toast.dismiss(toastId.current!);
       toast.success(t("Successfully submitted the data"));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, isError, isSuccess]);
 
   return (

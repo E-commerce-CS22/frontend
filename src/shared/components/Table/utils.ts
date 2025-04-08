@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { CustomTableColumnProps, SortDirection } from "./types";
 
 // TODO: Remove this file and use the one from @health/queries

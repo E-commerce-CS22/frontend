@@ -38,6 +38,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
     else {
       setAppRoutes(publicRoutes);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userRole]);
 
   const isOpen = Boolean(anchorEl);
@@ -92,7 +93,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
         isOpen={open}
         title={""}
         breadCrumb={breadCrumb.slice(1)}
-        drawerItems={routeWithSelectedItems(appRoutes)}
+        drawerItems={routeWithSelectedItems(appRoutes, pathname)}
         onGoToHome={handleGoToHome}
         onToggleDrawer={handleToggleDrawer}
         rightItems={[

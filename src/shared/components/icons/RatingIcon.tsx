@@ -19,6 +19,3 @@ export const RatingIcon: React.FC<{ fill?: string }> = ({ fill }) => {
   );
 };
 
-RatingIcon.defaultProps = {
-  fill: "",
-};

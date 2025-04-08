@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import { UserContext } from "@/shared/common/authentication";
 import { AttributeData, ProductData } from "@/shared/types";
 import { SERVER_URI } from "@/shared/utils";

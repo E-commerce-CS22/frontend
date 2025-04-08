@@ -1,1 +1,2 @@
-export { ProductTabs } from "./ProductTabs";
+import ProductTabs from "./ProductTabs";
+export default ProductTabs;
