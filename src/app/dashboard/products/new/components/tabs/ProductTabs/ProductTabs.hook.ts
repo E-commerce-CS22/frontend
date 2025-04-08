@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ProductContext } from "../../ProductContext";
 import { UserContext } from "@/shared/common/authentication";
 import { ProductData } from "@/shared/types";
@@ -7,11 +7,17 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
 type categoriesIdsType = {
-  category_ids: string[];
+  id: string;
+  categories: {
+    category_ids: string[];
+  };
 };
 
 type tagsIdsType = {
-  tag_ids: string[];
+  id: string;
+  tags: {
+    tag_ids: string[];
+  };
 };
 
 export const useProductsTabs = () => {
@@ -27,7 +33,11 @@ export const useProductsTabs = () => {
 
   const { token } = useContext(UserContext);
 
-  const { mutate, isPending: isLoadingSendingDetails } = useMutation({
+  const {
+    data: productData,
+    mutate,
+    isPending: isLoadingSendingDetails,
+  } = useMutation({
     mutationFn: (productData: ProductData) => {
       return axios.post(`${SERVER_URI}/api/admin/products`, productData, {
         headers: {
@@ -39,9 +49,9 @@ export const useProductsTabs = () => {
 
   const { mutate: mutateCategories, isPending: isLoadingSendingCategories } =
     useMutation({
-      mutationFn: (categories: categoriesIdsType) => {
+      mutationFn: ({ id, categories }: categoriesIdsType) => {
         return axios.post(
-          `${SERVER_URI}/api/products/5/categories`,
+          `${SERVER_URI}/api/products/${id}/categories`,
           categories,
           {
             headers: {
@@ -53,14 +63,17 @@ export const useProductsTabs = () => {
     });
 
   const { mutate: mutateTags, isPending: isLoadingSendingTags } = useMutation({
-    mutationFn: (tags: tagsIdsType) => {
-      return axios.post(`${SERVER_URI}/api/products/1/tags`, tags, {
+    mutationFn: ({ id, tags }: tagsIdsType) => {
+      return axios.post(`${SERVER_URI}/api/products/${id}/tags`, tags, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
     },
   });
+
+  const productResponseStatus = productData?.status;
+  const productId = productData?.data?.product?.id;
 
   const sendProductData = () => {
     const product = {
@@ -69,13 +82,25 @@ export const useProductsTabs = () => {
       price: parseFloat(price),
     };
     mutate(product);
-
-    const categoriesIds = categories?.map((item) => item?.id);
-    mutateCategories({ category_ids: categoriesIds });
-
-    const tagsIds = tags?.map((item) => item?.id);
-    mutateTags({ tag_ids: tagsIds });
   };
+
+  console.log(productData);
+
+  useEffect(() => {
+    if (productId && productResponseStatus === 201) {
+      const categoriesIds = categories?.map((item) => item?.id);
+      mutateCategories({
+        id: productId,
+        categories: { category_ids: categoriesIds },
+      });
+
+      const tagsIds = tags?.map((item) => item?.id);
+      mutateTags({
+        id: productId,
+        tags: { tag_ids: tagsIds },
+      });
+    }
+  }, [productId, productResponseStatus]);
 
   return {
     isLoadingSendingDetails,

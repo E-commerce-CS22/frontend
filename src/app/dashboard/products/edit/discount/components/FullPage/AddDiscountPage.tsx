@@ -72,7 +72,14 @@ export default function AddDiscountPage() {
                 // defaultValue={defaultValues?.discount_end_date}
               />
             </Grid>
-            <Button onClick={handleClick}>{t("Save")}</Button>
+            <Button
+              onClick={handleSubmit(handleClick)}
+              fullWidth
+              variant="contained"
+              type="submit"
+            >
+              {t("Save")}
+            </Button>
           </Box>
         </PageWrapper>
       </form>

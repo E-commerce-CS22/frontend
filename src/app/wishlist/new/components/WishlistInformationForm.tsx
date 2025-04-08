@@ -45,6 +45,10 @@ export const WishlistInformationForm = (props) => {
           }
           {...register("price", {
             required: getRequiredValidation(t, true),
+            validate: (value) => {
+              const isNumber = !isNaN(parseFloat(value)) && isFinite(value);
+              return isNumber || t("Price must be a number");
+            },
           })}
           defaultValue={defaultValues?.price}
         />
