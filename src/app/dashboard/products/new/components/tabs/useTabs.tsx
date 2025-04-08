@@ -4,6 +4,7 @@ import { TagsForm } from "./tagsForm/TagsForm";
 import { VariantsForm } from "./variantForm/VariantForm";
 // import { DiscountForm } from "./discountForm/DiscountForm";
 import { DetailsForm } from "./detailsForm/DetailsForm";
+import { ImageForm } from "./imageForm/ImageForm";
 
 export const useTabs = () => {
   const { t } = useTranslation("Store");
@@ -28,10 +29,10 @@ export const useTabs = () => {
       value: "4",
       content: <VariantsForm />,
     },
-    // {
-    //   name: t("Discount"),
-    //   value: "5",
-    //   content: <DiscountForm />,
-    // },
+    {
+      name: t("Image"),
+      value: "5",
+      content: <ImageForm />,
+    },
   ];
 };
