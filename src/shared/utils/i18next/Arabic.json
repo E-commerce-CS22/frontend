@@ -159,5 +159,7 @@
   "Price must be a number": "السعر يجب أن يكون رقم",
   "Product Image": "صورة المنتج",
   "Discount value must be a number": "قيمة الخصم يجب أن تكون رقم",
-  "Modify discount": "تعديل الخصم"
+  "Modify discount": "تعديل الخصم",
+  "Are you sure you want to delete the discount!": "هل أنت متأكد أنك تريد حذف الخصم؟",
+  "Delete discount": "حذف الخصم"
 }
