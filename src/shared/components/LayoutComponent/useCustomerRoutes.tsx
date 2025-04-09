@@ -10,6 +10,7 @@ import {
   Favorite,
   Home,
   LiveHelp,
+  LocalMall,
   Shop,
   ShoppingCart,
 } from "@mui/icons-material";
@@ -45,6 +46,15 @@ export const useCustomerRoutes = (): RouteItem[] => {
         text: t("My Cart"),
         icon: <ShoppingCart color="primary" />,
         element: <div>Cart</div>,
+        onClick: (route) => router.push(route),
+      },
+      {
+        id: "myOrders",
+        route: "myOrders",
+        fullPath: "/myOrders",
+        text: t("My Orders"),
+        icon: <LocalMall color="primary" />,
+        element: <div>My Orders</div>,
         onClick: (route) => router.push(route),
       },
       {
