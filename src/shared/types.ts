@@ -74,3 +74,10 @@ export type ProfileData = {
 export type AttributeData = {
   name?: string;
 };
+
+export type discountData = {
+  discount_type: string;
+  discount_value: number;
+  discount_start_date?: string;
+  discount_end_date?: string;
+};

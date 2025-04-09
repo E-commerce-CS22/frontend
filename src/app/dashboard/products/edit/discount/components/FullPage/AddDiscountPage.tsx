@@ -5,6 +5,7 @@ import { Grid, TextField, Autocomplete, Box, Button } from "@mui/material";
 import { Controller, FormProvider } from "react-hook-form";
 import { useAddDiscountHook } from "./addDiscount.hook";
 import { useTranslation } from "react-i18next";
+import { getRequiredValidation } from "@/shared/utils";
 
 export default function AddDiscountPage() {
   const { t } = useTranslation("Store");
@@ -28,7 +29,14 @@ export default function AddDiscountPage() {
                     ? t(`${errors.discountValue.message}`)
                     : ""
                 }
-                {...register("discountValue")}
+                {...register("discountValue", {
+                  required: getRequiredValidation(t, true),
+                  validate: (value) => {
+                    const isNumber =
+                      !isNaN(parseFloat(value)) && isFinite(value);
+                    return isNumber || t("Discount value must be a number");
+                  },
+                })}
                 // defaultValue={defaultValues?.discount_value}
               />
             </Grid>
@@ -54,7 +62,7 @@ export default function AddDiscountPage() {
             <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
               <CustomDatePicker
                 label={t("Discount start date")}
-                name="discountStartDateS"
+                name="discountStartDate"
                 placeholder={t("Pick a date")}
                 register={register}
                 required={false}
@@ -65,7 +73,7 @@ export default function AddDiscountPage() {
             <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
               <CustomDatePicker
                 label={t("Discount end date")}
-                name="discountEndDateS"
+                name="discountEndDate"
                 placeholder={t("Pick a date")}
                 register={register}
                 required={false}

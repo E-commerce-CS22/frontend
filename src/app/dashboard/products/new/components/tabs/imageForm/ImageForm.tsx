@@ -21,7 +21,7 @@ export const ImageForm = () => {
   } = useImageForm();
 
   const { image } = useContext(ProductContext);
-
+  console.log(image);
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>
@@ -65,10 +65,10 @@ export const ImageForm = () => {
                     />
                   </div>
                 )}
-                {image && !imagePreview && (
+                {image && typeof image === "string" && !imagePreview && (
                   <div style={{ marginTop: "1rem" }}>
                     <Image
-                      src={typeof image === "string" ? image : ""}
+                      src={image}
                       alt="Selected"
                       width={400}
                       height={400}

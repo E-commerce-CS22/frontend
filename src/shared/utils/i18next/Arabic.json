@@ -157,5 +157,6 @@
   "Discount end date": "تاريخ نهاية الخصم",
   "Discount start date": "تاريخ بداية الخصم",
   "Price must be a number": "السعر يجب أن يكون رقم",
-  "Product Image": "صورة المنتج"
+  "Product Image": "صورة المنتج",
+  "Discount value must be a number": "قيمة الخصم يجب أن تكون رقم"
 }
