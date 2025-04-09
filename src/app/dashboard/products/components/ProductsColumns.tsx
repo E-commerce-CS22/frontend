@@ -47,6 +47,11 @@ export const getProductsColumns = (
     accessor: "price",
   },
   {
+    key: "status",
+    header: t("Status"),
+    accessor: "status",
+  },
+  {
     key: "discountType",
     header: t("Discount Type"),
     accessor: "discount_type",
@@ -57,9 +62,23 @@ export const getProductsColumns = (
     accessor: "discount_value",
   },
   {
-    key: "status",
-    header: t("Status"),
-    accessor: "status",
+    key: "addDiscount",
+    header: t("Add Discount"),
+    accessor: ({ id }) => <DiscountModel id={id} />,
+  },
+  {
+    key: "ModifyDiscount",
+    header: t("Modify discount"),
+    accessor: ({ id, discount_value }) => (
+      <EditDiscountModel id={id} discountValue={discount_value} />
+    ),
+  },
+  {
+    key: "deleteDiscount",
+    header: t("Delete discount"),
+    accessor: ({ id, discount_value }) => (
+      <DeleteDiscountModel id={id} discountValue={discount_value} />
+    ),
   },
   {
     key: "discountStartDate",
@@ -85,21 +104,6 @@ export const getProductsColumns = (
     key: "tags",
     header: t("Tags"),
     accessor: ({ tags }) => <TagsModel tags={tags} />,
-  },
-  {
-    key: "addDiscount",
-    header: t("Add Discount"),
-    accessor: ({ id }) => <DiscountModel id={id} />,
-  },
-  {
-    key: "ModifyDiscount",
-    header: t("Modify discount"),
-    accessor: ({ id }) => <EditDiscountModel id={id} />,
-  },
-  {
-    key: "delete",
-    header: t("Delete discount"),
-    accessor: ({ id }) => <DeleteDiscountModel id={id} />,
   },
   {
     key: "delete",
