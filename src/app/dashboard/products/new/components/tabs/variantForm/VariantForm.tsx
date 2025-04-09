@@ -84,7 +84,7 @@ export const VariantsForm = () => {
                   />
                 </Grid>
               )}
-              <Typography mt={"0.5rem"}>
+              <Typography m={"0.5rem 1rem"}>
                 {t("Create new attribute")}
                 <Link style={{ color: primary }} href={"attributes/new"}>
                   {" "}

@@ -115,7 +115,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
             display="flex"
             flexDirection="column"
             alignItems="center"
-            m="10px 0"
+            m="10px"
           >
             <Typography fontSize="14px">
               {t("Copyright © 2025 SMART STORE")}
