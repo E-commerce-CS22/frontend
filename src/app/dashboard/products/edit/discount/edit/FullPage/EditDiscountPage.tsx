@@ -3,14 +3,21 @@ import { CustomDatePicker } from "@/shared/components/Form";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { Grid, TextField, Autocomplete, Box, Button } from "@mui/material";
 import { Controller, FormProvider } from "react-hook-form";
-import { useAddDiscountHook } from "./addDiscount.hook";
+import { useEditDiscountHook } from "./editDiscount.hook";
 import { useTranslation } from "react-i18next";
 import { getRequiredValidation } from "@/shared/utils";
 
-export default function AddDiscountPage() {
+export default function EditDiscountPage() {
   const { t } = useTranslation("Store");
-  const { register, errors, methods, control, handleClick, handleSubmit } =
-    useAddDiscountHook();
+  const {
+    register,
+    errors,
+    methods,
+    control,
+    handleClick,
+    handleSubmit,
+    discountInfo,
+  } = useEditDiscountHook();
 
   const discountTypes = ["percentage", "fixed"];
   return (
@@ -37,7 +44,7 @@ export default function AddDiscountPage() {
                     return isNumber || t("Discount value must be a number");
                   },
                 })}
-                // defaultValue={defaultValues?.discount_value}
+                defaultValue={discountInfo?.discount_value}
               />
             </Grid>
 
@@ -48,7 +55,7 @@ export default function AddDiscountPage() {
                 render={({ field }) => (
                   <Autocomplete
                     options={discountTypes}
-                    // defaultValue={defaultValues?.discount_type}
+                    defaultValue={discountInfo?.discount_type}
                     {...field}
                     onChange={(_, newValue) => field.onChange(newValue)}
                     renderInput={(params) => (
@@ -66,7 +73,7 @@ export default function AddDiscountPage() {
                 placeholder={t("Pick a date")}
                 register={register}
                 required={false}
-                // defaultValue={defaultValues?.discount_start_date}
+                defaultValue={discountInfo?.discount_start_date}
               />
             </Grid>
 
@@ -77,7 +84,7 @@ export default function AddDiscountPage() {
                 placeholder={t("Pick a date")}
                 register={register}
                 required={false}
-                // defaultValue={defaultValues?.discount_end_date}
+                defaultValue={discountInfo?.discount_end_date}
               />
             </Grid>
             <Button

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { SERVER_URI } from "@/shared/utils";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { discountData } from "@/shared/types";
@@ -8,7 +8,7 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "@/shared/common/authentication";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export const useAddDiscountHook = () => {
+export const useEditDiscountHook = () => {
   const { token } = useContext(UserContext);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -26,6 +26,29 @@ export const useAddDiscountHook = () => {
     control,
   } = methods;
 
+  const fetchDiscountInfo = async () => {
+    const response = await axios.get(
+      `${SERVER_URI}/api/admin/products/${productId}/discount`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  };
+
+  const {
+    isPending: isLoadingFetchingDiscountInfo,
+    isError: isErrorFetchingDiscountInfo,
+    isSuccess: isSuccessFetchingDiscountInfo,
+    data: discountInfo,
+  } = useQuery({
+    queryKey: ["adminCategories"],
+    queryFn: fetchDiscountInfo,
+    enabled: !!token,
+  });
+
   const {
     mutate,
     isError,
@@ -33,7 +56,7 @@ export const useAddDiscountHook = () => {
     isSuccess,
   } = useMutation({
     mutationFn: (discountData: discountData) => {
-      return axios.post(
+      return axios.put(
         `${SERVER_URI}/api/admin/products/${productId}/discount`,
         discountData,
         {
@@ -71,6 +94,10 @@ export const useAddDiscountHook = () => {
     errors,
     isError,
     isSuccess,
+    isLoadingFetchingDiscountInfo,
+    isSuccessFetchingDiscountInfo,
+    isErrorFetchingDiscountInfo,
+    discountInfo: discountInfo?.data,
     isLoading,
     register,
     handleSubmit,
