@@ -7,6 +7,7 @@ import { ShowButton } from "@/shared/components/ShowButton";
 import { CustomTable } from "@/shared/components/Table";
 import { DeleteValueModel } from "./DeleteValueModel";
 import { UpdateValueModel } from "./UpdateValueModel";
+import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 
 type ValuesModelProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -56,7 +57,7 @@ export const ValuesModel = (props: ValuesModelProps) => {
     >
       <Box height={"300px"}>
         {values && (
-          <Box height={"inherit"}>
+          <PageWrapper padding={"0px"}>
             <CustomTable
               columns={getValuesColumns()}
               data={values}
@@ -66,7 +67,7 @@ export const ValuesModel = (props: ValuesModelProps) => {
               hasPreviousPage={false}
               hasFooter={false}
             />
-          </Box>
+          </PageWrapper>
         )}
       </Box>
     </CustomDialog>

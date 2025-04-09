@@ -9,6 +9,7 @@ export const useTableLayoutStyles = makeStyles(() => ({
   tableHead: {
     fontWeight: "bold",
     backgroundColor: tablesRawsGrey,
+    fontFamily: "CoHeadlineTrial-Regular",
   },
   table: {},
   tableBody: {
