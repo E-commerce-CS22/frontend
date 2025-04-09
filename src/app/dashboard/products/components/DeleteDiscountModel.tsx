@@ -25,7 +25,7 @@ export const DeleteDiscountModel = (props) => {
     },
   });
 
-  const { id } = props;
+  const { id, discountValue } = props;
 
   const handleClickOpen = () => {
     setOpen(!open);
@@ -48,10 +48,14 @@ export const DeleteDiscountModel = (props) => {
         onCloseModal={handleClickOpen}
         maxWidth="sm"
         button={
-          <Delete
-            sx={{ cursor: "pointer", color: darkGrey }}
-            onClick={handleClickOpen}
-          />
+          <Button disabled={!discountValue}>
+            {discountValue && (
+              <Delete
+                sx={{ cursor: "pointer", color: darkGrey }}
+                onClick={handleClickOpen}
+              />
+            )}
+          </Button>
         }
       >
         <Box>

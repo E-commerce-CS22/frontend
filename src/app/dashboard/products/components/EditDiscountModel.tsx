@@ -1,11 +1,11 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { Edit } from "@mui/icons-material";
 
 import { darkGrey } from "@/shared/customization";
 import { useRouter } from "next/navigation";
 
 export const EditDiscountModel = (props) => {
-  const { id } = props;
+  const { id, discountValue } = props;
   const router = useRouter();
 
   const handleUpdate = () => {
@@ -13,10 +13,14 @@ export const EditDiscountModel = (props) => {
   };
   return (
     <Box>
-      <Edit
-        sx={{ cursor: "pointer", color: darkGrey }}
-        onClick={handleUpdate}
-      />
+      <Button disabled={!discountValue}>
+        {discountValue && (
+          <Edit
+            sx={{ cursor: "pointer", color: darkGrey }}
+            onClick={handleUpdate}
+          />
+        )}
+      </Button>
     </Box>
   );
 };
