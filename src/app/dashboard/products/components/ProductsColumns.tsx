@@ -10,6 +10,7 @@ import { DeleteModel } from "./DeleteModel";
 import { UpdateModel } from "./UpdateModel";
 import { DiscountModel } from "./DiscountModel";
 import { EditDiscountModel } from "./EditDiscountModel";
+import { DeleteDiscountModel } from "./DeleteDiscountModel";
 
 export interface CustomTableColumnProps<RowType = {}> {
   key: string;
@@ -94,6 +95,11 @@ export const getProductsColumns = (
     key: "ModifyDiscount",
     header: t("Modify discount"),
     accessor: ({ id }) => <EditDiscountModel id={id} />,
+  },
+  {
+    key: "delete",
+    header: t("Delete discount"),
+    accessor: ({ id }) => <DeleteDiscountModel id={id} />,
   },
   {
     key: "delete",
