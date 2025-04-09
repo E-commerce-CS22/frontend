@@ -158,5 +158,6 @@
   "Discount start date": "تاريخ بداية الخصم",
   "Price must be a number": "السعر يجب أن يكون رقم",
   "Product Image": "صورة المنتج",
-  "Discount value must be a number": "قيمة الخصم يجب أن تكون رقم"
+  "Discount value must be a number": "قيمة الخصم يجب أن تكون رقم",
+  "Modify discount": "تعديل الخصم"
 }
