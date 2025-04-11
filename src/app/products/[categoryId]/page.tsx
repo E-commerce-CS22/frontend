@@ -1,10 +1,19 @@
+"use client";
 import { Suspense } from "react";
 import { CategoryProducts } from "./components/FullPage/CategoryProducts";
 
-export default function EditAttributesPage() {
+type CategoryProductsPageProps = {
+  params: {
+    categoryId: string;
+  };
+};
+
+export default function CategoryProductsPage({
+  params: { categoryId },
+}: CategoryProductsPageProps) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <CategoryProducts />
+      <CategoryProducts categoryId={categoryId} />
     </Suspense>
   );
 }

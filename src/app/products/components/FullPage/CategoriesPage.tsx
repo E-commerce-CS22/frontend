@@ -39,6 +39,7 @@ export default function Products() {
         {categoriesData?.map((item) => (
           <CategoryCard
             key={item?.id}
+            id={item.id}
             name={item?.name}
             image={item?.image}
             slug={item?.slug}
