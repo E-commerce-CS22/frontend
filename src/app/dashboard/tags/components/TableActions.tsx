@@ -19,7 +19,8 @@ export const TableActions = (props: TableActionsProps) => {
           <Button
             variant="contained"
             key={item.title}
-            sx={{ fontFamily: "inherit" }}
+            color={"success"}
+            sx={{ fontFamily: "inherit", color: "white" }}
             onClick={item.buttonHandler}
           >
             {item.icon && item.icon}

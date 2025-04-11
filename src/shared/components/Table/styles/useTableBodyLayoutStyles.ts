@@ -1,5 +1,9 @@
 import { makeStyles } from "@mui/styles";
-import { tableRowsBorder, tablesRawsGrey } from "../../../customization";
+import {
+  SecondaryTextColor,
+  tableRowsBorder,
+  tablesRawsGrey,
+} from "../../../customization";
 
 export const useTableBodyLayoutStyles = makeStyles(() => ({
   // theme
@@ -24,6 +28,7 @@ export const useTableBodyLayoutStyles = makeStyles(() => ({
     borderBottomColor: tableRowsBorder,
     textAlign: "start",
     padding: "2px 16px",
+    color: SecondaryTextColor,
   },
   actionsCell: {
     position: "sticky",
