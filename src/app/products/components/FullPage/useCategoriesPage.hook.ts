@@ -4,14 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext } from "react";
 
-export const useProductsHook = () => {
+export const useCategoriesHook = () => {
   // const { t } = useTranslation("Store");
   // const router = useRouter();
 
   const { token } = useContext(UserContext);
   // const { id } = user;
-  const fetchProducts = async () => {
-    const response = await axios.get(`${SERVER_URI}/api/customer/products`, {
+  const fetchCategories = async () => {
+    const response = await axios.get(`${SERVER_URI}/api/categories`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -23,10 +23,10 @@ export const useProductsHook = () => {
     isPending: isLoading,
     isError,
     isSuccess,
-    data: productsData,
+    data: categoriesData,
   } = useQuery({
-    queryKey: ["customerProducts"],
-    queryFn: fetchProducts,
+    queryKey: ["customerCategories"],
+    queryFn: fetchCategories,
     enabled: !!token,
   });
 
@@ -34,6 +34,6 @@ export const useProductsHook = () => {
     isLoading,
     isError,
     isSuccess,
-    productsData: productsData,
+    categoriesData: categoriesData?.data,
   };
 };

@@ -1,3 +1,4 @@
+"use client";
 import { useTranslation } from "react-i18next";
 import { Box, IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";

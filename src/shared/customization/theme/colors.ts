@@ -34,3 +34,6 @@ export const grey = "#ccc";
 export const bg = "#F0F3F7";
 
 export const tealBlue = "#15BFB7";
+
+export const MainTextColor = "#172B4D";
+export const SecondaryTextColor = "#42526E";
