@@ -165,5 +165,6 @@
   "Do you have any questions?": "هل لديك أي أسئلة؟",
   "Can I manage multiple orders at the same time?": "هل يمكنني إدارة عدة أوامر في نفس الوقت؟",
   "Yes, the system allows you to handle multiple customer orders simultaneously, making order processing more efficient.": "نعم، يسمح النظام لك بمعالجة عدة أوامر للعملاء في نفس الوقت، مما يجعل معالجة الأوامر أكثر كفاءة.",
-  "My Orders": "طلباتي"
+  "My Orders": "طلباتي",
+  "All Categories": "كل الفئات"
 }
