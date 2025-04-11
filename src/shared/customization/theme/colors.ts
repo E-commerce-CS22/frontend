@@ -8,7 +8,7 @@ export const greyVendor = "#607795";
 export const orange = "#E05729";
 export const success = "#5FA02E";
 export const darkRed = "#973149";
-export const green = "#46A200";
+export const green = "#36B37E";
 export const cyan = "#22d5cb";
 export const yellow = "#f1c502";
 
@@ -37,3 +37,4 @@ export const tealBlue = "#15BFB7";
 
 export const MainTextColor = "#172B4D";
 export const SecondaryTextColor = "#42526E";
+export const GreyTextColor = "#B3BAC5";

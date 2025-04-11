@@ -1,8 +1,10 @@
 import { MainTextColor, SecondaryTextColor } from "@/shared/customization";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type CategoryDataProps = {
+  id: string;
   name?: string;
   image?: string;
   description?: string;
@@ -10,7 +12,11 @@ type CategoryDataProps = {
 };
 
 export const CategoryCard = (props: CategoryDataProps) => {
-  const { name, image, description } = props;
+  const { id, name, image, description } = props;
+  const router = useRouter();
+  const handleCategoryProducts = () => {
+    router.push(`products/${id}`);
+  };
   return (
     <Card
       sx={{
@@ -18,7 +24,9 @@ export const CategoryCard = (props: CategoryDataProps) => {
         borderRadius: "4px",
         margin: "1rem",
         cursor: "pointer",
+        "&:hover": { boxShadow: 6 },
       }}
+      onClick={handleCategoryProducts}
     >
       <CardMedia>
         {image && (

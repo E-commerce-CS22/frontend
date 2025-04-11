@@ -7,6 +7,7 @@ import { MenuItemContext } from "./context";
 import { SidebarItemProps } from "./Sidebar.types";
 import { SidebarList } from "./SidebarList.component";
 import ListItemButton from "@mui/material/ListItemButton";
+import { MainTextColor } from "@/shared/customization";
 
 export const SidebarItem: FC<SidebarItemProps> = (props) => {
   const {
@@ -70,6 +71,7 @@ export const SidebarItem: FC<SidebarItemProps> = (props) => {
         <ListItemText
           primary={text}
           sx={{
+            color: MainTextColor,
             fontSize: 14,
             "& > span": {
               fontSize: 14,

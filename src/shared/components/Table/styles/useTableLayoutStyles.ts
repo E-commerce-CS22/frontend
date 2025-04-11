@@ -1,5 +1,6 @@
 import { makeStyles } from "@mui/styles";
 import {
+  MainTextColor,
   primary,
   tableRowsBorder,
   tablesRawsGrey,
@@ -27,6 +28,7 @@ export const useTableLayoutStyles = makeStyles(() => ({
     overflow: "hidden",
     textOverflow: "ellipsis",
     width: "100%",
+    color: MainTextColor,
   },
   tableHeadCell: {
     fontWeight: "bold",
