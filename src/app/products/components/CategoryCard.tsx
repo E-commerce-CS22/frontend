@@ -50,10 +50,12 @@ export const CategoryCard = (props: CategoryDataProps) => {
       </CardMedia>
       <CardContent>
         <Typography color={MainTextColor} fontWeight={"bold"} mb="0.8rem">
-          {name}
+          {name?.slice(0, 30)}
+          {name && name?.length > 31 && "..."}
         </Typography>
         <Typography color={SecondaryTextColor} fontSize={"0.9rem"}>
-          {description}
+          {description?.slice(0, 61)}
+          {description && description?.length > 62 && "..."}
         </Typography>
       </CardContent>
     </Card>

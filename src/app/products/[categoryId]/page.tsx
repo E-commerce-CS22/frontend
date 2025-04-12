@@ -1,16 +1,14 @@
 "use client";
-import { Suspense } from "react";
+import { Suspense, use } from "react";
 import { CategoryProducts } from "./components/FullPage/CategoryProducts";
 
 type CategoryProductsPageProps = {
-  params: {
-    categoryId: string;
-  };
+  params: Promise<{ categoryId: string }>;
 };
 
-export default function CategoryProductsPage({
-  params: { categoryId },
-}: CategoryProductsPageProps) {
+export default function CategoryProductsPage(props: CategoryProductsPageProps) {
+  const params = use<{ categoryId: string }>(props.params);
+  const { categoryId } = params;
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <CategoryProducts categoryId={categoryId} />

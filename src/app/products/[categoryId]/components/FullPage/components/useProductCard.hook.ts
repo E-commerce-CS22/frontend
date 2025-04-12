@@ -1,49 +1,27 @@
 import { UserContext } from "@/shared/common/authentication";
 import { cartInputType } from "@/shared/types";
 import { SERVER_URI } from "@/shared/utils";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
-export const useProductDetailsHook = ({ productId }) => {
-  const { token, user } = useContext(UserContext);
-  const {
-    customer_data: { wishlist_id: wishlistId },
-  } = user;
+export const useProductCardHook = ({ id }) => {
+  const { token } = useContext(UserContext);
 
   const router = useRouter();
-
+  const pathname = usePathname();
   const [productQuantity, setProductQuantity] = useState(0);
 
-  const fetchProduct = async () => {
-    const response = await axios.get(
-      `${SERVER_URI}/api/customer/products/${productId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return response.data;
-  };
-
   const {
-    isPending: isLoading,
-    isError,
-    isSuccess,
-    data: productData,
-    error,
-  } = useQuery({
-    queryKey: ["productDetails"],
-    queryFn: fetchProduct,
-    enabled: !!token,
-  });
-
-  const { mutate } = useMutation({
+    mutate,
+    isError: isErrorAddToWishlist,
+    isSuccess: isSuccessAddToWishlist,
+  } = useMutation({
     mutationFn: () => {
       return axios.post(
-        `${SERVER_URI}/api/wishlists/${wishlistId || 0}/products/${productId}`,
+        `${SERVER_URI}/api/wishlists/products/${id}`,
         {},
         {
           headers: {
@@ -54,7 +32,11 @@ export const useProductDetailsHook = ({ productId }) => {
     },
   });
 
-  const { mutate: addToCard } = useMutation({
+  const {
+    mutate: addToCard,
+    isSuccess,
+    isError,
+  } = useMutation({
     mutationFn: (cartInput: cartInputType) => {
       return axios.post(`${SERVER_URI}/api/carts/products`, cartInput, {
         headers: {
@@ -72,32 +54,31 @@ export const useProductDetailsHook = ({ productId }) => {
     setProductQuantity((prev) => prev - 1);
   };
 
+  const handleCategoryProduct = () => {
+    router.push(`${pathname}/${id}`);
+  };
+
   const handleAddToFavorite = () => {
     mutate();
   };
 
   const handleAddToCart = () => {
     addToCard({
-      product_id: productId,
+      product_id: id,
       quantity: productQuantity,
     });
   };
 
-  const handleGoBack = () => {
-    router.back();
-  };
-
   return {
-    isLoading,
     isSuccess,
     isError,
-    error,
+    isErrorAddToWishlist,
+    isSuccessAddToWishlist,
     productQuantity,
-    productData: productData,
+    handleCategoryProduct,
     handleIncreaseQuantity,
     handleDecreaseQuantity,
     handleAddToFavorite,
     handleAddToCart,
-    handleGoBack,
   };
 };
