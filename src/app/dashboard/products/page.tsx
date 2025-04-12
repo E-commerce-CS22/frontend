@@ -8,8 +8,10 @@ export default function DashboardProducts() {
   const {
     tableActionButtons: actionButtons,
     productData,
+    isLoading,
     columns,
   } = useProductsHook();
+  if (isLoading) return <div>Loading...</div>;
   return (
     <PageWrapper actions={<TableActions buttons={actionButtons} />}>
       <CustomTable

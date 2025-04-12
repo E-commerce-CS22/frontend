@@ -14,7 +14,7 @@ export const TableActions = (props: TableActionsProps) => {
   const { buttons } = props;
   return (
     <Box m={"1rem 1.5rem"}>
-      {buttons &&
+      {buttons?.length &&
         buttons?.map((item) => (
           <Button
             variant="contained"

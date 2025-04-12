@@ -6,10 +6,20 @@ import { bg, primary } from "@/shared/customization";
 import { useTranslation } from "react-i18next";
 import { useHomePageHook } from "./useHomePage.hook";
 import { ProductCard } from "../ProductsCard/ProductCard";
+import { useContext } from "react";
+import { UserContext } from "@/shared/common/authentication";
+import { useRouter } from "next/navigation";
 
 export const HomePage = () => {
   const { t } = useTranslation("Store");
+  const router = useRouter();
+
   const { products, handleOpenCategoryProducts } = useHomePageHook();
+  const { user } = useContext(UserContext);
+  const userRole = user?.role;
+  if (userRole) {
+    router.push("/dashboard");
+  }
   return (
     <Box position={"relative"}>
       <Box sx={{ position: "relative", width: "100%", height: "350px" }}>

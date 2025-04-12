@@ -34,7 +34,7 @@ const Wishlist = () => {
           alignItems: "flex-end",
         }}
       >
-        {wishlistData ? (
+        {wishlistData?.length ? (
           wishlistData?.map((item) => (
             <ProductCard
               key={item?.id}

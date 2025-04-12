@@ -66,7 +66,7 @@ export const CategoriesPanel = () => {
           flexGrow: 1,
         }}
       >
-        {categoriesData &&
+        {categoriesData?.length &&
           categoriesData?.map((item) => (
             <CategoryChip
               key={item?.id}

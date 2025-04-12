@@ -34,7 +34,7 @@ export const useAdminRoutes = (): RouteItem[] => {
         element: <div>Products</div>,
         subItems: [
           {
-            id: "products",
+            id: "adminProducts",
             route: "products",
             fullPath: "/dashboard/products",
             text: t("Products"),
