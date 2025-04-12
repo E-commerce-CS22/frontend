@@ -3,7 +3,7 @@
 import { useTranslation } from "react-i18next";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useRouter, usePathname, useParams } from "next/navigation";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 import { UserContext } from "@/shared/common/authentication";
 import { ToastContainer } from "react-toastify";
 import Layout from "../Layout/Layout";
@@ -15,6 +15,7 @@ import { useCustomerRoutes } from "./useCustomerRoutes";
 import { useAdminRoutes } from "./useAdminRoutes";
 import { usePublicRoutes } from "./usePublicRoutes";
 import { routeWithSelectedItems } from "./utils";
+import AuthModal from "../AuthModal";
 
 export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const { t } = useTranslation("Store");
@@ -25,6 +26,8 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const { user, logout, isAuthenticated } = useContext(UserContext) || {};
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(true);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authModalTab, setAuthModalTab] = useState<'login' | 'signup'>('login');
 
   const userRole = user?.role;
   const publicRoutes = usePublicRoutes();
@@ -48,7 +51,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
     const paramsObject: any = { ...params };
     delete paramsObject?.["*"];
     const paramsArray = Object.values(paramsObject);
-    const splittedPath = pathname.substring(1).split("/");
+    const splittedPath = pathname?.substring(1).split("/") || [];
 
     return splittedPath
       .filter((item) => !paramsArray.includes(item))
@@ -85,6 +88,18 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
 
   const handleClickClose = () => setAnchorEl(null);
   const handleToggleDrawer = () => setOpen((prevState) => !prevState);
+  
+  const handleOpenLoginModal = () => {
+    setAuthModalTab('login');
+    setAuthModalOpen(true);
+  };
+
+  const handleOpenSignupModal = () => {
+    setAuthModalTab('signup');
+    setAuthModalOpen(true);
+  };
+
+  const handleCloseAuthModal = () => setAuthModalOpen(false);
 
   return (
     <>
@@ -93,20 +108,39 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
         isOpen={open}
         title={""}
         breadCrumb={breadCrumb.slice(1)}
-        drawerItems={routeWithSelectedItems(appRoutes, pathname)}
+        drawerItems={routeWithSelectedItems(appRoutes, pathname || "")}
         onGoToHome={handleGoToHome}
         onToggleDrawer={handleToggleDrawer}
         rightItems={[
           { id: "notifications", icon: <Notifications /> },
           {
-            id: "admin",
-            icon: isAuthenticated && (
+            id: "account",
+            icon: isAuthenticated ? (
               <IconButton
                 onClick={handleClickOpen}
                 color={isOpen ? "info" : "primary"}
               >
                 <CustomerIcon />
               </IconButton>
+            ) : (
+              <Box display="flex" gap={1}>
+                <Button 
+                  variant="outlined" 
+                  color="primary" 
+                  onClick={handleOpenSignupModal}
+                  size="small"
+                >
+                  {t("Register Now")}
+                </Button>
+                <Button 
+                  variant="contained" 
+                  color="primary" 
+                  onClick={handleOpenLoginModal}
+                  size="small"
+                >
+                  {t("Login")}
+                </Button>
+              </Box>
             ),
           },
         ]}
@@ -139,6 +173,12 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
           onClose={handleClickClose}
         />
       )}
+
+      <AuthModal 
+        open={authModalOpen} 
+        onClose={handleCloseAuthModal} 
+        initialTab={authModalTab}
+      />
     </>
   );
 }

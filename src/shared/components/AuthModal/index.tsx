@@ -57,6 +57,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   const router = useRouter();
   const [tabValue, setTabValue] = useState(initialTab === 'login' ? 0 : 1);
   const { login } = useContext(UserContext);
+  
+  // Update tab value when initialTab changes
+  useEffect(() => {
+    setTabValue(initialTab === 'login' ? 0 : 1);
+  }, [initialTab]);
 
   // Login State
   const [showLoginPassword, setShowLoginPassword] = useState(false);
