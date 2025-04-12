@@ -7,7 +7,7 @@ import { useContext } from "react";
 export const useProductDetailsHook = ({ productId }) => {
   const { token, user } = useContext(UserContext);
   const {
-    customer: { wishlist_id: wishlistId },
+    customer_data: { wishlist_id: wishlistId },
   } = user;
 
   const fetchProduct = async () => {

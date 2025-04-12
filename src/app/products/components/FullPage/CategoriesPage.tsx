@@ -4,6 +4,7 @@ import { useCategoriesHook } from "./useCategoriesPage.hook";
 import { CategoryCard } from "../CategoryCard";
 import { Box, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { SecondaryTextColor } from "@/shared/customization";
 
 export default function Products() {
   const { t } = useTranslation("Store");
@@ -18,12 +19,16 @@ export default function Products() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          flexDirection: "column",
           textAlign: "center",
           padding: "1rem",
         }}
       >
         <Typography variant="h6" fontWeight={"bold"}>
           {t("All Categories")}
+        </Typography>
+        <Typography color={SecondaryTextColor}>
+          {t("Click on a category to view its related products")}
         </Typography>
       </Box>
       <Grid
