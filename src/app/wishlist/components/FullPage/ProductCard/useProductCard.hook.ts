@@ -28,6 +28,16 @@ export const useProductCardHook = ({ id }) => {
     },
   });
 
+  const { mutate } = useMutation({
+    mutationFn: ({ productId }: { productId: string }) => {
+      return axios.delete(`${SERVER_URI}/api/wishlists/products/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    },
+  });
+
   const handleIncreaseQuantity = () => {
     setProductQuantity((prev) => prev + 1);
   };
@@ -47,6 +57,10 @@ export const useProductCardHook = ({ id }) => {
     });
   };
 
+  const handleDeleteFromFavorite = () => {
+    mutate({ productId: id });
+  };
+
   return {
     isSuccess,
     isError,
@@ -55,5 +69,6 @@ export const useProductCardHook = ({ id }) => {
     handleIncreaseQuantity,
     handleDecreaseQuantity,
     handleAddToCart,
+    handleDeleteFromFavorite,
   };
 };

@@ -12,11 +12,13 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  IconButton,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { useProductCardHook } from "./useProductCard.hook";
+import { Delete } from "@mui/icons-material";
 
 type ProductCardProps = {
   id: string;
@@ -52,6 +54,7 @@ export const ProductCard = (props: ProductCardProps) => {
     handleIncreaseQuantity,
     handleDecreaseQuantity,
     handleAddToCart,
+    handleDeleteFromFavorite,
   } = useProductCardHook({ id });
 
   return (
@@ -60,6 +63,10 @@ export const ProductCard = (props: ProductCardProps) => {
         width: "300px",
         borderRadius: "4px",
         margin: "1rem",
+        minHeight: "390px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
         "&:hover": { boxShadow: 6 },
         position: "relative",
       }}
@@ -150,6 +157,20 @@ export const ProductCard = (props: ProductCardProps) => {
         >
           {t("Add to cart")}
         </Button>
+        <IconButton
+          sx={{
+            position: "absolute",
+            top: "1rem",
+            right: "1rem",
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            bgcolor: "white",
+          }}
+          onClick={handleDeleteFromFavorite}
+        >
+          <Delete color="primary" />
+        </IconButton>
       </CardActions>
     </Card>
   );
