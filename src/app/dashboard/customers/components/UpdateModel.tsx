@@ -8,7 +8,7 @@ export const UpdateModel = () => {
   const router = useRouter();
 
   const handleUpdate = () => {
-    router.push("categories/new");
+    router.push("customers/new");
   };
   return (
     <Box>
