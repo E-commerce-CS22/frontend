@@ -17,9 +17,10 @@ import {
   darkRed,
   primary,
 } from "@/shared/customization";
-import { FavoriteBorder } from "@mui/icons-material";
+import { ArrowBack, FavoriteBorder } from "@mui/icons-material";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import { i18n } from "@/shared/utils/i18next";
 
 type ProductDetailsProps = {
   params: Promise<{ productId: string }>;
@@ -36,10 +37,30 @@ export default function ProductDetails(props: ProductDetailsProps) {
     handleDecreaseQuantity,
     handleAddToFavorite,
     handleAddToCart,
+    handleGoBack,
   } = useProductDetailsHook({ productId });
   console.log(productData);
   return (
-    <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+    <Box
+      display={"flex"}
+      flexDirection={"column"}
+      justifyContent={"center"}
+      alignItems={"center"}
+    >
+      <Box
+        sx={{
+          backgroundColor: "white",
+          display: "flex",
+          alignItems: i18n.language === "en" ? "flex-start" : "flex-end",
+          flexDirection: "column",
+          padding: "1rem",
+          width: "100%",
+        }}
+      >
+        <Button variant="contained" onClick={handleGoBack}>
+          <ArrowBack sx={{ color: "white" }} />
+        </Button>
+      </Box>
       <Card
         sx={{
           width: "100%",

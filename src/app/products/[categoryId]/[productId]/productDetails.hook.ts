@@ -3,6 +3,7 @@ import { cartInputType } from "@/shared/types";
 import { SERVER_URI } from "@/shared/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
 export const useProductDetailsHook = ({ productId }) => {
@@ -10,6 +11,8 @@ export const useProductDetailsHook = ({ productId }) => {
   const {
     customer_data: { wishlist_id: wishlistId },
   } = user;
+
+  const router = useRouter();
 
   const [productQuantity, setProductQuantity] = useState(0);
 
@@ -80,6 +83,10 @@ export const useProductDetailsHook = ({ productId }) => {
     });
   };
 
+  const handleGoBack = () => {
+    router.back();
+  };
+
   return {
     isLoading,
     isSuccess,
@@ -91,5 +98,6 @@ export const useProductDetailsHook = ({ productId }) => {
     handleDecreaseQuantity,
     handleAddToFavorite,
     handleAddToCart,
+    handleGoBack,
   };
 };
