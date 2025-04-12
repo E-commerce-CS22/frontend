@@ -3,15 +3,15 @@ import { cartInputType } from "@/shared/types";
 import { SERVER_URI } from "@/shared/utils";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
+// import { usePathname } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
 export const useProductCardHook = ({ id }) => {
   const { token } = useContext(UserContext);
 
-  const router = useRouter();
-  const pathname = usePathname();
+  // const router = useRouter();
+  // const pathname = usePathname();
   const [productQuantity, setProductQuantity] = useState(0);
 
   const {
@@ -46,10 +46,6 @@ export const useProductCardHook = ({ id }) => {
     setProductQuantity((prev) => prev - 1);
   };
 
-  const handleCategoryProduct = () => {
-    router.push(`${pathname}/${id}`);
-  };
-
   const handleAddToCart = () => {
     addToCard({
       product_id: id,
@@ -65,7 +61,6 @@ export const useProductCardHook = ({ id }) => {
     isSuccess,
     isError,
     productQuantity,
-    handleCategoryProduct,
     handleIncreaseQuantity,
     handleDecreaseQuantity,
     handleAddToCart,

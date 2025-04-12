@@ -50,7 +50,7 @@ export const ProductCard = (props: ProductCardProps) => {
 
   const {
     productQuantity,
-    handleCategoryProduct,
+    // handleCategoryProduct,
     handleIncreaseQuantity,
     handleDecreaseQuantity,
     handleAddToCart,
@@ -90,13 +90,13 @@ export const ProductCard = (props: ProductCardProps) => {
         <Typography
           color={SecondaryTextColor}
           sx={{
-            cursor: "pointer",
+            // cursor: "pointer",
             fontSize: "13px",
-            "&:hover": {
-              color: darkRed,
-            },
+            // "&:hover": {
+            //   color: darkRed,
+            // },
           }}
-          onClick={handleCategoryProduct}
+          // onClick={handleCategoryProduct}
         >
           {description?.slice(0, 61)}
           {description?.length > 62 && "..."}

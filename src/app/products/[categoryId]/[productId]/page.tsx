@@ -39,7 +39,6 @@ export default function ProductDetails(props: ProductDetailsProps) {
     handleAddToCart,
     handleGoBack,
   } = useProductDetailsHook({ productId });
-  console.log(productData);
   return (
     <Box
       display={"flex"}

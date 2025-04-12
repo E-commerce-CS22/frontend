@@ -11,7 +11,6 @@ export const CategoryProducts = ({ categoryId }) => {
   const { products } = useCategoryProductsHook({ categoryId });
   const categoryInfo = products?.category;
   const categoryProducts = products?.products?.data;
-  console.log(products);
   return (
     <PageWrapper padding="0">
       <Box
