@@ -80,7 +80,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const handleLogout = () => {
     setAnchorEl(null);
     logout?.();
-    router.push("login");
+    router.replace("/login");
   };
 
   const handleClickClose = () => setAnchorEl(null);

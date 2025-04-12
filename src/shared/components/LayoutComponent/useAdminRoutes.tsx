@@ -6,6 +6,7 @@ import { useMemo } from "react";
 import {
   Category,
   Dashboard,
+  LocalMall,
   PeopleAlt,
   ShoppingCart,
   Style,
@@ -83,6 +84,15 @@ export const useAdminRoutes = (): RouteItem[] => {
         fullPath: "/dashboard/tags",
         text: t("Tags"),
         icon: <Style color="primary" />,
+        element: <div>Tags</div>,
+        onClick: (route) => router.push(route),
+      },
+      {
+        id: "orders",
+        route: "orders",
+        fullPath: "/dashboard/orders",
+        text: t("Orders"),
+        icon: <LocalMall color="primary" />,
         element: <div>Tags</div>,
         onClick: (route) => router.push(route),
       },
