@@ -57,6 +57,7 @@ export const CategoriesPanel = () => {
         sx={{
           display: "flex",
           overflow: "auto",
+          mx: "3rem",
           overflowY: "hidden",
           padding: "0.8rem 0",
           "&::-webkit-scrollbar": {
@@ -69,6 +70,7 @@ export const CategoriesPanel = () => {
           categoriesData?.map((item) => (
             <CategoryChip
               key={item?.id}
+              id={item?.id}
               name={item?.name}
               image={item?.image}
             />

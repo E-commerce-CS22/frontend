@@ -1,12 +1,18 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type CategoryChipProps = {
+  id: string;
   name: string;
   image?: string;
 };
 export const CategoryChip = (props: CategoryChipProps) => {
-  const { name, image } = props;
+  const { id, name, image } = props;
+  const router = useRouter();
+  const handleCategoryProduct = () => {
+    router.push(`products/${id}`);
+  };
   return (
     <Box
       sx={{
@@ -20,6 +26,7 @@ export const CategoryChip = (props: CategoryChipProps) => {
         margin: "0 0.5rem",
         cursor: "pointer",
       }}
+      onClick={handleCategoryProduct}
     >
       <Box height={60}>
         {image && (
