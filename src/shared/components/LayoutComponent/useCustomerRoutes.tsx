@@ -70,7 +70,7 @@ export const useCustomerRoutes = (): RouteItem[] => {
         id: "chatbot",
         route: "chatbot",
         fullPath: "/chatbot",
-        text: t("Ask AI"),
+        text: t("Chatbot"),
         icon: <ChatBubble color="primary" />,
         element: <div>Chatbot</div>,
         onClick: (route) => router.push(route),
