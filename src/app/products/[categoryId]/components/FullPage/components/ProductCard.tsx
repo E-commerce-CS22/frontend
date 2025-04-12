@@ -107,14 +107,14 @@ export const ProductCard = (props: ProductCardProps) => {
           <Typography
             sx={{
               textDecoration: final_price ? "line-through" : "inline",
-              padding: "0 8px",
+              padding: "0 4px",
             }}
             color={final_price ? darkRed : primary}
           >
             {price}
           </Typography>
           {final_price && <Typography>{final_price}</Typography>}
-          <Typography padding={"0 4px"}>{t("Riyal")}</Typography>
+          <Typography>{t("Riyal")}</Typography>
         </Box>
       </CardContent>
       <CardActions>

@@ -3,13 +3,15 @@ import { cartInputType } from "@/shared/types";
 import { SERVER_URI } from "@/shared/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 export const useProductDetailsHook = ({ productId }) => {
   const { token, user } = useContext(UserContext);
   const {
     customer_data: { wishlist_id: wishlistId },
   } = user;
+
+  const [productQuantity, setProductQuantity] = useState(0);
 
   const fetchProduct = async () => {
     const response = await axios.get(
@@ -59,13 +61,22 @@ export const useProductDetailsHook = ({ productId }) => {
     },
   });
 
-  const handleAddToWishlist = () => {
+  const handleIncreaseQuantity = () => {
+    setProductQuantity((prev) => prev + 1);
+  };
+
+  const handleDecreaseQuantity = () => {
+    setProductQuantity((prev) => prev - 1);
+  };
+
+  const handleAddToFavorite = () => {
     mutate();
   };
+
   const handleAddToCart = () => {
     addToCard({
       product_id: productId,
-      quantity: "5",
+      quantity: productQuantity,
     });
   };
 
@@ -74,8 +85,11 @@ export const useProductDetailsHook = ({ productId }) => {
     isSuccess,
     isError,
     error,
-    productData: productData?.data,
+    productQuantity,
+    productData: productData,
+    handleIncreaseQuantity,
+    handleDecreaseQuantity,
+    handleAddToFavorite,
     handleAddToCart,
-    handleAddToWishlist,
   };
 };
