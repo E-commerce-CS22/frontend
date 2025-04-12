@@ -39,17 +39,18 @@ export const CategoryProducts = ({ categoryId }) => {
           padding: "1rem 0",
         }}
       >
-        {categoryProducts?.map((item) => (
-          <ProductCard
-            key={item?.id}
-            id={item?.id}
-            name={item?.name}
-            description={item?.description}
-            price={item?.price}
-            image={item?.image}
-            final_price={item?.final_price}
-          />
-        ))}
+        {categoryProducts?.length &&
+          categoryProducts?.map((item) => (
+            <ProductCard
+              key={item?.id}
+              id={item?.id}
+              name={item?.name}
+              description={item?.description}
+              price={item?.price}
+              image={item?.image}
+              final_price={item?.final_price}
+            />
+          ))}
       </Grid>
     </PageWrapper>
   );

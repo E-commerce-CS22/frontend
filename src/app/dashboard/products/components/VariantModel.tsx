@@ -33,28 +33,29 @@ export const VariantsModel = (props: VariantsModelProps) => {
       button={<ShowButton onClick={handleClickOpen} />}
     >
       <Box fontFamily={"CoHeadline-Light"}>
-        {variants?.map((item, index) => (
-          <Box
-            sx={{ borderBottom: "1px solid #eee", padding: "0.5rem 0" }}
-            key={index}
-          >
-            <Typography>
-              {t("Color")}: {item?.color}
-            </Typography>
-            <Typography>
-              {t("Raw")}: {item?.raw}
-            </Typography>
-            <Typography>
-              {t("Memory")}: {item?.memory}
-            </Typography>
-            <Image
-              width={"200"}
-              height={"200"}
-              src={item?.image}
-              alt={item?.raw || ""}
-            />
-          </Box>
-        ))}
+        {variants?.length &&
+          variants?.map((item, index) => (
+            <Box
+              sx={{ borderBottom: "1px solid #eee", padding: "0.5rem 0" }}
+              key={index}
+            >
+              <Typography>
+                {t("Color")}: {item?.color}
+              </Typography>
+              <Typography>
+                {t("Raw")}: {item?.raw}
+              </Typography>
+              <Typography>
+                {t("Memory")}: {item?.memory}
+              </Typography>
+              <Image
+                width={"200"}
+                height={"200"}
+                src={item?.image}
+                alt={item?.raw || ""}
+              />
+            </Box>
+          ))}
       </Box>
     </CustomDialog>
   );

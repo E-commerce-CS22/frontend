@@ -43,7 +43,7 @@ const CustomTable = <RowType extends object>({
   >("loading");
   useEffect(() => {
     if (isLoading) return;
-    if (data.length) {
+    if (data?.length) {
       setDataStatus((status) => (status === "loading" ? "loaded" : "updated"));
     }
   }, [data, isLoading]);

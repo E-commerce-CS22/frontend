@@ -41,16 +41,17 @@ export default function Products() {
           padding: "1rem 0",
         }}
       >
-        {categoriesData?.map((item) => (
-          <CategoryCard
-            key={item?.id}
-            id={item.id}
-            name={item?.name}
-            image={item?.image}
-            slug={item?.slug}
-            description={item?.description}
-          />
-        ))}
+        {categoriesData?.length &&
+          categoriesData?.map((item) => (
+            <CategoryCard
+              key={item?.id}
+              id={item.id}
+              name={item?.name}
+              image={item?.image}
+              slug={item?.slug}
+              description={item?.description}
+            />
+          ))}
       </Grid>
     </PageWrapper>
   );
