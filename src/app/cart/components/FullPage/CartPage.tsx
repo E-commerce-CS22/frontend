@@ -10,7 +10,6 @@ export default function Products() {
   const { products, isLoading } = useCartProductsHook();
 
   if (isLoading) <div>Loading...</div>;
-  console.log(products);
   return (
     <PageWrapper padding={"0px"}>
       <Box
@@ -38,19 +37,25 @@ export default function Products() {
           padding: "1rem 0",
         }}
       >
-        {products?.map((item) => (
-          <CartProductCard
-            key={item?.id}
-            id={item?.id}
-            name={item?.name}
-            description={item?.description}
-            price={item?.price}
-            image={item?.image}
-            pivot={item?.pivot}
-          />
-        ))}
+        {products?.length ? (
+          products?.map((item) => (
+            <CartProductCard
+              key={item?.id}
+              id={item?.id}
+              name={item?.name}
+              description={item?.description}
+              price={item?.price}
+              image={item?.image}
+              pivot={item?.pivot}
+            />
+          ))
+        ) : (
+          <Box sx={{ bgcolor: "white", padding: "2rem", width: "100%" }}>
+            <Typography>{t("No cart items yet!")}</Typography>
+          </Box>
+        )}
       </Grid>
-      {products && (
+      {products?.length && (
         <Box
           sx={{
             display: "flex",
