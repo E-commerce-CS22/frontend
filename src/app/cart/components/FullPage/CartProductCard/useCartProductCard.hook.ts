@@ -2,12 +2,16 @@ import { UserContext } from "@/shared/common/authentication";
 import { SERVER_URI } from "@/shared/utils";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { usePathname, useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
 export const useProductCardHook = ({ id }) => {
   const { token } = useContext(UserContext);
   const [openEditQuantityDialog, setOpenEditQuantityDialog] = useState(false);
   const [quantity, setQuantity] = useState<string>("");
+
+  const router = useRouter();
+  const pathname = usePathname();
 
   const {
     mutate,
@@ -63,7 +67,9 @@ export const useProductCardHook = ({ id }) => {
     mutate();
   };
 
-  const handleCategoryProduct = () => {};
+  const handleCategoryProduct = () => {
+    router.push(`${pathname}/${id}`);
+  };
 
   const handleRemoveFromCart = () => {
     deleteProduct();
