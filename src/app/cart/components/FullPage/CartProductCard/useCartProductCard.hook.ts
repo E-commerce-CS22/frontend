@@ -1,18 +1,11 @@
 import { UserContext } from "@/shared/common/authentication";
-import { cartInputType } from "@/shared/types";
 import { SERVER_URI } from "@/shared/utils";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 export const useProductCardHook = ({ id }) => {
   const { token } = useContext(UserContext);
-
-  const router = useRouter();
-  const pathname = usePathname();
-  const [productQuantity, setProductQuantity] = useState(0);
 
   const {
     mutate,
@@ -33,12 +26,12 @@ export const useProductCardHook = ({ id }) => {
   });
 
   const {
-    mutate: addToCard,
-    isSuccess,
-    isError,
+    mutate: deleteProduct,
+    isSuccess: isSuccessDeletingProduct,
+    isError: isErrorDeletingProduct,
   } = useMutation({
-    mutationFn: (cartInput: cartInputType) => {
-      return axios.post(`${SERVER_URI}/api/carts/products`, cartInput, {
+    mutationFn: () => {
+      return axios.delete(`${SERVER_URI}/api/carts/products/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -46,39 +39,23 @@ export const useProductCardHook = ({ id }) => {
     },
   });
 
-  const handleIncreaseQuantity = () => {
-    setProductQuantity((prev) => prev + 1);
-  };
-
-  const handleDecreaseQuantity = () => {
-    setProductQuantity((prev) => prev - 1);
-  };
-
-  const handleCategoryProduct = () => {
-    router.push(`${pathname}/${id}`);
-  };
-
   const handleAddToFavorite = () => {
     mutate();
   };
 
-  const handleAddToCart = () => {
-    addToCard({
-      product_id: id,
-      quantity: productQuantity,
-    });
+  const handleCategoryProduct = () => {};
+
+  const handleRemoveFromCart = () => {
+    deleteProduct();
   };
 
   return {
-    isSuccess,
-    isError,
+    isSuccessDeletingProduct,
+    isErrorDeletingProduct,
     isErrorAddToWishlist,
     isSuccessAddToWishlist,
-    productQuantity,
-    handleCategoryProduct,
-    handleIncreaseQuantity,
-    handleDecreaseQuantity,
     handleAddToFavorite,
-    handleAddToCart,
+    handleRemoveFromCart,
+    handleCategoryProduct,
   };
 };

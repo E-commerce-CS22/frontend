@@ -1,6 +1,6 @@
 "use client";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useCartProductsHook } from "./useCartPage.hook";
 import { CartProductCard } from "./CartProductCard/CartProductCard";
@@ -46,9 +46,22 @@ export default function Products() {
             description={item?.description}
             price={item?.price}
             image={item?.image}
+            pivot={item?.pivot}
           />
         ))}
       </Grid>
+      {products && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            bgcolor: "white",
+            padding: "1rem 4rem 2rem",
+          }}
+        >
+          <Button variant="contained">{t("Continue buying (Payment)")}</Button>
+        </Box>
+      )}
     </PageWrapper>
   );
 }

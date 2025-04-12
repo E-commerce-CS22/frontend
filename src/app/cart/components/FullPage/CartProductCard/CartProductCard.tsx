@@ -40,22 +40,21 @@ type CartProductCardProps = {
   pivot?: {
     category_id?: string;
     product_id?: string;
+    quantity?: string | number | undefined;
   };
 };
 
 export const CartProductCard = (props: CartProductCardProps) => {
   const { t } = useTranslation("Store");
 
-  const { id, name, image, description, price, final_price } = props;
+  const { id, name, image, description, price, final_price, pivot } = props;
 
-  const {
-    productQuantity,
-    handleCategoryProduct,
-    handleIncreaseQuantity,
-    handleDecreaseQuantity,
-    handleAddToFavorite,
-    handleAddToCart,
-  } = useProductCardHook({ id });
+  const quantity = pivot?.quantity;
+
+  const { handleCategoryProduct, handleAddToFavorite, handleRemoveFromCart } =
+    useProductCardHook({
+      id,
+    });
 
   return (
     <Card
@@ -116,58 +115,40 @@ export const CartProductCard = (props: CartProductCardProps) => {
           {final_price && <Typography>{final_price}</Typography>}
           <Typography>{t("Riyal")}</Typography>
         </Box>
+        <Box>
+          {quantity && (
+            <Box display={"flex"}>
+              <Typography color={MainTextColor}>{t("Quantity")}:</Typography>
+              <Typography margin={"0 8px"}>
+                {quantity} {t("pieces")}
+              </Typography>
+            </Box>
+          )}
+        </Box>
       </CardContent>
       <CardActions>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            border: `1px solid ${primary}`,
-            borderRadius: "20px",
-          }}
-        >
-          <Button
-            onClick={handleIncreaseQuantity}
-            sx={{
-              borderRadius: "20px",
-            }}
-          >
-            +
-          </Button>
-          <Typography>{productQuantity}</Typography>
-          <Button
-            onClick={handleDecreaseQuantity}
-            disabled={productQuantity <= 0}
-            sx={{
-              borderRadius: "20px",
-            }}
-          >
-            -
-          </Button>
-        </Box>
         <Button
-          onClick={handleAddToCart}
+          onClick={handleRemoveFromCart}
+          color="error"
           variant="contained"
-          sx={{ borderRadius: "20px" }}
         >
-          {t("Add to cart")}
+          {t("Remove from cart")}
         </Button>
-        <IconButton
-          sx={{
-            position: "absolute",
-            top: "1rem",
-            right: "1rem",
-            width: "40px",
-            height: "40px",
-            borderRadius: "50%",
-            bgcolor: "white",
-          }}
-          onClick={handleAddToFavorite}
-        >
-          <FavoriteBorder color="primary" />
-        </IconButton>
       </CardActions>
+      <IconButton
+        sx={{
+          position: "absolute",
+          top: "1rem",
+          right: "1rem",
+          width: "40px",
+          height: "40px",
+          borderRadius: "50%",
+          bgcolor: "white",
+        }}
+        onClick={handleAddToFavorite}
+      >
+        <FavoriteBorder color="primary" />
+      </IconButton>
     </Card>
   );
 };
