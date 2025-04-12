@@ -68,7 +68,10 @@ const CustomDialog: FC<CustomDialogProps> = (props) => {
         // fullScreen={isMobile}
         title=""
         PaperProps={{
-          style: { borderRadius: "15px" },
+          style: {
+            borderRadius: "15px",
+            fontFamily: "CoHeadlineTrial-Light",
+          },
         }}
         onClose={handleClose}
         scroll={scrollType}

@@ -14,11 +14,13 @@ import {
   CardContent,
   CardMedia,
   IconButton,
+  TextField,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { useProductCardHook } from "./useCartProductCard.hook";
+import { CustomDialog } from "@/shared/components/CustomDialog";
 
 type CartProductCardProps = {
   id: string;
@@ -51,10 +53,17 @@ export const CartProductCard = (props: CartProductCardProps) => {
 
   const quantity = pivot?.quantity;
 
-  const { handleCategoryProduct, handleAddToFavorite, handleRemoveFromCart } =
-    useProductCardHook({
-      id,
-    });
+  const {
+    openEditQuantityDialog,
+    handleCategoryProduct,
+    handleAddToFavorite,
+    handleRemoveFromCart,
+    handleOpenQuantityDialog,
+    handleSendNewQuantity,
+    handleChangeQuantity,
+  } = useProductCardHook({
+    id,
+  });
 
   return (
     <Card
@@ -132,7 +141,10 @@ export const CartProductCard = (props: CartProductCardProps) => {
           color="error"
           variant="contained"
         >
-          {t("Remove from cart")}
+          {t("Delete")}
+        </Button>
+        <Button onClick={handleOpenQuantityDialog} variant="contained">
+          {t("Edit quantity")}
         </Button>
       </CardActions>
       <IconButton
@@ -149,6 +161,42 @@ export const CartProductCard = (props: CartProductCardProps) => {
       >
         <FavoriteBorder color="primary" />
       </IconButton>
+      <CustomDialog
+        open={openEditQuantityDialog}
+        onCloseModal={handleOpenQuantityDialog}
+        maxWidth="sm"
+      >
+        <Box p={"1rem"} sx={{ minWidth: "400px" }}>
+          <TextField
+            id="quantity"
+            label={t("Quantity")}
+            placeholder={t("Quantity")}
+            fullWidth
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            defaultValue={quantity}
+            onChange={handleChangeQuantity}
+          />
+          <Box margin={"1rem 0rem"}>
+            <Button
+              onClick={handleSendNewQuantity}
+              variant="contained"
+              sx={{ mx: "8px" }}
+            >
+              {t("Confirm")}
+            </Button>
+            <Button
+              onClick={handleOpenQuantityDialog}
+              variant="contained"
+              sx={{ mx: "8px" }}
+            >
+              {t("Cancel")}
+            </Button>
+          </Box>
+        </Box>
+      </CustomDialog>
     </Card>
   );
 };
