@@ -1,13 +1,15 @@
 "use client";
 import Image from "next/image";
 import { CategoriesPanel } from "../CategoriesCard/CategoriesPanel";
-import { ProductsCard } from "../ProductsCard/ProductsCard";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { bg, primary } from "@/shared/customization";
 import { useTranslation } from "react-i18next";
+import { useHomePageHook } from "./useHomePage.hook";
+import { ProductCard } from "../ProductsCard/ProductCard";
 
 export const HomePage = () => {
   const { t } = useTranslation("Store");
+  const { products, handleOpenCategoryProducts } = useHomePageHook();
   return (
     <Box position={"relative"}>
       <Box sx={{ position: "relative", width: "100%", height: "350px" }}>
@@ -47,8 +49,44 @@ export const HomePage = () => {
           </Box>
         </Box>
       </Box>
-      <CategoriesPanel />
-      <ProductsCard />
+      <Box>
+        <CategoriesPanel />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            alignItems: "flex-end",
+          }}
+        >
+          {products?.map((item) => (
+            <ProductCard
+              key={item?.id}
+              id={item?.id}
+              name={item?.name}
+              description={item?.description}
+              price={item?.price}
+              image={item?.image}
+              final_price={item?.final_price}
+            />
+          ))}
+          <Box
+            sx={{
+              padding: "2rem 4rem",
+              bgcolor: "white",
+              display: "flex",
+              alignItems: "flex-end",
+              height: "367px",
+              borderRadius: "4px",
+              margin: "1rem",
+            }}
+          >
+            <Button variant="contained" onClick={handleOpenCategoryProducts}>
+              {t("View more products")}
+            </Button>
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 };
