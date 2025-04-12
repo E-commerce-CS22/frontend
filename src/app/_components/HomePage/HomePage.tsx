@@ -59,17 +59,18 @@ export const HomePage = () => {
             alignItems: "flex-end",
           }}
         >
-          {products?.map((item) => (
-            <ProductCard
-              key={item?.id}
-              id={item?.id}
-              name={item?.name}
-              description={item?.description}
-              price={item?.price}
-              image={item?.image}
-              final_price={item?.final_price}
-            />
-          ))}
+          {products?.length &&
+            products?.map((item) => (
+              <ProductCard
+                key={item?.id}
+                id={item?.id}
+                name={item?.name}
+                description={item?.description}
+                price={item?.price}
+                image={item?.image}
+                final_price={item?.final_price}
+              />
+            ))}
           <Box
             sx={{
               padding: "2rem 4rem",

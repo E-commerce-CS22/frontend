@@ -21,7 +21,6 @@ export const ImageForm = () => {
   } = useImageForm();
 
   const { image } = useContext(ProductContext);
-  console.log(image);
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>
