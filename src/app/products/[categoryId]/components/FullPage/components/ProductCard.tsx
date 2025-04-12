@@ -17,9 +17,8 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useProductCardHook } from "./useProductCard.hook";
 
 type ProductCardProps = {
   id: string;
@@ -46,23 +45,18 @@ type ProductCardProps = {
 
 export const ProductCard = (props: ProductCardProps) => {
   const { t } = useTranslation("Store");
-  const router = useRouter();
-  const pathname = usePathname();
 
   const { id, name, image, description, price, final_price } = props;
-  const [productQuantity, setProductQuantity] = useState(0);
 
-  const handleIncreaseQuantity = () => {
-    setProductQuantity((prev) => prev + 1);
-  };
+  const {
+    productQuantity,
+    handleCategoryProduct,
+    handleIncreaseQuantity,
+    handleDecreaseQuantity,
+    handleAddToFavorite,
+    handleAddToCart,
+  } = useProductCardHook({ id });
 
-  const handleDecreaseQuantity = () => {
-    setProductQuantity((prev) => prev - 1);
-  };
-
-  const handleCategoryProduct = () => {
-    router.push(`${pathname}/${id}`);
-  };
   return (
     <Card
       sx={{
@@ -152,7 +146,11 @@ export const ProductCard = (props: ProductCardProps) => {
             -
           </Button>
         </Box>
-        <Button variant="contained" sx={{ borderRadius: "20px" }}>
+        <Button
+          onClick={handleAddToCart}
+          variant="contained"
+          sx={{ borderRadius: "20px" }}
+        >
           {t("Add to cart")}
         </Button>
         <IconButton
@@ -165,6 +163,7 @@ export const ProductCard = (props: ProductCardProps) => {
             borderRadius: "50%",
             bgcolor: "white",
           }}
+          onClick={handleAddToFavorite}
         >
           <FavoriteBorder color="primary" />
         </IconButton>

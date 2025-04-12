@@ -81,3 +81,8 @@ export type discountData = {
   discount_start_date?: string;
   discount_end_date?: string;
 };
+
+export type cartInputType = {
+  product_id: string | number;
+  quantity: string | number;
+};

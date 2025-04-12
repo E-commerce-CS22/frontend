@@ -1,4 +1,5 @@
 import { UserContext } from "@/shared/common/authentication";
+import { cartInputType } from "@/shared/types";
 import { SERVER_URI } from "@/shared/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -48,10 +49,25 @@ export const useProductDetailsHook = ({ productId }) => {
     },
   });
 
+  const { mutate: addToCard } = useMutation({
+    mutationFn: (cartInput: cartInputType) => {
+      return axios.post(`${SERVER_URI}/api/carts/products`, cartInput, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    },
+  });
+
   const handleAddToWishlist = () => {
     mutate();
   };
-  const handleAddToCart = () => {};
+  const handleAddToCart = () => {
+    addToCard({
+      product_id: productId,
+      quantity: "5",
+    });
+  };
 
   return {
     isLoading,
