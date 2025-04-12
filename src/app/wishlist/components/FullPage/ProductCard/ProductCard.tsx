@@ -5,7 +5,6 @@ import {
   primary,
   SecondaryTextColor,
 } from "@/shared/customization";
-import { FavoriteBorder } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -14,15 +13,14 @@ import {
   CardContent,
   CardMedia,
   IconButton,
-  TextField,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { useProductCardHook } from "./useCartProductCard.hook";
-import { CustomDialog } from "@/shared/components/CustomDialog";
+import { useProductCardHook } from "./useProductCard.hook";
+import { Delete } from "@mui/icons-material";
 
-type CartProductCardProps = {
+type ProductCardProps = {
   id: string;
   name: string;
   image?: string;
@@ -42,28 +40,22 @@ type CartProductCardProps = {
   pivot?: {
     category_id?: string;
     product_id?: string;
-    quantity?: string | number | undefined;
   };
 };
 
-export const CartProductCard = (props: CartProductCardProps) => {
+export const ProductCard = (props: ProductCardProps) => {
   const { t } = useTranslation("Store");
 
-  const { id, name, image, description, price, final_price, pivot } = props;
-
-  const quantity = pivot?.quantity;
+  const { id, name, image, description, price, final_price } = props;
 
   const {
-    openEditQuantityDialog,
+    productQuantity,
     handleCategoryProduct,
-    handleAddToFavorite,
-    handleRemoveFromCart,
-    handleOpenQuantityDialog,
-    handleSendNewQuantity,
-    handleChangeQuantity,
-  } = useProductCardHook({
-    id,
-  });
+    handleIncreaseQuantity,
+    handleDecreaseQuantity,
+    handleAddToCart,
+    handleDeleteFromFavorite,
+  } = useProductCardHook({ id });
 
   return (
     <Card
@@ -128,79 +120,58 @@ export const CartProductCard = (props: CartProductCardProps) => {
           {final_price && <Typography>{final_price}</Typography>}
           <Typography>{t("Riyal")}</Typography>
         </Box>
-        <Box>
-          {quantity && (
-            <Box display={"flex"}>
-              <Typography color={MainTextColor}>{t("Quantity")}:</Typography>
-              <Typography margin={"0 8px"}>
-                {quantity} {t("pieces")}
-              </Typography>
-            </Box>
-          )}
-        </Box>
       </CardContent>
       <CardActions>
-        <Button
-          onClick={handleRemoveFromCart}
-          color="error"
-          variant="contained"
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            border: `1px solid ${primary}`,
+            borderRadius: "20px",
+          }}
         >
-          {t("Delete")}
-        </Button>
-        <Button onClick={handleOpenQuantityDialog} variant="contained">
-          {t("Edit quantity")}
-        </Button>
-      </CardActions>
-      <IconButton
-        sx={{
-          position: "absolute",
-          top: "1rem",
-          right: "1rem",
-          width: "40px",
-          height: "40px",
-          borderRadius: "50%",
-          bgcolor: "white",
-        }}
-        onClick={handleAddToFavorite}
-      >
-        <FavoriteBorder color="primary" />
-      </IconButton>
-      <CustomDialog
-        open={openEditQuantityDialog}
-        onCloseModal={handleOpenQuantityDialog}
-        maxWidth="sm"
-      >
-        <Box p={"1rem"} sx={{ minWidth: "400px" }}>
-          <TextField
-            id="quantity"
-            label={t("Quantity")}
-            placeholder={t("Quantity")}
-            fullWidth
-            type="number"
-            InputLabelProps={{
-              shrink: true,
+          <Button
+            onClick={handleIncreaseQuantity}
+            sx={{
+              borderRadius: "20px",
             }}
-            defaultValue={quantity}
-            onChange={handleChangeQuantity}
-          />
-          <Box margin={"1rem 0rem"}>
-            <Button
-              onClick={handleSendNewQuantity}
-              variant="contained"
-              sx={{ mx: "8px" }}
-            >
-              {t("Confirm")}
-            </Button>
-            <Button
-              onClick={handleOpenQuantityDialog}
-              variant="contained"
-              sx={{ mx: "8px" }}
-            >
-              {t("Cancel")}
-            </Button>
-          </Box>
+          >
+            +
+          </Button>
+          <Typography>{productQuantity}</Typography>
+          <Button
+            onClick={handleDecreaseQuantity}
+            disabled={productQuantity <= 0}
+            sx={{
+              borderRadius: "20px",
+            }}
+          >
+            -
+          </Button>
         </Box>
-      </CustomDialog>
+        <Button
+          onClick={handleAddToCart}
+          variant="contained"
+          sx={{ borderRadius: "20px" }}
+        >
+          {t("Add to cart")}
+        </Button>
+        <IconButton
+          sx={{
+            position: "absolute",
+            top: "1rem",
+            right: "1rem",
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            bgcolor: "white",
+          }}
+          onClick={handleDeleteFromFavorite}
+        >
+          <Delete color="primary" />
+        </IconButton>
+      </CardActions>
     </Card>
   );
 };

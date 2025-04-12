@@ -1,37 +1,10 @@
-"use client";
-import React from "react";
-import { useWishlistHook } from "./wishlist.hook";
-import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
-import { Box, Button } from "@mui/material";
-import { TableActions } from "./components/TableActions";
+import { Suspense } from "react";
+import WishListFullPage from "./components/FullPage/WishlistPage";
 
-const Wishlist = () => {
-  const {
-    wishlistData,
-    tableActionButtons: actionButtons,
-    handleDeleteWishlist,
-  } = useWishlistHook();
+export default function WishListPage() {
   return (
-    <PageWrapper actions={<TableActions buttons={actionButtons} />}>
-      {wishlistData ? (
-        wishlistData?.map((item) => (
-          <Box key={item.id}>
-            <div>Name: {item?.name}</div>
-            <div>Description: {item?.description}</div>
-            <div>Price: {item?.price}</div>
-            <Button
-              variant="outlined"
-              onClick={() => handleDeleteWishlist(item?.pivot?.product_id)}
-            >
-              Delete wishlist
-            </Button>
-          </Box>
-        ))
-      ) : (
-        <div>No wishlist yet</div>
-      )}
-    </PageWrapper>
+    <Suspense fallback={<div>Loading...</div>}>
+      <WishListFullPage />
+    </Suspense>
   );
-};
-
-export default Wishlist;
+}

@@ -48,6 +48,7 @@ export const CategoryProducts = ({ categoryId }) => {
             description={item?.description}
             price={item?.price}
             image={item?.image}
+            final_price={item?.final_price}
           />
         ))}
       </Grid>

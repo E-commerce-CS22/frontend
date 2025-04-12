@@ -63,6 +63,10 @@ export const ProductCard = (props: ProductCardProps) => {
         width: "300px",
         borderRadius: "4px",
         margin: "1rem",
+        minHeight: "390px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
         "&:hover": { boxShadow: 6 },
         position: "relative",
       }}
