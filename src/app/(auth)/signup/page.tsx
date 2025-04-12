@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import Show from "@/shared/components/Show";
 import EyeOffIcon from "@/shared/components/EyeOffIcon";
 import Link from "next/link";
-import { patternPassword, patternEmail, patternMobile } from "@/shared/utils";
+import { patternEmail, patternMobile } from "@/shared/utils";
 import { useSignUpHook } from "./useSignUp.hook";
 import { useEffect, useRef } from "react";
 import { toast } from "react-toastify";
@@ -58,7 +58,7 @@ const SignUp = () => {
       toast.dismiss(toastId.current!);
       toast.success(t("Successfully submitted the data"));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, isError, isSuccess]);
 
   return (
@@ -199,7 +199,7 @@ const SignUp = () => {
                   }
                   {...register("password", {
                     required: t("Password is required"),
-                    pattern: patternPassword,
+                    // pattern: patternPassword,
                   })}
                   InputProps={{
                     endAdornment: (
