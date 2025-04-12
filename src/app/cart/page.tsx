@@ -1,33 +1,10 @@
-"use client";
-import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
-import { Box, Button, Typography } from "@mui/material";
-import { useCartHook } from "./Cart.hook";
-import { ProductCard } from "@/shared/components/ProductCard";
-import { useTranslation } from "react-i18next";
+import { Suspense } from "react";
+import CartPage from "./components/FullPage/CartPage";
 
-export default function MyCart() {
-  const { t } = useTranslation("Store");
-  const {
-    // isLoading,
-    // isSuccess,
-    // isError,
-    cartData,
-  } = useCartHook();
-
+export default function EditAttributesPage() {
   return (
-    <PageWrapper
-      actions={
-        <Box p={1}>
-          <Button variant="contained">{t("Payment")}</Button>
-        </Box>
-      }
-    >
-      <Typography>{t("My Cart")}</Typography>
-      <Box>
-        {cartData?.map((item, index) => (
-          <ProductCard key={index} product={item} hasDeleteFromCart />
-        ))}
-      </Box>
-    </PageWrapper>
+    <Suspense fallback={<div>Loading...</div>}>
+      <CartPage />
+    </Suspense>
   );
 }

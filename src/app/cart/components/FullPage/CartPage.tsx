@@ -1,0 +1,54 @@
+"use client";
+import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
+import { Box, Grid, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { useCartProductsHook } from "./useCartPage.hook";
+import { CartProductCard } from "./CartProductCard/CartProductCard";
+
+export default function Products() {
+  const { t } = useTranslation("Store");
+  const { products, isLoading } = useCartProductsHook();
+
+  if (isLoading) <div>Loading...</div>;
+  console.log(products);
+  return (
+    <PageWrapper padding={"0px"}>
+      <Box
+        sx={{
+          backgroundColor: "white",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          textAlign: "center",
+          padding: "1rem",
+        }}
+      >
+        <Typography variant="h6" fontWeight={"bold"}>
+          {t("Your cart products")}
+        </Typography>
+      </Box>
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "1rem 0",
+        }}
+      >
+        {products?.map((item) => (
+          <CartProductCard
+            key={item?.id}
+            id={item?.id}
+            name={item?.name}
+            description={item?.description}
+            price={item?.price}
+            image={item?.image}
+          />
+        ))}
+      </Grid>
+    </PageWrapper>
+  );
+}
