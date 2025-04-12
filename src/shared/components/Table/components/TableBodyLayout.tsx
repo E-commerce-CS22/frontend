@@ -84,7 +84,7 @@ export const TableBodyLayout = <RowType extends object>({
 
   return (
     <>
-      {data && !isLoading ? (
+      {data.length && !isLoading ? (
         data?.map((row: any, index) => {
           const _isRowDeletable = getBooleanValueFn(isRowDeletable)(row);
           const _isRowEditable = getBooleanValueFn(isRowEditable)(row);
