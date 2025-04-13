@@ -47,7 +47,7 @@ export default function PaymentPage() {
 
   useEffect(() => {
     if (isSuccessAddOrder) {
-      router.push("myOrders");
+      router.push("/myOrders");
     }
   }, [isSuccessAddOrder]);
 
