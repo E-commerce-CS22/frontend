@@ -56,15 +56,6 @@ export const usePublicRoutes = (): RouteItem[] => {
         onClick: (route) => router.push(route),
       },
       {
-        id: "ContactUs",
-        route: "Contact us",
-        fullPath: "/contactUs",
-        text: t("Contact Us"),
-        icon: <Call color="primary" />,
-        element: <div>Contact us page</div>,
-        onClick: (route) => router.push(route),
-      },
-      {
         id: "login",
         route: "login",
         fullPath: "/login",

@@ -16,6 +16,7 @@ import {
 import SendIcon from "@mui/icons-material/Send";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import PersonIcon from "@mui/icons-material/Person";
+import { useTranslation } from "react-i18next";
 
 type Message = {
   text: string;
@@ -23,6 +24,7 @@ type Message = {
 };
 
 const GeminiChatbot = () => {
+  const { t } = useTranslation("Store");
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
@@ -156,7 +158,7 @@ const GeminiChatbot = () => {
           fullWidth
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Type your message..."
+          placeholder={t("Type your message...")}
           disabled={loading}
           onKeyPress={(e) => e.key === "Enter" && handleSend()}
         />
@@ -166,7 +168,7 @@ const GeminiChatbot = () => {
           disabled={loading}
           endIcon={<SendIcon />}
         >
-          Send
+          {t("Send")}
         </Button>
       </Box>
     </Paper>

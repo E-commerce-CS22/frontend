@@ -10,17 +10,18 @@ import {
   Typography,
 } from "@mui/material";
 import { useProductDetailsHook } from "./productDetails.hook";
-import { use } from "react";
+import { use, useContext } from "react";
 import {
   MainTextColor,
   SecondaryTextColor,
   darkRed,
   primary,
 } from "@/shared/customization";
-import { ArrowBack, FavoriteBorder } from "@mui/icons-material";
+import { ArrowBack, FavoriteBorder, ShoppingCart } from "@mui/icons-material";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { i18n } from "@/shared/utils/i18next";
+import { UserContext } from "@/shared/common/authentication";
 
 type ProductDetailsProps = {
   params: Promise<{ productId: string }>;
@@ -29,6 +30,7 @@ export default function ProductDetails(props: ProductDetailsProps) {
   const { t } = useTranslation("Store");
   const params = use<{ productId: string }>(props.params);
   const { productId } = params;
+  const { isAuthenticated } = useContext(UserContext);
 
   const {
     productData,
@@ -168,27 +170,27 @@ export default function ProductDetails(props: ProductDetailsProps) {
               -
             </Button>
           </Box>
-          <Button
-            onClick={handleAddToCart}
-            variant="contained"
-            sx={{ borderRadius: "20px" }}
-          >
-            {t("Add to cart")}
-          </Button>
-          <IconButton
-            sx={{
-              position: "absolute",
-              top: "1rem",
-              right: "1rem",
-              width: "40px",
-              height: "40px",
-              borderRadius: "50%",
-              bgcolor: "white",
-            }}
-            onClick={handleAddToFavorite}
-          >
-            <FavoriteBorder color="primary" />
+          <IconButton onClick={handleAddToCart} sx={{ borderRadius: "20px" }}>
+            <ShoppingCart
+              sx={{ width: "35px", height: "35px", color: primary }}
+            />
           </IconButton>
+          {isAuthenticated && (
+            <IconButton
+              sx={{
+                position: "absolute",
+                top: "1rem",
+                right: "1rem",
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                bgcolor: "white",
+              }}
+              onClick={handleAddToFavorite}
+            >
+              <FavoriteBorder color="primary" />
+            </IconButton>
+          )}
         </CardActions>
       </Card>
     </Box>

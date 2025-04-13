@@ -182,5 +182,7 @@
   "Shipping Address": "Shipping Address",
   "Notes": "Notes",
   "Choose payment way": "Choose payment way",
-  "Purchase Code": "Purchase Code"
+  "Purchase Code": "Purchase Code",
+  "Type your message...": "Type your message...",
+  "Send": "Send"
 }

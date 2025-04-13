@@ -13,12 +13,7 @@ export const useCategoryProductsHook = ({
   // const { id } = user;
   const fetchProducts = async () => {
     const response = await axios.get(
-      `${SERVER_URI}/api/categories/${categoryId}/products`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      `${SERVER_URI}/api/categories/${categoryId}/products`
     );
     return response.data;
   };
@@ -31,7 +26,6 @@ export const useCategoryProductsHook = ({
   } = useQuery({
     queryKey: ["customerProducts"],
     queryFn: fetchProducts,
-    enabled: !!token,
   });
 
   return {
