@@ -25,9 +25,9 @@ export const CategoriesPanel = () => {
     <Box
       sx={{
         position: "relative",
-        bottom: "1rem",
+        bottom: "0rem",
         right: "0px",
-        bgcolor: "#5D6D7E",
+        bgcolor: "white",
       }}
     >
       <Button
@@ -39,18 +39,18 @@ export const CategoriesPanel = () => {
           transform: "translateY(-50%)",
           zIndex: 2,
           color: "white",
-          backgroundColor: primary,
           width: "40px",
           minWidth: "40px",
-          height: "100%",
+          height: "40px",
+          borderRadius: "50%",
+          bgcolor: primary,
           padding: 0,
-          borderRadius: 0,
           "&:hover": {
             backgroundColor: primary,
           },
         }}
       >
-        <ArrowBackIosNew fontSize="small" />
+        <ArrowForwardIos fontSize="small" />
       </Button>
       <Box
         ref={scrollRef}
@@ -85,18 +85,15 @@ export const CategoriesPanel = () => {
           transform: "translateY(-50%)",
           zIndex: 2,
           color: "white",
-          backgroundColor: primary,
           width: "40px",
           minWidth: "40px",
-          height: "100%",
+          height: "40px",
+          borderRadius: "50%",
+          bgcolor: primary,
           padding: 0,
-          borderRadius: 0,
-          "&:hover": {
-            backgroundColor: primary,
-          },
         }}
       >
-        <ArrowForwardIos fontSize="small" />
+        <ArrowBackIosNew fontSize="small" />
       </Button>
     </Box>
   );

@@ -37,6 +37,7 @@ export const CategoryProducts = ({ categoryId }) => {
           justifyContent: "center",
           alignItems: "center",
           padding: "1rem 0",
+          bgcolor: "white",
         }}
       >
         {categoryProducts?.length &&

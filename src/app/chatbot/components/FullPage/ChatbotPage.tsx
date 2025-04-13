@@ -1,82 +1,176 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import {
   Box,
-  Button,
   TextField,
+  Button,
+  Avatar,
+  List,
+  ListItem,
+  ListItemAvatar,
   Typography,
-  Paper,
   CircularProgress,
+  Paper,
 } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
+import SmartToyIcon from "@mui/icons-material/SmartToy";
+import PersonIcon from "@mui/icons-material/Person";
 
-export default function ChatbotPage() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [messages, setMessages] = useState<any>([]);
+type Message = {
+  text: string;
+  sender: "user" | "bot";
+};
+
+const GeminiChatbot = () => {
   const [input, setInput] = useState("");
+  const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const genAI = new GoogleGenerativeAI(
+    `AIzaSyDqGrvZLvUuMRTLbcdC0ScKsAuVwPZnf0c`
+  );
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
   const handleSend = async () => {
     if (!input.trim()) return;
 
-    const userMessage = { role: "user", text: input };
+    const userMessage: Message = { text: input, sender: "user" };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
 
     try {
-      const res = await fetch("/api/chatbot", {
-        method: "POST",
-        body: JSON.stringify({ message: input }),
-      });
-
-      const data = await res.json();
-      const botMessage = { role: "bot", text: data.reply };
-
+      const result = await model.generateContent(input);
+      const response = await result.response;
+      const botMessage: Message = {
+        text: response.text(),
+        sender: "bot",
+      };
       setMessages((prev) => [...prev, botMessage]);
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error("Error calling Gemini:", error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          text: "Sorry, I encountered an error",
+          sender: "bot",
+        },
+      ]);
     } finally {
       setLoading(false);
     }
   };
 
+  // Auto-scroll to bottom
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
-    <Box sx={{ p: 4, maxWidth: 800, mx: "auto" }}>
-      <Typography variant="h4" mb={3}>
-        Gemini Chatbot
-      </Typography>
-      <Paper sx={{ p: 2, height: 400, overflowY: "auto", mb: 2 }}>
-        {messages.map((msg, index) => (
-          <Box
-            key={index}
-            sx={{
-              textAlign: msg.role === "user" ? "right" : "left",
-              mb: 1,
-              color: msg.role === "user" ? "primary.main" : "text.secondary",
-            }}
-          >
-            <Typography>{msg.text}</Typography>
-          </Box>
-        ))}
-        {loading && (
-          <Box textAlign="center">
-            <CircularProgress size={20} />
-          </Box>
-        )}
-      </Paper>
-      <Box sx={{ display: "flex", gap: 2 }}>
+    <Paper
+      elevation={3}
+      sx={{
+        maxWidth: "800px",
+        margin: "auto",
+        height: "70vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Box
+        sx={{
+          flexGrow: 1,
+          overflow: "auto",
+          p: 2,
+          bgcolor: "background.default",
+        }}
+      >
+        <List>
+          {messages.map((msg, index) => (
+            <ListItem
+              key={index}
+              sx={{
+                justifyContent:
+                  msg.sender === "user" ? "flex-end" : "flex-start",
+              }}
+            >
+              {msg.sender === "bot" && (
+                <ListItemAvatar>
+                  <Avatar sx={{ bgcolor: "primary.main" }}>
+                    <SmartToyIcon />
+                  </Avatar>
+                </ListItemAvatar>
+              )}
+              <Paper
+                elevation={1}
+                sx={{
+                  p: 2,
+                  ml: msg.sender === "bot" ? 0 : 2,
+                  mr: msg.sender === "bot" ? 2 : 0,
+                  bgcolor:
+                    msg.sender === "bot" ? "primary.light" : "secondary.light",
+                  color:
+                    msg.sender === "bot"
+                      ? "primary.contrastText"
+                      : "secondary.contrastText",
+                }}
+              >
+                <Typography variant="body1">{msg.text}</Typography>
+              </Paper>
+              {msg.sender === "user" && (
+                <ListItemAvatar>
+                  <Avatar sx={{ bgcolor: "secondary.main" }}>
+                    <PersonIcon />
+                  </Avatar>
+                </ListItemAvatar>
+              )}
+            </ListItem>
+          ))}
+          {loading && (
+            <ListItem sx={{ justifyContent: "flex-start" }}>
+              <ListItemAvatar>
+                <Avatar sx={{ bgcolor: "primary.main" }}>
+                  <SmartToyIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <Paper elevation={1} sx={{ p: 2, bgcolor: "primary.light" }}>
+                <CircularProgress size={20} color="inherit" />
+              </Paper>
+            </ListItem>
+          )}
+          <div ref={messagesEndRef} />
+        </List>
+      </Box>
+
+      <Box
+        sx={{
+          p: 2,
+          display: "flex",
+          gap: 1,
+          borderTop: "1px solid",
+          borderColor: "divider",
+        }}
+      >
         <TextField
           fullWidth
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSend()}
           placeholder="Type your message..."
+          disabled={loading}
+          onKeyPress={(e) => e.key === "Enter" && handleSend()}
         />
-        <Button variant="contained" onClick={handleSend}>
+        <Button
+          variant="contained"
+          onClick={handleSend}
+          disabled={loading}
+          endIcon={<SendIcon />}
+        >
           Send
         </Button>
       </Box>
-    </Box>
+    </Paper>
   );
-}
+};
+
+export default GeminiChatbot;

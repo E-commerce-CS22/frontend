@@ -5,7 +5,7 @@ import {
   primary,
   SecondaryTextColor,
 } from "@/shared/customization";
-import { FavoriteBorder } from "@mui/icons-material";
+import { FavoriteBorder, ShoppingCart } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -67,7 +67,8 @@ export const ProductCard = (props: ProductCardProps) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        "&:hover": { boxShadow: 6 },
+        transition: "transform 0.5s ease, box-shadow 0.5s ease",
+        "&:hover": { boxShadow: 6, transform: "scale(1.04)" },
         position: "relative",
       }}
     >
@@ -121,7 +122,7 @@ export const ProductCard = (props: ProductCardProps) => {
           <Typography>{t("Riyal")}</Typography>
         </Box>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box
           sx={{
             display: "flex",
@@ -150,13 +151,11 @@ export const ProductCard = (props: ProductCardProps) => {
             -
           </Button>
         </Box>
-        <Button
-          onClick={handleAddToCart}
-          variant="contained"
-          sx={{ borderRadius: "20px" }}
-        >
-          {t("Add to cart")}
-        </Button>
+        <IconButton onClick={handleAddToCart} sx={{ borderRadius: "20px" }}>
+          <ShoppingCart
+            sx={{ width: "35px", height: "35px", color: primary }}
+          />
+        </IconButton>
         <IconButton
           sx={{
             position: "absolute",

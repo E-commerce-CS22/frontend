@@ -17,7 +17,7 @@ export const HomePage = () => {
   const { products, handleOpenCategoryProducts } = useHomePageHook();
   const { user } = useContext(UserContext);
   const userRole = user?.role;
-  if (userRole) {
+  if (userRole === "admin") {
     router.push("/dashboard");
   }
   return (
@@ -67,6 +67,10 @@ export const HomePage = () => {
             justifyContent: "center",
             flexWrap: "wrap",
             alignItems: "flex-end",
+            // margin: "0.8rem",
+            padding: "1rem",
+            borderRadius: "4px",
+            bgcolor: "white",
           }}
         >
           {products?.length &&

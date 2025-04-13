@@ -24,7 +24,8 @@ export const CategoryCard = (props: CategoryDataProps) => {
         borderRadius: "4px",
         margin: "1rem",
         cursor: "pointer",
-        "&:hover": { boxShadow: 6 },
+        transition: "transform 0.5s ease, box-shadow 0.5s ease",
+        "&:hover": { boxShadow: 6, transform: "scale(1.04)" },
       }}
       onClick={handleCategoryProducts}
     >

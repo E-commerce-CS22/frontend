@@ -67,7 +67,8 @@ export const ProductCard = (props: ProductCardProps) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        "&:hover": { boxShadow: 6 },
+        transition: "transform 0.5s ease, box-shadow 0.5s ease",
+        "&:hover": { boxShadow: 6, transform: "scale(1.04)" },
         position: "relative",
       }}
     >

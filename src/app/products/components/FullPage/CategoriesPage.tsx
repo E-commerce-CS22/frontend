@@ -39,6 +39,7 @@ export default function Products() {
           justifyContent: "center",
           alignItems: "center",
           padding: "1rem 0",
+          bgcolor: "white",
         }}
       >
         {categoriesData?.length &&
