@@ -84,7 +84,7 @@ export const useProductDetailsHook = ({ productId }) => {
     isSuccessDeletingProduct,
     isErrorDeletingProduct,
     error,
-    productData: productData,
+    productData: productData?.data,
     handleAddToFavorite,
     handleGoBack,
     handleRemoveFromCart,

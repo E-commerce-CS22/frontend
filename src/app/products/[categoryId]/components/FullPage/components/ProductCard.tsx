@@ -72,7 +72,7 @@ export const ProductCard = (props: ProductCardProps) => {
         position: "relative",
       }}
     >
-      <CardMedia>
+      <CardMedia sx={{ cursor: "pointer" }} onClick={handleCategoryProduct}>
         {image && <Image src={image} alt={name} width={200} height={200} />}
         {!image && (
           <Image

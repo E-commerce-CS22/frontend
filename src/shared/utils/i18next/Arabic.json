@@ -179,5 +179,11 @@
   "No wishlist items yet!": "لا يوجد عناصر في قائمة الرغبات بعد!",
   "Your wishlist products": "منتجات قائمة الرغبات الخاصة بك",
   "No cart items yet!": "لا يوجد عناصر في السلة!",
-  "Orders": "الطلبات"
+  "Orders": "الطلبات",
+  "Shipping Address": "عنوان الشحن",
+  "Notes": "ملاحضات",
+  "Choose payment way": "اختر طريقة الدفع",
+  "Cash on Delivery": "الدفع عند الاستلام",
+  "Gawaly Wallet Payment": "الدفع عن طريقة محفظة جوالي",
+  "Purchase Code": "كود الشراء"
 }

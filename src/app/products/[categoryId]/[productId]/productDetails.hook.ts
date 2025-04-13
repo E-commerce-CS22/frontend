@@ -14,7 +14,7 @@ export const useProductDetailsHook = ({ productId }) => {
 
   const router = useRouter();
 
-  const [productQuantity, setProductQuantity] = useState(0);
+  const [productQuantity, setProductQuantity] = useState(1);
 
   const fetchProduct = async () => {
     const response = await axios.get(

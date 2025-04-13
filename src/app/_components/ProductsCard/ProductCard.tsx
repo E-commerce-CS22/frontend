@@ -49,7 +49,7 @@ export const ProductCard = (props: ProductCardProps) => {
   const { id, name, image, description, price, final_price } = props;
   const {
     productQuantity,
-    handleCategoryProduct,
+    // handleCategoryProduct,
     handleIncreaseQuantity,
     handleDecreaseQuantity,
     handleAddToFavorite,
@@ -90,13 +90,13 @@ export const ProductCard = (props: ProductCardProps) => {
         <Typography
           color={SecondaryTextColor}
           sx={{
-            cursor: "pointer",
+            // cursor: "pointer",
             fontSize: "13px",
-            "&:hover": {
-              color: darkRed,
-            },
+            // "&:hover": {
+            //   color: darkRed,
+            // },
           }}
-          onClick={handleCategoryProduct}
+          // onClick={handleCategoryProduct}
         >
           {description?.slice(0, 61)}
           {description?.length > 62 && "..."}
