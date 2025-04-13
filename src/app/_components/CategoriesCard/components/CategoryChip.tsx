@@ -25,6 +25,7 @@ export const CategoryChip = (props: CategoryChipProps) => {
         width: "fit-content",
         margin: "0 0.5rem",
         cursor: "pointer",
+        boxShadow: "0px 0px 6px 0px rgba(48, 49, 50, 0.75)",
       }}
       onClick={handleCategoryProduct}
     >

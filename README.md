@@ -25,6 +25,8 @@ npm start
 SERVER_URI=http://127.0.0.1:8000
 NEXT_PUBLIC_URI=${SERVER_URI}
 
+GOOGLE_API_KEY=AIzaSyDqGrvZLvUuMRTLbcdC0ScKsAuVwPZnf0c
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to open the project.
