@@ -3,8 +3,11 @@ import { SERVER_URI } from "@/shared/utils";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext } from "react";
+import { getOrdersColumns } from "../OrdersColumns";
+import { useTranslation } from "react-i18next";
 
 export const useMyOrdersHook = () => {
+  const { t } = useTranslation("Store");
   const { token } = useContext(UserContext);
 
   const fetchMyOrders = async () => {
@@ -30,6 +33,7 @@ export const useMyOrdersHook = () => {
     isLoading,
     isSuccess,
     isError,
+    columns: getOrdersColumns(t),
     myOrdersData: myOrdersData?.data,
   };
 };

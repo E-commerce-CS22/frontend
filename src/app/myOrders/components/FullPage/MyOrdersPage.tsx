@@ -1,14 +1,24 @@
 "use client";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { useMyOrdersHook } from "./myOrders.hook";
+import { CustomTable } from "@/shared/components/Table";
+import { Box } from "@mui/material";
 
 export const MyOrdersPage = () => {
-  const { myOrdersData } = useMyOrdersHook();
+  const { myOrdersData, columns } = useMyOrdersHook();
 
   console.log(myOrdersData);
   return (
-    <PageWrapper>
-      <div>My Orders</div>
-    </PageWrapper>
+    <Box padding={"3rem 2rem"}>
+      <CustomTable
+        columns={columns}
+        data={myOrdersData}
+        pageIndex={1}
+        pageSize={100}
+        hasNextPage={false}
+        hasPreviousPage={false}
+        hasFooter={false}
+      />
+    </Box>
   );
 };
