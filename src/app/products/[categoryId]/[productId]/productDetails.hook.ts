@@ -7,10 +7,9 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
 export const useProductDetailsHook = ({ productId }) => {
-  const { token, user } = useContext(UserContext);
-  const {
-    customer_data: { wishlist_id: wishlistId },
-  } = user;
+  const { token, user, isAuthenticated } = useContext(UserContext);
+  const customer_data = user?.customer_data;
+  const wishlistId = customer_data?.wishlist_id;
 
   const router = useRouter();
 
@@ -77,10 +76,14 @@ export const useProductDetailsHook = ({ productId }) => {
   };
 
   const handleAddToCart = () => {
-    addToCard({
-      product_id: productId,
-      quantity: productQuantity,
-    });
+    if (!isAuthenticated) {
+      router.push("/login");
+    } else {
+      addToCard({
+        product_id: productId,
+        quantity: productQuantity,
+      });
+    }
   };
 
   const handleGoBack = () => {

@@ -1,20 +1,15 @@
-import { UserContext } from "@/shared/common/authentication";
 import { SERVER_URI } from "@/shared/utils";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
+// import { useContext } from "react";
 
 export const useHomePageHook = () => {
-  const { token } = useContext(UserContext);
+  // const { token } = useContext(UserContext);
   const router = useRouter();
   // const { id } = user;
   const fetchProducts = async () => {
-    const response = await axios.get(`${SERVER_URI}/api/products`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(`${SERVER_URI}/api/products?per_page=20`);
     return response.data;
   };
 
@@ -26,7 +21,6 @@ export const useHomePageHook = () => {
   } = useQuery({
     queryKey: ["customerProducts"],
     queryFn: fetchProducts,
-    enabled: !!token,
   });
 
   const handleOpenCategoryProducts = () => {

@@ -85,15 +85,6 @@ export const useCustomerRoutes = (): RouteItem[] => {
         onClick: (route) => router.push(route),
       },
       {
-        id: "ContactUs",
-        route: "Contact us",
-        fullPath: "/contactUs",
-        text: t("Contact Us"),
-        icon: <Call color="primary" />,
-        element: <div>Contact us page</div>,
-        onClick: (route) => router.push(route),
-      },
-      {
         id: "profile",
         route: "profile",
         fullPath: "/profile",

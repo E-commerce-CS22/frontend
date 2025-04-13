@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 
 export const useProductCardHook = ({ id }) => {
-  const { token } = useContext(UserContext);
+  const { token, isAuthenticated } = useContext(UserContext);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -63,10 +63,14 @@ export const useProductCardHook = ({ id }) => {
   };
 
   const handleAddToCart = () => {
-    addToCard({
-      product_id: id,
-      quantity: productQuantity,
-    });
+    if (!isAuthenticated) {
+      router.push("/login");
+    } else {
+      addToCard({
+        product_id: id,
+        quantity: productQuantity,
+      });
+    }
   };
 
   return {

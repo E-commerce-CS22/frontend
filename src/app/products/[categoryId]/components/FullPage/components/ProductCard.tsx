@@ -19,6 +19,8 @@ import {
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { useProductCardHook } from "./useProductCard.hook";
+import { useContext } from "react";
+import { UserContext } from "@/shared/common/authentication";
 
 type ProductCardProps = {
   id: string;
@@ -45,6 +47,7 @@ type ProductCardProps = {
 
 export const ProductCard = (props: ProductCardProps) => {
   const { t } = useTranslation("Store");
+  const { isAuthenticated } = useContext(UserContext);
 
   const { id, name, image, description, price, final_price } = props;
 
@@ -156,20 +159,22 @@ export const ProductCard = (props: ProductCardProps) => {
             sx={{ width: "35px", height: "35px", color: primary }}
           />
         </IconButton>
-        <IconButton
-          sx={{
-            position: "absolute",
-            top: "1rem",
-            right: "1rem",
-            width: "40px",
-            height: "40px",
-            borderRadius: "50%",
-            bgcolor: "white",
-          }}
-          onClick={handleAddToFavorite}
-        >
-          <FavoriteBorder color="primary" />
-        </IconButton>
+        {isAuthenticated && (
+          <IconButton
+            sx={{
+              position: "absolute",
+              top: "1rem",
+              right: "1rem",
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+              bgcolor: "white",
+            }}
+            onClick={handleAddToFavorite}
+          >
+            <FavoriteBorder color="primary" />
+          </IconButton>
+        )}
       </CardActions>
     </Card>
   );
