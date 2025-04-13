@@ -29,7 +29,7 @@ export const CategoryCard = (props: CategoryDataProps) => {
       }}
       onClick={handleCategoryProducts}
     >
-      <CardMedia>
+      <CardMedia sx={{ cursor: "pointer" }} onClick={handleCategoryProducts}>
         {image && (
           <Image
             src={image}

@@ -12,7 +12,7 @@ export const useProductCardHook = ({ id }) => {
 
   const router = useRouter();
   const pathname = usePathname();
-  const [productQuantity, setProductQuantity] = useState(0);
+  const [productQuantity, setProductQuantity] = useState(1);
 
   const {
     mutate,

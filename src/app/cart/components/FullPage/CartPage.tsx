@@ -7,7 +7,7 @@ import { CartProductCard } from "./CartProductCard/CartProductCard";
 
 export default function Products() {
   const { t } = useTranslation("Store");
-  const { products, isLoading } = useCartProductsHook();
+  const { products, isLoading, handlePaymentPage } = useCartProductsHook();
 
   if (isLoading) <div>Loading...</div>;
   return (
@@ -35,6 +35,7 @@ export default function Products() {
           justifyContent: "center",
           alignItems: "center",
           padding: "1rem 0",
+          bgcolor: "white",
         }}
       >
         {products?.length ? (
@@ -64,7 +65,9 @@ export default function Products() {
             padding: "1rem 4rem 2rem",
           }}
         >
-          <Button variant="contained">{t("Continue buying (Payment)")}</Button>
+          <Button onClick={handlePaymentPage} variant="contained">
+            {t("Continue buying (Payment)")}
+          </Button>
         </Box>
       )}
     </PageWrapper>

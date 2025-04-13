@@ -32,6 +32,7 @@ const Wishlist = () => {
           justifyContent: "center",
           flexWrap: "wrap",
           alignItems: "flex-end",
+          bgcolor: "white",
         }}
       >
         {wishlistData?.length ? (

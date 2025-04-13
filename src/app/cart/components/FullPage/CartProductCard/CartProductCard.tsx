@@ -30,7 +30,7 @@ type CartProductCardProps = {
   parent_id?: null;
   is_parent?: 0;
   discount_type?: null;
-  price: string | number;
+  price: string;
   discount_value?: string | number;
   status?: string | boolean;
   discount_start_date?: string;
@@ -42,7 +42,7 @@ type CartProductCardProps = {
   pivot?: {
     category_id?: string;
     product_id?: string;
-    quantity?: string | number | undefined;
+    quantity?: string;
   };
 };
 
@@ -65,6 +65,10 @@ export const CartProductCard = (props: CartProductCardProps) => {
     id,
   });
 
+  // Calculate the final price based on the quantity and price
+  const finalPrice = quantity
+    ? parseFloat(quantity) * parseFloat(price)
+    : parseFloat(price);
   return (
     <Card
       sx={{
@@ -80,7 +84,7 @@ export const CartProductCard = (props: CartProductCardProps) => {
         position: "relative",
       }}
     >
-      <CardMedia>
+      <CardMedia sx={{ cursor: "pointer" }} onClick={handleCategoryProduct}>
         {image && <Image src={image} alt={name} width={200} height={200} />}
         {!image && (
           <Image
@@ -124,7 +128,7 @@ export const CartProductCard = (props: CartProductCardProps) => {
             }}
             color={final_price ? darkRed : primary}
           >
-            {price}
+            {finalPrice}
           </Typography>
           {final_price && <Typography>{final_price}</Typography>}
           <Typography>{t("Riyal")}</Typography>
