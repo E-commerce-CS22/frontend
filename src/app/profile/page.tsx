@@ -102,7 +102,11 @@ export default function Profile() {
         >
           <Box display="flex" flexDirection="column" alignItems="center" mb={3}>
             <Avatar
-              src={profileData.profile || "/smartStore1.png"}
+              src={
+                profileData.profile
+                  ? `http://127.0.0.1:8000/storage/${profileData.profile}`
+                  : "/smartStore1.png"
+              }
               alt="Profile"
               sx={{ width: 120, height: 120, mb: 1 }}
             />

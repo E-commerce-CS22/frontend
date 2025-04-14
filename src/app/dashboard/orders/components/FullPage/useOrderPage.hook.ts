@@ -14,14 +14,11 @@ export const useOderPageHook = () => {
   const { token } = useContext(UserContext);
 
   const fetchOrders = async () => {
-    const response = await axios.get(
-      `${SERVER_URI}/api/admin/orders?status=pending&per_page=10`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.get(`${SERVER_URI}/api/admin/orders`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   };
 

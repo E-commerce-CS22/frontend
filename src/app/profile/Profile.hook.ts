@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { UserContext } from "@/shared/common/authentication";
 import { SERVER_URI } from "@/shared/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";

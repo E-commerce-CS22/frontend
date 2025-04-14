@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import {
   darkRed,
@@ -25,7 +26,7 @@ import { UserContext } from "@/shared/common/authentication";
 type ProductCardProps = {
   id: string;
   name: string;
-  image?: string;
+  images?: any;
   description: string;
   parent_id?: null;
   is_parent?: 0;
@@ -49,7 +50,7 @@ export const ProductCard = (props: ProductCardProps) => {
   const { t } = useTranslation("Store");
   const { isAuthenticated } = useContext(UserContext);
 
-  const { id, name, image, description, price, final_price } = props;
+  const { id, name, images, description, price, final_price } = props;
   const {
     productQuantity,
     // handleCategoryProduct,
@@ -58,7 +59,7 @@ export const ProductCard = (props: ProductCardProps) => {
     handleAddToFavorite,
     handleAddToCart,
   } = useProductCardHook({ id });
-
+  const primaryImage = images?.find((item) => item?.is_primary)?.url;
   return (
     <Card
       sx={{
@@ -75,8 +76,10 @@ export const ProductCard = (props: ProductCardProps) => {
       }}
     >
       <CardMedia>
-        {image && <Image src={image} alt={name} width={200} height={200} />}
-        {!image && (
+        {primaryImage && (
+          <Image src={primaryImage} alt={name} width={200} height={200} />
+        )}
+        {!primaryImage && (
           <Image
             src={"/images/home-bgcolor.jpg"}
             alt={name}

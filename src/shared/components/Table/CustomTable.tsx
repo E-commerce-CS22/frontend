@@ -1,7 +1,6 @@
 import Card from "@mui/material/Card";
 import TableContainer from "@mui/material/TableContainer";
-import React, { ReactElement, useEffect, useState } from "react";
-import { TableBodyWithoutDataView } from "./components/TableBodyWithoutDataView";
+import React, { ReactElement } from "react";
 import CustomTableFooter from "./components/TableFooter";
 import TableLayout from "./components/TableLayout";
 import { CustomTableProps } from "./types";
@@ -25,7 +24,6 @@ const CustomTable = <RowType extends object>({
   pagesCount = 0,
   pageSize = 10,
   totalCount,
-  withoutDataMessage,
   title,
   onDeleteRow: handleDeleteRow = noop,
   onEditRow: handleEditRow = noop,
@@ -38,15 +36,6 @@ const CustomTable = <RowType extends object>({
   tableContainerSx,
   showRecordsNumberForm,
 }: CustomTableProps<RowType>): ReactElement => {
-  const [dataStatus, setDataStatus] = useState<
-    "loading" | "loaded" | "updated"
-  >("loading");
-  useEffect(() => {
-    if (isLoading) return;
-    if (data?.length) {
-      setDataStatus((status) => (status === "loading" ? "loaded" : "updated"));
-    }
-  }, [data, isLoading]);
   return (
     <Card
       sx={{
@@ -92,12 +81,6 @@ const CustomTable = <RowType extends object>({
           />
         </TableContainer>
       </>
-      {data?.length === 0 && !isLoading && (
-        <TableBodyWithoutDataView
-          withoutDataMessage={withoutDataMessage}
-          isFilterApplied={dataStatus === "updated"}
-        />
-      )}
       {hasFooter && (
         <CustomTableFooter
           footerHeight={footerHeight}

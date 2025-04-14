@@ -19,14 +19,20 @@ export default function Dashboard() {
   const classes = commonCardStyles();
 
   const { data, isLoading, error } = useUserActivity();
-  const { data: ordersData, isLoading: isOrdersLoading, error: ordersError } = useOrdersStatistics();
+  const {
+    data: ordersData,
+    isLoading: isOrdersLoading,
+    error: ordersError,
+  } = useOrdersStatistics();
 
   // Extract number of customers and admins from user activity data
-  const numCustomers = data?.users_by_role?.find((u) => u.role === "customer")?.total || 0;
-  const numAdmins = data?.users_by_role?.find((u) => u.role === "admin")?.total || 0;
+  const numCustomers =
+    data?.users_by_role?.find((u) => u.role === "customer")?.total || 0;
+  const numAdmins =
+    data?.users_by_role?.find((u) => u.role === "admin")?.total || 0;
 
-  const userRoles = data?.users_by_role?.map(role => role.role) || [];
-  const userCounts = data?.users_by_role?.map(role => role.total) || [];
+  const userRoles = data?.users_by_role?.map((role) => role.role) || [];
+  const userCounts = data?.users_by_role?.map((role) => role.total) || [];
 
   const pieData = {
     labels: ["Active Today", "Inactive Today"],
@@ -38,9 +44,13 @@ export default function Dashboard() {
     ],
   };
 
-  const activeCustomers = data?.users_by_role.find(role => role.role === "customer")?.active_today || 0;
-  const totalCustomers = data?.users_by_role.find(role => role.role === "customer")?.total || 0;
-  const totalAdmins = data?.users_by_role.find(role => role.role === "admin")?.total || 0;
+  const activeCustomers =
+    data?.users_by_role.find((role) => role.role === "customer")
+      ?.active_today || 0;
+  const totalCustomers =
+    data?.users_by_role.find((role) => role.role === "customer")?.total || 0;
+  const totalAdmins =
+    data?.users_by_role.find((role) => role.role === "admin")?.total || 0;
 
   const adminPieData = {
     labels: ["Active Admins", "Inactive Admins"],
@@ -67,7 +77,13 @@ export default function Dashboard() {
     datasets: [
       {
         data: userCounts,
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4CAF50", "#F44336"],
+        backgroundColor: [
+          "#FF6384",
+          "#36A2EB",
+          "#FFCE56",
+          "#4CAF50",
+          "#F44336",
+        ],
       },
     ],
   };
@@ -85,7 +101,6 @@ export default function Dashboard() {
       },
     ],
   };
-
 
   if (isLoading || isOrdersLoading) {
     return (
@@ -127,7 +142,20 @@ export default function Dashboard() {
   }
 
   const barData = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
     datasets: [
       {
         label: "Page Views",
@@ -147,7 +175,14 @@ export default function Dashboard() {
       <Box sx={{ width: "100%", padding: "20px" }}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={3}>
-            <Card sx={{ padding: "20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <Card
+              sx={{
+                padding: "20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <Box>
                 <Typography variant="h6">{t("Customers count")}</Typography>
                 <Typography variant="h4">{numCustomers}</Typography>
@@ -156,7 +191,14 @@ export default function Dashboard() {
             </Card>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Card sx={{ padding: "20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <Card
+              sx={{
+                padding: "20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <Box>
                 <Typography variant="h6">{t("Admins count")}</Typography>
                 <Typography variant="h4">{numAdmins}</Typography>
@@ -165,7 +207,14 @@ export default function Dashboard() {
             </Card>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Card sx={{ padding: "20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <Card
+              sx={{
+                padding: "20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <Box>
                 <Typography variant="h6">{t("Total Orders")}</Typography>
                 <Typography variant="h4">{ordersData.total_orders}</Typography>
@@ -174,7 +223,14 @@ export default function Dashboard() {
             </Card>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Card sx={{ padding: "20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <Card
+              sx={{
+                padding: "20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <Box>
                 <Typography variant="h6">{t("Deals")}</Typography>
                 <Typography variant="h4">{ordersData.deals}</Typography>
