@@ -38,7 +38,7 @@ export default function Products() {
           flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
-          padding: "1rem 0",
+          padding: "1rem 0 3rem",
           bgcolor: "white",
         }}
       >

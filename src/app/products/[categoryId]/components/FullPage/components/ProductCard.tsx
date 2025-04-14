@@ -65,13 +65,13 @@ export const ProductCard = (props: ProductCardProps) => {
       sx={{
         width: "300px",
         borderRadius: "4px",
-        margin: "1rem",
+        margin: "0.3rem",
         minHeight: "390px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        transition: "transform 0.5s ease, box-shadow 0.5s ease",
-        "&:hover": { boxShadow: 6, transform: "scale(1.04)" },
+        transition: "transform 0.5s ease, box-shadow 0.1s ease",
+        "&:hover": { boxShadow: 6, transform: "scale(1.01)" },
         position: "relative",
       }}
     >

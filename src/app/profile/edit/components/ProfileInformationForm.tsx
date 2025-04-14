@@ -46,7 +46,7 @@ export const ProfileInformationForm = (props) => {
           {...register(`first_name`, {
             required: getRequiredValidation(t, false),
           })}
-          defaultValue={defaultValues?.first_name}
+          defaultValue={defaultValues?.customer_data?.first_name}
         />
       </Grid>
       <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
@@ -61,7 +61,7 @@ export const ProfileInformationForm = (props) => {
           {...register(`last_name`, {
             required: getRequiredValidation(t, false),
           })}
-          defaultValue={defaultValues?.last_name}
+          defaultValue={defaultValues?.customer_data?.last_name}
         />
       </Grid>
       <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
@@ -93,27 +93,10 @@ export const ProfileInformationForm = (props) => {
             required: t("Phone number is required"),
             pattern: patternMobile,
           })}
-          defaultValue={defaultValues?.phone}
+          defaultValue={defaultValues?.customer_data?.phone}
           InputProps={{
             inputProps: { dir: "ltr" },
           }}
-        />
-      </Grid>
-      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
-        <TextField
-          label={t("Postal Code")}
-          placeholder={t("Postal Code")}
-          fullWidth
-          error={Boolean(errors?.postal_code?.message)}
-          helperText={
-            errors?.postal_code?.message
-              ? t(`${errors.postal_code.message}`)
-              : ""
-          }
-          {...register(`postal_code`, {
-            required: getRequiredValidation(t, false),
-          })}
-          defaultValue={defaultValues?.postal_code}
         />
       </Grid>
       <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
@@ -126,7 +109,7 @@ export const ProfileInformationForm = (props) => {
           {...register(`city`, {
             required: getRequiredValidation(t, false),
           })}
-          defaultValue={defaultValues?.city}
+          defaultValue={defaultValues?.customer_data?.city}
         />
       </Grid>
       <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
@@ -141,7 +124,7 @@ export const ProfileInformationForm = (props) => {
           {...register(`country`, {
             required: getRequiredValidation(t, false),
           })}
-          defaultValue={defaultValues?.country}
+          defaultValue={defaultValues?.customer_data?.country}
         />
       </Grid>
       <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
@@ -156,7 +139,7 @@ export const ProfileInformationForm = (props) => {
           {...register(`address`, {
             required: getRequiredValidation(t, false),
           })}
-          defaultValue={defaultValues?.address}
+          defaultValue={defaultValues?.customer_data?.address}
         />
       </Grid>
     </Grid>

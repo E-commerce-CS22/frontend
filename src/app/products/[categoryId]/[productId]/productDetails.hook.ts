@@ -96,7 +96,7 @@ export const useProductDetailsHook = ({ productId }) => {
     isError,
     error,
     productQuantity,
-    productData: productData,
+    productData: productData?.data,
     handleIncreaseQuantity,
     handleDecreaseQuantity,
     handleAddToFavorite,

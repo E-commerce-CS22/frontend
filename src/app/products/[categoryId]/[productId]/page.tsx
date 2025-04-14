@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useProductDetailsHook } from "./productDetails.hook";
-import { use, useContext } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import {
   MainTextColor,
   SecondaryTextColor,
@@ -41,6 +41,14 @@ export default function ProductDetails(props: ProductDetailsProps) {
     handleAddToCart,
     handleGoBack,
   } = useProductDetailsHook({ productId });
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
   return (
     <Box
       display={"flex"}
@@ -82,7 +90,7 @@ export default function ProductDetails(props: ProductDetailsProps) {
           {productData?.image && (
             <Image
               src={productData?.image}
-              alt={productData?.name}
+              alt={productData?.name || "product image"}
               fill
               style={{
                 objectFit: "cover",
@@ -95,7 +103,7 @@ export default function ProductDetails(props: ProductDetailsProps) {
           {!productData?.image && (
             <Image
               src={"/images/home-bgcolor.jpg"}
-              alt={productData?.name}
+              alt={productData?.name || "product image"}
               fill
               style={{
                 objectFit: "cover",

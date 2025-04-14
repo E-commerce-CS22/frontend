@@ -1,5 +1,4 @@
 "use client";
-import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { useMyOrdersHook } from "./myOrders.hook";
 import { CustomTable } from "@/shared/components/Table";
 import { Box } from "@mui/material";
