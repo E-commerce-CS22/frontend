@@ -1,13 +1,15 @@
+"use client";
+import { useEffect, useState, useContext } from "react";
 import { FormCard } from "@/shared/components/Form";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { Grid, Autocomplete, TextField } from "@mui/material";
 import { FormProvider, Controller } from "react-hook-form";
 import { useTagsForm } from "./useTagsForm";
 import { useTranslation } from "react-i18next";
-import { useContext } from "react";
 import { ProductContext } from "../../ProductContext";
 
 export const TagsForm = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const { t } = useTranslation("Store");
   const {
     handleClick,
@@ -18,7 +20,13 @@ export const TagsForm = () => {
     handleChangeTags,
   } = useTagsForm();
 
-  const { tags: contextTags } = useContext(ProductContext);
+  const { tags: contextTags = [] } = useContext(ProductContext);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   return (
     <FormProvider {...methods}>
@@ -30,17 +38,19 @@ export const TagsForm = () => {
                 <Controller
                   name="tags"
                   control={control}
+                  defaultValue={contextTags}
                   render={({ field }) => (
                     <Autocomplete
                       options={tags}
                       multiple
-                      {...field}
-                      defaultValue={contextTags}
-                      onChange={(_, newValues) =>
-                        handleChangeTags(newValues, field)
-                      }
-                      getOptionLabel={(option) =>
-                        option?.name ? option?.name : ""
+                      value={field.value || []}
+                      getOptionLabel={(option) => option?.name || ""}
+                      onChange={(_, newValues) => {
+                        field.onChange(newValues || []);
+                        handleChangeTags(newValues, field);
+                      }}
+                      isOptionEqualToValue={(option, value) =>
+                        option.id === value.id
                       }
                       renderInput={(params) => (
                         <TextField {...params} label={t("Tags")} />

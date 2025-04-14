@@ -27,7 +27,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(true);
   const [authModalOpen, setAuthModalOpen] = useState(false);
-  const [authModalTab, setAuthModalTab] = useState<'login' | 'signup'>('login');
+  const [authModalTab, setAuthModalTab] = useState<"login" | "signup">("login");
 
   const userRole = user?.role;
   const publicRoutes = usePublicRoutes();
@@ -88,18 +88,19 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
 
   const handleClickClose = () => setAnchorEl(null);
   const handleToggleDrawer = () => setOpen((prevState) => !prevState);
-  
+
   const handleOpenLoginModal = () => {
-    setAuthModalTab('login');
+    setAuthModalTab("login");
     setAuthModalOpen(true);
   };
 
   const handleOpenSignupModal = () => {
-    setAuthModalTab('signup');
+    setAuthModalTab("signup");
     setAuthModalOpen(true);
   };
 
   const handleCloseAuthModal = () => setAuthModalOpen(false);
+  console.log(user);
 
   return (
     <>
@@ -124,17 +125,17 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
               </IconButton>
             ) : (
               <Box display="flex" gap={1}>
-                <Button 
-                  variant="outlined" 
-                  color="primary" 
+                <Button
+                  variant="outlined"
+                  color="primary"
                   onClick={handleOpenSignupModal}
                   size="small"
                 >
                   {t("Register Now")}
                 </Button>
-                <Button 
-                  variant="contained" 
-                  color="primary" 
+                <Button
+                  variant="contained"
+                  color="primary"
                   onClick={handleOpenLoginModal}
                   size="small"
                 >
@@ -163,20 +164,22 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
       {isOpen && (
         <AccountDropdownMenu
           username={
-            [user?.firstName, user?.lastName].filter(Boolean).join(" ") ||
-            "User"
+            [user?.customer_data?.first_name, user?.customer_data?.last_name]
+              .filter(Boolean)
+              .join(" ") || "User"
           }
           open={isOpen}
           onLogout={handleLogout}
           items={[]}
           anchorEl={anchorEl}
           onClose={handleClickClose}
+          imgSrc={user?.profile}
         />
       )}
 
-      <AuthModal 
-        open={authModalOpen} 
-        onClose={handleCloseAuthModal} 
+      <AuthModal
+        open={authModalOpen}
+        onClose={handleCloseAuthModal}
         initialTab={authModalTab}
       />
     </>

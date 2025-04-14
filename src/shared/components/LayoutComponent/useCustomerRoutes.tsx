@@ -5,7 +5,6 @@ import RouteItem from "./routeTypes";
 import { useMemo } from "react";
 import {
   AccountCircle,
-  Call,
   ChatBubble,
   Favorite,
   Home,

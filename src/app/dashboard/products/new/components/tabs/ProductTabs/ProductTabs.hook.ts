@@ -84,7 +84,6 @@ export const useProductsTabs = () => {
       }) => {
         const formData = new FormData();
         if (image) formData.append("images", image);
-
         return axios.post(
           `${SERVER_URI}/api/admin/products/${id}/images`,
           formData,
