@@ -209,5 +209,8 @@
   "Total Amount": "Total Amount",
   "Order Summary": "Order Summary",
   "Enter your shipping address": "Enter your shipping address",
-  "Payment Details": "Payment Details"
+  "Payment Details": "Payment Details",
+  "Loading profile...": "Loading profile...",
+  "Failed to load profile": "Failed to load profile",
+  "Profile loaded successfully!": "Profile loaded successfully!"
 }
