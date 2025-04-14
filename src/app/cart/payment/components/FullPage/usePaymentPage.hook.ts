@@ -45,8 +45,6 @@ export const usePaymentPageHook = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
-    console.log(products);
     const orderProducts = products?.map((item) => {
       return {
         product_id: item?.id,

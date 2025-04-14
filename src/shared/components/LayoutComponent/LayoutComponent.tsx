@@ -1,5 +1,4 @@
 "use client";
-
 import { useTranslation } from "react-i18next";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useRouter, usePathname, useParams } from "next/navigation";
@@ -100,7 +99,14 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
   };
 
   const handleCloseAuthModal = () => setAuthModalOpen(false);
-  console.log(user);
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   return (
     <>

@@ -15,7 +15,7 @@ export const useOderPageHook = () => {
 
   const fetchOrders = async () => {
     const response = await axios.get(
-      `${SERVER_URI}/api/orders?status=pending&per_page=10`,
+      `${SERVER_URI}/api/admin/orders?status=pending&per_page=10`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -52,7 +52,7 @@ export const useOderPageHook = () => {
     isSuccess,
     isError,
     tableActionButtons,
-    columns: getOrdersColumns(),
+    columns: getOrdersColumns(t),
     ordersData: ordersData?.data,
   };
 };
