@@ -218,5 +218,13 @@
   "Modify profile image": "تعديل صورة الملف الشخصي",
   "Change password": "تغيير كلمة المرور",
   "Failed to post profile image": "فشل في نشر صورة الملف الشخصي",
-  "Profile image posted successfully!": "تم نشر صورة الملف الشخصي بنجاح!"
+  "Profile image posted successfully!": "تم نشر صورة الملف الشخصي بنجاح!",
+  "Total Customers: ": "إجمالي العملاء: ",
+  "User Activity Statistics": "إحصائيات نشاط المستخدمين",
+  "Total Products: ": "إجمالي المنتجات: ",
+  "Total Orders: ": "إجمالي الطلبات: ",
+  "Total Admins: ": "إجمالي المشرفين: ",
+  "Customers count": "عدد العملاء",
+  "Admins count" : "عدد المشرفين",
+  "Total Orders" : "إجمالي الطلبات"
 }
