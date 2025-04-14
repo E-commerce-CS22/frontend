@@ -4,6 +4,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 
 export const useProfileHook = () => {
   const { token } = useContext(UserContext);
@@ -43,6 +44,24 @@ export const useProfileHook = () => {
     },
   });
 
+  const {
+    mutate: modifyPassword,
+    isError: isErrorModifyingPassword,
+    isSuccess: isSuccessModifyingPassword,
+  } = useMutation({
+    mutationFn: (password: any) => {
+      return axios.patch(
+        `${SERVER_URI}/api/customer/profile/password`,
+        password,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    },
+  });
+
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -71,20 +90,66 @@ export const useProfileHook = () => {
     modifyProfileImage(formData);
     handleCloseDialog();
   };
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [openPasswordDialog, setOpenPasswordDialog] = useState(false);
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const {
+    formState: { errors },
+    register,
+    control,
+    watch,
+  } = useForm({
+    mode: "all",
+  });
+
+  const handleOpenPasswordDialog = () => setOpenPasswordDialog(true);
+  const handleClosePasswordDialog = () => {
+    setOpenPasswordDialog(false);
+  };
+
+  const password = watch("password");
+  const currentPassword = watch("currentPassword");
+
+  const handleSendNewPassword = () => {
+    const newPassword = password;
+    modifyPassword({
+      password: newPassword,
+      password_confirmation: newPassword,
+      current_password: currentPassword,
+    });
+  };
   return {
     isLoading,
     isError,
     isSuccess,
+    password,
+    currentPassword,
+    control,
     profileData: profileData?.data,
     isErrorModifyingProfileImage,
     isSuccessModifyingProfileImage,
+    isSuccessModifyingPassword,
+    isErrorModifyingPassword,
     openDialog,
     previewUrl,
     selectedFile,
+    showPassword,
+    openPasswordDialog,
+    errors,
+    register,
+    handleOpenPasswordDialog,
+    handleClosePasswordDialog,
+    handleClickShowPassword,
     handleUpload,
     handleFileChange,
     handleCloseDialog,
     handleOpenDialog,
     handleUpdateProfile,
+    handleSendNewPassword,
   };
 };

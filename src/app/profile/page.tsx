@@ -13,6 +13,8 @@ import {
   Divider,
   Grid,
   IconButton,
+  InputAdornment,
+  TextField,
   Typography,
 } from "@mui/material";
 import { useProfileHook } from "./Profile.hook";
@@ -21,7 +23,10 @@ import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { CloseIcon } from "@/shared/components/icons";
+import { CloseIcon, EyeOffIcon, Show } from "@/shared/components/icons";
+import { register } from "module";
+import { patternPassword } from "@/shared/utils";
+import { Controller } from "react-hook-form";
 
 export default function Profile() {
   const {
@@ -32,13 +37,23 @@ export default function Profile() {
     openDialog,
     previewUrl,
     selectedFile,
+    errors,
+    control,
+    password,
+    currentPassword,
     isErrorModifyingProfileImage,
     isSuccessModifyingProfileImage,
+    showPassword,
+    openPasswordDialog,
+    handleClickShowPassword,
+    handleClosePasswordDialog,
+    handleOpenPasswordDialog,
     handleUpload,
     handleFileChange,
     handleCloseDialog,
     handleOpenDialog,
     handleUpdateProfile,
+    handleSendNewPassword,
   } = useProfileHook();
   const { t } = useTranslation("Store");
   const router = useRouter();
@@ -177,7 +192,7 @@ export default function Profile() {
               variant="contained"
               color="success"
               size="large"
-              onClick={handleUpdateProfile}
+              onClick={handleOpenPasswordDialog}
               sx={{
                 px: 4,
                 borderRadius: "12px",
@@ -245,6 +260,141 @@ export default function Profile() {
             disabled={!selectedFile}
           >
             {t("Upload")}
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={openPasswordDialog}
+        onClose={handleClosePasswordDialog}
+        maxWidth="xs"
+        fullWidth
+        PaperProps={{
+          sx: {
+            borderRadius: 4,
+            p: 2,
+            boxShadow: 6,
+          },
+        }}
+      >
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            fontWeight: 600,
+            fontSize: "1.25rem",
+          }}
+        >
+          {t("Update password")}
+          <IconButton onClick={handleClosePasswordDialog} size="small">
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+
+        <DialogContent>
+          <Box mt={1.5}>
+            <Controller
+              name="password"
+              control={control}
+              // rules={{
+              //   required: t("Password is required"),
+              //   pattern: patternPassword,
+              // }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  value={password}
+                  fullWidth
+                  label={t("Password")}
+                  type={showPassword ? "text" : "password"}
+                  placeholder={t("Password")}
+                  error={Boolean(errors?.password)}
+                  helperText={
+                    errors?.password?.message
+                      ? t(String(errors.password.message))
+                      : ""
+                  }
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          sx={{ padding: 0 }}
+                          onClick={handleClickShowPassword}
+                        >
+                          {showPassword ? <Show /> : <EyeOffIcon />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  sx={{
+                    "& .MuiInputBase-root": {
+                      borderRadius: "12px",
+                    },
+                  }}
+                />
+              )}
+            />
+          </Box>
+          <Box mt={1.5}>
+            <Controller
+              name="currentPassword"
+              control={control}
+              // rules={{
+              //   required: t("Password is required"),
+              //   pattern: patternPassword,
+              // }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  value={currentPassword}
+                  fullWidth
+                  label={t("Current Password")}
+                  type={showPassword ? "text" : "password"}
+                  placeholder={t("Current Password")}
+                  error={Boolean(errors?.currentPassword)}
+                  helperText={
+                    errors?.currentPassword?.message
+                      ? t(String(errors.currentPassword.message))
+                      : ""
+                  }
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          sx={{ padding: 0 }}
+                          onClick={handleClickShowPassword}
+                        >
+                          {showPassword ? <Show /> : <EyeOffIcon />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  sx={{
+                    "& .MuiInputBase-root": {
+                      borderRadius: "12px",
+                    },
+                  }}
+                />
+              )}
+            />
+          </Box>
+        </DialogContent>
+
+        <DialogActions sx={{ justifyContent: "space-between", p: 2 }}>
+          <Button
+            onClick={handleClosePasswordDialog}
+            color="secondary"
+            variant="text"
+          >
+            {t("Cancel")}
+          </Button>
+          <Button
+            onClick={handleSendNewPassword}
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
+            {t("Save")}
           </Button>
         </DialogActions>
       </Dialog>
