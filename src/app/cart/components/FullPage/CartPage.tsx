@@ -36,6 +36,7 @@ export default function Products() {
           alignItems: "center",
           padding: "1rem 0",
           bgcolor: "white",
+          paddingBottom: "3rem",
         }}
       >
         {products?.length ? (

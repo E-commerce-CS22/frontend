@@ -18,7 +18,7 @@ import {
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { useProductCardHook } from "./useProductCard.hook";
-import { Delete } from "@mui/icons-material";
+import { Delete, ShoppingCart } from "@mui/icons-material";
 
 type ProductCardProps = {
   id: string;
@@ -62,13 +62,13 @@ export const ProductCard = (props: ProductCardProps) => {
       sx={{
         width: "300px",
         borderRadius: "4px",
-        margin: "1rem",
+        margin: "0.3rem",
         minHeight: "390px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         transition: "transform 0.5s ease, box-shadow 0.5s ease",
-        "&:hover": { boxShadow: 6, transform: "scale(1.04)" },
+        "&:hover": { boxShadow: 6, transform: "scale(1.01)" },
         position: "relative",
       }}
     >
@@ -122,7 +122,7 @@ export const ProductCard = (props: ProductCardProps) => {
           <Typography>{t("Riyal")}</Typography>
         </Box>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box
           sx={{
             display: "flex",
@@ -151,13 +151,11 @@ export const ProductCard = (props: ProductCardProps) => {
             -
           </Button>
         </Box>
-        <Button
-          onClick={handleAddToCart}
-          variant="contained"
-          sx={{ borderRadius: "20px" }}
-        >
-          {t("Add to cart")}
-        </Button>
+        <IconButton onClick={handleAddToCart} sx={{ borderRadius: "20px" }}>
+          <ShoppingCart
+            sx={{ width: "35px", height: "35px", color: primary }}
+          />
+        </IconButton>
         <IconButton
           sx={{
             position: "absolute",

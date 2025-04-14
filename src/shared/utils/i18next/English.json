@@ -194,5 +194,20 @@
   "no variants yet": "no variants yet",
   "Sku": "Sku",
   "Stock": "Stock",
-  "Variant Title": "Variant Title"
+  "Variant Title": "Variant Title",
+  "Confirm Order": "Confirm Order",
+  "Purchase code is required": "Purchase code is required",
+  "Enter your purchase code": "Enter your purchase code",
+  "Phone number is required": "Phone number is required",
+  "Pay when you receive your order": "Pay when you receive your order",
+  "Cash on Delivery": "Cash on Delivery",
+  "Pay instantly with your Gawaly Wallet": "Pay instantly with your Gawaly Wallet",
+  "Gawaly Wallet Payment": "Gawaly Wallet Payment",
+  "Payment Method": "Payment Method",
+  "Any special instructions for your order...": "Any special instructions for your order...",
+  "Additional Notes": "Additional Notes",
+  "Total Amount": "Total Amount",
+  "Order Summary": "Order Summary",
+  "Enter your shipping address": "Enter your shipping address",
+  "Payment Details": "Payment Details"
 }

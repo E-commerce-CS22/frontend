@@ -33,6 +33,7 @@ const Wishlist = () => {
           flexWrap: "wrap",
           alignItems: "flex-end",
           bgcolor: "white",
+          paddingBottom: "4rem",
         }}
       >
         {wishlistData?.length ? (

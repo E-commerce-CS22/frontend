@@ -22,10 +22,10 @@ export const CategoryCard = (props: CategoryDataProps) => {
       sx={{
         width: "300px",
         borderRadius: "4px",
-        margin: "1rem",
+        margin: "0.3rem",
         cursor: "pointer",
         transition: "transform 0.5s ease, box-shadow 0.5s ease",
-        "&:hover": { boxShadow: 6, transform: "scale(1.04)" },
+        "&:hover": { boxShadow: 6, transform: "scale(1.01)" },
       }}
       onClick={handleCategoryProducts}
     >

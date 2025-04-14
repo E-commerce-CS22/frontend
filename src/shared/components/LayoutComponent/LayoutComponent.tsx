@@ -7,7 +7,7 @@ import { UserContext } from "@/shared/common/authentication";
 import { ToastContainer } from "react-toastify";
 import Layout from "../Layout/Layout";
 import { AccountDropdownMenu } from "../AccountDropdownMenu";
-import { Notifications } from "@/shared/common/Notifications";
+// import { Notifications } from "@/shared/common/Notifications";
 import { CustomerIcon } from "../icons";
 import { capitalize } from "@/shared/utils";
 import { useCustomerRoutes } from "./useCustomerRoutes";
@@ -119,7 +119,7 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
         onGoToHome={handleGoToHome}
         onToggleDrawer={handleToggleDrawer}
         rightItems={[
-          { id: "notifications", icon: <Notifications /> },
+          // { id: "notifications", icon: <Notifications /> },
           {
             id: "account",
             icon: isAuthenticated ? (

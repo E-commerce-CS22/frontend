@@ -197,5 +197,20 @@
   "no variants yet": "لا توجد سمات حاليا",
   "Sku": "وحدة حفظ المخزون",
   "Stock": "المخزون",
-  "Variant Title": "عنوان السمة"
+  "Variant Title": "عنوان السمة",
+  "Confirm Order": "تأكيد الطلب",
+  "Purchase code is required": "كود الشراء مطلوب",
+  "Enter your purchase code": "أدخل كود شرائك",
+  "Phone number is required": "رقم الهاتف مطلوب",
+  "Pay when you receive your order": "ادفع عند استلامك للطلب",
+  "Cash on Delivery": "الدفع عند الاستلام",
+  "Pay instantly with your Gawaly Wallet": "ادفع فوراً من محفظة جوالي",
+  "Gawaly Wallet Payment": "دفع محفظة جوالي",
+  "Payment Method": "طريقة الدفع",
+  "Any special instructions for your order...": "أي تعليمات خاصة لطلبك...",
+  "Additional Notes": "ملاحظات إضافية",
+  "Total Amount": "المبلغ الكلي",
+  "Order Summary": "ملخص الطلب",
+  "Enter your shipping address": "أدخل عنوان شحنك",
+  "Payment Details": "تفاصيل الدفع"
 }
