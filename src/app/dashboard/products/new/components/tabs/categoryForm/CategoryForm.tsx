@@ -1,13 +1,15 @@
+"use client";
+import { useEffect, useState, useContext } from "react";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { Autocomplete, Grid, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { FormCard } from "@/shared/components/Form";
 import { Controller, FormProvider } from "react-hook-form";
 import { useCategoriesForm } from "./useCategoryForm";
-import { useContext } from "react";
 import { ProductContext } from "../../ProductContext";
 
 export const CategoriesForm = () => {
+  const [isClient, setIsClient] = useState(false);
   const { t } = useTranslation("Store");
   const {
     handleClick,
@@ -18,7 +20,13 @@ export const CategoriesForm = () => {
     handleChangeCategories,
   } = useCategoriesForm();
 
-  const { categories: contextCategories } = useContext(ProductContext);
+  const { categories: contextCategories = [] } = useContext(ProductContext);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
 
   return (
     <FormProvider {...methods}>
@@ -30,21 +38,23 @@ export const CategoriesForm = () => {
                 <Controller
                   name="categories"
                   control={control}
+                  defaultValue={contextCategories}
                   render={({ field }) => (
                     <Autocomplete
                       options={categories}
                       multiple
-                      {...field}
-                      defaultValue={contextCategories}
-                      getOptionLabel={(option) =>
-                        option?.name ? option?.name : ""
-                      }
-                      onChange={(_, newValues) =>
-                        handleChangeCategories(newValues, field)
-                      }
+                      value={field.value || []}
+                      getOptionLabel={(option) => option?.name || ""}
+                      onChange={(_, newValues) => {
+                        field.onChange(newValues || []);
+                        handleChangeCategories(newValues, field);
+                      }}
                       renderInput={(params) => (
                         <TextField {...params} label={t("Categories")} />
                       )}
+                      isOptionEqualToValue={(option, value) =>
+                        option.id === value.id
+                      }
                     />
                   )}
                 />

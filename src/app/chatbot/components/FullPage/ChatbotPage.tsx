@@ -74,7 +74,7 @@ const GeminiChatbot = () => {
       elevation={3}
       sx={{
         maxWidth: "800px",
-        margin: "auto",
+        margin: "1rem auto",
         height: "70vh",
         display: "flex",
         flexDirection: "column",
@@ -152,6 +152,7 @@ const GeminiChatbot = () => {
           gap: 1,
           borderTop: "1px solid",
           borderColor: "divider",
+          paddingBottom: "5rem",
         }}
       >
         <TextField

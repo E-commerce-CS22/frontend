@@ -187,5 +187,10 @@
   "Gawaly Wallet Payment": "الدفع عن طريقة محفظة جوالي",
   "Purchase Code": "كود الشراء",
   "Type your message...": "اكتب رسالتك...",
-  "Send": "إرسال"
+  "Send": "إرسال",
+  "Logout": "تسجيل خروج",
+  "Edit Payment Status": "تعديل حالة الدفع",
+  "Payment Status": "حالة الدفع",
+  "Edit Tracking Information": "تعديل معلومات التتبع",
+  "Tracking Number": "رقم التتبع"
 }

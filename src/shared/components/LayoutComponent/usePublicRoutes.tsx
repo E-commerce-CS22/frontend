@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import RouteItem from "./routeTypes";
 import { useMemo } from "react";
 import {
-  Call,
   ChatBubble,
   Home,
   LiveHelp,
@@ -41,7 +40,7 @@ export const usePublicRoutes = (): RouteItem[] => {
         id: "chatbot",
         route: "chatbot",
         fullPath: "/chatbot",
-        text: t("Ask AI"),
+        text: t("Chatbot"),
         icon: <ChatBubble color="primary" />,
         element: <div>Chatbot</div>,
         onClick: (route) => router.push(route),

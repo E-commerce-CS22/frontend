@@ -184,5 +184,10 @@
   "Choose payment way": "Choose payment way",
   "Purchase Code": "Purchase Code",
   "Type your message...": "Type your message...",
-  "Send": "Send"
+  "Send": "Send",
+  "Logout": "Logout",
+  "Edit Payment Status": "Edit Payment Status",
+  "Payment Status": "Payment Status",
+  "Edit Tracking Information": "Edit Tracking Information",
+  "Tracking Number": "Tracking Number"
 }

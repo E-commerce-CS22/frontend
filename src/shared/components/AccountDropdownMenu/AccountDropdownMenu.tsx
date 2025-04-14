@@ -9,6 +9,8 @@ import type { ReactNode } from "react";
 import React, { FC } from "react";
 import { SignoutIcon } from "../icons";
 import Image from "next/image";
+import { AccountCircle } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 
 const StyledMenuItem = styled(MenuItem)(() => ({
   width: 250,
@@ -35,7 +37,11 @@ export const AccountDropdownMenu: FC<AccountDropdownMenuProps> = ({
   items,
   ...props
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("Store");
+  const router = useRouter();
+  const handleGoToProfile = () => {
+    router.push("/profile");
+  };
   return (
     <Menu
       PaperProps={{
@@ -69,17 +75,14 @@ export const AccountDropdownMenu: FC<AccountDropdownMenuProps> = ({
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "#fafbfd",
+            cursor: "pointer",
           }}
+          onClick={handleGoToProfile}
         >
           {imgSrc ? (
             <Image src={imgSrc} alt="user-profile-img" />
           ) : (
-            <Typography
-              fontSize="30px"
-              // fontFamily="CoHeadlineTrial-Bold"
-            >
-              {username.charAt(0)}
-            </Typography>
+            <AccountCircle color="primary" />
           )}
         </Box>
         <Tooltip title={username} placement="top">

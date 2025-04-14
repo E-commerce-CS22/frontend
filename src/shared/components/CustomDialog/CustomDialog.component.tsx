@@ -64,8 +64,6 @@ const CustomDialog: FC<CustomDialogProps> = (props) => {
       <Dialog
         maxWidth={maxWidth}
         fullWidth
-        // open={open}
-        // fullScreen={isMobile}
         title=""
         PaperProps={{
           style: {
@@ -75,7 +73,7 @@ const CustomDialog: FC<CustomDialogProps> = (props) => {
         }}
         onClose={handleClose}
         scroll={scrollType}
-        {...props}
+        open={open}
       >
         <DialogTitle className={classes.header} title="">
           <Typography

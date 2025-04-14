@@ -1,10 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { CategoriesForm } from "./categoryForm/CategoryForm";
 import { TagsForm } from "./tagsForm/TagsForm";
-import { VariantsForm } from "./variantForm/VariantForm";
 // import { DiscountForm } from "./discountForm/DiscountForm";
 import { DetailsForm } from "./detailsForm/DetailsForm";
 import { ImageForm } from "./imageForm/ImageForm";
+
+import dynamic from "next/dynamic";
+
+const VariantsForm = dynamic(() => import("./variantForm/VariantForm"), {
+  ssr: false,
+});
 
 export const useTabs = () => {
   const { t } = useTranslation("Store");
