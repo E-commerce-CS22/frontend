@@ -8,7 +8,7 @@ export const greyVendor = "#607795";
 export const orange = "#E05729";
 export const success = "#5FA02E";
 export const darkRed = "#973149";
-export const green = "#36B37E";
+export const green = "#36b37e";
 export const cyan = "#22d5cb";
 export const yellow = "#f1c502";
 

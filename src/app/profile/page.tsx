@@ -6,8 +6,13 @@ import {
   Card,
   CardContent,
   CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Divider,
   Grid,
+  IconButton,
   Typography,
 } from "@mui/material";
 import { useProfileHook } from "./Profile.hook";
@@ -16,9 +21,25 @@ import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { CloseIcon } from "@/shared/components/icons";
 
 export default function Profile() {
-  const { isLoading, isSuccess, isError, profileData } = useProfileHook();
+  const {
+    isLoading,
+    isSuccess,
+    isError,
+    profileData,
+    openDialog,
+    previewUrl,
+    selectedFile,
+    isErrorModifyingProfileImage,
+    isSuccessModifyingProfileImage,
+    handleUpload,
+    handleFileChange,
+    handleCloseDialog,
+    handleOpenDialog,
+    handleUpdateProfile,
+  } = useProfileHook();
   const { t } = useTranslation("Store");
   const router = useRouter();
 
@@ -29,11 +50,13 @@ export default function Profile() {
 
     if (isSuccess) toast.success(t("Profile loaded successfully!"));
     if (isError) toast.error(t("Failed to load profile"));
-  }, [isLoading, isSuccess, isError, t]);
+  }, [isLoading, isSuccess, isError]);
 
-  const handleUpdateProfile = () => {
-    router.push("profile/edit");
-  };
+  useEffect(() => {
+    if (isSuccess) toast.success(t("Profile image posted successfully!"));
+    if (isErrorModifyingProfileImage)
+      toast.error(t("Failed to post profile image"));
+  }, [isErrorModifyingProfileImage, isSuccessModifyingProfileImage]);
 
   if (isLoading || !profileData) {
     return (
@@ -50,8 +73,6 @@ export default function Profile() {
     );
   }
 
-  console.log(profileData);
-
   return (
     <PageWrapper>
       <Box display="flex" justifyContent="center" alignItems="center" px={2}>
@@ -66,7 +87,7 @@ export default function Profile() {
         >
           <Box display="flex" flexDirection="column" alignItems="center" mb={3}>
             <Avatar
-              src={profileData.profile_image || "/smartStore1.png"}
+              src={profileData.profile || "/smartStore1.png"}
               alt="Profile"
               sx={{ width: 120, height: 120, mb: 1 }}
             />
@@ -111,18 +132,122 @@ export default function Profile() {
             </Grid>
           </CardContent>
 
-          <Box mt={3} display="flex" justifyContent="center">
+          <Box
+            mt={4}
+            display="flex"
+            justifyContent="center"
+            flexWrap="wrap"
+            gap={2}
+          >
             <Button
               variant="contained"
+              color="primary"
               size="large"
               onClick={handleUpdateProfile}
-              sx={{ px: 4, borderRadius: "12px" }}
+              sx={{
+                px: 4,
+                borderRadius: "12px",
+                boxShadow: 3,
+                textTransform: "none",
+                minWidth: "200px",
+              }}
             >
               {t("Modify")}
+            </Button>
+
+            <Button
+              variant="outlined"
+              color="success"
+              size="large"
+              onClick={handleOpenDialog}
+              sx={{
+                px: 4,
+                borderRadius: "12px",
+                boxShadow: 1,
+                textTransform: "none",
+                minWidth: "200px",
+              }}
+            >
+              {!profileData.profile
+                ? t("Add profile image")
+                : t("Modify profile image")}
+            </Button>
+
+            <Button
+              variant="contained"
+              color="success"
+              size="large"
+              onClick={handleUpdateProfile}
+              sx={{
+                px: 4,
+                borderRadius: "12px",
+                boxShadow: 3,
+                textTransform: "none",
+                minWidth: "200px",
+                color: "white",
+              }}
+            >
+              {t("Change password")}
             </Button>
           </Box>
         </Card>
       </Box>
+      <Dialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        maxWidth="xs"
+        fullWidth
+      >
+        <DialogTitle sx={{ display: "flex", justifyContent: "space-between" }}>
+          {t("Update Profile Image")}
+          <IconButton onClick={handleCloseDialog}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+
+        <DialogContent>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            gap={2}
+          >
+            {previewUrl ? (
+              <Avatar src={previewUrl} sx={{ width: 100, height: 100 }} />
+            ) : (
+              <Avatar
+                src={profileData?.profile || "/smartStore1.png"}
+                sx={{ width: 100, height: 100 }}
+              />
+            )}
+
+            <Button component="label" variant="outlined">
+              {t("Choose Image")}
+              <input
+                hidden
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
+            </Button>
+            <Typography variant="caption" color="text.secondary">
+              {t("Only PNG or JPEG formats.")}
+            </Typography>
+          </Box>
+        </DialogContent>
+
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>{t("Cancel")}</Button>
+          <Button
+            onClick={handleUpload}
+            variant="contained"
+            color="primary"
+            disabled={!selectedFile}
+          >
+            {t("Upload")}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </PageWrapper>
   );
 }
