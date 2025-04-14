@@ -192,5 +192,10 @@
   "Edit Payment Status": "تعديل حالة الدفع",
   "Payment Status": "حالة الدفع",
   "Edit Tracking Information": "تعديل معلومات التتبع",
-  "Tracking Number": "رقم التتبع"
+  "Tracking Number": "رقم التتبع",
+  "No tags yet": "لا توجد علامات حاليا",
+  "no variants yet": "لا توجد سمات حاليا",
+  "Sku": "وحدة حفظ المخزون",
+  "Stock": "المخزون",
+  "Variant Title": "عنوان السمة"
 }

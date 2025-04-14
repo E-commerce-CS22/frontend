@@ -1,5 +1,5 @@
 "use client";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { CustomDialog } from "@/shared/components/CustomDialog";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
@@ -25,7 +25,7 @@ export const TagsModel = (props: TagsModelProps) => {
   const { tags } = props;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const getValuesColumns = (): any[] => [
+  const getTagsColumns = (): any[] => [
     {
       key: "Tagname",
       header: t("Tag name"),
@@ -50,10 +50,10 @@ export const TagsModel = (props: TagsModelProps) => {
       button={<ShowButton onClick={handleClickOpen} />}
     >
       <Box fontFamily={"CoHeadline-Light"}>
-        {tags && (
+        {tags && tags?.length ? (
           <PageWrapper padding="0px">
             <CustomTable
-              columns={getValuesColumns()}
+              columns={getTagsColumns()}
               data={tags}
               pageIndex={1}
               pageSize={100}
@@ -62,6 +62,8 @@ export const TagsModel = (props: TagsModelProps) => {
               hasFooter={false}
             />
           </PageWrapper>
+        ) : (
+          <Typography>{t("No tags yet")}</Typography>
         )}
       </Box>
     </CustomDialog>
