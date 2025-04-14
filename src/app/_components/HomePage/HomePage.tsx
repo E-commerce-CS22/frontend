@@ -81,7 +81,7 @@ export const HomePage = () => {
                 name={item?.name}
                 description={item?.description}
                 price={item?.price}
-                image={item?.image}
+                images={item?.image_urls}
                 final_price={item?.final_price}
               />
             ))}

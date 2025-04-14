@@ -14,11 +14,13 @@ export const EditDiscountModel = (props) => {
   return (
     <Box>
       <Button disabled={!discountValue}>
-        {discountValue && (
+        {discountValue ? (
           <Edit
             sx={{ cursor: "pointer", color: darkGrey }}
             onClick={handleUpdate}
           />
+        ) : (
+          <div>----</div>
         )}
       </Button>
     </Box>

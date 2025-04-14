@@ -49,11 +49,13 @@ export const DeleteDiscountModel = (props) => {
         maxWidth="sm"
         button={
           <Button disabled={!discountValue}>
-            {discountValue && (
+            {discountValue ? (
               <Delete
                 sx={{ cursor: "pointer", color: darkGrey }}
                 onClick={handleClickOpen}
               />
+            ) : (
+              <div>----</div>
             )}
           </Button>
         }

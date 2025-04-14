@@ -9,6 +9,7 @@ import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { CustomTable } from "@/shared/components/Table";
 
 type VariantsModelProps = {
+  id: string;
   variants: {
     color?: string;
     memory?: string;
@@ -21,12 +22,11 @@ export const VariantsModel = (props: VariantsModelProps) => {
   const { t } = useTranslation("Store");
   const [open, setOpen] = useState(false);
 
-  const { variants } = props;
+  const { variants, id } = props;
 
   const handleClickOpen = () => {
     setOpen(!open);
   };
-  console.log(variants);
 
   const getVariantsColumns = (): any[] => [
     {
@@ -49,6 +49,18 @@ export const VariantsModel = (props: VariantsModelProps) => {
       header: t("Variant Title"),
       accessor: "variant_title",
     },
+    // {
+    //   key: "AddVariant",
+    //   header: t("Add Variant"),
+    //   accessor: (data) => {
+    //     console.log(data, id);
+    //     return (
+    //       <IconButton onClick={() => {}}>
+    //         <Add />
+    //       </IconButton>
+    //     );
+    //   },
+    // },
   ];
   return (
     <CustomDialog

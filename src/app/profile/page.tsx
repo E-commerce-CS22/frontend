@@ -20,12 +20,11 @@ import {
 import { useProfileHook } from "./Profile.hook";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { CloseIcon, EyeOffIcon, Show } from "@/shared/components/icons";
-import { register } from "module";
-import { patternPassword } from "@/shared/utils";
+// import { register } from "module";
+// import { patternPassword } from "@/shared/utils";
 import { Controller } from "react-hook-form";
 
 export default function Profile() {
@@ -56,7 +55,6 @@ export default function Profile() {
     handleSendNewPassword,
   } = useProfileHook();
   const { t } = useTranslation("Store");
-  const router = useRouter();
 
   useEffect(() => {
     if (isLoading)
@@ -102,7 +100,11 @@ export default function Profile() {
         >
           <Box display="flex" flexDirection="column" alignItems="center" mb={3}>
             <Avatar
-              src={profileData.profile || "/smartStore1.png"}
+              src={
+                profileData.profile
+                  ? `http://127.0.0.1:8000/storage/${profileData.profile}`
+                  : "/smartStore1.png"
+              }
               alt="Profile"
               sx={{ width: 120, height: 120, mb: 1 }}
             />

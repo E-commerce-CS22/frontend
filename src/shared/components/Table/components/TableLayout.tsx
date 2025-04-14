@@ -16,6 +16,7 @@ import React, { useMemo, useState } from "react";
 import { useTableLayoutStyles } from "../styles/useTableLayoutStyles";
 import { TableLayoutProps } from "../types";
 import { TableBodyLayout } from "./TableBodyLayout";
+import { TableBodyWithoutDataView } from "./TableBodyWithoutDataView";
 
 const TableLayout = <RowType extends object>({
   data,
@@ -138,23 +139,29 @@ const TableLayout = <RowType extends object>({
           </TableRow>
         </TableHead>
 
-        <TableBody className={classes.tableBody}>
-          <TableBodyLayout
-            title={title}
-            columnsToRender={columnsToRender}
-            onEditRow={handleEditRow}
-            onDeleteRow={handleDeleteRow}
-            data={data}
-            isDeleteVisible={isDeleteVisible}
-            isEditVisible={isEditVisible}
-            isLoading={isLoading}
-            extraActionsRenderer={extraActionsRenderer}
-            pageSize={pageSize}
-            onRowClick={handleRowClick}
-            isRowDeletable={isRowDeletable}
-            isRowEditable={isRowEditable}
-          />
-        </TableBody>
+        {data?.length === 0 && !isLoading ? (
+          <div style={{ height: "300px" }}>
+            <TableBodyWithoutDataView isFilterApplied={true} />
+          </div>
+        ) : (
+          <TableBody className={classes.tableBody}>
+            <TableBodyLayout
+              title={title}
+              columnsToRender={columnsToRender}
+              onEditRow={handleEditRow}
+              onDeleteRow={handleDeleteRow}
+              data={data}
+              isDeleteVisible={isDeleteVisible}
+              isEditVisible={isEditVisible}
+              isLoading={isLoading}
+              extraActionsRenderer={extraActionsRenderer}
+              pageSize={pageSize}
+              onRowClick={handleRowClick}
+              isRowDeletable={isRowDeletable}
+              isRowEditable={isRowEditable}
+            />
+          </TableBody>
+        )}
       </Table>
     </>
   );
