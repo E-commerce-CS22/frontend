@@ -41,7 +41,7 @@ export const TagsForm = () => {
                   defaultValue={contextTags}
                   render={({ field }) => (
                     <Autocomplete
-                      options={tags}
+                      options={tags || []}
                       multiple
                       value={field.value || []}
                       getOptionLabel={(option) => option?.name || ""}

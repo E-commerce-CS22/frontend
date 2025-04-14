@@ -43,7 +43,7 @@ export const TableBodyLayout = <RowType extends object>({
           fontSize="14px"
           width={"max-content"}
         >
-          {row[column.accessor]}
+          {row[column.accessor] ? row[column.accessor] : "----"}
         </Typography>
       );
     }
@@ -54,7 +54,9 @@ export const TableBodyLayout = <RowType extends object>({
         fontSize="14px"
         width={"max-content"}
       >
-        {column.accessor && column.accessor(row)}
+        {column.accessor && column.accessor(row)
+          ? column.accessor(row)
+          : "----"}
       </Typography>
     );
   };

@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState, useContext } from "react";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { Autocomplete, Grid, TextField } from "@mui/material";
@@ -41,7 +40,7 @@ export const CategoriesForm = () => {
                   defaultValue={contextCategories}
                   render={({ field }) => (
                     <Autocomplete
-                      options={categories}
+                      options={categories || []}
                       multiple
                       value={field.value || []}
                       getOptionLabel={(option) => option?.name || ""}

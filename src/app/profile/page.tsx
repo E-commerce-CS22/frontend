@@ -20,12 +20,11 @@ import {
 import { useProfileHook } from "./Profile.hook";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { CloseIcon, EyeOffIcon, Show } from "@/shared/components/icons";
-import { register } from "module";
-import { patternPassword } from "@/shared/utils";
+// import { register } from "module";
+// import { patternPassword } from "@/shared/utils";
 import { Controller } from "react-hook-form";
 
 export default function Profile() {
@@ -56,7 +55,6 @@ export default function Profile() {
     handleSendNewPassword,
   } = useProfileHook();
   const { t } = useTranslation("Store");
-  const router = useRouter();
 
   useEffect(() => {
     if (isLoading)

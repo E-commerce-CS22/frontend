@@ -1,4 +1,3 @@
-"use client";
 import { useContext, useEffect, useState } from "react";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import {
@@ -53,7 +52,7 @@ const VariantsForm = () => {
                   defaultValue={attribute}
                   render={({ field }) => (
                     <Autocomplete
-                      options={attributes}
+                      options={attributes || []}
                       value={field.value || null}
                       onChange={(_, newValue) => {
                         field.onChange(newValue);
@@ -79,7 +78,7 @@ const VariantsForm = () => {
                     defaultValue={variantValue}
                     render={({ field }) => (
                       <Autocomplete
-                        options={attributeValues}
+                        options={attributeValues || []}
                         value={field.value || null}
                         onChange={(_, newValue) => {
                           field.onChange(newValue);
