@@ -2,15 +2,11 @@
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { CustomTable } from "@/shared/components/Table";
 import { useOderPageHook } from "./useOrderPage.hook";
-import { TableActions } from "../TableActions";
 import { useState, useEffect } from "react";
+import { Box } from "@mui/material";
 
 export const OrdersPage = () => {
-  const {
-    tableActionButtons: actionButtons,
-    ordersData,
-    columns,
-  } = useOderPageHook();
+  const { ordersData, columns } = useOderPageHook();
   console.log(ordersData);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -20,7 +16,9 @@ export const OrdersPage = () => {
 
   if (!isMounted) return null;
   return (
-    <PageWrapper actions={<TableActions buttons={actionButtons} />}>
+    <PageWrapper
+      actions={<Box sx={{ height: "3rem", bgcolor: "white" }}></Box>}
+    >
       <CustomTable
         columns={columns}
         data={ordersData}

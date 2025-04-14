@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { Box, Typography } from "@mui/material";
 import { CustomDialog } from "@/shared/components/CustomDialog";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { ShowButton } from "@/shared/components/ShowButton";
-import Image from "next/image";
+import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
+import { CustomTable } from "@/shared/components/Table";
 
 type VariantsModelProps = {
   variants: {
@@ -24,6 +26,30 @@ export const VariantsModel = (props: VariantsModelProps) => {
   const handleClickOpen = () => {
     setOpen(!open);
   };
+  console.log(variants);
+
+  const getVariantsColumns = (): any[] => [
+    {
+      key: "price",
+      header: t("Price"),
+      accessor: "price",
+    },
+    {
+      key: "sku",
+      header: t("Sku"),
+      accessor: "sku",
+    },
+    {
+      key: "stock",
+      header: t("Stock"),
+      accessor: "stock",
+    },
+    {
+      key: "variant_title",
+      header: t("Variant Title"),
+      accessor: "variant_title",
+    },
+  ];
   return (
     <CustomDialog
       title={t("Variants")}
@@ -33,29 +59,21 @@ export const VariantsModel = (props: VariantsModelProps) => {
       button={<ShowButton onClick={handleClickOpen} />}
     >
       <Box fontFamily={"CoHeadline-Light"}>
-        {variants?.length &&
-          variants?.map((item, index) => (
-            <Box
-              sx={{ borderBottom: "1px solid #eee", padding: "0.5rem 0" }}
-              key={index}
-            >
-              <Typography>
-                {t("Color")}: {item?.color}
-              </Typography>
-              <Typography>
-                {t("Raw")}: {item?.raw}
-              </Typography>
-              <Typography>
-                {t("Memory")}: {item?.memory}
-              </Typography>
-              <Image
-                width={"200"}
-                height={"200"}
-                src={item?.image}
-                alt={item?.raw || ""}
-              />
-            </Box>
-          ))}
+        {variants?.length ? (
+          <PageWrapper padding="0px">
+            <CustomTable
+              columns={getVariantsColumns()}
+              data={variants}
+              pageIndex={1}
+              pageSize={100}
+              hasNextPage={false}
+              hasPreviousPage={false}
+              hasFooter={false}
+            />
+          </PageWrapper>
+        ) : (
+          <Typography>{t("no variants yet")}</Typography>
+        )}
       </Box>
     </CustomDialog>
   );

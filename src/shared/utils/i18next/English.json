@@ -189,5 +189,10 @@
   "Edit Payment Status": "Edit Payment Status",
   "Payment Status": "Payment Status",
   "Edit Tracking Information": "Edit Tracking Information",
-  "Tracking Number": "Tracking Number"
+  "Tracking Number": "Tracking Number",
+  "No tags yet": "No tags yet",
+  "no variants yet": "no variants yet",
+  "Sku": "Sku",
+  "Stock": "Stock",
+  "Variant Title": "Variant Title"
 }

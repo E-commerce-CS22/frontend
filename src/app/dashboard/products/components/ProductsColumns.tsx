@@ -96,11 +96,6 @@ export const getProductsColumns = (
     accessor: ({ variants }) => <VariantsModel variants={variants} />,
   },
   {
-    key: "categories",
-    header: t("Categories"),
-    accessor: ({ categories }) => categories?.name,
-  },
-  {
     key: "tags",
     header: t("Tags"),
     accessor: ({ tags }) => <TagsModel tags={tags} />,
