@@ -212,5 +212,10 @@
   "Payment Details": "Payment Details",
   "Loading profile...": "Loading profile...",
   "Failed to load profile": "Failed to load profile",
-  "Profile loaded successfully!": "Profile loaded successfully!"
+  "Profile loaded successfully!": "Profile loaded successfully!",
+  "Add profile image": "Add profile image",
+  "Modify profile image": "Modify profile image",
+  "Change password": "Change password",
+  "Failed to post profile image": "Failed to post profile image",
+  "Profile image posted successfully!": "Profile image posted successfully!"
 }

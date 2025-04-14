@@ -203,9 +203,7 @@
   "Enter your purchase code": "أدخل كود شرائك",
   "Phone number is required": "رقم الهاتف مطلوب",
   "Pay when you receive your order": "ادفع عند استلامك للطلب",
-  "Cash on Delivery": "الدفع عند الاستلام",
   "Pay instantly with your Gawaly Wallet": "ادفع فوراً من محفظة جوالي",
-  "Gawaly Wallet Payment": "دفع محفظة جوالي",
   "Payment Method": "طريقة الدفع",
   "Any special instructions for your order...": "أي تعليمات خاصة لطلبك...",
   "Additional Notes": "ملاحظات إضافية",
@@ -215,5 +213,10 @@
   "Payment Details": "تفاصيل الدفع",
   "Loading profile...": "جاري تحميل الملف الشخصي...",
   "Failed to load profile": "فشل في تحميل الملف الشخصي",
-  "Profile loaded successfully!": "تم تحميل الملف الشخصي بنجاح!"
+  "Profile loaded successfully!": "تم تحميل الملف الشخصي بنجاح!",
+  "Add profile image": "أضف صورة الملف الشخصي",
+  "Modify profile image": "تعديل صورة الملف الشخصي",
+  "Change password": "تغيير كلمة المرور",
+  "Failed to post profile image": "فشل في نشر صورة الملف الشخصي",
+  "Profile image posted successfully!": "تم نشر صورة الملف الشخصي بنجاح!"
 }
