@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CustomDialog } from "@/shared/components/CustomDialog";
 import { Box, Button, DialogActions, Grid, TextField } from "@mui/material";
@@ -10,6 +11,7 @@ import { UserContext } from "@/shared/common/authentication";
 import axios from "axios";
 import { getRequiredValidation, SERVER_URI } from "@/shared/utils";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export const EditTrackingModel = (props) => {
   const { t } = useTranslation("Store");
@@ -28,6 +30,7 @@ export const EditTrackingModel = (props) => {
     mutate,
     isPending: isLoading,
     isSuccess,
+    isError,
   } = useMutation({
     mutationFn: async (tracking_number: { tracking_number: string }) => {
       return axios.patch(
@@ -57,6 +60,15 @@ export const EditTrackingModel = (props) => {
   }, [isSuccess, isLoading]);
 
   const tracking = watch("tracking_number");
+
+  useEffect(() => {
+    if (isLoading)
+      toast.loading(t("Sending data..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isError) toast.error(t("Failed to send data"));
+    if (isSuccess) toast.success(t("Sent successfully"));
+  }, [isLoading, isSuccess, isError]);
 
   return (
     <Box>

@@ -7,7 +7,6 @@ import { Box } from "@mui/material";
 
 export const OrdersPage = () => {
   const { ordersData, columns } = useOderPageHook();
-  console.log(ordersData);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

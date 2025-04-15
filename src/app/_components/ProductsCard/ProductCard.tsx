@@ -67,7 +67,7 @@ export const ProductCard = (props: ProductCardProps) => {
     handleAddToFavorite,
     handleAddToCart,
   } = useProductCardHook({ id });
-  const primaryImage = images?.find((item) => item?.is_primary)?.url;
+  const primaryImage = images?.url;
 
   useEffect(() => {
     if (isLoading)

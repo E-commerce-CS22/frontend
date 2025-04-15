@@ -13,7 +13,6 @@ export const AttributeVariantValueInformationForm = (props) => {
     register,
     formState: { errors },
   } = useFormContext();
-
   return (
     <Grid p={0} sx={{ display: "flex", flexWrap: "wrap" }}>
       <Grid p={"1rem"} sx={{ minWidth: "400px" }}>

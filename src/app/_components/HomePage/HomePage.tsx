@@ -96,7 +96,7 @@ export const HomePage = () => {
                 name={item?.name}
                 description={item?.description}
                 price={item?.price}
-                images={item?.image_urls}
+                images={item?.image_urls?.[0]}
                 final_price={item?.final_price}
               />
             ))}

@@ -25,16 +25,16 @@ import {
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { toast } from "react-toastify";
+// import { useEffect } from "react";
+// import { toast } from "react-toastify";
 
 export default function PaymentPage() {
   const { t } = useTranslation("Store");
   const router = useRouter();
   const {
-    isLoading,
-    isError,
-    isSuccess,
+    // isLoading,
+    // isError,
+    // isSuccess,
     products,
     defaultAddress,
     isSuccessAddOrder,
@@ -73,15 +73,6 @@ export default function PaymentPage() {
       borderColor: theme.palette.grey[400],
     },
   }));
-
-  useEffect(() => {
-    if (isLoading)
-      toast.loading(t("Sending data..."), { toastId: "loadProfile" });
-    else toast.dismiss("loadProfile");
-
-    if (isError) toast.error(t("Failed to send data"));
-    if (isSuccess) toast.success(t("Sent successfully"));
-  }, [isLoading, isSuccess, isError]);
 
   return (
     <Box

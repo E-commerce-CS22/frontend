@@ -8,7 +8,6 @@ import Typography from "@mui/material/Typography";
 import type { ReactNode } from "react";
 import React, { FC } from "react";
 import { SignoutIcon } from "../icons";
-import Image from "next/image";
 import { AccountCircle } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 
@@ -33,7 +32,6 @@ type AccountDropdownMenuProps = MenuProps & {
 export const AccountDropdownMenu: FC<AccountDropdownMenuProps> = ({
   onLogout: handleLogout,
   username,
-  imgSrc,
   items,
   ...props
 }) => {
@@ -79,11 +77,7 @@ export const AccountDropdownMenu: FC<AccountDropdownMenuProps> = ({
           }}
           onClick={handleGoToProfile}
         >
-          {imgSrc ? (
-            <Image src={imgSrc} alt="user-profile-img" />
-          ) : (
-            <AccountCircle color="primary" />
-          )}
+          <AccountCircle color="primary" />
         </Box>
         <Tooltip title={username} placement="top">
           <Typography

@@ -221,5 +221,9 @@
   "Discount value must be between 0 and 100": "Discount value must be between 0 and 100",
   "Sending data...": "Sending data...",
   "Failed to send data": "Failed to send data",
-  "Sent successfully": "Sent successfully"
+  "Sent successfully": "Sent successfully",
+  "Add Value": "Add Value",
+  "Add New Variant Value": "Add New Variant Value",
+  "Value": "Value",
+  "Enter variant value": "Enter variant value"
 }

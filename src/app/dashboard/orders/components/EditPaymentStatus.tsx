@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CustomDialog } from "@/shared/components/CustomDialog";
 import {
@@ -17,6 +18,7 @@ import { UserContext } from "@/shared/common/authentication";
 import axios from "axios";
 import { SERVER_URI } from "@/shared/utils";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export const EditPaymentStatusModel = (props) => {
   const { t } = useTranslation("Store");
@@ -30,6 +32,7 @@ export const EditPaymentStatusModel = (props) => {
     mutate,
     isPending: isLoading,
     isSuccess,
+    isError,
   } = useMutation({
     mutationFn: async (status: { status: string }) => {
       return axios.patch(
@@ -60,6 +63,15 @@ export const EditPaymentStatusModel = (props) => {
 
   const statuses = ["pending", "paid", "completed", "cancelled"];
   const selectedStatus = watch("payment_status");
+
+  useEffect(() => {
+    if (isLoading)
+      toast.loading(t("Sending data..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isError) toast.error(t("Failed to send data"));
+    if (isSuccess) toast.success(t("Sent successfully"));
+  }, [isLoading, isSuccess, isError]);
 
   return (
     <Box>

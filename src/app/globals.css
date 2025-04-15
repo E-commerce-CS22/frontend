@@ -58,4 +58,8 @@ html[dir="rtl"] .mobile-phone-rtl-fix {
 button {
   font-family: inherit;
 }
+.nextjs-toast-errors-parent,
+.nextjs-error-with-static {
+  display: "none";
+}
 @import url("../shared/customization/fonts/style.css");

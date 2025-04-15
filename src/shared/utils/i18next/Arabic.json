@@ -230,5 +230,9 @@
   "Discount value must be between 0 and 100": "قيمة الخصم يجب أن تكون بين 0 و100",
   "Sending data...": "جاري إرسال البيانات...",
   "Failed to send data": "فشل في إرسال البيانات",
-  "Sent successfully": "تم الإرسال بنجاح"
+  "Sent successfully": "تم الإرسال بنجاح",
+  "Add Value": "أضافة قيمة",
+  "Add New Variant Value": "أضف قيمة متغيرة جديدة",
+  "Value": "قيمة",
+  "Enter variant value": "ادخل قيمة السمة"
 }
