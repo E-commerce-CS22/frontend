@@ -86,3 +86,34 @@ export type cartInputType = {
   product_id: string | number;
   quantity: string | number;
 };
+
+// User Activity API Types
+export interface UserActivityRole {
+  role: string;
+  total: number;
+  active_today: number;
+  active_this_week: number;
+  active_this_month: number;
+  active_percentage_today: number;
+  active_percentage_week: number;
+  active_percentage_month: number;
+}
+
+export interface MostActiveUser {
+  id: number;
+  username: string;
+  email: string;
+  last_active: string;
+}
+
+export interface UserActivityData {
+  total_users: number;
+  active_today: number;
+  active_this_week: number;
+  active_this_month: number;
+  active_percentage_today: number;
+  active_percentage_week: number;
+  active_percentage_month: number;
+  most_active_users: MostActiveUser[];
+  users_by_role: UserActivityRole[];
+}
