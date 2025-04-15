@@ -59,35 +59,6 @@ export default function Dashboard() {
     ],
   };
 
-  const barData = {
-    labels: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
-    datasets: [
-      {
-        label: "Page Views",
-        data: ordersData?.monthly_page_views,
-        backgroundColor: "#FF6384",
-      },
-      {
-        label: "Clicks",
-        data: ordersData?.monthly_clicks,
-        backgroundColor: "#36A2EB",
-      },
-    ],
-  };
-
   if (isLoading || isOrdersLoading) {
     return (
       <Box sx={{ width: "100%" }}>
@@ -130,7 +101,6 @@ export default function Dashboard() {
   return (
     <PageWrapper>
       <Box sx={{ width: "100%", padding: "20px" }}>
-        
         {/* Orders and Products */}
         <Grid container spacing={3} sx={{ marginTop: 2 }}>
           <Grid item xs={12} md={3}>
@@ -226,9 +196,17 @@ export default function Dashboard() {
               </Typography>
               <CustomTable
                 columns={[
-                  { key: "username", header: t("Username"), accessor: "username" },
+                  {
+                    key: "username",
+                    header: t("Username"),
+                    accessor: "username",
+                  },
                   { key: "email", header: t("Email"), accessor: "email" },
-                  { key: "last_active", header: t("Last Active"), accessor: "last_active" },
+                  {
+                    key: "last_active",
+                    header: t("Last Active"),
+                    accessor: "last_active",
+                  },
                 ]}
                 data={mostActiveUsers}
                 pageSize={10}

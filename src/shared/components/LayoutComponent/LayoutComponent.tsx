@@ -179,7 +179,6 @@ export function LayoutComponent({ children }: { children: React.ReactNode }) {
           items={[]}
           anchorEl={anchorEl}
           onClose={handleClickClose}
-          imgSrc={user?.profile}
         />
       )}
 

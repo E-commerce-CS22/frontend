@@ -44,6 +44,7 @@ const ValueTextField = styled(TextField)(({ theme }) => ({
 type VariantsModelProps = {
   id: string;
   variants: {
+    id: string;
     color?: string;
     memory?: string;
     raw?: string;
@@ -225,14 +226,6 @@ export const VariantsModel = (props: VariantsModelProps) => {
               hasNextPage={false}
               hasPreviousPage={false}
               hasFooter={false}
-              sx={{
-                "& .MuiTableCell-root": {
-                  py: 2,
-                },
-                "& .MuiTableHead-root": {
-                  backgroundColor: theme.palette.grey[100],
-                },
-              }}
             />
           </PageWrapper>
         ) : (
