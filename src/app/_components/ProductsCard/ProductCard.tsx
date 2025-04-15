@@ -52,7 +52,7 @@ export const ProductCard = (props: ProductCardProps) => {
   const { t } = useTranslation("Store");
   const { isAuthenticated } = useContext(UserContext);
 
-  const { id, name, images, description, price, final_price } = props;
+  const { id, name, description, price, final_price } = props;
   const {
     isSuccess,
     isError,
@@ -67,7 +67,7 @@ export const ProductCard = (props: ProductCardProps) => {
     handleAddToFavorite,
     handleAddToCart,
   } = useProductCardHook({ id });
-  const primaryImage = images?.url;
+  // const primaryImage = images?.url;
 
   useEffect(() => {
     if (isLoading)
@@ -102,17 +102,15 @@ export const ProductCard = (props: ProductCardProps) => {
       }}
     >
       <CardMedia>
-        {primaryImage && (
+        {/* {primaryImage && (
           <Image src={primaryImage} alt={name} width={200} height={200} />
-        )}
-        {!primaryImage && (
-          <Image
-            src={"/images/home-bgcolor.jpg"}
-            alt={name}
-            width={300}
-            height={200}
-          />
-        )}
+        )} */}
+        <Image
+          src={"/images/home-bgcolor.jpg"}
+          alt={name}
+          width={300}
+          height={200}
+        />
       </CardMedia>
       <CardContent sx={{ padding: "8px 16px 16px" }}>
         <Typography pb={"8px"} color={MainTextColor}>
