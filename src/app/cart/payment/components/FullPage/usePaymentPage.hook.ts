@@ -59,7 +59,7 @@ export const usePaymentPageHook = () => {
       shipping_method: "standard",
       notes: data?.notes || "",
     };
-    mutate(order);
+    setTimeout(() => mutate(order), 3000);
   };
 
   const [selectedValue, setSelectedValue] = useState<string>("option1");
@@ -67,6 +67,7 @@ export const usePaymentPageHook = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
   };
+
   return {
     selectedValue,
     isLoading,
