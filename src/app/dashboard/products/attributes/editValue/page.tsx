@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import EditForm from "../components/FullPage/EditAttributePage";
+import EditAttributeVariantValuePage from "./components/EditAttributeVariantValuePage";
 
 export default function EditAttributeVariantPage() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <EditForm />
+      <EditAttributeVariantValuePage />
     </Suspense>
   );
 }

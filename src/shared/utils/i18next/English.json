@@ -217,5 +217,6 @@
   "Modify profile image": "Modify profile image",
   "Change password": "Change password",
   "Failed to post profile image": "Failed to post profile image",
-  "Profile image posted successfully!": "Profile image posted successfully!"
+  "Profile image posted successfully!": "Profile image posted successfully!",
+  "Discount value must be between 0 and 100": ""
 }

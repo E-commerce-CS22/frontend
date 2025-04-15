@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { CustomDatePicker } from "@/shared/components/Form";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
@@ -6,10 +7,15 @@ import { Controller, FormProvider } from "react-hook-form";
 import { useEditDiscountHook } from "./editDiscount.hook";
 import { useTranslation } from "react-i18next";
 import { getRequiredValidation } from "@/shared/utils";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function EditDiscountPage() {
   const { t } = useTranslation("Store");
   const {
+    isLoading,
+    isError,
+    isSuccess,
     register,
     errors,
     methods,
@@ -20,6 +26,15 @@ export default function EditDiscountPage() {
   } = useEditDiscountHook();
 
   const discountTypes = ["percentage", "fixed"];
+
+  useEffect(() => {
+    if (isLoading)
+      toast.loading(t("Sending data..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isError) toast.error(t("Failed to send data"));
+    if (isSuccess) toast.success(t("Sent successfully"));
+  }, [isLoading, isSuccess, isError]);
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>
@@ -41,6 +56,14 @@ export default function EditDiscountPage() {
                   validate: (value) => {
                     const isNumber =
                       !isNaN(parseFloat(value)) && isFinite(value);
+                    if (discountInfo?.discount_type === "percentage") {
+                      const isInRange =
+                        parseFloat(value) >= 0 && parseFloat(value) <= 100;
+                      return (
+                        (isNumber && isInRange) ||
+                        t("Discount value must be between 0 and 100")
+                      );
+                    }
                     return isNumber || t("Discount value must be a number");
                   },
                 })}

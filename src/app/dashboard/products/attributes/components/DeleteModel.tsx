@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { CustomDialog } from "@/shared/components/CustomDialog";
 import { Box, Button, DialogActions, Typography } from "@mui/material";
 import { Delete } from "@mui/icons-material";
@@ -54,7 +55,6 @@ export const DeleteModel = (props) => {
 
     if (isError) toast.error(t("Failed to send data"));
     if (isSuccess) toast.success(t("Sent successfully"));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, isSuccess, isError]);
   return (
     <Box>
