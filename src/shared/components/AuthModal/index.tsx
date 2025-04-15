@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import {
@@ -32,7 +33,7 @@ import { useRouter } from "next/navigation";
 interface AuthModalProps {
   open: boolean;
   onClose: () => void;
-  initialTab?: 'login' | 'signup';
+  initialTab?: "login" | "signup";
 }
 
 // TabPanel Component to switch between login and signup forms
@@ -51,16 +52,16 @@ const TabPanel = ({ children, value, index, ...other }) => (
 export const AuthModal: React.FC<AuthModalProps> = ({
   open,
   onClose,
-  initialTab = 'login'
+  initialTab = "login",
 }) => {
   const { t } = useTranslation("Store");
   const router = useRouter();
-  const [tabValue, setTabValue] = useState(initialTab === 'login' ? 0 : 1);
+  const [tabValue, setTabValue] = useState(initialTab === "login" ? 0 : 1);
   const { login } = useContext(UserContext);
-  
+
   // Update tab value when initialTab changes
   useEffect(() => {
-    setTabValue(initialTab === 'login' ? 0 : 1);
+    setTabValue(initialTab === "login" ? 0 : 1);
   }, [initialTab]);
 
   // Login State
@@ -85,7 +86,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     formState: { errors: signupErrors },
     register: registerSignup,
     watch: watchSignup,
-    getValues: getSignupValues,
+    // getValues: getSignupValues,
   } = useForm({
     mode: "all",
   });
@@ -176,25 +177,24 @@ export const AuthModal: React.FC<AuthModalProps> = ({
       setTabValue(0); // Switch to login tab after successful signup
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [signupMutation.isPending, signupMutation.isError, signupMutation.isSuccess]);
+  }, [
+    signupMutation.isPending,
+    signupMutation.isError,
+    signupMutation.isSuccess,
+  ]);
 
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      maxWidth="sm"
-      fullWidth
-    >
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogTitle
         sx={{
           backgroundColor: primary,
-          color: 'white',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
+          color: "white",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        <Typography variant="h4" component="div" sx={{ textAlign: 'center' }}>
+        <Typography variant="h4" component="div" sx={{ textAlign: "center" }}>
           {tabValue === 0 ? t("Login") : t("Create an account")}
         </Typography>
         <IconButton
@@ -213,8 +213,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           variant="fullWidth"
           sx={{ mb: 2, mt: 2 }}
         >
-          <Tab label={<Typography variant="h6" fontWeight="bold">{t("Login")}</Typography>} />
-          <Tab label={<Typography variant="h6" fontWeight="bold">{t("Sign Up")}</Typography>} />
+          <Tab
+            label={
+              <Typography variant="h6" fontWeight="bold">
+                {t("Login")}
+              </Typography>
+            }
+          />
+          <Tab
+            label={
+              <Typography variant="h6" fontWeight="bold">
+                {t("Sign Up")}
+              </Typography>
+            }
+          />
         </Tabs>
 
         {/* Login Form */}
@@ -286,7 +298,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 t("Login")
               )}
             </Button>
-            <Box mt={2} sx={{ textAlign: 'center' }}>
+            <Box mt={2} sx={{ textAlign: "center" }}>
               <Typography variant="body2">
                 {t("I don't have an account")}
                 <Button
@@ -326,7 +338,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 })}
               />
             </Box>
-            <Box sx={{ display: 'flex', gap: 2 }}>
+            <Box sx={{ display: "flex", gap: 2 }}>
               <Box sx={{ flex: 1 }}>
                 <TextField
                   fullWidth
@@ -446,10 +458,12 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   },
                   validate: (value) => {
                     // Get the password field value from the current form
-                    const password = watchSignup('password');
-                    return password === value || t("The password field confirmation does not match.");
-                  }
-                  
+                    const password = watchSignup("password");
+                    return (
+                      password === value ||
+                      t("The password field confirmation does not match.")
+                    );
+                  },
                 })}
                 InputProps={{
                   endAdornment: (
@@ -465,7 +479,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 }}
               />
             </Box>
-            <Box sx={{ display: 'flex', gap: 2 }}>
+            <Box sx={{ display: "flex", gap: 2 }}>
               <Box sx={{ flex: 1 }}>
                 <TextField
                   fullWidth
@@ -516,15 +530,21 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 )}
               </Button>
             </Box>
-            <Box mt={2} sx={{ textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
+            <Box
+              mt={2}
+              sx={{
+                textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 2,
+              }}
+            >
               <Typography variant="body2">
-                <span style={{ color: 'black' }}>
+                <span style={{ color: "black" }}>
                   {t("I already have an account")}
                 </span>
-                <Link
-                  color="primary"
-                  onClick={() => setTabValue(0)}
-                >
+                <Link color="primary" onClick={() => setTabValue(0)}>
                   {t("Login")}
                 </Link>
               </Typography>

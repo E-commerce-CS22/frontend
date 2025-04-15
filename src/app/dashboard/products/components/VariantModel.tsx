@@ -22,7 +22,7 @@ export const VariantsModel = (props: VariantsModelProps) => {
   const { t } = useTranslation("Store");
   const [open, setOpen] = useState(false);
 
-  const { variants, id } = props;
+  const { variants } = props; //
 
   const handleClickOpen = () => {
     setOpen(!open);

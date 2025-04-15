@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { useCategoriesHook } from "./useCategoriesPage.hook";
@@ -5,12 +6,20 @@ import { CategoryCard } from "../CategoryCard";
 import { Box, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { SecondaryTextColor } from "@/shared/customization";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function Products() {
   const { t } = useTranslation("Store");
-  const { categoriesData, isLoading } = useCategoriesHook();
+  const { categoriesData, isLoading, isError, isSuccess } = useCategoriesHook();
 
-  if (isLoading) return <div>Loading...</div>;
+  useEffect(() => {
+    if (isLoading) toast.loading(t("Loading..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isError) toast.error(t("Failed to load"));
+  }, [isLoading, isSuccess, isError]);
+
   return (
     <PageWrapper padding={"0px"}>
       <Box

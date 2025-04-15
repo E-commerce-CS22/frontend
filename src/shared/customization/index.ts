@@ -7,7 +7,7 @@ const ThemeSpacing = CustomTheme.spacing;
 const ThemeTransitions = CustomTheme.transitions;
 const ThemeZIndex = CustomTheme.zIndex;
 
-export { AppThemeProvider, createMuiCache } from "./AppThemeProvider";
+export { AppThemeProvider } from "./AppThemeProvider";
 export * from "./theme/colors";
 export * from "./shadows";
 export {

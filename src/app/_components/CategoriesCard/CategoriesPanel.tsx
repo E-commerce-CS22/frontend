@@ -1,16 +1,17 @@
 import { Box, Button } from "@mui/material";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useCategoriesHook } from "./useCategoriesPanel.hook";
 import { CategoryChip } from "./components/CategoryChip";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import { primary } from "@/shared/customization";
+import { t } from "i18next";
+import { toast } from "react-toastify";
 
 export const CategoriesPanel = () => {
-  const { categoriesData, isLoading } = useCategoriesHook();
+  const { categoriesData, isLoading, isSuccess, isError } = useCategoriesHook();
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  if (isLoading) return <div>Loading...</div>;
   const scroll = (direction: "left" | "right") => {
     const scrollContainer = scrollRef.current;
     if (scrollContainer) {
@@ -21,6 +22,13 @@ export const CategoriesPanel = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (isLoading) toast.loading(t("Loading..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isError) toast.error(t("Failed to get data"));
+  }, [isLoading, isSuccess, isError]);
   return (
     <Box
       sx={{

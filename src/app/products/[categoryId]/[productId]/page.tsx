@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import {
   Box,
@@ -22,6 +23,7 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { i18n } from "@/shared/utils/i18next";
 import { UserContext } from "@/shared/common/authentication";
+import { toast } from "react-toastify";
 
 type ProductDetailsProps = {
   params: Promise<{ productId: string }>;
@@ -33,6 +35,12 @@ export default function ProductDetails(props: ProductDetailsProps) {
   const { isAuthenticated } = useContext(UserContext);
 
   const {
+    isSuccess,
+    isError,
+    isLoading,
+    isLoadingADDToWishlist,
+    isErrorAddToWishlist,
+    isSuccessAddToWishlist,
     productData,
     productQuantity,
     handleIncreaseQuantity,
@@ -48,7 +56,26 @@ export default function ProductDetails(props: ProductDetailsProps) {
     setIsMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (isLoading)
+      toast.loading(t("Sending data..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isError) toast.error(t("Failed to send data"));
+    if (isSuccess) toast.success(t("Sent successfully"));
+  }, [isLoading, isSuccess, isError]);
+
+  useEffect(() => {
+    if (isLoadingADDToWishlist)
+      toast.loading(t("Sending data..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isErrorAddToWishlist) toast.error(t("Failed to send data"));
+    if (isSuccessAddToWishlist) toast.success(t("Sent successfully"));
+  }, [isLoadingADDToWishlist, isSuccessAddToWishlist, isErrorAddToWishlist]);
+
   if (!isMounted) return null;
+
   return (
     <Box
       display={"flex"}

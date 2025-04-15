@@ -2,13 +2,13 @@
 import PageWrapper from "@/shared/components/PageWrapper/PageWrapper";
 import { Box, Card, Typography, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { commonCardStyles } from "./dashboardStyles";
+// import { commonCardStyles } from "./dashboardStyles";
 import { Chart, registerables } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { useUserActivity } from "@/shared/api/admin/userActivity";
 import { useOrdersStatistics } from "@/shared/api/admin/ordersStatistics";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+// import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import PeopleIcon from "@mui/icons-material/People";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 
@@ -16,7 +16,7 @@ Chart.register(...registerables);
 
 export default function Dashboard() {
   const { t } = useTranslation("Store");
-  const classes = commonCardStyles();
+  // const classes = commonCardStyles();
 
   const { data, isLoading, error } = useUserActivity();
   const {
@@ -31,76 +31,76 @@ export default function Dashboard() {
   const numAdmins =
     data?.users_by_role?.find((u) => u.role === "admin")?.total || 0;
 
-  const userRoles = data?.users_by_role?.map((role) => role.role) || [];
-  const userCounts = data?.users_by_role?.map((role) => role.total) || [];
+  // const userRoles = data?.users_by_role?.map((role) => role.role) || [];
+  // const userCounts = data?.users_by_role?.map((role) => role.total) || [];
 
-  const pieData = {
-    labels: ["Active Today", "Inactive Today"],
-    datasets: [
-      {
-        data: [data?.active_today, data?.total_users - data?.active_today],
-        backgroundColor: ["#FFCE56", "#E7E9ED"],
-      },
-    ],
-  };
+  // const pieData = {
+  //   labels: ["Active Today", "Inactive Today"],
+  //   datasets: [
+  //     {
+  //       data: [data?.active_today, data?.total_users - data?.active_today],
+  //       backgroundColor: ["#FFCE56", "#E7E9ED"],
+  //     },
+  //   ],
+  // };
 
-  const activeCustomers =
-    data?.users_by_role.find((role) => role.role === "customer")
-      ?.active_today || 0;
-  const totalCustomers =
-    data?.users_by_role.find((role) => role.role === "customer")?.total || 0;
-  const totalAdmins =
-    data?.users_by_role.find((role) => role.role === "admin")?.total || 0;
+  // const activeCustomers =
+  //   data?.users_by_role.find((role) => role.role === "customer")
+  //     ?.active_today || 0;
+  // const totalCustomers =
+  //   data?.users_by_role.find((role) => role.role === "customer")?.total || 0;
+  // const totalAdmins =
+  //   data?.users_by_role.find((role) => role.role === "admin")?.total || 0;
 
-  const adminPieData = {
-    labels: ["Active Admins", "Inactive Admins"],
-    datasets: [
-      {
-        data: [totalAdmins, data?.total_users - totalAdmins],
-        backgroundColor: ["#2196F3", "#FF5722"],
-      },
-    ],
-  };
+  // const adminPieData = {
+  //   labels: ["Active Admins", "Inactive Admins"],
+  //   datasets: [
+  //     {
+  //       data: [totalAdmins, data?.total_users - totalAdmins],
+  //       backgroundColor: ["#2196F3", "#FF5722"],
+  //     },
+  //   ],
+  // };
 
-  const customerPieData = {
-    labels: ["Active Customers", "Inactive Customers"],
-    datasets: [
-      {
-        data: [activeCustomers, totalCustomers - activeCustomers],
-        backgroundColor: ["#4CAF50", "#F44336"],
-      },
-    ],
-  };
+  // const customerPieData = {
+  //   labels: ["Active Customers", "Inactive Customers"],
+  //   datasets: [
+  //     {
+  //       data: [activeCustomers, totalCustomers - activeCustomers],
+  //       backgroundColor: ["#4CAF50", "#F44336"],
+  //     },
+  //   ],
+  // };
 
-  const rolePieData = {
-    labels: userRoles,
-    datasets: [
-      {
-        data: userCounts,
-        backgroundColor: [
-          "#FF6384",
-          "#36A2EB",
-          "#FFCE56",
-          "#4CAF50",
-          "#F44336",
-        ],
-      },
-    ],
-  };
+  // const rolePieData = {
+  //   labels: userRoles,
+  //   datasets: [
+  //     {
+  //       data: userCounts,
+  //       backgroundColor: [
+  //         "#FF6384",
+  //         "#36A2EB",
+  //         "#FFCE56",
+  //         "#4CAF50",
+  //         "#F44336",
+  //       ],
+  //     },
+  //   ],
+  // };
 
-  const ordersPieData = {
-    labels: ["Pending Orders", "Processing Orders", "Cancelled Orders"],
-    datasets: [
-      {
-        data: [
-          ordersData?.pending_orders,
-          ordersData?.processing_orders,
-          ordersData?.cancelled_orders,
-        ],
-        backgroundColor: ["#FFCE56", "#36A2EB", "#FF6384"],
-      },
-    ],
-  };
+  // const ordersPieData = {
+  //   labels: ["Pending Orders", "Processing Orders", "Cancelled Orders"],
+  //   datasets: [
+  //     {
+  //       data: [
+  //         ordersData?.pending_orders,
+  //         ordersData?.processing_orders,
+  //         ordersData?.cancelled_orders,
+  //       ],
+  //       backgroundColor: ["#FFCE56", "#36A2EB", "#FF6384"],
+  //     },
+  //   ],
+  // };
 
   if (isLoading || isOrdersLoading) {
     return (

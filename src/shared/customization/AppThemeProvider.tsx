@@ -44,6 +44,7 @@ export const AppThemeProvider = ({
       document.documentElement.lang = i18n.language;
       document.body.setAttribute("dir", direction);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [direction]);
 
   return (

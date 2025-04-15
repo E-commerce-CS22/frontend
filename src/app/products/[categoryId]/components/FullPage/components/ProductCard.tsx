@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import {
   darkRed,
@@ -19,8 +20,9 @@ import {
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { useProductCardHook } from "./useProductCard.hook";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "@/shared/common/authentication";
+import { toast } from "react-toastify";
 
 type ProductCardProps = {
   id: string;
@@ -52,6 +54,12 @@ export const ProductCard = (props: ProductCardProps) => {
   const { id, name, image, description, price, final_price } = props;
 
   const {
+    isSuccess,
+    isError,
+    isLoading,
+    isLoadingADDToWishlist,
+    isErrorAddToWishlist,
+    isSuccessAddToWishlist,
     productQuantity,
     handleCategoryProduct,
     handleIncreaseQuantity,
@@ -59,6 +67,24 @@ export const ProductCard = (props: ProductCardProps) => {
     handleAddToFavorite,
     handleAddToCart,
   } = useProductCardHook({ id });
+
+  useEffect(() => {
+    if (isLoading)
+      toast.loading(t("Sending data..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isError) toast.error(t("Failed to send data"));
+    if (isSuccess) toast.success(t("Sent successfully"));
+  }, [isLoading, isSuccess, isError]);
+
+  useEffect(() => {
+    if (isLoadingADDToWishlist)
+      toast.loading(t("Sending data..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isErrorAddToWishlist) toast.error(t("Failed to send data"));
+    if (isSuccessAddToWishlist) toast.success(t("Sent successfully"));
+  }, [isLoadingADDToWishlist, isSuccessAddToWishlist, isErrorAddToWishlist]);
 
   return (
     <Card

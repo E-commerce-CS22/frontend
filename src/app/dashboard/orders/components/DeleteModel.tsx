@@ -66,6 +66,7 @@ export const DeleteModel = (props) => {
             <Button
               color="success"
               variant="contained"
+              sx={{ color: "white" }}
               onClick={handleClickOpen}
             >
               {t("Cancel")}

@@ -27,12 +27,12 @@ export const getCustomersColumns = (
   {
     key: "FirstName",
     header: t("First Name"),
-    accessor: ({ customer }) => customer?.first_name,
+    accessor: ({ customer_data }) => customer_data?.first_name,
   },
   {
     key: "LastName",
     header: t("Last Name"),
-    accessor: ({ customer }) => customer?.last_name,
+    accessor: ({ customer_data }) => customer_data?.last_name,
   },
   {
     key: "email",
@@ -47,23 +47,23 @@ export const getCustomersColumns = (
   {
     key: "phoneNumber",
     header: t("Phone Number"),
-    accessor: ({ customer }) => customer?.phone,
+    accessor: ({ customer_data }) => customer_data?.phone,
   },
   {
     key: "address",
     header: t("Address"),
-    accessor: ({ customer }) => customer?.address,
+    accessor: ({ customer_data }) => customer_data?.address,
   },
   {
     key: "city",
     header: t("City"),
-    accessor: ({ customer }) => customer?.city,
+    accessor: ({ customer_data }) => customer_data?.city,
   },
-  {
-    key: "postalCode",
-    header: t("Postal Code"),
-    accessor: ({ customer }) => customer?.postal_code,
-  },
+  // {
+  //   key: "postalCode",
+  //   header: t("Postal Code"),
+  //   accessor: ({ customer_data }) => customer_data?.postal_code,
+  // },
   // {
   //   key: "delete",
   //   header: t("Delete"),

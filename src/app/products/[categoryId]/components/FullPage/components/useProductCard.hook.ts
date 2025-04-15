@@ -18,6 +18,7 @@ export const useProductCardHook = ({ id }) => {
     mutate,
     isError: isErrorAddToWishlist,
     isSuccess: isSuccessAddToWishlist,
+    isPending: isLoadingADDToWishlist,
   } = useMutation({
     mutationFn: () => {
       return axios.post(
@@ -36,6 +37,7 @@ export const useProductCardHook = ({ id }) => {
     mutate: addToCard,
     isSuccess,
     isError,
+    isPending: isLoading,
   } = useMutation({
     mutationFn: (cartInput: cartInputType) => {
       return axios.post(`${SERVER_URI}/api/carts/products`, cartInput, {
@@ -76,6 +78,8 @@ export const useProductCardHook = ({ id }) => {
   return {
     isSuccess,
     isError,
+    isLoading,
+    isLoadingADDToWishlist,
     isErrorAddToWishlist,
     isSuccessAddToWishlist,
     productQuantity,

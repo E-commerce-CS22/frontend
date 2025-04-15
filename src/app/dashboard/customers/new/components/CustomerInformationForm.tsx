@@ -124,7 +124,7 @@ export const CustomerInformationForm = () => {
           })}
         />
       </Grid>
-      <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
+      {/* <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <TextField
           label={t("Postal code")}
           placeholder={t("Postal code")}
@@ -137,7 +137,7 @@ export const CustomerInformationForm = () => {
             required: getRequiredValidation(t, true),
           })}
         />
-      </Grid>
+      </Grid> */}
       <Grid p={"1rem"} sx={{ minWidth: "400px" }}>
         <Autocomplete
           options={statuses}

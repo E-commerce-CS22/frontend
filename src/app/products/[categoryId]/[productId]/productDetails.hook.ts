@@ -27,19 +27,18 @@ export const useProductDetailsHook = ({ productId }) => {
     return response.data;
   };
 
-  const {
-    isPending: isLoading,
-    isError,
-    isSuccess,
-    data: productData,
-    error,
-  } = useQuery({
+  const { data: productData, error } = useQuery({
     queryKey: ["productDetails"],
     queryFn: fetchProduct,
     enabled: !!token,
   });
 
-  const { mutate } = useMutation({
+  const {
+    mutate,
+    isPending: isLoadingADDToWishlist,
+    isError: isErrorAddToWishlist,
+    isSuccess: isSuccessAddToWishlist,
+  } = useMutation({
     mutationFn: () => {
       return axios.post(
         `${SERVER_URI}/api/wishlists/${wishlistId || 0}/products/${productId}`,
@@ -53,7 +52,12 @@ export const useProductDetailsHook = ({ productId }) => {
     },
   });
 
-  const { mutate: addToCard } = useMutation({
+  const {
+    isPending: isLoading,
+    isError,
+    isSuccess,
+    mutate: addToCard,
+  } = useMutation({
     mutationFn: (cartInput: cartInputType) => {
       return axios.post(`${SERVER_URI}/api/carts/products`, cartInput, {
         headers: {
@@ -94,6 +98,9 @@ export const useProductDetailsHook = ({ productId }) => {
     isLoading,
     isSuccess,
     isError,
+    isLoadingADDToWishlist,
+    isErrorAddToWishlist,
+    isSuccessAddToWishlist,
     error,
     productQuantity,
     productData: productData?.data,

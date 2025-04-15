@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -8,6 +9,8 @@ import { FormCard } from "@/shared/components/Form";
 import { AttributeInformationForm } from "../../new/components/AttributeInformationForm";
 import { useEditAttributeHook } from "./editAttribute.hook";
 import { useSearchParams } from "next/navigation";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 export default function EditAttributePage() {
   const { t } = useTranslation("Store");
@@ -17,8 +20,8 @@ export default function EditAttributePage() {
 
   const {
     isLoading,
-    // isSuccess,
-    // isError,
+    isSuccess,
+    isError,
     isLoadingFetchingAttribute,
     defaultValues,
     methods,
@@ -26,6 +29,15 @@ export default function EditAttributePage() {
     handleClick,
     handleCancel,
   } = useEditAttributeHook({ id });
+
+  useEffect(() => {
+    if (isLoading)
+      toast.loading(t("Sending data..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isError) toast.error(t("Failed to send data"));
+    if (isSuccess) toast.success(t("Sent successfully"));
+  }, [isLoading, isSuccess, isError]);
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>

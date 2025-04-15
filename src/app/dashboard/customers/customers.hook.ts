@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { getCustomersColumns } from "./components/CustomersColumns";
 import axios from "axios";
@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useCustomersHook = () => {
   const { t } = useTranslation("Store");
-  const router = useRouter();
+  // const router = useRouter();
   const { token } = useContext(UserContext);
 
   const fetchCustomers = async () => {
@@ -32,15 +32,15 @@ export const useCustomersHook = () => {
     enabled: !!token,
   });
 
-  const handleNavigateToNewPage = () => {
-    router.push("customers/new");
-  };
+  // const handleNavigateToNewPage = () => {
+  //   router.push("customers/new");
+  // };
 
   const tableActionButtons = [
-    {
-      title: t("Create Customer"),
-      buttonHandler: handleNavigateToNewPage,
-    },
+    // {
+    //   title: t("Create Customer"),
+    //   buttonHandler: handleNavigateToNewPage,
+    // },
   ];
 
   return {

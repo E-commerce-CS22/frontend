@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -8,6 +9,8 @@ import { FormCard } from "@/shared/components/Form";
 import { TagInformationForm } from "../../new/components/TagInformationForm";
 import { useEditNewTagHook } from "./editTag.hook";
 import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function EditTagPage() {
   const { t } = useTranslation("Store");
@@ -17,8 +20,8 @@ export default function EditTagPage() {
 
   const {
     isLoading,
-    // isSuccess,
-    // isError,
+    isSuccess,
+    isError,
     isLoadingFetchingTag,
     defaultValues,
     methods,
@@ -26,6 +29,15 @@ export default function EditTagPage() {
     handleClick,
     handleCancel,
   } = useEditNewTagHook({ id });
+
+  useEffect(() => {
+    if (isLoading)
+      toast.loading(t("Sending data..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isError) toast.error(t("Failed to send data"));
+    if (isSuccess) toast.success(t("Sent successfully"));
+  }, [isLoading, isSuccess, isError]);
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleClick)}>

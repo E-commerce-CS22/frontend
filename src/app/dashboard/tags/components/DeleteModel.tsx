@@ -8,6 +8,7 @@ import { UserContext } from "@/shared/common/authentication";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { SERVER_URI } from "@/shared/utils";
+import { toast } from "react-toastify";
 
 export const DeleteModel = (props) => {
   const { t } = useTranslation("Store");
@@ -15,7 +16,12 @@ export const DeleteModel = (props) => {
 
   const { token } = useContext(UserContext);
 
-  const { mutate, isSuccess } = useMutation({
+  const {
+    mutate,
+    isSuccess,
+    isPending: isLoading,
+    isError,
+  } = useMutation({
     mutationFn: (id: string) => {
       return axios.delete(`${SERVER_URI}/api/admin/tags/${id}`, {
         headers: {
@@ -40,6 +46,16 @@ export const DeleteModel = (props) => {
       setOpen(false);
     }
   }, [isSuccess]);
+
+  useEffect(() => {
+    if (isLoading)
+      toast.loading(t("Sending data..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isError) toast.error(t("Failed to send data"));
+    if (isSuccess) toast.success(t("Sent successfully"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading, isSuccess, isError]);
   return (
     <Box>
       <CustomDialog
@@ -65,6 +81,7 @@ export const DeleteModel = (props) => {
             <Button
               color="success"
               variant="contained"
+              sx={{ color: "white" }}
               onClick={handleClickOpen}
             >
               {t("Cancel")}

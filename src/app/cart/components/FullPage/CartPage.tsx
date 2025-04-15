@@ -4,12 +4,21 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useCartProductsHook } from "./useCartPage.hook";
 import { CartProductCard } from "./CartProductCard/CartProductCard";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function Products() {
   const { t } = useTranslation("Store");
-  const { products, isLoading, handlePaymentPage } = useCartProductsHook();
+  const { products, isLoading, isError, handlePaymentPage } =
+    useCartProductsHook();
 
-  if (isLoading) <div>Loading...</div>;
+  useEffect(() => {
+    if (isLoading) toast.loading(t("Loading..."), { toastId: "loadProfile" });
+    else toast.dismiss("loadProfile");
+
+    if (isError) toast.error(t("Failed to load"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading, isError]);
   return (
     <PageWrapper padding={"0px"}>
       <Box
