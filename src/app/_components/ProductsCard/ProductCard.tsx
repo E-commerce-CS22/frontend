@@ -201,6 +201,7 @@ export const ProductCard = (props: ProductCardProps) => {
             <FavoriteBorder color="primary" />
           </IconButton>
         )}
+        <div>S</div>
       </CardActions>
     </Card>
   );

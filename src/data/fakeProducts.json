@@ -1,0 +1,83 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Premium Wireless Headphones",
+      "description": "High-quality wireless headphones with noise cancellation",
+      "price": 199.99,
+      "category": "Electronics",
+      "tags": ["wireless", "audio", "premium"],
+      "stock": 50,
+      "rating": 4.8,
+      "image": "https://example.com/headphones.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Smart Fitness Watch",
+      "description": "Track your fitness goals with this advanced smartwatch",
+      "price": 149.99,
+      "category": "Wearables",
+      "tags": ["fitness", "smartwatch", "health"],
+      "stock": 30,
+      "rating": 4.6,
+      "image": "https://example.com/smartwatch.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Professional Camera",
+      "description": "High-resolution camera for professional photography",
+      "price": 899.99,
+      "category": "Photography",
+      "tags": ["camera", "professional", "photography"],
+      "stock": 15,
+      "rating": 4.9,
+      "image": "https://example.com/camera.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Gaming Laptop",
+      "description": "Powerful gaming laptop with high-end graphics",
+      "price": 1299.99,
+      "category": "Computers",
+      "tags": ["gaming", "laptop", "high-performance"],
+      "stock": 20,
+      "rating": 4.7,
+      "image": "https://example.com/laptop.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Smart Home Speaker",
+      "description": "Voice-controlled smart speaker with premium sound",
+      "price": 79.99,
+      "category": "Smart Home",
+      "tags": ["smart", "speaker", "voice-control"],
+      "stock": 100,
+      "rating": 4.5,
+      "image": "https://example.com/speaker.jpg"
+    }
+  ],
+  "categories": [
+    "Electronics",
+    "Wearables",
+    "Photography",
+    "Computers",
+    "Smart Home"
+  ],
+  "tags": [
+    "wireless",
+    "audio",
+    "premium",
+    "fitness",
+    "smartwatch",
+    "health",
+    "camera",
+    "professional",
+    "photography",
+    "gaming",
+    "laptop",
+    "high-performance",
+    "smart",
+    "speaker",
+    "voice-control"
+  ]
+}
