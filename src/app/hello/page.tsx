@@ -8,7 +8,7 @@ export default function Hello() {
       gap={2}
       padding={3}
     >
-      Testing
+      Testing 2
     </Box>
   );
 }
